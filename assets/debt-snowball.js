@@ -1,5 +1,80 @@
 import { formatCurrency } from './common.js';
 
+function initStartMonthPicker(){
+  const el = document.querySelector("#start-date");
+  if(!el) return;
+
+  // ensure interactive
+  el.removeAttribute("disabled");
+  el.readOnly = false;
+
+  // guard
+  if(typeof flatpickr === "undefined"){
+    console.warn("[ToolFin] flatpickr missing");
+    return;
+  }
+  if(typeof monthSelectPlugin === "undefined"){
+    console.warn("[ToolFin] monthSelectPlugin missing");
+    return;
+  }
+
+  // destroy previous instance (important if re-rendering)
+  if(el._flatpickr){
+    try{ el._flatpickr.destroy(); }catch(e){}
+  }
+
+  // keep existing value if any
+  const existing = (el.value || "").trim();
+  const fallback = new Date();
+
+  flatpickr(el, {
+    // always render popup on body (avoids overflow clipping)
+    appendTo: document.body,
+
+    // month-only picker
+    plugins: [
+      new monthSelectPlugin({
+        shorthand: true,
+        dateFormat: "M Y",
+        altFormat: "F Y",
+        theme: "light"
+      })
+    ],
+
+    // behavior
+    defaultDate: existing || fallback,
+    allowInput: false,
+    clickOpens: true,
+    disableMobile: true,
+
+    // force English months regardless of locale
+    locale: {
+      firstDayOfWeek: 0,
+      weekdays: {
+        shorthand: ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],
+        longhand: ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+      },
+      months: {
+        shorthand: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+        longhand: ["January","February","March","April","May","June","July","August","September","October","November","December"]
+      }
+    },
+
+    onOpen: function(selectedDates, dateStr, instance){
+      if(instance && instance.calendarContainer){
+        instance.calendarContainer.style.zIndex = "999999";
+      }
+    }
+  });
+
+  // some layouts swallow clicks; force open on focus/click
+  const forceOpen = ()=>{
+    if(el._flatpickr) el._flatpickr.open();
+  };
+  el.addEventListener("focus", forceOpen);
+  el.addEventListener("click", forceOpen);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const debtContainer = document.getElementById('debt-container');
   const addDebtBtn = document.getElementById('add-debt-btn');
@@ -18,9 +93,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const payoffOrderList = document.getElementById('payoff-order-list');
   const timelineBody = document.getElementById('timeline-body');
 
-  // Set default start date to current month
-  const now = new Date();
-  startDateInput.value = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+  initStartMonthPicker();
+
+  const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  
+  function parseMonth(value) {
+    if (!value) return new Date();
+    const parts = value.split(" ");
+    if (parts.length !== 2) return new Date();
+    const [m, y] = parts;
+    const monthIndex = months.indexOf(m);
+    if (monthIndex === -1) return new Date();
+    return new Date(parseInt(y), monthIndex, 1);
+  }
 
   function createDebtRow(name = '', balance = '', apr = '', minPayment = '') {
     const row = document.createElement('div');
@@ -177,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
     resultsSection.style.display = 'block';
     
     // Summary
-    const startDate = new Date(startDateInput.value + '-01');
+    const startDate = parseMonth(startDateInput.value);
     const payoffDate = new Date(startDate);
     payoffDate.setMonth(payoffDate.getMonth() + totalMonths);
     

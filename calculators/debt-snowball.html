@@ -9,6 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/style.css">
   <style>
     .debt-row {
       display: grid;
@@ -128,7 +130,7 @@
         <div class="input-group">
           <label for="start-date">Start Month</label>
           <div class="input-wrapper">
-            <input type="month" id="start-date">
+            <input type="text" id="start-date" class="month-picker" placeholder="Jan 2026" autocomplete="off">
           </div>
         </div>
       </div>
@@ -297,6 +299,8 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
   <script type="module" src="/assets/debt-snowball.js"></script>
 </body>
 </html>
