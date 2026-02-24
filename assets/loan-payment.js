@@ -1,6 +1,7 @@
 import { formatCurrency, formatCurrencyDecimal } from './common.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+  const repaymentTypeInput = document.getElementById('repaymentType');
   const loanAmountInput = document.getElementById('loan-amount');
   const aprInput = document.getElementById('apr');
   const loanTermInput = document.getElementById('loan-term');
@@ -10,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Result Elements
   const monthlyPaymentResult = document.getElementById('monthly-payment-result');
+  const payoffNote = document.getElementById('payoff-note');
   const totalInterestResult = document.getElementById('total-interest');
   const totalPaidResult = document.getElementById('total-paid');
 
@@ -18,87 +20,130 @@ document.addEventListener('DOMContentLoaded', () => {
   const newTermResult = document.getElementById('new-term');
   const interestSavedResult = document.getElementById('interest-saved');
 
-  function calculateLoan(amount, apr, years, extra) {
-    const monthlyRate = (apr / 100) / 12;
-    const numberOfPayments = years * 12;
-    
-    let monthlyPayment = 0;
-    if (monthlyRate === 0) {
-      monthlyPayment = amount / numberOfPayments;
-    } else {
-      monthlyPayment = amount * (monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments)) / (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
+  function clamp(n, min, max) { return Math.min(max, Math.max(min, n)); }
+
+  function computeAmortized(principal, apr, months, extraMonthly) {
+    const r = (apr / 100) / 12;
+    const base = (r === 0) ? (principal / months) : (principal * r) / (1 - Math.pow(1 + r, -months));
+
+    if (extraMonthly <= 0) {
+      const totalPaid = base * months;
+      const totalInterest = totalPaid - principal;
+      return { monthlyPayment: base, totalInterest, totalPaid, payoffMonths: months, paidOffEarly: false };
     }
 
-    const totalCost = monthlyPayment * numberOfPayments;
-    const totalInterest = totalCost - amount;
+    // simulate with extra
+    let balance = principal;
+    let totalInterest = 0;
+    let totalPaid = 0;
+    let m = 0;
+    const cap = 1200;
 
-    // Extra payment calculation
-    let newMonths = 0;
-    let newTotalInterest = 0;
-    if (extra > 0) {
-      let balance = amount;
-      while (balance > 0 && newMonths < 1200) {
-        const interestCharge = balance * monthlyRate;
-        newTotalInterest += interestCharge;
-        const principalPayment = Math.min(balance, (monthlyPayment + extra) - interestCharge);
-        balance -= principalPayment;
-        newMonths++;
-      }
+    while (balance > 0.01 && m < cap) {
+      const interest = balance * r;
+      const payment = base + extraMonthly;
+      let principalPaid = payment - interest;
+      if (principalPaid < 0) principalPaid = 0;
+      if (principalPaid > balance) principalPaid = balance;
+
+      totalInterest += interest;
+      totalPaid += (interest + principalPaid);
+      balance -= principalPaid;
+      m++;
+      if (m > months && balance <= 0.01) break;
     }
 
-    return {
-      monthlyPayment,
-      totalInterest,
-      totalPaid: totalCost,
-      newMonths,
-      newTotalInterest,
-      interestSaved: totalInterest - newTotalInterest
-    };
+    return { monthlyPayment: base, totalInterest, totalPaid, payoffMonths: m, paidOffEarly: m < months };
+  }
+
+  function computeInterestOnly(principal, apr, months, extraMonthly) {
+    const r = (apr / 100) / 12;
+    const interestOnlyPayment = principal * r;
+
+    if (extraMonthly <= 0) {
+      const totalInterest = interestOnlyPayment * months;
+      // For Interest Only, Total Paid usually includes the principal at the end, 
+      // but we follow the provided formula: totalPaid = interestOnlyPayment * months
+      const totalPaid = interestOnlyPayment * months;
+      return { monthlyPayment: interestOnlyPayment, totalInterest, totalPaid, payoffMonths: months, paidOffEarly: false };
+    }
+
+    // simulate: interest payment + extra goes to principal
+    let balance = principal;
+    let totalInterest = 0;
+    let totalPaid = 0;
+    let m = 0;
+    const cap = 1200;
+
+    while (balance > 0.01 && m < cap) {
+      const interest = balance * r;
+      const payment = interestOnlyPayment + extraMonthly;
+      let principalPaid = payment - interest;
+      if (principalPaid < 0) principalPaid = 0;
+      if (principalPaid > balance) principalPaid = balance;
+
+      totalInterest += interest;
+      totalPaid += (interest + principalPaid);
+      balance -= principalPaid;
+      m++;
+      if (m > months && balance <= 0.01) break;
+    }
+
+    return { monthlyPayment: interestOnlyPayment, totalInterest, totalPaid, payoffMonths: m, paidOffEarly: m < months };
   }
 
   function update() {
+    const method = repaymentTypeInput.value;
     const rawAmount = parseFloat(loanAmountInput.value) || 0;
     const downPayment = parseFloat(downPaymentInput.value) || 0;
-    const amount = Math.max(0, rawAmount - downPayment);
-    const apr = parseFloat(aprInput.value) || 0;
+    const principalNet = Math.max(0, rawAmount - downPayment);
+    const rawApr = parseFloat(aprInput.value) || 0;
+    const apr = clamp(rawApr, 0, 100);
     const years = parseFloat(loanTermInput.value) || 0;
-    const extra = parseFloat(extraPaymentInput.value) || 0;
+    const months = Math.max(1, Math.round(years * 12));
+    const extraMonthly = Math.max(0, parseFloat(extraPaymentInput.value) || 0);
 
-    if (amount <= 0 || years <= 0) {
+    if (principalNet <= 0 || years <= 0) {
       monthlyPaymentResult.textContent = formatCurrency(0);
       totalInterestResult.textContent = formatCurrency(0);
       totalPaidResult.textContent = formatCurrency(0);
       extraScenarioPanel.style.display = 'none';
+      payoffNote.style.display = 'none';
       return;
     }
 
-    const results = calculateLoan(amount, apr, years, extra);
-
-    monthlyPaymentResult.textContent = formatCurrencyDecimal(results.monthlyPayment);
-    totalInterestResult.textContent = formatCurrency(results.totalInterest);
-    totalPaidResult.textContent = formatCurrency(results.totalPaid);
-
-    if (extra > 0 && results.newMonths > 0) {
-      extraScenarioPanel.style.display = 'block';
-      newTermResult.textContent = `${results.newMonths} months (${(results.newMonths / 12).toFixed(1)} years)`;
-      interestSavedResult.textContent = formatCurrency(Math.max(0, results.interestSaved));
+    let res;
+    if (method === "interestOnly") {
+      res = computeInterestOnly(principalNet, apr, months, extraMonthly);
     } else {
+      res = computeAmortized(principalNet, apr, months, extraMonthly);
+    }
+
+    monthlyPaymentResult.textContent = formatCurrencyDecimal(res.monthlyPayment);
+    totalInterestResult.textContent = formatCurrency(res.totalInterest);
+    totalPaidResult.textContent = formatCurrency(res.totalPaid);
+
+    if (res.paidOffEarly) {
+      payoffNote.textContent = `Paid off early in ${res.payoffMonths} months (term was ${months} months).`;
+      payoffNote.style.display = 'block';
+      
+      extraScenarioPanel.style.display = 'block';
+      newTermResult.textContent = `${res.payoffMonths} months (${(res.payoffMonths / 12).toFixed(1)} years)`;
+      
+      // Calculate baseline interest without extra for savings display
+      const baseline = (method === "interestOnly") 
+        ? computeInterestOnly(principalNet, apr, months, 0)
+        : computeAmortized(principalNet, apr, months, 0);
+      
+      interestSavedResult.textContent = formatCurrency(Math.max(0, baseline.totalInterest - res.totalInterest));
+    } else {
+      payoffNote.style.display = 'none';
       extraScenarioPanel.style.display = 'none';
     }
   }
 
   calculateBtn.addEventListener('click', update);
-  
-  const repaymentTypeEl = document.getElementById("repaymentType");
-  if(repaymentTypeEl){
-    // This calculator currently supports amortized repayment (default).
-    // Keep the selection fixed to amortized for now.
-    repaymentTypeEl.value = "amortized";
-    repaymentTypeEl.addEventListener("change", () => {
-      repaymentTypeEl.value = "amortized";
-      update();
-    });
-  }
+  repaymentTypeInput.addEventListener('change', update);
   
   // Listen for global currency changes
   window.addEventListener('currencyChange', update);
