@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interest-Only Loan Calculator - Estimate Monthly Payments</title>
+  <meta name="description" content="Calculate monthly payments for interest-only loans. Compare IO periods with fully amortizing terms and see your future payment shock with our free tool.">
+  <link rel="canonical" href="https://toolfin.example/calculators/interest-only-loan.html">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/style.css">
+  <style>
+    .output-summary-box {
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 2rem;
+      border: 1px solid var(--border);
+      margin-bottom: 2rem;
+    }
+    .summary-grid-small {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+    }
+    .summary-item-small .label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.25rem;
+    }
+    .summary-item-small .value {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+    .warning-banner {
+      background: #fffbeb;
+      border: 1px solid #fef3c7;
+      color: #92400e;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      display: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .error-msg {
+      color: #e11d48;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-top: 0.25rem;
+      display: none;
+    }
+    .advanced-toggle {
+      background: none;
+      border: none;
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      padding: 0;
+      margin: 1rem 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .advanced-content {
+      display: none;
+      padding: 1.25rem;
+      background: #f1f5f9;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+    }
+    .advanced-content.show { display: block; }
+    .schedule-container { overflow-x: auto; }
+    .schedule-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    .schedule-table th, .schedule-table td { padding: 12px; text-align: left; border-bottom: 1px solid var(--border); }
+    .schedule-table th { background: #f1f5f9; font-weight: 700; position: sticky; top: 0; }
+    .toggle-schedule-btn {
+      width: 100%;
+      padding: 12px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body data-page="interest-only-loan">
+  <header>
+    <div class="container nav-container">
+      <a class="logo" href="/" aria-label="ToolFin Home">
+        <span class="logo-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+            <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+            <circle cx="8" cy="13" r="1"></circle>
+            <circle cx="12" cy="13" r="1"></circle>
+            <circle cx="16" cy="13" r="1"></circle>
+            <circle cx="8" cy="17" r="1"></circle>
+            <circle cx="12" cy="17" r="1"></circle>
+            <circle cx="16" cy="17" r="1"></circle>
+          </svg>
+        </span>
+        <span class="logo-text">ToolFin</span>
+      </a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/methodology.html">Methodology</a>
+        <a href="/contact.html">Contact</a>
+        <select id="currency-selector">
+          <option value="USD">USD — US Dollar ($)</option>
+          <option value="EUR">EUR — Euro (€)</option>
+          <option value="GBP">GBP — British Pound (£)</option>
+          <option value="CAD">CAD — Canadian Dollar (C$)</option>
+          <option value="AUD">AUD — Australian Dollar (A$)</option>
+        </select>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav style="margin: 2rem 0 1rem; font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">
+      <a href="/" style="color: inherit; text-decoration: none;">Home</a> / 
+      <a href="/loans.html" style="color: inherit; text-decoration: none;">Loans</a> / 
+      Interest-Only Loan Calculator
+    </nav>
+
+    <div class="hero" style="text-align: left; padding: 2rem 0 2rem;">
+      <h1 style="font-size: 3rem;">Interest-Only Loan Calculator</h1>
+      <p>Model your monthly cash flow during interest-only periods and visualize the eventual transition to full amortization.</p>
+    </div>
+
+    <section id="io-calculator">
+      <div class="card">
+        <div id="warning-banner" class="warning-banner"></div>
+        
+        <div class="calc-grid">
+          <div class="input-side">
+            <div class="input-group">
+              <label for="loan-amount">Loan Amount</label>
+              <div class="input-wrapper" style="position: relative;">
+                <span style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-weight: 700; color: var(--text-muted);" class="prefix currency-symbol">$</span>
+                <input type="number" id="loan-amount" value="300000" step="1000" style="padding-left: 35px;">
+              </div>
+              <div id="err-loan-amount" class="error-msg">Please enter a valid loan amount.</div>
+            </div>
+
+            <div class="input-group">
+              <label for="apr">Annual Interest Rate (APR %)</label>
+              <div class="input-wrapper">
+                <input type="number" id="apr" value="6.5" step="0.1" min="0" max="100">
+              </div>
+              <div id="err-apr" class="error-msg">APR must be between 0 and 100.</div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="input-group">
+                <label for="io-period">Interest-Only Period</label>
+                <div class="input-wrapper">
+                  <input type="number" id="io-period" value="5" min="0">
+                </div>
+              </div>
+              <div class="input-group">
+                <label for="io-unit">Period Unit</label>
+                <div class="input-wrapper">
+                  <select id="io-unit">
+                    <option value="years">Years</option>
+                    <option value="months">Months</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label for="amortization-term">Amortization Term After IO (Years)</label>
+              <div class="input-wrapper">
+                <input type="number" id="amortization-term" value="25" min="1">
+              </div>
+              <small style="color: var(--text-muted);">Years to pay off the principal after the IO period ends.</small>
+            </div>
+
+            <div class="input-group">
+              <label for="frequency">Payment Frequency</label>
+              <div class="input-wrapper">
+                <select id="frequency">
+                  <option value="monthly">Monthly</option>
+                  <option value="biweekly">Biweekly</option>
+                  <option value="weekly">Weekly</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label for="start-date">Start Month</label>
+              <div class="input-wrapper">
+                <input type="text" id="start-date" class="month-picker" placeholder="Select Month" autocomplete="off">
+              </div>
+            </div>
+
+            <button class="advanced-toggle" id="btn-toggle-advanced">
+              <span>▶ Advanced Options (Extra Payment)</span>
+            </button>
+            <div class="advanced-content" id="panel-advanced">
+              <div class="input-group">
+                <label for="extra-payment">Extra Principal Payment (During IO)</label>
+                <div class="input-wrapper" style="position: relative;">
+                  <span style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-weight: 700; color: var(--text-muted);" class="prefix currency-symbol">$</span>
+                  <input type="number" id="extra-payment" value="0" step="10" style="padding-left: 35px;">
+                </div>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+              <button id="calculate-btn" style="flex: 2; background: var(--primary); color: white; border: none; padding: 18px; border-radius: 12px; font-weight: 800; font-size: 1.1rem; cursor: pointer;">
+                Calculate Plan
+              </button>
+              <button id="reset-btn" style="flex: 1; background: var(--secondary); color: white; border: none; padding: 18px; border-radius: 12px; font-weight: 800; font-size: 1.1rem; cursor: pointer;">
+                Reset
+              </button>
+            </div>
+          </div>
+
+          <div class="results-panel">
+            <div class="result-item">
+              <div class="result-label">IO Period Payment</div>
+              <div class="result-value" id="res-io-payment">---</div>
+            </div>
+            <div class="result-item">
+              <div class="result-label">Amortized Payment (After IO)</div>
+              <div class="result-value" id="res-amort-payment" style="color: #e11d48;">---</div>
+            </div>
+            <div class="result-item">
+              <div class="result-label">Total Interest Paid</div>
+              <div class="result-value" id="res-total-interest">---</div>
+            </div>
+            <div class="result-item">
+              <div class="result-label">Projected Payoff Date</div>
+              <div class="result-value" id="res-payoff-date" style="font-size: 1.8rem;">---</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="summary-section" class="output-summary-box" style="display: none; margin-top: 2.5rem;">
+          <h3 style="margin-bottom: 1.5rem;">Calculation Summary</h3>
+          <div class="summary-grid-small">
+            <div class="summary-item-small">
+              <div class="label">Total Paid During IO</div>
+              <div class="value" id="sum-io-total">---</div>
+            </div>
+            <div class="summary-item-small">
+              <div class="label">Total Life of Loan Paid</div>
+              <div class="value" id="sum-total-paid">---</div>
+            </div>
+            <div class="summary-item-small">
+              <div class="label">Total Payments</div>
+              <div class="value" id="sum-total-periods">---</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="schedule-section" style="display: none; margin-top: 3rem;">
+          <h3>Repayment Schedule</h3>
+          <div class="schedule-container">
+            <table class="schedule-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Date</th>
+                  <th>Payment</th>
+                  <th>Interest</th>
+                  <th>Principal</th>
+                  <th>Balance</th>
+                </tr>
+              </thead>
+              <tbody id="schedule-body"></tbody>
+            </table>
+          </div>
+          <button id="toggle-all-btn" class="toggle-schedule-btn">Show Full Schedule</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="educational-content" style="margin-top: 5rem;">
+      <article class="prose">
+        <h2>What is an Interest-Only Loan?</h2>
+        <p>An interest-only (IO) loan is a type of debt where the borrower is required to pay only the interest on the principal balance for a set term. During this phase, the principal balance does not decrease unless voluntary extra payments are made.</p>
+        
+        <h2>How It Works</h2>
+        <p>Interest-only loans typically consist of two phases:</p>
+        <ol>
+          <li><strong>Interest-Only Period:</strong> You pay only the interest accrued each month. Your monthly obligation is lower, but you build no equity.</li>
+          <li><strong>Amortization Period:</strong> Once the IO term ends, the loan converts. You must now pay both interest and principal over the remaining years of the loan. This often results in a significant "payment shock."</li>
+        </ol>
+
+        <h2>Strategic Use Cases</h2>
+        <p>IO loans are often used by investors who prioritize short-term cash flow or by individuals who expect their income to rise significantly before the amortization period begins. However, they carry higher risks if property values drop or if the borrower is unprepared for the eventual payment increase.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" aria-label="ToolFin Home">
+            <span class="logo-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+                <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+                <circle cx="8" cy="13" r="1"></circle>
+                <circle cx="12" cy="13" r="1"></circle>
+                <circle cx="16" cy="13" r="1"></circle>
+                <circle cx="8" cy="17" r="1"></circle>
+                <circle cx="12" cy="17" r="1"></circle>
+                <circle cx="16" cy="17" r="1"></circle>
+              </svg>
+            </span>
+            <span class="logo-text">ToolFin</span>
+          </a>
+          <p style="margin-top: 1.5rem;">Practical financial literacy tools designed for global clarity.</p>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Platform</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/">Home</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/about.html">About ToolFin</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="trust-strip">
+        NOT FINANCIAL ADVICE • EDUCATIONAL USE ONLY • ESTIMATES ONLY
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
+  <script type="module" src="/assets/interest-only-loan.js"></script>
+</body>
+</html>
