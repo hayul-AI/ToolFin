@@ -16,18 +16,18 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: "18"
 
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
-      -- name: Deploy to Firebase
-  env:
-    FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-  run: |
-    set -e
-    echo "Searching for firebase.json..."
-    FIREBASE_DIR=$(find . -maxdepth 6 -name firebase.json -print -quit | xargs -I{} dirname "{}")
-    echo "firebase.json found in: ${FIREBASE_DIR}"
-    cd "${FIREBASE_DIR}"
-    firebase deploy --only hosting
+      - name: Deploy to Firebase
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        run: |
+          set -e
+          echo "Searching for firebase.json..."
+          FIREBASE_DIR=$(find . -maxdepth 6 -name firebase.json -print -quit | xargs -I{} dirname "{}")
+          echo "firebase.json found in: ${FIREBASE_DIR}"
+          cd "${FIREBASE_DIR}"
+          firebase deploy --only hosting
