@@ -6,6 +6,7 @@ ToolFin is a "money problem solving platform" designed for English-speaking glob
 ## Project Outline
 - **Tech Stack:** HTML5, CSS3 (Modern Baseline), Vanilla JavaScript (ES Modules).
 - **Design:** SaaS UI (White + Blue), card-based layout, responsive typography.
+- **Branding:** Minimalist "calculator + growth analytics" SVG brand mark integrated into the header and footer brand areas. Consistent ".brand" styling with 8px gap and vertical alignment.
 - **Compliance:** Strict avoidance of advisory language; mandatory disclosure statements on all results; dedicated trust signals.
 - **IA:** 
     - Home, About, Methodology, Disclaimer, Editorial Policy, Contact, 404.
@@ -17,4 +18,5 @@ ToolFin is a "money problem solving platform" designed for English-speaking glob
 2.  **Trust Architecture:** Implement `about.html`, `methodology.html`, `disclaimer.html`, `editorial-policy.html`, and `contact.html`.
 3.  **Core Calculators:** Implement the four requested calculators with dedicated JS logic.
 4.  **Navigation & SEO:** Build `index.html`, `404.html`, and `sitemap.xml`.
-5.  **Validation:** Ensure no prohibited phrases exist and all mandatory compliance rules are met.
+5.  **Branding Update:** Integrated a minimalist SVG brand mark (calculator + growth arrow) across all pages to enhance trust and professionalism.
+6.  **Validation:** Ensure no prohibited phrases exist and all mandatory compliance rules are met.
