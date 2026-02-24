@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact ToolFin</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+  <header>
+    <div class="container nav-container">
+      <a href="/" class="logo">ToolFin</a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/methodology.html">Methodology</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="card">
+      <h1>Contact ToolFin</h1>
+      <p class="mb-2">We value your feedback and inquiries.</p>
+
+      <div class="calc-grid">
+        <div>
+          <section>
+            <h2>General Inquiries</h2>
+            <p>For general questions about the platform or partnership inquiries, please contact us at:</p>
+            <p><strong>Email:</strong> <a href="mailto:support@toolfin.example">support@toolfin.example</a></p>
+          </section>
+
+          <section>
+            <h2>Report a Calculator Issue</h2>
+            <p>To help us maintain accuracy, please provide the following details when reporting an issue:</p>
+            <ul>
+              <li>The name of the calculator tool</li>
+              <li>The specific inputs used</li>
+              <li>The result you expected vs. the result shown</li>
+            </ul>
+          </section>
+        </div>
+
+        <div>
+          <div class="results-panel">
+            <h3>Send a Message</h3>
+            <p class="mb-1" style="font-size: 0.9rem; color: var(--text-muted);">Please note: We do not provide personalized financial consultations.</p>
+            <form id="contact-form" onsubmit="event.preventDefault(); alert('This is a static site placeholder. Please use the mailto link above.');">
+              <div class="input-group">
+                <label for="name">Name</label>
+                <div class="input-wrapper">
+                  <input type="text" id="name" placeholder="Your name">
+                </div>
+              </div>
+              <div class="input-group">
+                <label for="email">Email</label>
+                <div class="input-wrapper">
+                  <input type="email" id="email" placeholder="Your email">
+                </div>
+              </div>
+              <div class="input-group">
+                <label for="message">Message</label>
+                <div class="input-wrapper">
+                  <textarea id="message" style="width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: var(--radius); min-height: 100px; font-family: inherit;"></textarea>
+                </div>
+              </div>
+              <button type="submit">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="logo">ToolFin</a>
+          <p>Practical financial literacy tools for global clarity.</p>
+        </div>
+        <div class="footer-links">
+          <h5>Platform</h5>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about.html">About ToolFin</a></li>
+            <li><a href="/methodology.html">Methodology</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5>Legal</h5>
+          <ul>
+            <li><a href="/disclaimer.html">Disclaimer</a></li>
+            <li><a href="/editorial-policy.html">Editorial Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5>Support</h5>
+          <ul>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="trust-strip">
+        Not financial advice • Educational use only • Estimates based on user input • Jurisdiction differences apply
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

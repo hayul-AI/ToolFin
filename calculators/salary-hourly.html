@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Salary Hourly Calculator - ToolFin</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+  <header>
+    <div class="container nav-container">
+      <a href="/" class="logo">ToolFin</a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/methodology.html">Methodology</a>
+        <a href="/contact.html">Contact</a>
+        <select id="currency-selector" style="padding: 4px; border-radius: 4px; border: 1px solid var(--border);">
+          <option value="USD">USD ($)</option>
+          <option value="EUR">EUR (€)</option>
+          <option value="GBP">GBP (£)</option>
+          <option value="CAD">CAD (C$)</option>
+          <option value="AUD">AUD (A$)</option>
+        </select>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav style="margin-bottom: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+      <a href="/" style="color: inherit; text-decoration: none;">Home</a> > 
+      <a href="/" style="color: inherit; text-decoration: none;">Calculators</a> > 
+      Salary ↔ Hourly Converter
+    </nav>
+
+    <div class="hero" style="text-align: left;">
+      <h1>Salary ↔ Hourly Converter</h1>
+      <p>Convert your annual salary to an hourly wage and visualize your gross earnings across different timeframes.</p>
+    </div>
+
+    <div class="notice-box">
+      <h4>Notice</h4>
+      <ul>
+        <li>Not financial advice</li>
+        <li>Educational use</li>
+        <li>Estimates only</li>
+        <li>Jurisdiction differences</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="calc-grid">
+        <div id="inputs">
+          <div class="input-group">
+            <label for="annual-salary">Annual Salary (Gross)</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="annual-salary" value="60000" step="1000">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="hours-week">Hours per Week</label>
+            <div class="input-wrapper">
+              <input type="number" id="hours-week" value="40" step="1">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="weeks-year">Weeks per Year</label>
+            <div class="input-wrapper">
+              <input type="number" id="weeks-year" value="52" step="1">
+            </div>
+          </div>
+
+          <div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border);">
+            <div class="input-group">
+              <label for="hourly-rate">Hourly Rate Equivalent</label>
+              <div class="input-wrapper has-prefix">
+                <span class="prefix currency-symbol">$</span>
+                <input type="number" id="hourly-rate" step="0.01">
+              </div>
+              <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">Changing this will update the annual salary.</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="results">
+          <div class="results-panel">
+            <div class="result-item">
+              <div class="result-label">Hourly Equivalent</div>
+              <div class="result-value" id="res-hourly">$0.00</div>
+            </div>
+            <div class="result-item">
+              <div class="result-label">Monthly Gross</div>
+              <div class="result-value" id="res-monthly">$0.00</div>
+            </div>
+            <div style="margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1rem;">
+              <div class="result-item">
+                <div class="result-label">Weekly Gross</div>
+                <div style="font-weight: 600;" id="res-weekly">$0.00</div>
+              </div>
+              <div class="result-item">
+                <div class="result-label">Daily Gross (8hr)</div>
+                <div style="font-weight: 600;" id="res-daily">$0.00</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="compliance-statements">
+        <p>“This result is a mathematical estimate based solely on the values you entered and general financial assumptions. It does not evaluate your full financial situation and should not be considered financial, investment, tax, or lending advice.”</p>
+        <p>“ToolFin is built to support clarity and education—not to replace professional financial advice.”</p>
+      </div>
+    </div>
+
+    <section>
+      <h2>Result Interpretation</h2>
+      <p>Comparing annual salary to an hourly rate helps in benchmarking your compensation against industry standards or other job offers. Standard full-time employment is often benchmarked at 2,080 hours per year (40 hours/week x 52 weeks).</p>
+      <p>It is important to note that these figures represent "gross" earnings before any deductions. The actual "take-home" pay will be lower depending on your jurisdiction's tax laws, social security contributions, and benefit elections.</p>
+      <p>This interpretation provides a mathematical framework for compensation comparison and does not reflect a specific evaluation of your personal earning potential.</p>
+    </section>
+
+    <section>
+      <h2>Real-Life Example</h2>
+      <p>An annual salary of <strong>$75,000</strong> based on a <strong>40-hour work week</strong> and <strong>52 weeks per year</strong> equates to an hourly rate of approximately <strong>$36.06</strong>. If you work <strong>45 hours per week</strong> instead, that same annual salary effectively drops your hourly rate to <strong>$32.05</strong>, highlighting how work-life balance affects your "true" hourly value.</p>
+    </section>
+
+    <section>
+      <h2>Things to Watch</h2>
+      <ul>
+        <li><strong>Taxes:</strong> Income tax varies significantly by country, state, and even city.</li>
+        <li><strong>Benefits:</strong> Insurance, retirement matching, and paid time off (PTO) can add significant value that isn't reflected in the raw hourly rate.</li>
+        <li><strong>Overtime:</strong> Hourly roles often pay a premium for hours worked beyond 40 per week, whereas salaried roles typically do not.</li>
+        <li><strong>Unpaid Leave:</strong> If you take unpaid time off, your actual annual earnings will be lower than the projected salary.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>FAQ</h2>
+      <div class="faq-item">
+        <h3>How many work hours are in a year?</h3>
+        <p>A standard work year is 2,080 hours (40 hours/week × 52 weeks). This is the most common benchmark for salary conversions.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Does this include bonuses?</h3>
+        <p>This calculator focuses on base pay. If you have a guaranteed bonus, you can add it to the annual salary input for a total compensation estimate.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What is "Gross" pay?</h3>
+        <p>Gross pay is the total amount earned before any taxes, insurance, or other deductions are taken out of your paycheck.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Next Steps</h2>
+      <div class="next-steps-grid">
+        <a href="/calculators/mortgage.html" class="next-step-card">
+          <strong>Plan a Mortgage</strong>
+          <p>Commonly used next to see how much of your monthly gross income would go toward housing.</p>
+        </a>
+        <a href="/calculators/compound-interest.html" class="next-step-card">
+          <strong>Model Savings</strong>
+          <p>Often reviewed to determine what percentage of your hourly wage can be directed toward long-term growth.</p>
+        </a>
+        <a href="/calculators/roi.html" class="next-step-card">
+          <strong>Evaluate Career Moves</strong>
+          <p>Commonly used to see if a promotion's salary increase matches the increased time commitment.</p>
+        </a>
+      </div>
+    </section>
+
+    <div class="card" style="background: #eef2f7; border: none;">
+      <h4>Trust & Methodology</h4>
+      <p style="font-size: 0.9rem;">Learn more about how we handle data and calculations:</p>
+      <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+        <a href="/about.html" style="font-size: 0.85rem; color: var(--primary);">About ToolFin</a>
+        <a href="/methodology.html" style="font-size: 0.85rem; color: var(--primary);">Methodology</a>
+        <a href="/disclaimer.html" style="font-size: 0.85rem; color: var(--primary);">Disclaimer</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="logo">ToolFin</a>
+          <p>Practical financial literacy tools for global clarity.</p>
+        </div>
+        <div class="footer-links">
+          <h5>Platform</h5>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about.html">About ToolFin</a></li>
+            <li><a href="/methodology.html">Methodology</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5>Legal</h5>
+          <ul>
+            <li><a href="/disclaimer.html">Disclaimer</a></li>
+            <li><a href="/editorial-policy.html">Editorial Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5>Support</h5>
+          <ul>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="trust-strip">
+        Not financial advice • Educational use only • Estimates based on user input • Jurisdiction differences apply
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/assets/salary.js"></script>
+</body>
+</html>

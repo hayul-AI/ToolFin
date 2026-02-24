@@ -1,14 +1,139 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
-  <link href='/style.css' rel='stylesheet'>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ToolFin - Practical Financial Literacy Tools</title>
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
-  <script defer type="text/javascript" src="/main.js"></script>
+  <header>
+    <div class="container nav-container">
+      <a href="/" class="logo">ToolFin</a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/methodology.html">Methodology</a>
+        <a href="/contact.html">Contact</a>
+        <select id="currency-selector" style="padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border); font-weight: 600; cursor: pointer;">
+          <option value="USD">USD ($)</option>
+          <option value="EUR">EUR (€)</option>
+          <option value="GBP">GBP (£)</option>
+          <option value="CAD">CAD (C$)</option>
+          <option value="AUD">AUD (A$)</option>
+        </select>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="hero">
+      <h1>Financial clarity<br>starts with the math.</h1>
+      <p>ToolFin provides sophisticated, educational calculators to help you model your financial future with absolute transparency.</p>
+    </div>
+
+    <!-- Ad Slot Placeholder -->
+    <!-- <div class="ad-placeholder">Advertisement</div> -->
+
+    <section>
+      <div class="hub-grid">
+        <a href="/calculators/mortgage.html" class="hub-card">
+          <div style="font-size: 2rem; margin-bottom: 1rem;">🏠</div>
+          <h3>Loans & Interest</h3>
+          <p>Model mortgage payments and understand amortization effects on long-term debt.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Mortgage Calculator →</span>
+        </a>
+
+        <a href="/calculators/compound-interest.html" class="hub-card">
+          <div style="font-size: 2rem; margin-bottom: 1rem;">📈</div>
+          <h3>Investing & Returns</h3>
+          <p>Explore the power of compound growth and project future investment values over time.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Compound Growth →</span>
+        </a>
+
+        <a href="/calculators/roi.html" class="hub-card">
+          <div style="font-size: 2rem; margin-bottom: 1rem;">💼</div>
+          <h3>Business & ROI</h3>
+          <p>Calculate Return on Investment and annualized growth rates for complex business scenarios.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">ROI Calculator →</span>
+        </a>
+
+        <a href="/calculators/salary-hourly.html" class="hub-card">
+          <div style="font-size: 2rem; margin-bottom: 1rem;">⏱️</div>
+          <h3>Salary & Earnings</h3>
+          <p>Convert between annual salary and hourly wages to evaluate compensation structures globally.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Salary Converter →</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Ad Slot Placeholder -->
+    <!-- <div class="ad-placeholder">Advertisement</div> -->
+
+    <div class="card" style="margin-top: 2rem; border-left: 6px solid var(--primary);">
+      <h2 style="margin-bottom: 1rem;">Built for Transparency</h2>
+      <div class="calc-grid" style="grid-template-columns: 1fr 1fr;">
+        <div>
+          <p>ToolFin is a dedicated "money problem solving platform" designed to support clarity and education. We provide the mathematical engine for your financial scenarios without directive language or hidden agendas.</p>
+        </div>
+        <div style="background: var(--primary-soft); padding: 1.5rem; border-radius: var(--radius);">
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--primary);">✓</span> No personalized conclusions
+            </li>
+            <li style="margin-bottom: 0.75rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--primary);">✓</span> Standard financial math only
+            </li>
+            <li style="margin-bottom: 0.75rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--primary);">✓</span> Responsive SaaS-grade UI
+            </li>
+            <li style="margin-bottom: 0rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--primary);">✓</span> Global currency support
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="logo">ToolFin</a>
+          <p style="margin-top: 1.5rem;">Practical financial literacy tools designed for global clarity and educational empowerment.</p>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Platform</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/">Home</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/about.html">About ToolFin</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/methodology.html">Methodology</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Legal</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/disclaimer.html">Disclaimer</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/editorial-policy.html">Editorial Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Support</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="trust-strip">
+        NOT FINANCIAL ADVICE • EDUCATIONAL USE ONLY • ESTIMATES ONLY • JURISDICTION DIFFERENCES APPLY
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/assets/common.js"></script>
 </body>
 </html>

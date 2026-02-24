@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compound Interest Calculator - ToolFin</title>
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container nav-container">
+      <a href="/" class="logo">ToolFin</a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/methodology.html">Methodology</a>
+        <a href="/contact.html">Contact</a>
+        <select id="currency-selector" style="padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border); font-weight: 600;">
+          <option value="USD">USD ($)</option>
+          <option value="EUR">EUR (€)</option>
+          <option value="GBP">GBP (£)</option>
+          <option value="CAD">CAD (C$)</option>
+          <option value="AUD">AUD (A$)</option>
+        </select>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav style="margin: 2rem 0 1rem; font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">
+      <a href="/" style="color: inherit; text-decoration: none;">Home</a> / 
+      <a href="/" style="color: inherit; text-decoration: none;">Calculators</a> / 
+      Compound Interest
+    </nav>
+
+    <div class="hero" style="text-align: left; padding: 2rem 0 3rem;">
+      <h1 style="font-size: 3rem;">Compound Interest</h1>
+      <p>Visualize the exponential power of time and consistent contributions on your long-term wealth.</p>
+    </div>
+
+    <div class="notice-box">
+      <ul>
+        <li>NOT FINANCIAL ADVICE</li>
+        <li>EDUCATIONAL USE</li>
+        <li>ESTIMATES ONLY</li>
+        <li>JURISDICTION DIFFERENCES</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="calc-grid">
+        <div id="inputs">
+          <div class="input-group">
+            <label for="initial-amount">Initial Investment</label>
+            <div class="input-wrapper" style="position: relative; display: flex; align-items: center;">
+              <span style="position: absolute; left: 16px; font-weight: 700; color: var(--text-muted);" class="prefix currency-symbol">$</span>
+              <input type="number" id="initial-amount" value="10000" step="100" style="padding-left: 35px;">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="monthly-contribution">Monthly Contribution</label>
+            <div class="input-wrapper" style="position: relative; display: flex; align-items: center;">
+              <span style="position: absolute; left: 16px; font-weight: 700; color: var(--text-muted);" class="prefix currency-symbol">$</span>
+              <input type="number" id="monthly-contribution" value="500" step="50" style="padding-left: 35px;">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="rate-of-return">Estimated Rate of Return</label>
+            <div class="input-wrapper" style="position: relative; display: flex; align-items: center;">
+              <input type="number" id="rate-of-return" value="7" step="0.1" style="padding-right: 35px;">
+              <span style="position: absolute; right: 16px; font-weight: 700; color: var(--text-muted);">%</span>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="years">Investment Period (Years)</label>
+            <div class="input-wrapper">
+              <input type="number" id="years" value="20" step="1">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="compounding">Compounding Frequency</label>
+            <div class="input-wrapper">
+              <select id="compounding">
+                <option value="12">Monthly</option>
+                <option value="1">Annually</option>
+              </select>
+            </div>
+          </div>
+
+          <button id="calculate-btn" style="background: var(--primary); color: white; border: none; padding: 16px; border-radius: var(--radius); font-weight: 800; font-size: 1.1rem; cursor: pointer; width: 100%; transition: background 0.2s;">
+            Calculate Growth
+          </button>
+        </div>
+
+        <div id="results">
+          <div class="results-panel" style="background: #f0fdf4; border-color: #dcfce7;">
+            <div class="result-item">
+              <div class="result-label" style="color: #166534;">Projected End Balance</div>
+              <div class="result-value" id="end-balance" style="color: #15803d; font-size: 3.5rem;">$0</div>
+            </div>
+            
+            <div style="margin-top: 2.5rem; border-top: 2px solid #bbf7d0; padding-top: 1.5rem; display: grid; gap: 1rem;">
+              <div style="display: flex; justify-content: space-between;">
+                <span style="font-weight: 700; color: #166534;">Total Contributions</span>
+                <span id="total-contributions" style="font-weight: 800;">$0</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; border-top: 1px solid #bbf7d0; padding-top: 0.5rem;">
+                <span style="font-weight: 700; color: #166534;">Total Growth</span>
+                <span id="total-growth" style="font-weight: 900; color: #15803d;">$0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="compliance-statements" style="margin-top: 3rem;">
+        <p>“This result is a mathematical estimate based solely on the values you entered and general financial assumptions. It does not evaluate your full financial situation and should not be considered financial, investment, tax, or lending advice.”</p>
+        <p>“ToolFin is built to support clarity and education—not to replace professional financial advice.”</p>
+      </div>
+    </div>
+
+    <section>
+      <h2>Result Interpretation</h2>
+      <p>Wealth acceleration in a compounding scenario occurs because interest earned in each period is reinvested. Over time, you earn interest on both your original principal and the interest previously accumulated. This results in an exponential growth curve that becomes increasingly visible over long-term periods.</p>
+      <p>A typical range for long-term equity market returns is often benchmarked between 7-10% before inflation, though historical averages vary significantly across decades and regions. Consistent monthly contributions utilize "dollar-cost averaging," building principal steadily regardless of short-term market fluctuations.</p>
+      <p>This interpretation provides benchmarking context for standard growth scenarios and is not a prediction of actual future investment performance.</p>
+    </section>
+
+    <section>
+      <div class="card" style="border-left: 6px solid #15803d;">
+        <h3 style="margin-bottom: 1rem; font-weight: 800;">Real-Life Example</h3>
+        <p style="margin-bottom: 0;">Starting with <strong>$5,000</strong> and adding <strong>$200 monthly</strong> for <strong>30 years</strong> at an <strong>8% return</strong> results in an estimated balance of approximately <strong>$328,000</strong>. Of this total, your contributions account for only $77,000, while over $251,000 is generated through compounding growth.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Things to Watch</h2>
+      <div class="hub-grid">
+        <div class="hub-card" style="pointer-events: none; border-left: 4px solid #15803d;">
+          <h4>Impact of Inflation</h4>
+          <p style="font-size: 0.95rem; margin-top: 0.5rem;">While your balance grows numerically, the purchasing power of that currency typically decreases over long periods.</p>
+        </div>
+        <div class="hub-card" style="pointer-events: none; border-left: 4px solid #15803d;">
+          <h4>Tax Implications</h4>
+          <p style="font-size: 0.95rem; margin-top: 0.5rem;">Gains in non-tax-advantaged accounts may be subject to capital gains or income taxes depending on your jurisdiction.</p>
+        </div>
+        <div class="hub-card" style="pointer-events: none; border-left: 4px solid #15803d;">
+          <h4>Expense Ratios</h4>
+          <p style="font-size: 0.95rem; margin-top: 0.5rem;">Management fees and product costs can significantly reduce your effective rate of return over the long term.</p>
+        </div>
+        <div class="hub-card" style="pointer-events: none; border-left: 4px solid #15803d;">
+          <h4>Market Volatility</h4>
+          <p style="font-size: 0.95rem; margin-top: 0.5rem;">Real-world returns are rarely consistent annually; the timing of returns can impact your final compounding outcome.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="ad-placeholder">Educational Content Slot</div>
+
+    <section>
+      <h2>FAQ</h2>
+      <div class="faq-item">
+        <h3>What is the "Rule of 72"?</h3>
+        <p>It is a mathematical rule of thumb to estimate doubling time. Divide 72 by your expected annual return (e.g., 72 / 7% = approx. 10.3 years).</p>
+      </div>
+      <div class="faq-item">
+        <h3>Does compounding frequency matter?</h3>
+        <p>More frequent compounding (e.g., monthly vs. annually) leads to slightly faster growth, though the impact is most noticeable at higher interest rates.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Are these returns guaranteed?</h3>
+        <p>No. Standard modeling uses fixed rates for simplicity, but actual financial markets experience fluctuations and cycles.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Next Steps</h2>
+      <div class="next-steps-grid">
+        <a href="/calculators/roi.html" class="next-step-card">
+          <strong>Analyze Past ROI</strong>
+          <p>Commonly compared to see how previous investments performed relative to your growth projections.</p>
+        </a>
+        <a href="/calculators/mortgage.html" class="next-step-card">
+          <strong>Compare with Debt</strong>
+          <p>Often reviewed to evaluate whether to prioritize debt payoff or increased investment contributions.</p>
+        </a>
+        <a href="/calculators/salary-hourly.html" class="next-step-card">
+          <strong>Evaluate Earnings</strong>
+          <p>Commonly used next to see how much of your hourly or annual salary can be allocated to long-term growth.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="logo">ToolFin</a>
+          <p style="margin-top: 1.5rem;">Sophisticated financial modeling for everyone.</p>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Platform</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/">Home</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/about.html">About ToolFin</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/methodology.html">Methodology</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Legal</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/disclaimer.html">Disclaimer</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/editorial-policy.html">Editorial Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Support</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="trust-strip">
+        NOT FINANCIAL ADVICE • EDUCATIONAL USE ONLY • ESTIMATES ONLY • JURISDICTION DIFFERENCES APPLY
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/assets/compound.js"></script>
+</body>
+</html>

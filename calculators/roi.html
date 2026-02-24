@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROI Calculator - ToolFin</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+  <header>
+    <div class="container nav-container">
+      <a href="/" class="logo">ToolFin</a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/methodology.html">Methodology</a>
+        <a href="/contact.html">Contact</a>
+        <select id="currency-selector" style="padding: 4px; border-radius: 4px; border: 1px solid var(--border);">
+          <option value="USD">USD ($)</option>
+          <option value="EUR">EUR (€)</option>
+          <option value="GBP">GBP (£)</option>
+          <option value="CAD">CAD (C$)</option>
+          <option value="AUD">AUD (A$)</option>
+        </select>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav style="margin-bottom: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+      <a href="/" style="color: inherit; text-decoration: none;">Home</a> > 
+      <a href="/" style="color: inherit; text-decoration: none;">Calculators</a> > 
+      ROI Calculator
+    </nav>
+
+    <div class="hero" style="text-align: left;">
+      <h1>ROI Calculator</h1>
+      <p>Measure the profitability of an investment and understand your annualized growth rate.</p>
+    </div>
+
+    <div class="notice-box">
+      <h4>Notice</h4>
+      <ul>
+        <li>Not financial advice</li>
+        <li>Educational use</li>
+        <li>Estimates only</li>
+        <li>Jurisdiction differences</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="calc-grid">
+        <div id="inputs">
+          <div class="input-group">
+            <label for="investment-cost">Initial Investment Cost</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="investment-cost" value="10000" step="100">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="return-amount">Final Value (or Return)</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="return-amount" value="15000" step="100">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="investment-period">Investment Period (Years)</label>
+            <div class="input-wrapper">
+              <input type="number" id="investment-period" value="3" step="0.5">
+            </div>
+          </div>
+
+          <button id="calculate-btn">Calculate ROI</button>
+        </div>
+
+        <div id="results">
+          <div class="results-panel">
+            <div class="result-item">
+              <div class="result-label">Total ROI</div>
+              <div class="result-value" id="total-roi">0%</div>
+            </div>
+            <div class="result-item">
+              <div class="result-label">Annualized ROI (CAGR)</div>
+              <div class="result-value" id="annualized-roi">0%</div>
+            </div>
+            <div style="margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1rem;">
+              <div class="result-item">
+                <div class="result-label">Total Profit/Loss</div>
+                <div style="font-weight: 600;" id="total-profit">$0</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="compliance-statements">
+        <p>“This result is a mathematical estimate based solely on the values you entered and general financial assumptions. It does not evaluate your full financial situation and should not be considered financial, investment, tax, or lending advice.”</p>
+        <p>“ToolFin is built to support clarity and education—not to replace professional financial advice.”</p>
+      </div>
+    </div>
+
+    <section>
+      <h2>Result Interpretation</h2>
+      <p>Total ROI measures the simple percentage gain or loss over the entire life of the investment. While this is a useful benchmark for overall profitability, it does not account for the time it took to achieve that return.</p>
+      <p>Annualized ROI (CAGR) provides a clearer comparison by showing the mean annual growth rate. This allows you to benchmark different investments against each other even if they were held for different periods of time. A typical range for long-term investments varies significantly by asset class, with historical equity benchmarks often cited between 7-10%.</p>
+      <p>This interpretation is provided for educational context and does not evaluate the quality of any specific investment outcome.</p>
+    </section>
+
+    <section>
+      <h2>Real-Life Example</h2>
+      <p>If you invested <strong>$20,000</strong> in a business venture and sold your stake for <strong>$30,000</strong> after <strong>5 years</strong>, your total ROI would be <strong>50%</strong>. However, your annualized ROI would be approximately <strong>8.45%</strong>, which provides a more accurate metric for comparing this venture to other annual return benchmarks.</p>
+    </section>
+
+    <section>
+      <h2>Things to Watch</h2>
+      <ul>
+        <li><strong>Taxes and Fees:</strong> ROI calculations often ignore capital gains taxes, transaction fees, and management costs, which can significantly lower your net return.</li>
+        <li><strong>Dividends and Cash Flow:</strong> If an investment provides regular income (like dividends or rent), these should be added to the final value to get a complete ROI picture.</li>
+        <li><strong>Time Value of Money:</strong> $1,000 in profit earned in one year is generally considered different from $1,000 earned over ten years due to inflation and opportunity cost.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>FAQ</h2>
+      <div class="faq-item">
+        <h3>What is the difference between ROI and Annualized ROI?</h3>
+        <p>ROI is the total return regardless of time. Annualized ROI (CAGR) breaks that return down into an average yearly growth rate, making it easier to compare with annual interest rates.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can ROI be negative?</h3>
+        <p>Yes. If the final value is less than the initial cost, your ROI will be negative, indicating a financial loss.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Does this work for rental property?</h3>
+        <p>Yes, including all income (rent) and all expenses (maintenance, taxes) in your final return value allows for a more complete estimate.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Next Steps</h2>
+      <div class="next-steps-grid">
+        <a href="/calculators/compound-interest.html" class="next-step-card">
+          <strong>Project Future Growth</strong>
+          <p>Commonly compared to see how your historical ROI stacks up against long-term compounding projections.</p>
+        </a>
+        <a href="/calculators/mortgage.html" class="next-step-card">
+          <strong>Evaluate Real Estate</strong>
+          <p>Often reviewed next when considering if a property's potential ROI exceeds the cost of financing.</p>
+        </a>
+        <a href="/calculators/salary-hourly.html" class="next-step-card">
+          <strong>Compare to "Time ROI"</strong>
+          <p>Commonly used to see if the hours spent managing an investment are worth the financial return.</p>
+        </a>
+      </div>
+    </section>
+
+    <div class="card" style="background: #eef2f7; border: none;">
+      <h4>Trust & Methodology</h4>
+      <p style="font-size: 0.9rem;">Learn more about how we handle data and calculations:</p>
+      <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+        <a href="/about.html" style="font-size: 0.85rem; color: var(--primary);">About ToolFin</a>
+        <a href="/methodology.html" style="font-size: 0.85rem; color: var(--primary);">Methodology</a>
+        <a href="/disclaimer.html" style="font-size: 0.85rem; color: var(--primary);">Disclaimer</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="logo">ToolFin</a>
+          <p>Practical financial literacy tools for global clarity.</p>
+        </div>
+        <div class="footer-links">
+          <h5>Platform</h5>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about.html">About ToolFin</a></li>
+            <li><a href="/methodology.html">Methodology</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5>Legal</h5>
+          <ul>
+            <li><a href="/disclaimer.html">Disclaimer</a></li>
+            <li><a href="/editorial-policy.html">Editorial Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5>Support</h5>
+          <ul>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="trust-strip">
+        Not financial advice • Educational use only • Estimates based on user input • Jurisdiction differences apply
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/assets/roi.js"></script>
+</body>
+</html>
