@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debt Snowball Calculator - ToolFin</title>
+  <meta name="description" content="Plan your path to debt-free living with the Debt Snowball method. Pay off smallest balances first to build momentum and save on interest.">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    .debt-row {
+      display: grid;
+      grid-template-columns: 2fr 1.5fr 1fr 1.5fr auto;
+      gap: 1rem;
+      align-items: flex-end;
+      padding: 1rem;
+      background: #f8fafc;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      border: 1px solid var(--border);
+    }
+    .remove-btn {
+      background: #fee2e2;
+      color: #b91c1c;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+    }
+    @media (max-width: 768px) {
+      .debt-row {
+        grid-template-columns: 1fr 1fr;
+      }
+      .debt-row > div:first-child { grid-column: span 2; }
+      .debt-row .remove-btn { grid-column: span 2; width: 100%; height: 40px; }
+    }
+    .timeline-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+    }
+    .timeline-table th, .timeline-table td {
+      text-align: left;
+      padding: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .timeline-table th {
+      background: #f1f5f9;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav-container">
+      <a href="/" class="brand logo">
+        <svg class="brand-mark" width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <g fill="none" stroke="#1a73e8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4.5 18.5h15"/>
+            <path d="M6 16l4-4 3 3 5-6"/>
+            <path d="M17.5 9H19v1.5"/>
+          </g>
+          <g fill="#1a73e8">
+            <circle cx="6" cy="16" r="1.1"/>
+            <circle cx="10" cy="12" r="1.1"/>
+            <circle cx="13" cy="15" r="1.1"/>
+            <circle cx="18" cy="9" r="1.1"/>
+          </g>
+        </svg>
+        ToolFin
+      </a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/methodology.html">Methodology</a>
+        <a href="/contact.html">Contact</a>
+        <select id="currency-selector">
+          <option value="USD">USD — US Dollar ($)</option>
+          <option value="EUR">EUR — Euro (€)</option>
+          <option value="GBP">GBP — British Pound (£)</option>
+          <option value="CAD">CAD — Canadian Dollar (C$)</option>
+          <option value="AUD">AUD — Australian Dollar (A$)</option>
+        </select>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav style="margin: 2rem 0 1rem; font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">
+      <a href="/" style="color: inherit; text-decoration: none;">Home</a> / 
+      <a href="/loans.html" style="color: inherit; text-decoration: none;">Loans, Credit & Debt</a> / 
+      Debt Snowball Calculator
+    </nav>
+
+    <div class="hero" style="text-align: left; padding: 2rem 0 3rem;">
+      <h1 style="font-size: 3rem;">Debt Snowball Calculator</h1>
+      <p>This tool estimates a payoff plan by focusing extra payments on your smallest balances first. The Debt Snowball method is designed to build psychological momentum by clearing individual debts quickly.</p>
+    </div>
+
+    <div class="card">
+      <div id="debt-list">
+        <label style="font-weight: 800; display: block; margin-bottom: 1rem; font-size: 1.1rem;">Enter Your Debts</label>
+        <div id="debt-container">
+          <!-- Rows will be added here -->
+        </div>
+        <button id="add-debt-btn" style="background: var(--primary-soft); color: var(--primary); border: 2px dashed var(--primary); padding: 12px; border-radius: 8px; font-weight: 700; cursor: pointer; width: 100%; margin-top: 0.5rem;">
+          + Add Another Debt
+        </button>
+      </div>
+
+      <div style="margin-top: 2.5rem; padding-top: 2rem; border-top: 2px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+        <div class="input-group">
+          <label for="extra-payment">Monthly Extra Payment</label>
+          <div class="input-wrapper" style="position: relative; display: flex; align-items: center;">
+            <span style="position: absolute; left: 16px; font-weight: 700; color: var(--text-muted);" class="prefix currency-symbol">$</span>
+            <input type="number" id="extra-payment" value="100" step="10" style="padding-left: 35px;">
+          </div>
+          <small style="color: var(--text-muted);">Additional amount available to pay above all minimums combined.</small>
+        </div>
+        <div class="input-group">
+          <label for="start-date">Start Month</label>
+          <div class="input-wrapper">
+            <input type="month" id="start-date">
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+        <button id="calculate-btn" style="background: var(--primary); color: white; border: none; padding: 16px; border-radius: var(--radius); font-weight: 800; font-size: 1.1rem; cursor: pointer; flex: 2; transition: background 0.2s;">
+          Calculate Snowball Plan
+        </button>
+        <button id="reset-btn" style="background: var(--secondary); color: white; border: none; padding: 16px; border-radius: var(--radius); font-weight: 800; font-size: 1.1rem; cursor: pointer; flex: 1; transition: background 0.2s;">
+          Reset
+        </button>
+      </div>
+    </div>
+
+    <div id="results-section" style="display: none;">
+      <div class="card" style="border-left: 6px solid #10b981;">
+        <h2 style="margin-bottom: 1.5rem;">Payoff Summary</h2>
+        <div class="calc-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+          <div class="result-item">
+            <div class="result-label">Payoff Date</div>
+            <div class="result-value" id="res-payoff-date">---</div>
+          </div>
+          <div class="result-item">
+            <div class="result-label">Total Duration</div>
+            <div class="result-value" id="res-duration">---</div>
+          </div>
+          <div class="result-item">
+            <div class="result-label">Total Interest</div>
+            <div class="result-value" id="res-interest" style="color: #e11d48;">---</div>
+          </div>
+          <div class="result-item">
+            <div class="result-label">Total Amount Paid</div>
+            <div class="result-value" id="res-total" style="color: var(--primary);">---</div>
+          </div>
+        </div>
+        <div id="interpretation-box" style="margin-top: 2rem; padding: 1rem; background: #f8fafc; border-radius: 8px; font-weight: 500; color: var(--secondary);"></div>
+      </div>
+
+      <div class="card">
+        <h3>Debt Payoff Order</h3>
+        <ul id="payoff-order-list" style="list-style: none; padding: 0; margin-top: 1.5rem;">
+          <!-- Order will be added here -->
+        </ul>
+      </div>
+
+      <div class="card" style="overflow-x: auto;">
+        <h3>Payoff Timeline</h3>
+        <table class="timeline-table">
+          <thead>
+            <tr>
+              <th>Month</th>
+              <th>Total Payment</th>
+              <th>Interest</th>
+              <th>Principal</th>
+              <th>Total Balance</th>
+            </tr>
+          </thead>
+          <tbody id="timeline-body">
+            <!-- Rows will be added here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <section style="margin-top: 4rem;">
+      <h2>What Is the Debt Snowball Method?</h2>
+      <p>The Debt Snowball is a debt reduction strategy where you pay off your debts in order from smallest balance to largest balance. Regardless of interest rates, you focus all your extra financial resources on the smallest debt while maintaining minimum payments on everything else.</p>
+      <p>Once the smallest debt is paid in full, you take the entire amount you were paying toward it (the minimum payment plus the extra) and "roll" it into the payment for the next smallest debt. This process continues, with the payment amount growing larger—like a snowball rolling down a hill—as each debt is eliminated.</p>
+      <p><strong>Psychological Momentum:</strong> Unlike the Debt Avalanche method (which prioritizes highest interest rates), the Snowball focuses on human behavior. By seeing debts disappear quickly at the start, users often feel a sense of accomplishment that helps them stay committed to their long-term plan.</p>
+      <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 1.5rem;"><em>Note: This calculator compares numeric estimates and does not account for specific bank fees, late penalties, or floating interest rates.</em></p>
+    </section>
+
+    <section>
+      <h2>FAQ</h2>
+      <div class="faq-item">
+        <h3>Is this a guaranteed payoff schedule?</h3>
+        <p>No. This is a mathematical projection based on the numbers you provide. Changes in interest rates, new charges, or missed payments will alter the actual timeline.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Does it include fees or penalties?</h3>
+        <p>Standard calculators focus on principal and interest. It does not account for annual credit card fees, late payment penalties, or balance transfer fees.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What if my APR changes?</h3>
+        <p>Most credit cards have variable APRs. If your rate increases, a larger portion of your payment will go toward interest, potentially extending your payoff date.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What’s the difference between snowball and avalanche?</h3>
+        <p>The Snowball method prioritizes smallest balances first for psychological wins. The Avalanche method prioritizes highest interest rates first to minimize total interest paid.</p>
+      </div>
+    </section>
+
+    <div class="compliance-statements" style="margin-top: 3rem; padding: 2rem; background: #f1f5f9; border-radius: 12px; font-size: 0.9rem;">
+      <p><strong>Legal Disclaimer:</strong> All calculations provided on ToolFin are estimates for educational and informational purposes only. They do not constitute financial, investment, tax, or legal advice.</p>
+      <p>ToolFin does not recommend any specific financial decisions, products, or strategies. Users should consider consulting a qualified professional for personal financial guidance.</p>
+      <p>Currency selection affects formatting and display only and does not use live exchange rates.</p>
+    </div>
+
+    <section>
+      <h2>Related Calculators</h2>
+      <div class="next-steps-grid">
+        <a href="/calculators/debt-avalanche.html" class="next-step-card">
+          <strong>Debt Avalanche Calculator</strong>
+          <p>Prioritize high-interest debt to minimize total interest paid.</p>
+        </a>
+        <a href="/calculators/credit-card-payoff.html" class="next-step-card">
+          <strong>Credit Card Payoff</strong>
+          <p>Estimate payoff time for a single credit card balance.</p>
+        </a>
+        <a href="/calculators/loan-payment.html" class="next-step-card">
+          <strong>Loan Payment Calculator</strong>
+          <p>Calculate fixed payments for auto or personal loans.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="brand logo">
+            <svg class="brand-mark" width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <g fill="none" stroke="#1a73e8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4.5 18.5h15"/>
+                <path d="M6 16l4-4 3 3 5-6"/>
+                <path d="M17.5 9H19v1.5"/>
+              </g>
+              <g fill="#1a73e8">
+                <circle cx="6" cy="16" r="1.1"/>
+                <circle cx="10" cy="12" r="1.1"/>
+                <circle cx="13" cy="15" r="1.1"/>
+                <circle cx="18" cy="9" r="1.1"/>
+              </g>
+            </svg>
+            ToolFin
+          </a>
+          <p style="margin-top: 1.5rem;">Smarter financial modeling for global clarity.</p>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Platform</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/">Home</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/about.html">About ToolFin</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/methodology.html">Methodology</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Legal</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/disclaimer.html">Disclaimer</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/editorial-policy.html">Editorial Policy</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Support</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="trust-strip">
+        NOT FINANCIAL ADVICE • EDUCATIONAL USE ONLY • ESTIMATES ONLY • JURISDICTION DIFFERENCES APPLY
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/assets/debt-snowball.js"></script>
+</body>
+</html>
