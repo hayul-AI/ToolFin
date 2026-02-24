@@ -89,6 +89,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   calculateBtn.addEventListener('click', update);
   
+  const repaymentTypeEl = document.getElementById("repaymentType");
+  if(repaymentTypeEl){
+    // This calculator currently supports amortized repayment (default).
+    // Keep the selection fixed to amortized for now.
+    repaymentTypeEl.value = "amortized";
+    repaymentTypeEl.addEventListener("change", () => {
+      repaymentTypeEl.value = "amortized";
+      update();
+    });
+  }
+  
   // Listen for global currency changes
   window.addEventListener('currencyChange', update);
 

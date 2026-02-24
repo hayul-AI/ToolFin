@@ -62,6 +62,17 @@
     <div class="card">
       <div class="calc-grid">
         <div id="inputs">
+          <div class="input-group" id="repaymentTypeGroup">
+            <label for="repaymentType">Repayment Type</label>
+            <div class="input-wrapper">
+              <select id="repaymentType" class="input">
+                <option value="amortized" selected>Amortized (Equal Monthly Payment)</option>
+                <option value="interestOnly" disabled>Interest-Only (Coming soon)</option>
+              </select>
+            </div>
+            <small style="color: var(--text-muted); display: block; margin-top: 0.5rem;">Amortized payments include both principal and interest each month.</small>
+          </div>
+
           <div class="input-group">
             <label for="loan-amount">Loan Amount</label>
             <div class="input-wrapper" style="position: relative; display: flex; align-items: center;">
