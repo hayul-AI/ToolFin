@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build_and_deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,10 +24,4 @@ jobs:
       - name: Deploy to Firebase
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        run: |
-          set -e
-          echo "Searching for firebase.json..."
-          FIREBASE_DIR=$(find . -maxdepth 6 -name firebase.json -print -quit | xargs -I{} dirname "{}")
-          echo "firebase.json found in: ${FIREBASE_DIR}"
-          cd "${FIREBASE_DIR}"
-          firebase deploy --only hosting
+        run: firebase deploy --only hosting
