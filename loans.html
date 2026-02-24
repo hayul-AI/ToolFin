@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loans, Credit & Debt Calculators - ToolFin</title>
+  <meta name="description" content="Calculate loan payments, credit card payoff strategies, debt snowball plans, and refinance options. Free financial tools for managing debt.">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container nav-container">
+      <a href="/" class="brand logo">
+        <svg class="brand-mark" width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <g fill="none" stroke="#1a73e8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4.5 18.5h15"/>
+            <path d="M6 16l4-4 3 3 5-6"/>
+            <path d="M17.5 9H19v1.5"/>
+          </g>
+          <g fill="#1a73e8">
+            <circle cx="6" cy="16" r="1.1"/>
+            <circle cx="10" cy="12" r="1.1"/>
+            <circle cx="13" cy="15" r="1.1"/>
+            <circle cx="18" cy="9" r="1.1"/>
+          </g>
+        </svg>
+        ToolFin
+      </a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/methodology.html">Methodology</a>
+        <a href="/contact.html">Contact</a>
+        <select id="currency-selector">
+          <option value="USD">USD — US Dollar ($)</option>
+          <option value="EUR">EUR — Euro (€)</option>
+          <option value="GBP">GBP — British Pound (£)</option>
+          <option value="CAD">CAD — Canadian Dollar (C$)</option>
+          <option value="AUD">AUD — Australian Dollar (A$)</option>
+        </select>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="hero" style="padding: 3rem 0 2rem; text-align: left;">
+      <p style="margin: 0; font-size: 0.9rem; font-weight: 600; color: var(--primary); text-transform: uppercase; letter-spacing: 1px;">Category</p>
+      <h1 style="margin-top: 0.5rem; font-size: 2.5rem;">Loans, Credit & Debt</h1>
+      <p style="margin: 1rem 0 0; max-width: 600px;">Understand the true cost of borrowing and create a plan to become debt-free. Our calculators help you analyze loan terms, compare repayment strategies, and optimize your credit health.</p>
+    </div>
+
+    <section>
+      <div class="hub-grid">
+        <!-- Loan Payment -->
+        <a href="/calculators/mortgage.html" class="hub-card">
+          <div class="card-accent" aria-hidden="true">
+            <span class="bar bar-long"></span>
+            <span class="bar bar-short"></span>
+          </div>
+          <h3>Loan Payment Calculator</h3>
+          <p>Estimate monthly payments for personal loans, auto loans, or general debt.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Calculate Payment →</span>
+        </a>
+
+        <!-- Credit Card Payoff -->
+        <a href="/calculators/credit-card-payoff.html" class="hub-card">
+          <div class="card-accent" aria-hidden="true">
+            <span class="bar bar-long"></span>
+            <span class="bar bar-short"></span>
+          </div>
+          <h3>Credit Card Payoff</h3>
+          <p>Calculate how long it will take to pay off your credit card balance with your current payments.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">See Payoff Timeline →</span>
+        </a>
+
+        <!-- Debt Snowball -->
+        <a href="/calculators/debt-snowball.html" class="hub-card">
+          <div class="card-accent" aria-hidden="true">
+            <span class="bar bar-long"></span>
+            <span class="bar bar-short"></span>
+          </div>
+          <h3>Debt Snowball Calculator</h3>
+          <p>Plan your debt free journey by paying off smallest balances first to build momentum.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Create Snowball Plan →</span>
+        </a>
+
+        <!-- Debt Avalanche -->
+        <a href="/calculators/debt-avalanche.html" class="hub-card">
+          <div class="card-accent" aria-hidden="true">
+            <span class="bar bar-long"></span>
+            <span class="bar bar-short"></span>
+          </div>
+          <h3>Debt Avalanche Calculator</h3>
+          <p>Minimize interest paid by targeting highest interest rate debts first.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Minimize Interest →</span>
+        </a>
+
+        <!-- Interest Only -->
+        <a href="/calculators/interest-only.html" class="hub-card">
+          <div class="card-accent" aria-hidden="true">
+            <span class="bar bar-long"></span>
+            <span class="bar bar-short"></span>
+          </div>
+          <h3>Interest Only Loan</h3>
+          <p>Calculate payments for interest-only periods and the subsequent principal repayment.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Calculate Interest →</span>
+        </a>
+
+        <!-- APR Calculator -->
+        <a href="/calculators/apr.html" class="hub-card">
+          <div class="card-accent" aria-hidden="true">
+            <span class="bar bar-long"></span>
+            <span class="bar bar-short"></span>
+          </div>
+          <h3>APR Calculator</h3>
+          <p>Find the true Annual Percentage Rate including fees and closing costs.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Find True APR →</span>
+        </a>
+
+        <!-- Refinance -->
+        <a href="/calculators/refinance.html" class="hub-card">
+          <div class="card-accent" aria-hidden="true">
+            <span class="bar bar-long"></span>
+            <span class="bar bar-short"></span>
+          </div>
+          <h3>Refinance Calculator</h3>
+          <p>Determine if refinancing your loan will save you money over time.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Analyze Refinance →</span>
+        </a>
+
+        <!-- Amortization -->
+        <a href="/calculators/amortization.html" class="hub-card">
+          <div class="card-accent" aria-hidden="true">
+            <span class="bar bar-long"></span>
+            <span class="bar bar-short"></span>
+          </div>
+          <h3>Amortization Schedule</h3>
+          <p>Generate a full table of your loan payments showing principal vs interest.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">View Schedule →</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="brand logo">
+            <svg class="brand-mark" width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <g fill="none" stroke="#1a73e8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4.5 18.5h15"/>
+                <path d="M6 16l4-4 3 3 5-6"/>
+                <path d="M17.5 9H19v1.5"/>
+              </g>
+              <g fill="#1a73e8">
+                <circle cx="6" cy="16" r="1.1"/>
+                <circle cx="10" cy="12" r="1.1"/>
+                <circle cx="13" cy="15" r="1.1"/>
+                <circle cx="18" cy="9" r="1.1"/>
+              </g>
+            </svg>
+            ToolFin
+          </a>
+          <p style="margin-top: 1.5rem;">Practical financial literacy tools designed for global clarity and educational empowerment.</p>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Platform</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/">Home</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/about.html">About ToolFin</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/methodology.html">Methodology</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Legal</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/disclaimer.html">Disclaimer</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/editorial-policy.html">Editorial Policy</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Support</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="trust-strip">
+        NOT FINANCIAL ADVICE • EDUCATIONAL USE ONLY • ESTIMATES ONLY • JURISDICTION DIFFERENCES APPLY
+      </div>
+    </div>
+  </footer>
+  <script type="module" src="/assets/common.js"></script>
+</body>
+</html>

@@ -100,6 +100,26 @@ header {
   color: var(--primary);
 }
 
+#currency-selector {
+  min-width: 140px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 0 12px;
+  cursor: pointer;
+  color: var(--text-main);
+  transition: all 0.2s;
+  outline: none;
+}
+
+#currency-selector:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-soft);
+}
+
 /* Main Hero */
 .hero {
   padding: 5rem 0 4rem;

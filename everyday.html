@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Everyday Finance Tools - ToolFin</title>
+  <meta name="description" content="Simple calculators for savings goals, budgeting, emergency funds, tips, and sales tax. Manage your daily finances with ease.">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container nav-container">
+      <a href="/" class="brand logo">
+        <svg class="brand-mark" width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <g fill="none" stroke="#1a73e8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4.5 18.5h15"/>
+            <path d="M6 16l4-4 3 3 5-6"/>
+            <path d="M17.5 9H19v1.5"/>
+          </g>
+          <g fill="#1a73e8">
+            <circle cx="6" cy="16" r="1.1"/>
+            <circle cx="10" cy="12" r="1.1"/>
+            <circle cx="13" cy="15" r="1.1"/>
+            <circle cx="18" cy="9" r="1.1"/>
+          </g>
+        </svg>
+        ToolFin
+      </a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/methodology.html">Methodology</a>
+        <a href="/contact.html">Contact</a>
+        <select id="currency-selector">
+          <option value="USD">USD — US Dollar ($)</option>
+          <option value="EUR">EUR — Euro (€)</option>
+          <option value="GBP">GBP — British Pound (£)</option>
+          <option value="CAD">CAD — Canadian Dollar (C$)</option>
+          <option value="AUD">AUD — Australian Dollar (A$)</option>
+        </select>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="hero" style="padding: 3rem 0 2rem; text-align: left;">
+      <p style="margin: 0; font-size: 0.9rem; font-weight: 600; color: var(--primary); text-transform: uppercase; letter-spacing: 1px;">Category</p>
+      <h1 style="margin-top: 0.5rem; font-size: 2.5rem;">Everyday Finance Tools</h1>
+      <p style="margin: 1rem 0 0; max-width: 600px;">Simplify your daily financial decisions. From planning a budget to calculating tips and sales tax, these tools are designed for quick and easy use.</p>
+    </div>
+
+    <section>
+      <div class="hub-grid">
+        <!-- Savings Goal -->
+        <a href="/calculators/savings-goal.html" class="hub-card">
+          <div class="card-accent" aria-hidden="true">
+            <span class="bar bar-long"></span>
+            <span class="bar bar-short"></span>
+          </div>
+          <h3>Savings Goal Calculator</h3>
+          <p>Find out how much you need to save each month to reach your financial target by a specific date.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Plan Savings →</span>
+        </a>
+
+        <!-- Emergency Fund -->
+        <a href="/calculators/emergency-fund.html" class="hub-card">
+          <div class="card-accent" aria-hidden="true">
+            <span class="bar bar-long"></span>
+            <span class="bar bar-short"></span>
+          </div>
+          <h3>Emergency Fund</h3>
+          <p>Calculate how much you should set aside for unexpected expenses based on your living costs.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Calculate Fund →</span>
+        </a>
+
+        <!-- Budget Planner -->
+        <a href="/calculators/budget-planner.html" class="hub-card">
+          <div class="card-accent" aria-hidden="true">
+            <span class="bar bar-long"></span>
+            <span class="bar bar-short"></span>
+          </div>
+          <h3>Budget Planner</h3>
+          <p>A simple 50/30/20 rule calculator to help you allocate your income for needs, wants, and savings.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Plan Budget →</span>
+        </a>
+
+        <!-- Tip Calculator -->
+        <a href="/calculators/tip-calculator.html" class="hub-card">
+          <div class="card-accent" aria-hidden="true">
+            <span class="bar bar-long"></span>
+            <span class="bar bar-short"></span>
+          </div>
+          <h3>Tip Calculator</h3>
+          <p>Quickly calculate gratuity and split the total bill among a group of people.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Calculate Tip →</span>
+        </a>
+
+        <!-- Unit Price -->
+        <a href="/calculators/unit-price.html" class="hub-card">
+          <div class="card-accent" aria-hidden="true">
+            <span class="bar bar-long"></span>
+            <span class="bar bar-short"></span>
+          </div>
+          <h3>Unit Price Calculator</h3>
+          <p>Compare product prices to find the best value deal at the grocery store.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Compare Prices →</span>
+        </a>
+
+        <!-- Discount Calculator -->
+        <a href="/calculators/discount.html" class="hub-card">
+          <div class="card-accent" aria-hidden="true">
+            <span class="bar bar-long"></span>
+            <span class="bar bar-short"></span>
+          </div>
+          <h3>Discount Calculator</h3>
+          <p>Calculate the final price of an item after a percentage or fixed amount discount.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Calculate Discount →</span>
+        </a>
+
+        <!-- Sales Tax -->
+        <a href="/calculators/sales-tax.html" class="hub-card">
+          <div class="card-accent" aria-hidden="true">
+            <span class="bar bar-long"></span>
+            <span class="bar bar-short"></span>
+          </div>
+          <h3>Sales Tax Calculator</h3>
+          <p>Determine the total cost of a purchase including state and local sales tax.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Calculate Tax →</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="brand logo">
+            <svg class="brand-mark" width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <g fill="none" stroke="#1a73e8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4.5 18.5h15"/>
+                <path d="M6 16l4-4 3 3 5-6"/>
+                <path d="M17.5 9H19v1.5"/>
+              </g>
+              <g fill="#1a73e8">
+                <circle cx="6" cy="16" r="1.1"/>
+                <circle cx="10" cy="12" r="1.1"/>
+                <circle cx="13" cy="15" r="1.1"/>
+                <circle cx="18" cy="9" r="1.1"/>
+              </g>
+            </svg>
+            ToolFin
+          </a>
+          <p style="margin-top: 1.5rem;">Practical financial literacy tools designed for global clarity and educational empowerment.</p>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Platform</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/">Home</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/about.html">About ToolFin</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/methodology.html">Methodology</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Legal</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/disclaimer.html">Disclaimer</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/editorial-policy.html">Editorial Policy</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Support</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="trust-strip">
+        NOT FINANCIAL ADVICE • EDUCATIONAL USE ONLY • ESTIMATES ONLY • JURISDICTION DIFFERENCES APPLY
+      </div>
+    </div>
+  </footer>
+  <script type="module" src="/assets/common.js"></script>
+</body>
+</html>

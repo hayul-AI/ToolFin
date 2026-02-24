@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Credit Card Payoff Calculator - ToolFin</title>
+  <meta name="description" content="Estimate how long it will take to pay off your credit card balance. Calculate total interest and see how extra payments can save you time and money.">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container nav-container">
+      <a href="/" class="brand logo">
+        <svg class="brand-mark" width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <g fill="none" stroke="#1a73e8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4.5 18.5h15"/>
+            <path d="M6 16l4-4 3 3 5-6"/>
+            <path d="M17.5 9H19v1.5"/>
+          </g>
+          <g fill="#1a73e8">
+            <circle cx="6" cy="16" r="1.1"/>
+            <circle cx="10" cy="12" r="1.1"/>
+            <circle cx="13" cy="15" r="1.1"/>
+            <circle cx="18" cy="9" r="1.1"/>
+          </g>
+        </svg>
+        ToolFin
+      </a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/methodology.html">Methodology</a>
+        <a href="/contact.html">Contact</a>
+        <select id="currency-selector">
+          <option value="USD">USD — US Dollar ($)</option>
+          <option value="EUR">EUR — Euro (€)</option>
+          <option value="GBP">GBP — British Pound (£)</option>
+          <option value="CAD">CAD — Canadian Dollar (C$)</option>
+          <option value="AUD">AUD — Australian Dollar (A$)</option>
+          <!-- ... other currencies will be added by the global script or can be added here if needed ... -->
+        </select>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav style="margin: 2rem 0 1rem; font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">
+      <a href="/" style="color: inherit; text-decoration: none;">Home</a> / 
+      <a href="/loans.html" style="color: inherit; text-decoration: none;">Loans, Credit & Debt</a> / 
+      Credit Card Payoff Calculator
+    </nav>
+
+    <div class="hero" style="text-align: left; padding: 2rem 0 3rem;">
+      <h1 style="font-size: 3rem;">Credit Card Payoff Calculator</h1>
+      <p>This tool estimates how long it may take to repay a credit card balance based on the numbers you enter. Understanding the impact of interest rates and payment amounts is a key step in managing revolving debt.</p>
+    </div>
+
+    <div class="card">
+      <div class="calc-grid">
+        <div id="inputs">
+          <div class="input-group">
+            <label for="balance">Credit Card Balance</label>
+            <div class="input-wrapper" style="position: relative; display: flex; align-items: center;">
+              <span style="position: absolute; left: 16px; font-weight: 700; color: var(--text-muted);" class="prefix currency-symbol">$</span>
+              <input type="number" id="balance" value="5000" step="100" style="padding-left: 35px;">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="apr">Annual Interest Rate (APR %)</label>
+            <div class="input-wrapper" style="position: relative; display: flex; align-items: center;">
+              <input type="number" id="apr" value="18.99" step="0.01" style="padding-right: 35px;">
+              <span style="position: absolute; right: 16px; font-weight: 700; color: var(--text-muted);">%</span>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="monthly-payment">Monthly Payment</label>
+            <div class="input-wrapper" style="position: relative; display: flex; align-items: center;">
+              <span style="position: absolute; left: 16px; font-weight: 700; color: var(--text-muted);" class="prefix currency-symbol">$</span>
+              <input type="number" id="monthly-payment" value="200" step="10" style="padding-left: 35px;">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="extra-payment">Optional Extra Monthly Payment</label>
+            <div class="input-wrapper" style="position: relative; display: flex; align-items: center;">
+              <span style="position: absolute; left: 16px; font-weight: 700; color: var(--text-muted);" class="prefix currency-symbol">$</span>
+              <input type="number" id="extra-payment" value="0" step="10" style="padding-left: 35px;">
+            </div>
+          </div>
+
+          <button id="calculate-btn" style="background: var(--primary); color: white; border: none; padding: 16px; border-radius: var(--radius); font-weight: 800; font-size: 1.1rem; cursor: pointer; width: 100%; transition: background 0.2s;">
+            Calculate Payoff
+          </button>
+        </div>
+
+        <div id="results">
+          <div class="results-panel">
+            <div class="result-item">
+              <div class="result-label">Months to Payoff</div>
+              <div class="result-value" id="months-to-payoff">0</div>
+            </div>
+            
+            <div style="margin-top: 2rem; border-top: 2px solid var(--border); padding-top: 1.5rem; display: grid; gap: 1rem;">
+              <div style="display: flex; justify-content: space-between;">
+                <span style="font-weight: 700; color: var(--text-muted);">Total Interest</span>
+                <span id="total-interest" style="font-weight: 800; color: #e11d48;">$0</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 0.5rem;">
+                <span style="font-weight: 700; color: var(--text-main);">Total Amount Paid</span>
+                <span id="total-paid" style="font-weight: 900; color: var(--primary);">$0</span>
+              </div>
+            </div>
+
+            <div id="interpretation-box" style="margin-top: 1.5rem; padding: 1rem; border-radius: 8px; background: #f8fafc; font-size: 0.95rem; font-weight: 500; color: var(--secondary); border-left: 4px solid var(--primary);">
+              Enter values to see interpretation.
+            </div>
+          </div>
+
+          <div id="extra-scenario" class="results-panel" style="margin-top: 1.5rem; display: none; background: #f0fdf4; border-color: #bbf7d0;">
+            <h4 style="margin-bottom: 1rem; color: #166534;">Monthly Extra Payment Scenario</h4>
+            <div style="display: grid; gap: 0.75rem;">
+              <div style="display: flex; justify-content: space-between;">
+                <span style="font-weight: 600;">New Payoff Time:</span>
+                <span id="new-payoff-time" style="font-weight: 700;">0 months</span>
+              </div>
+              <div style="display: flex; justify-content: space-between;">
+                <span style="font-weight: 600;">Time Saved:</span>
+                <span id="time-saved" style="font-weight: 700; color: #166534;">0 months</span>
+              </div>
+              <div style="display: flex; justify-content: space-between;">
+                <span style="font-weight: 600;">Interest Saved:</span>
+                <span id="interest-saved" style="font-weight: 700; color: #166534;">$0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section style="margin-top: 4rem;">
+      <h2>How Credit Card Interest Works</h2>
+      <p>Credit cards use a revolving balance system, meaning you can borrow up to a certain limit, pay it back, and borrow again. Interest is typically calculated based on your "average daily balance" and is compounded monthly.</p>
+      <p>Compounding interest means you are charged interest on your original balance plus any interest that has already accumulated. This can cause debt to grow rapidly if only minimum payments are made.</p>
+      <p>Minimum payments are usually designed to cover the interest plus a very small percentage of the principal. By paying more than the minimum, you reduce the principal balance faster, which in turn reduces the amount of interest charged in future months.</p>
+    </section>
+
+    <section>
+      <h2>FAQ</h2>
+      <div class="faq-item">
+        <h3>Is this an exact financial quote?</h3>
+        <p>No. This calculator provides a mathematical estimate based on the fixed numbers you provide. Real-world balances may fluctuate due to new purchases, varying interest calculation methods, or penalty fees.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Does ToolFin connect to banks?</h3>
+        <p>No. ToolFin is a static educational tool. We do not access, store, or transmit your personal financial data or bank account information.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Why does interest accumulate quickly?</h3>
+        <p>Because of compounding. If your monthly payment is close to the amount of interest charged, very little of your money goes toward the actual balance, leaving nearly the same amount to be taxed with interest again the following month.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Does paying more reduce interest?</h3>
+        <p>Yes. Any amount paid above the interest charged reduces the principal balance. Since interest is calculated as a percentage of the remaining balance, a lower principal results in less interest being charged in the next cycle.</p>
+      </div>
+    </section>
+
+    <div class="compliance-statements" style="margin-top: 3rem; padding: 2rem; background: #f1f5f9; border-radius: 12px; font-size: 0.9rem;">
+      <p><strong>Legal Disclaimer:</strong> All calculations provided on ToolFin are estimates for educational and informational purposes only. They do not constitute financial, investment, tax, or legal advice.</p>
+      <p>ToolFin does not recommend any specific financial decisions, products, or strategies. Users should consider consulting a qualified professional for personal financial guidance.</p>
+      <p>Currency selection affects formatting and display only and does not use live exchange rates.</p>
+    </div>
+
+    <section>
+      <h2>Related Calculators</h2>
+      <div class="next-steps-grid">
+        <a href="/calculators/mortgage.html" class="next-step-card">
+          <strong>Loan Payment Calculator</strong>
+          <p>Estimate payments for fixed-term loans like auto or personal loans.</p>
+        </a>
+        <a href="/calculators/debt-snowball.html" class="next-step-card">
+          <strong>Debt Snowball Calculator</strong>
+          <p>Plan your debt-free journey by paying off smallest balances first.</p>
+        </a>
+        <a href="/calculators/apr.html" class="next-step-card">
+          <strong>APR Calculator</strong>
+          <p>Find the true Annual Percentage Rate including fees.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="brand logo">
+            <svg class="brand-mark" width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <g fill="none" stroke="#1a73e8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4.5 18.5h15"/>
+                <path d="M6 16l4-4 3 3 5-6"/>
+                <path d="M17.5 9H19v1.5"/>
+              </g>
+              <g fill="#1a73e8">
+                <circle cx="6" cy="16" r="1.1"/>
+                <circle cx="10" cy="12" r="1.1"/>
+                <circle cx="13" cy="15" r="1.1"/>
+                <circle cx="18" cy="9" r="1.1"/>
+              </g>
+            </svg>
+            ToolFin
+          </a>
+          <p style="margin-top: 1.5rem;">Smarter financial modeling for global clarity.</p>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Platform</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/">Home</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/about.html">About ToolFin</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/methodology.html">Methodology</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Legal</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/disclaimer.html">Disclaimer</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/editorial-policy.html">Editorial Policy</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Support</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="trust-strip">
+        NOT FINANCIAL ADVICE • EDUCATIONAL USE ONLY • ESTIMATES ONLY • JURISDICTION DIFFERENCES APPLY
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/assets/credit-card-payoff.js"></script>
+</body>
+</html>

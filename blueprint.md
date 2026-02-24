@@ -6,17 +6,23 @@ ToolFin is a "money problem solving platform" designed for English-speaking glob
 ## Project Outline
 - **Tech Stack:** HTML5, CSS3 (Modern Baseline), Vanilla JavaScript (ES Modules).
 - **Design:** SaaS UI (White + Blue), card-based layout, responsive typography.
-- **Branding:** Minimalist "calculator + growth analytics" SVG brand mark integrated into the header and footer brand areas. Consistent ".brand" styling with 8px gap and vertical alignment.
+- **Branding:** Minimalist finance chart icon (blue graph on white).
 - **Compliance:** Strict avoidance of advisory language; mandatory disclosure statements on all results; dedicated trust signals.
 - **IA:** 
-    - Home, About, Methodology, Disclaimer, Editorial Policy, Contact, 404.
-    - Calculators: Mortgage, Compound Interest, ROI, Salary/Hourly.
+    - **Home:** Category-based portal (Loans, Income, Investments, Housing, Everyday).
+    - **Category Pages:** `loans.html`, `income.html`, `investments.html`, `housing.html`, `everyday.html`.
+    - **Calculators:** Dedicated pages for each tool (e.g., `calculators/mortgage.html`).
+    - **Support Pages:** About, Methodology, Disclaimer, Editorial Policy, Contact, 404.
 - **Hosting:** Static hosting compatible (e.g., Firebase Hosting).
 
 ## Current Implementation Plan
-1.  **Shared Assets:** Create `assets/style.css` for the global SaaS look and `assets/common.js` for shared functionality.
-2.  **Trust Architecture:** Implement `about.html`, `methodology.html`, `disclaimer.html`, `editorial-policy.html`, and `contact.html`.
-3.  **Core Calculators:** Implement the four requested calculators with dedicated JS logic.
-4.  **Navigation & SEO:** Build `index.html`, `404.html`, and `sitemap.xml`.
-5.  **Branding Update:** Integrated a minimalist SVG brand mark (calculator + growth arrow) across all pages to enhance trust and professionalism.
+1.  **Shared Assets:** `assets/style.css` (Global SaaS look) and `assets/common.js` (Shared functionality).
+2.  **Trust Architecture:** `about.html`, `methodology.html`, `disclaimer.html`, `editorial-policy.html`, `contact.html`.
+3.  **Category Structure:** 
+    - Homepage (`index.html`) links to 5 category pages.
+    - Category pages list specific calculators.
+4.  **Core Calculators:** 
+    - Implemented: Mortgage, Compound Interest, ROI, Salary/Hourly.
+    - Planned: Credit Card Payoff, Debt Snowball, Rent vs Buy, Savings Goal, etc.
+5.  **Navigation & SEO:** Breadcrumb navigation and semantic structure for all pages.
 6.  **Validation:** Ensure no prohibited phrases exist and all mandatory compliance rules are met.
