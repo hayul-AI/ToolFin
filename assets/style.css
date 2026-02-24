@@ -476,3 +476,41 @@ body[data-page="debt-avalanche"] input#start-date {
   letter-spacing:0.3px;
 }
 
+/* ToolFin FAQ + disclaimer styling */
+.tf-faq details{
+  border: 1px solid rgba(0,0,0,0.10);
+  border-radius: 12px;
+  padding: 12px 14px;
+  background: #fff;
+  margin: 10px 0;
+}
+.tf-faq summary{
+  cursor: pointer;
+  font-weight: 600;
+  list-style: none;
+}
+.tf-faq summary::-webkit-details-marker{ display:none; }
+.tf-faq details p{
+  margin: 10px 0 0;
+  color: rgba(0,0,0,0.70);
+  line-height: 1.55;
+}
+.tf-callout--disclaimer{
+  border: 1px solid rgba(0,0,0,0.10);
+  background: rgba(31,95,224,0.04);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+/* ToolFin Refinance placeholder layout */
+.tf-two-col{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+@media (max-width: 820px){
+  .tf-two-col{ grid-template-columns: 1fr; }
+}
+
+
+

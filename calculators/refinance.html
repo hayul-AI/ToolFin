@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Refinance Calculator | ToolFin</title>
+  <meta name="description" content="Calculate your potential savings and break-even point with our Refinance Calculator. Analyze interest rates, loan balances, and closing costs for smarter debt management.">
+  <link rel="canonical" href="https://toolfin.example/calculators/refinance.html">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    .tf-results-box {
+      background: #f8fafc;
+      border: 2px solid var(--primary-soft);
+      border-radius: var(--radius);
+      padding: 2rem;
+      height: 100%;
+    }
+    .result-highlight {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: #10b981;
+      margin: 0.5rem 0;
+    }
+    .result-sub-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+    }
+    .res-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .res-value {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+  </style>
+</head>
+<body data-page="refinance">
+  <header>
+    <div class="container nav-container">
+      <a class="logo" href="/" aria-label="ToolFin Home">
+        <span class="logo-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+            <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+            <circle cx="8" cy="13" r="1"></circle>
+            <circle cx="12" cy="13" r="1"></circle>
+            <circle cx="16" cy="13" r="1"></circle>
+            <circle cx="8" cy="17" r="1"></circle>
+            <circle cx="12" cy="17" r="1"></circle>
+            <circle cx="16" cy="17" r="1"></circle>
+          </svg>
+        </span>
+        <span class="logo-text">ToolFin</span>
+      </a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/methodology.html">Methodology</a>
+        <a href="/contact.html">Contact</a>
+        <select id="currency-selector">
+          <option value="USD">USD — US Dollar ($)</option>
+          <option value="EUR">EUR — Euro (€)</option>
+          <option value="GBP">GBP — British Pound (£)</option>
+          <option value="JPY">JPY — Japanese Yen (¥)</option>
+          <option value="CNY">CNY — Chinese Yuan (¥)</option>
+          <option value="KRW">KRW — South Korean Won (₩)</option>
+          <option value="AUD">AUD — Australian Dollar (A$)</option>
+          <option value="CAD">CAD — Canadian Dollar (C$)</option>
+          <option value="NZD">NZD — New Zealand Dollar (NZ$)</option>
+          <option value="CHF">CHF — Swiss Franc (CHF)</option>
+          <option value="HKD">HKD — Hong Kong Dollar (HK$)</option>
+          <option value="SGD">SGD — Singapore Dollar (S$)</option>
+          <option value="TWD">TWD — Taiwan Dollar (NT$)</option>
+          <option value="SEK">SEK — Swedish Krona (kr)</option>
+          <option value="NOK">NOK — Norwegian Krone (kr)</option>
+          <option value="DKK">DKK — Danish Krone (kr)</option>
+          <option value="PLN">PLN — Polish Złoty (zł)</option>
+          <option value="CZK">CZK — Czech Koruna (Kč)</option>
+          <option value="HUF">HUF — Hungarian Forint (Ft)</option>
+          <option value="RON">RON — Romanian Leu (lei)</option>
+          <option value="BGN">BGN — Bulgarian Lev (лв)</option>
+          <option value="TRY">TRY — Turkish Lira (₺)</option>
+          <option value="ILS">ILS — Israeli Shekel (₪)</option>
+          <option value="AED">AED — UAE Dirham (د.إ)</option>
+          <option value="SAR">SAR — Saudi Riyal (﷼)</option>
+          <option value="QAR">QAR — Qatari Riyal (﷼)</option>
+          <option value="KWD">KWD — Kuwaiti Dinar (KD)</option>
+          <option value="BHD">BHD — Bahraini Dinar (BD)</option>
+          <option value="OMR">OMR — Omani Rial (﷼)</option>
+          <option value="INR">INR — Indian Rupee (₹)</option>
+          <option value="PKR">PKR — Pakistani Rupee (₨)</option>
+          <option value="BDT">BDT — Bangladeshi Taka (৳)</option>
+          <option value="LKR">LKR — Sri Lankan Rupee (₨)</option>
+          <option value="THB">THB — Thai Baht (฿)</option>
+          <option value="VND">VND — Vietnamese Dong (₫)</option>
+          <option value="IDR">IDR — Indonesian Rupiah (Rp)</option>
+          <option value="MYR">MYR — Malaysian Ringgit (RM)</option>
+          <option value="PHP">PHP — Philippine Peso (₱)</option>
+          <option value="ZAR">ZAR — South African Rand (R)</option>
+          <option value="EGP">EGP — Egyptian Pound (E£)</option>
+          <option value="NGN">NGN — Nigerian Naira (₦)</option>
+          <option value="KES">KES — Kenyan Shilling (KSh)</option>
+          <option value="GHS">GHS — Ghanaian Cedi (₵)</option>
+          <option value="MAD">MAD — Moroccan Dirham (MAD)</option>
+          <option value="RUB">RUB — Russian Ruble (₽)</option>
+          <option value="UAH">UAH — Ukrainian Hryvnia (₴)</option>
+          <option value="BRL">BRL — Brazilian Real (R$)</option>
+          <option value="ARS">ARS — Argentine Peso ($)</option>
+          <option value="CLP">CLP — Chilean Peso ($)</option>
+          <option value="COP">COP — Colombian Peso ($)</option>
+          <option value="PEN">PEN — Peruvian Sol (S/)</option>
+          <option value="MXN">MXN — Mexican Peso ($)</option>
+        </select>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav style="margin: 2rem 0 1rem; font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">
+      <a href="/" style="color: inherit; text-decoration: none;">Home</a> / 
+      <a href="/loans.html" style="color: inherit; text-decoration: none;">Loans</a> / 
+      Refinance Calculator
+    </nav>
+
+    <div class="hero" style="text-align: left; padding: 2rem 0 2rem;">
+      <h1 style="font-size: 3rem;">Refinance Calculator</h1>
+      <p>Analyze the potential benefits of replacing your existing debt. Model your break-even point, visualize monthly savings, and compare interest rate structures with ease.</p>
+    </div>
+
+    <section id="refinance-app">
+      <div class="card">
+        <div class="calc-grid">
+          <div class="input-side">
+            <div class="input-group">
+              <label for="loan-balance">Remaining Loan Balance</label>
+              <div class="input-wrapper" style="position: relative;">
+                <span style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-weight: 700; color: var(--text-muted);" class="prefix currency-symbol">$</span>
+                <input type="number" id="loan-balance" value="300000" step="1000" style="padding-left: 35px;">
+              </div>
+            </div>
+
+            <div class="tf-two-col" style="gap: 2rem;">
+              <div class="input-group">
+                <label for="current-rate">Current Interest Rate (APR %)</label>
+                <div class="input-wrapper">
+                  <input type="number" id="current-rate" value="6.5" step="0.1">
+                </div>
+              </div>
+              <div class="input-group">
+                <label for="new-rate">New Interest Rate (APR %)</label>
+                <div class="input-wrapper">
+                  <input type="number" id="new-rate" value="5.5" step="0.1">
+                </div>
+              </div>
+            </div>
+
+            <div class="tf-two-col" style="gap: 2rem;">
+              <div class="input-group">
+                <label for="remaining-term">Remaining Term (Years)</label>
+                <div class="input-wrapper">
+                  <input type="number" id="remaining-term" value="25" step="1">
+                </div>
+              </div>
+              <div class="input-group">
+                <label for="closing-costs">Closing Costs</label>
+                <div class="input-wrapper" style="position: relative;">
+                  <span style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-weight: 700; color: var(--text-muted);" class="prefix currency-symbol">$</span>
+                  <input type="number" id="closing-costs" value="5000" step="100" style="padding-left: 35px;">
+                </div>
+              </div>
+            </div>
+
+            <button id="calculate-btn" style="width: 100%; background: var(--primary); color: white; border: none; padding: 18px; border-radius: 12px; font-weight: 800; font-size: 1.1rem; cursor: pointer;">
+              Calculate Refinance
+            </button>
+          </div>
+
+          <div class="results-panel">
+            <div id="results-content" class="tf-results-box">
+              <div class="res-label">Break-Even Point</div>
+              <div id="res-break-even" class="result-highlight">---</div>
+              <p style="font-size: 0.9rem; color: var(--text-muted);">Months to recover your closing costs through monthly savings.</p>
+
+              <div class="result-sub-grid">
+                <div>
+                  <div class="res-label">Monthly Savings</div>
+                  <div id="res-monthly-savings" class="res-value">---</div>
+                </div>
+                <div>
+                  <div class="res-label">Lifetime Savings</div>
+                  <div id="res-lifetime-savings" class="res-value">---</div>
+                </div>
+                <div>
+                  <div class="res-label">Current Payment</div>
+                  <div id="res-old-payment" class="res-value" style="font-size: 1rem; color: var(--text-muted);">---</div>
+                </div>
+                <div>
+                  <div class="res-label">New Payment</div>
+                  <div id="res-new-payment" class="res-value" style="font-size: 1rem; color: var(--text-muted);">---</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="educational-content" style="margin-top: 5rem;">
+      <article class="prose">
+        <h2>Overview: The Strategic Role of Refinancing</h2>
+        <p>Refinancing is the process of replacing an existing debt obligation with a new loan that has more favorable terms. While most people associate refinancing with mortgages, the mathematical principles apply equally to auto loans, personal loans, and student debt. The primary objective is usually to lower the cost of borrowing, improve monthly cash flow, or alter the duration of the debt repayment.</p>
+        <p>In a typical refinance scenario, the new lender pays off the balance of your original loan in full. You are then left with a single new loan, often with a different interest rate, term length, and monthly payment. Because this transaction involves significant legal and administrative work, it almost always incurs "closing costs"—the fees required to secure the new financing.</p>
+
+        <h2>The Core Inputs Explained</h2>
+        <p>To accurately model a refinance, you must look beyond the headline interest rate. The three most critical inputs in any refinance model are the remaining balance, the interest rate differential, and the total closing costs.</p>
+        <h3>Remaining Loan Balance</h3>
+        <p>This is the foundation of your calculation. It is not the original amount you borrowed, but the current principal balance as of today. If you have been paying into a 30-year mortgage for five years, your remaining balance will be lower than your original loan, but perhaps not as much as you expect due to interest front-loading in standard amortization schedules.</p>
+        <h3>Interest Rate Differential</h3>
+        <p>The "Interest Rate (APR %)" represents the Annual Percentage Rate. When comparing your current rate to a new rate, you are looking for the "spread." A wider spread generally leads to faster savings. However, it is vital to ensure you are comparing like-for-like figures. A nominal interest rate might look attractive, but the APR—which includes recurring fees—provides the true mathematical cost of the debt.</p>
+        <h3>Closing Costs: The "Closing Option"</h3>
+        <p>Closing costs are the "entrance fee" for your new loan. They include appraisal fees, title insurance, origination points, and government taxes. In our calculator, this is the "Closing Costs" field. Understanding these costs is essential because they determine how long you must hold the loan before you actually begin to save money.</p>
+
+        <h2>Why Comparing Rates Alone is Misleading</h2>
+        <p>A common mistake in debt management is chasing the lowest possible interest rate without considering the associated costs. For example, a lender might offer a 5.0% APR, but require $10,000 in upfront points to secure it. Another lender might offer 5.5% with zero closing costs. If you only plan to stay in the home for two more years, the higher rate with lower costs is actually the cheaper financial path. This is why "no-cost" or "low-cost" refinancing options are often popular, even if they carry a slightly higher interest rate; they reduce the risk of never reaching the break-even point.</p>
+
+        <h2>The Break-Even Concept</h2>
+        <p>The break-even point is the most important milestone in a refinance. It is the moment in time where the total monthly savings generated by the lower interest rate equal the total closing costs paid to get the loan. Mathematically, it is expressed as:</p>
+        <p style="text-align: center; font-weight: 700; background: #f1f5f9; padding: 1rem; border-radius: 8px;">Break-Even (Months) = Total Closing Costs / Monthly Payment Savings</p>
+        <p>If your break-even point is 36 months, but you plan to sell the asset in 24 months, the refinance will result in a net loss, despite the lower monthly payment. A sophisticated financial model must account for this "time-to-recovery" to provide a truly helpful estimate.</p>
+
+        <section class="tf-section" id="refinance-faq">
+          <h2>Refinance Calculator FAQ</h2>
+          <div class="tf-faq">
+            <details open>
+              <summary>When should I consider refinancing my loan?</summary>
+              <p>Generally, refinancing is worth considering when market interest rates have dropped significantly below your current rate, or when your credit score has improved enough to qualify for better terms. You should also evaluate your expected duration of ownership to ensure you reach the break-even point.</p>
+            </details>
+            <details>
+              <summary>How much are typical closing costs for a refinance?</summary>
+              <p>Closing costs vary by loan type and location. For mortgages, they typically range from 2% to 5% of the loan amount. For auto or personal loans, costs are usually much lower and often consist of small administrative fees.</p>
+            </details>
+            <details>
+              <summary>What is a 'no-closing-cost' refinance?</summary>
+              <p>In a 'no-closing-cost' refinance, the lender pays the upfront fees in exchange for a slightly higher interest rate. While this eliminates immediate out-of-pocket expenses, it may be more expensive over the long term depending on how long you keep the loan.</p>
+            </details>
+            <details>
+              <summary>Will a refinance restart my loan term?</summary>
+              <p>Yes, unless you choose a shorter term. If you have 20 years left on a 30-year mortgage and you refinance into a new 30-year loan, you are extending your debt obligation by 10 years, which could increase total interest paid.</p>
+            </details>
+            <details>
+              <summary>Does refinancing affect my credit score?</summary>
+              <p>Applying for a refinance usually involves a 'hard' credit inquiry, which can cause a small, temporary dip in your score. However, consistently making payments on the new loan typically helps your score over time.</p>
+            </details>
+            <details>
+              <summary>Can I refinance multiple times?</summary>
+              <p>Technically, yes. There is no limit to how many times you can refinance, as long as each transaction provides a net financial benefit and you meet the lender's qualifying criteria.</p>
+            </details>
+          </div>
+        </section>
+
+        <section class="tf-section" id="legal-disclaimer">
+          <h2>Legal Disclaimer</h2>
+          <div class="tf-callout tf-callout--disclaimer">
+            <p><strong>All calculations provided on ToolFin are estimates for educational and informational purposes only.</strong> They do not constitute financial, investment, tax, or legal advice.</p>
+            <p>ToolFin does not recommend any specific financial decisions, products, or strategies. Users should consider consulting a qualified professional for personal financial guidance.</p>
+            <p>Currency selection affects formatting and display only and does not use live exchange rates.</p>
+          </div>
+        </section>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" aria-label="ToolFin Home">
+            <span class="logo-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+                <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+                <circle cx="8" cy="13" r="1"></circle>
+                <circle cx="12" cy="13" r="1"></circle>
+                <circle cx="16" cy="13" r="1"></circle>
+                <circle cx="8" cy="17" r="1"></circle>
+                <circle cx="12" cy="17" r="1"></circle>
+                <circle cx="16" cy="17" r="1"></circle>
+              </svg>
+            </span>
+            <span class="logo-text">ToolFin</span>
+          </a>
+          <p style="margin-top: 1.5rem;">Practical financial literacy tools designed for global clarity and educational empowerment.</p>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Platform</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/">Home</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/about.html">About ToolFin</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/methodology.html">Methodology</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Legal</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/disclaimer.html">Disclaimer</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/editorial-policy.html">Editorial Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Support</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="trust-strip">
+        NOT FINANCIAL ADVICE • EDUCATIONAL USE ONLY • ESTIMATES ONLY • JURISDICTION DIFFERENCES APPLY
+      </div>
+    </div>
+  </footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "When should I consider refinancing my loan?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Generally, refinancing is worth considering when market interest rates have dropped significantly below your current rate, or when your credit score has improved enough to qualify for better terms. You should also evaluate your expected duration of ownership to ensure you reach the break-even point."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much are typical closing costs for a refinance?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Closing costs vary by loan type and location. For mortgages, they typically range from 2% to 5% of the loan amount. For auto or personal loans, costs are usually much lower and often consist of small administrative fees."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a 'no-closing-cost' refinance?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In a 'no-closing-cost' refinance, the lender pays the upfront fees in exchange for a slightly higher interest rate. While this eliminates immediate out-of-pocket expenses, it may be more expensive over the long term depending on how long you keep the loan."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Will a refinance restart my loan term?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, unless you choose a shorter term. If you have 20 years left on a 30-year mortgage and you refinance into a new 30-year loan, you are extending your debt obligation by 10 years, which could increase total interest paid."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does refinancing affect my credit score?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Applying for a refinance usually involves a 'hard' credit inquiry, which can cause a small, temporary dip in your score. However, consistently making payments on the new loan typically helps your score over time."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I refinance multiple times?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Technically, yes. There is no limit to how many times you can refinance, as long as each transaction provides a net financial benefit and you meet the lender's qualifying criteria."
+        }
+      }
+    ]
+  }
+  </script>
+  <script type="module" src="/assets/refinance.js"></script>
+</body>
+</html>

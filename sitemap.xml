@@ -49,6 +49,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://toolfin.example/calculators/refinance.html</loc>
+    <lastmod>2026-02-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://toolfin.example/about.html</loc>
     <lastmod>2026-02-24</lastmod>
     <changefreq>yearly</changefreq>
