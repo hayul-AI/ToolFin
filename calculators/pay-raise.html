@@ -15,11 +15,8 @@
       <a class="logo" href="/" aria-label="ToolFin Home">
   <span class="logo-icon" aria-hidden="true">
     <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <!-- calculator body -->
       <rect x="3" y="2" width="18" height="20" rx="3"></rect>
-      <!-- display -->
       <rect x="7" y="6" width="10" height="3" rx="1"></rect>
-      <!-- buttons -->
       <circle cx="8" cy="13" r="1"></circle>
       <circle cx="12" cy="13" r="1"></circle>
       <circle cx="16" cy="13" r="1"></circle>
@@ -40,54 +37,7 @@
 <option value="EUR">EUR — Euro (€)</option>
 <option value="GBP">GBP — British Pound (£)</option>
 <option value="JPY">JPY — Japanese Yen (¥)</option>
-<option value="CNY">CNY — Chinese Yuan (¥)</option>
 <option value="KRW">KRW — South Korean Won (₩)</option>
-<option value="AUD">AUD — Australian Dollar (A$)</option>
-<option value="CAD">CAD — Canadian Dollar (C$)</option>
-<option value="NZD">NZD — New Zealand Dollar (NZ$)</option>
-<option value="CHF">CHF — Swiss Franc (CHF)</option>
-<option value="HKD">HKD — Hong Kong Dollar (HK$)</option>
-<option value="SGD">SGD — Singapore Dollar (S$)</option>
-<option value="TWD">TWD — Taiwan Dollar (NT$)</option>
-<option value="SEK">SEK — Swedish Krona (kr)</option>
-<option value="NOK">NOK — Norwegian Krone (kr)</option>
-<option value="DKK">DKK — Danish Krone (kr)</option>
-<option value="PLN">PLN — Polish Złoty (zł)</option>
-<option value="CZK">CZK — Czech Koruna (Kč)</option>
-<option value="HUF">HUF — Hungarian Forint (Ft)</option>
-<option value="RON">RON — Romanian Leu (lei)</option>
-<option value="BGN">BGN — Bulgarian Lev (лв)</option>
-<option value="TRY">TRY — Turkish Lira (₺)</option>
-<option value="ILS">ILS — Israeli Shekel (₪)</option>
-<option value="AED">AED — UAE Dirham (د.إ)</option>
-<option value="SAR">SAR — Saudi Riyal (﷼)</option>
-<option value="QAR">QAR — Qatari Riyal (﷼)</option>
-<option value="KWD">KWD — Kuwaiti Dinar (KD)</option>
-<option value="BHD">BHD — Bahraini Dinar (BD)</option>
-<option value="OMR">OMR — Omani Rial (﷼)</option>
-<option value="INR">INR — Indian Rupee (₹)</option>
-<option value="PKR">PKR — Pakistani Rupee (₨)</option>
-<option value="BDT">BDT — Bangladeshi Taka (৳)</option>
-<option value="LKR">LKR — Sri Lankan Rupee (₨)</option>
-<option value="THB">THB — Thai Baht (฿)</option>
-<option value="VND">VND — Vietnamese Dong (₫)</option>
-<option value="IDR">IDR — Indonesian Rupiah (Rp)</option>
-<option value="MYR">MYR — Malaysian Ringgit (RM)</option>
-<option value="PHP">PHP — Philippine Peso (₱)</option>
-<option value="ZAR">ZAR — South African Rand (R)</option>
-<option value="EGP">EGP — Egyptian Pound (E£)</option>
-<option value="NGN">NGN — Nigerian Naira (₦)</option>
-<option value="KES">KES — Kenyan Shilling (KSh)</option>
-<option value="GHS">GHS — Ghanaian Cedi (₵)</option>
-<option value="MAD">MAD — Moroccan Dirham (MAD)</option>
-<option value="RUB">RUB — Russian Ruble (₽)</option>
-<option value="UAH">UAH — Ukrainian Hryvnia (₴)</option>
-<option value="BRL">BRL — Brazilian Real (R$)</option>
-<option value="ARS">ARS — Argentine Peso ($)</option>
-<option value="CLP">CLP — Chilean Peso ($)</option>
-<option value="COP">COP — Colombian Peso ($)</option>
-<option value="PEN">PEN — Peruvian Sol (S/)</option>
-<option value="MXN">MXN — Mexican Peso ($)</option>
 </select>
       </nav>
     </div>
@@ -105,20 +55,10 @@
       <p>Analyze the impact of a salary increase on your daily, weekly, and monthly earnings.</p>
     </div>
 
-    <div class="notice-box">
-      <h4>Notice</h4>
-      <ul>
-        <li>Not financial advice</li>
-        <li>Educational use</li>
-        <li>Estimates only</li>
-        <li>Jurisdiction differences</li>
-      </ul>
-    </div>
-
     <div class="card">
       <div class="calc-grid">
-        <div id="inputs">
-          <div class="input-group">
+        <div id="inputs" class="tf-form-container">
+          <div class="tf-field-group">
             <label for="current-salary">Current Annual Salary (Gross)</label>
             <div class="input-wrapper has-prefix">
               <span class="prefix currency-symbol">$</span>
@@ -126,33 +66,33 @@
             </div>
           </div>
 
-          <div class="input-group">
+          <div class="tf-field-group">
             <label for="raise-amount">Raise Amount</label>
-            <div style="display: flex; gap: 1rem;">
+            <div style="display: flex; gap: 0.75rem;">
               <div class="input-wrapper has-prefix" style="flex: 2;">
                 <span class="prefix currency-symbol">$</span>
                 <input type="number" id="raise-amount" value="3000" step="500">
               </div>
-              <div class="input-wrapper" style="flex: 1; position: relative; display: flex; align-items: center;">
+              <div class="input-wrapper" style="flex: 1;">
                 <input type="number" id="raise-percent" value="5" step="0.1" style="padding-right: 35px; text-align: right;">
-                <span style="position: absolute; right: 16px; font-weight: 700; color: var(--text-muted);">%</span>
+                <span class="suffix" style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-weight: 700; color: var(--text-muted);">%</span>
               </div>
             </div>
             <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">Adjust either the dollar amount or the percentage.</p>
           </div>
 
-          <button id="calculate-btn" style="background: var(--primary); color: white; border: none; padding: 16px; border-radius: var(--radius); font-weight: 800; font-size: 1.1rem; cursor: pointer; width: 100%; transition: background 0.2s;">Calculate New Salary</button>
+          <button id="calculate-btn" style="background: var(--primary); color: white; border: none; padding: 18px; border-radius: 12px; font-weight: 800; font-size: 1.1rem; cursor: pointer; width: 100%; transition: all 0.2s;">Calculate New Salary</button>
         </div>
 
         <div id="results">
           <div class="results-panel">
             <div class="result-item">
               <div class="result-label">New Annual Salary</div>
-              <div class="result-value" id="res-new-salary">$0</div>
+              <div class="result-value" id="res-new-salary" style="font-size: 3rem;">$0</div>
             </div>
             
             <div style="margin-top: 2rem; border-top: 2px solid var(--border); padding-top: 1.5rem;">
-              <h4 style="margin: 0 0 1rem; color: var(--secondary);">Incremental Gain (Gross)</h4>
+              <h4 style="margin: 0 0 1rem; color: var(--secondary); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Incremental Gain (Gross)</h4>
               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
                 <div class="result-item" style="margin-bottom: 0;">
                   <div class="result-label" style="font-size: 0.75rem;">Monthly</div>
@@ -178,10 +118,9 @@
 
     </div>
 
-    <section>
+    <section style="margin-top: 4rem;">
       <h2>Why calculate your pay raise?</h2>
-      <p>A pay raise is more than just a higher annual number. Breaking it down into monthly or weekly increments helps you understand how it will practically affect your lifestyle and budget. For example, a $5,000 raise might seem large, but knowing it results in roughly $192 extra per bi-weekly paycheck (before taxes) provides better context for planning.</p>
-      <p>Remember that a higher gross salary might also push you into a higher tax bracket or affect your eligibility for certain tax credits, so the "net" gain may be slightly different than the "gross" gain shown here.</p>
+      <p>A pay raise is more than just a higher annual number. Breaking it down into monthly or weekly increments helps you understand how it will practically affect your lifestyle and budget.</p>
     </section>
       <calculator-info-sections></calculator-info-sections>
   </main>
@@ -193,11 +132,8 @@
           <a class="logo" href="/" aria-label="ToolFin Home">
   <span class="logo-icon" aria-hidden="true">
     <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <!-- calculator body -->
       <rect x="3" y="2" width="18" height="20" rx="3"></rect>
-      <!-- display -->
       <rect x="7" y="6" width="10" height="3" rx="1"></rect>
-      <!-- buttons -->
       <circle cx="8" cy="13" r="1"></circle>
       <circle cx="12" cy="13" r="1"></circle>
       <circle cx="16" cy="13" r="1"></circle>
@@ -208,7 +144,7 @@
   </span>
   <span class="logo-text">ToolFin</span>
 </a>
-          <p style="margin-top: 1.5rem;">Practical financial literacy tools designed for global clarity and educational empowerment.</p>
+          <p style="margin-top: 1.5rem;">Smarter financial modeling for global clarity.</p>
         </div>
         <div class="footer-links">
           <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Platform</h5>

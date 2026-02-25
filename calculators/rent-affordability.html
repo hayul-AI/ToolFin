@@ -52,56 +52,59 @@
 
     <div class="card">
       <div class="calc-grid">
-        <div id="inputs">
-          <div class="input-group">
-            <label for="monthly-gross-income">Monthly Gross Income (Before Taxes)</label>
-            <div class="input-wrapper has-prefix">
-              <span class="prefix currency-symbol">$</span>
-              <input type="number" id="monthly-gross-income" value="5000" step="100" min="0" required>
+        <div id="inputs" class="tf-form-container">
+          <div class="tf-field-grid">
+            <div class="tf-field-group">
+              <label for="monthly-gross-income">Monthly Gross Income</label>
+              <div class="input-wrapper has-prefix">
+                <span class="prefix currency-symbol">$</span>
+                <input type="number" id="monthly-gross-income" value="5000" step="100" min="0" required>
+              </div>
+            </div>
+
+            <div class="tf-field-group">
+              <label for="monthly-debts">Monthly Debt Payments</label>
+              <div class="input-wrapper has-prefix">
+                <span class="prefix currency-symbol">$</span>
+                <input type="number" id="monthly-debts" value="400" step="50" min="0">
+              </div>
+            </div>
+
+            <div class="tf-field-group">
+              <label for="rent-ratio">Target Rent Ratio (%)</label>
+              <div class="input-wrapper">
+                <input type="number" id="rent-ratio" value="30" step="1" min="1" max="100">
+                <span class="suffix" style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-weight: 700; color: var(--text-muted);">%</span>
+              </div>
             </div>
           </div>
 
-          <div class="input-group" style="margin-top: 1rem; display: flex; align-items: center; gap: 0.75rem;">
-            <input type="checkbox" id="toggle-net-income" style="width: 20px; height: 20px; cursor: pointer;">
-            <label for="toggle-net-income" style="margin-bottom: 0; cursor: pointer; font-weight: 600;">Use Net Income (Take-Home) Instead?</label>
-          </div>
-
-          <div class="input-group" id="net-income-group" style="display: none; margin-top: 1rem; border-left: 3px solid var(--primary); padding-left: 1rem;">
-            <label for="monthly-net-income">Monthly Net Income</label>
-            <div class="input-wrapper has-prefix">
-              <span class="prefix currency-symbol">$</span>
-              <input type="number" id="monthly-net-income" value="0" step="100" min="0">
+          <div style="display: flex; flex-direction: column; gap: 1rem; background: var(--bg-main); padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--border);">
+            <div class="tf-field-group" style="flex-direction: row; align-items: center; gap: 0.75rem;">
+              <input type="checkbox" id="toggle-net-income" style="width: 20px; height: 20px; cursor: pointer;">
+              <label for="toggle-net-income" style="margin-bottom: 0; cursor: pointer;">Use Net Income (Take-Home) Instead?</label>
             </div>
-            <small style="color: var(--text-muted); display: block; margin-top: 0.4rem;">Using net income provides a more conservative and realistic budget.</small>
-          </div>
 
-          <div class="input-group">
-            <label for="monthly-debts">Monthly Debt Payments</label>
-            <div class="input-wrapper has-prefix">
-              <span class="prefix currency-symbol">$</span>
-              <input type="number" id="monthly-debts" value="400" step="50" min="0">
+            <div class="tf-field-group" id="net-income-group" style="display: none; padding-top: 0.5rem;">
+              <label for="monthly-net-income">Monthly Net Income</label>
+              <div class="input-wrapper has-prefix">
+                <span class="prefix currency-symbol">$</span>
+                <input type="number" id="monthly-net-income" value="0" step="100" min="0">
+              </div>
+              <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">Using net income provides a more conservative budget.</p>
             </div>
-            <small style="color: var(--text-muted); display: block; margin-top: 0.4rem;">Loans, credit cards, etc. Do not include current rent.</small>
-          </div>
 
-          <div class="input-group">
-            <label for="rent-ratio">Target Rent Ratio (%)</label>
-            <div class="input-wrapper">
-              <input type="number" id="rent-ratio" value="30" step="1" min="1" max="100">
+            <div class="tf-field-group" style="flex-direction: row; align-items: center; gap: 0.75rem; margin-top: 0.5rem; border-top: 1px solid var(--border); padding-top: 1rem;">
+              <input type="checkbox" id="toggle-utilities" style="width: 20px; height: 20px; cursor: pointer;">
+              <label for="toggle-utilities" style="margin-bottom: 0; cursor: pointer;">Account for Utilities Separately?</label>
             </div>
-            <small style="color: var(--text-muted); display: block; margin-top: 0.4rem;">30% is the standard rule of thumb.</small>
-          </div>
 
-          <div class="input-group" style="margin-top: 1.5rem; display: flex; align-items: center; gap: 0.75rem;">
-            <input type="checkbox" id="toggle-utilities" style="width: 20px; height: 20px; cursor: pointer;">
-            <label for="toggle-utilities" style="margin-bottom: 0; cursor: pointer; font-weight: 600;">Account for Utilities Separately?</label>
-          </div>
-
-          <div class="input-group" id="utilities-group" style="display: none; margin-top: 1rem; border-left: 3px solid var(--primary); padding-left: 1rem;">
-            <label for="monthly-utilities">Monthly Utilities Estimate</label>
-            <div class="input-wrapper has-prefix">
-              <span class="prefix currency-symbol">$</span>
-              <input type="number" id="monthly-utilities" value="0" step="10" min="0">
+            <div class="tf-field-group" id="utilities-group" style="display: none; padding-top: 0.5rem;">
+              <label for="monthly-utilities">Monthly Utilities Estimate</label>
+              <div class="input-wrapper has-prefix">
+                <span class="prefix currency-symbol">$</span>
+                <input type="number" id="monthly-utilities" value="0" step="10" min="0">
+              </div>
             </div>
           </div>
         </div>

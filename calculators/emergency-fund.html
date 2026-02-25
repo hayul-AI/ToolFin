@@ -66,59 +66,58 @@
 
     <div class="notice-box">
       <ul>
-        <li>NOT FINANCIAL ADVICE</li>
-        <li>EDUCATIONAL USE ONLY</li>
-        <li>ESTIMATES ONLY</li>
-        <li>FOCUS ON ESSENTIALS</li>
+        <li>NOT FINANCIAL ADVICE • EDUCATIONAL USE ONLY • ESTIMATES ONLY</li>
       </ul>
     </div>
 
     <div class="card">
       <div class="calc-grid">
-        <div id="inputs">
-          <h3 style="margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: 800; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem;">Monthly Expenses</h3>
-          
-          <div class="expense-row">
-            <span class="expense-label">Housing (Rent/Mortgage)</span>
-            <div class="expense-input-group">
-              <span class="currency-symbol">$</span>
-              <input type="number" id="exp-housing" value="1500" step="100">
+        <div id="inputs" class="tf-form-container">
+          <div style="background: var(--bg-main); padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--border);">
+            <h3 style="margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: 800; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem;">Monthly Essentials</h3>
+            
+            <div class="expense-row">
+              <span class="expense-label">Housing</span>
+              <div class="expense-input-group">
+                <span class="currency-symbol">$</span>
+                <input type="number" id="exp-housing" value="1500" step="100">
+              </div>
+            </div>
+
+            <div class="expense-row">
+              <span class="expense-label">Utilities & Insurance</span>
+              <div class="expense-input-group">
+                <span class="currency-symbol">$</span>
+                <input type="number" id="exp-utilities" value="300" step="50">
+              </div>
+            </div>
+
+            <div class="expense-row">
+              <span class="expense-label">Food & Groceries</span>
+              <div class="expense-input-group">
+                <span class="currency-symbol">$</span>
+                <input type="number" id="exp-food" value="500" step="50">
+              </div>
+            </div>
+
+            <div class="expense-row">
+              <span class="expense-label">Transportation</span>
+              <div class="expense-input-group">
+                <span class="currency-symbol">$</span>
+                <input type="number" id="exp-transport" value="300" step="50">
+              </div>
+            </div>
+
+            <div class="expense-row">
+              <span class="expense-label">Other Essentials</span>
+              <div class="expense-input-group">
+                <span class="currency-symbol">$</span>
+                <input type="number" id="exp-other" value="200" step="50">
+              </div>
             </div>
           </div>
 
-          <div class="expense-row">
-            <span class="expense-label">Utilities & Insurance</span>
-            <div class="expense-input-group">
-              <span class="currency-symbol">$</span>
-              <input type="number" id="exp-utilities" value="300" step="50">
-            </div>
-          </div>
-
-          <div class="expense-row">
-            <span class="expense-label">Food & Groceries</span>
-            <div class="expense-input-group">
-              <span class="currency-symbol">$</span>
-              <input type="number" id="exp-food" value="500" step="50">
-            </div>
-          </div>
-
-          <div class="expense-row">
-            <span class="expense-label">Transportation</span>
-            <div class="expense-input-group">
-              <span class="currency-symbol">$</span>
-              <input type="number" id="exp-transport" value="300" step="50">
-            </div>
-          </div>
-
-          <div class="expense-row">
-            <span class="expense-label">Other Essentials</span>
-            <div class="expense-input-group">
-              <span class="currency-symbol">$</span>
-              <input type="number" id="exp-other" value="200" step="50">
-            </div>
-          </div>
-
-          <div class="input-group" style="margin-top: 2rem;">
+          <div class="tf-field-group">
             <label for="fund-months">Coverage Goal (Months)</label>
             <div class="input-wrapper">
               <select id="fund-months">
@@ -128,18 +127,18 @@
                 <option value="12">12 Months (Aggressive)</option>
               </select>
             </div>
-            <small style="color: var(--text-muted);">Experts typically recommend 3 to 6 months of essential expenses.</small>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">Experts typically recommend 3 to 6 months of essential expenses.</p>
           </div>
 
-          <button id="calculate-btn" style="background: var(--primary); color: white; border: none; padding: 18px; border-radius: 12px; font-weight: 800; font-size: 1.1rem; cursor: pointer; width: 100%; transition: background 0.2s; margin-top: 1rem;">Update Fund Goal</button>
+          <button id="calculate-btn" style="background: var(--primary); color: white; border: none; padding: 18px; border-radius: 12px; font-weight: 800; font-size: 1.1rem; cursor: pointer; width: 100%; transition: all 0.2s;">Update Fund Goal</button>
         </div>
 
         <div id="results">
           <div class="results-panel">
             <div class="result-item">
-              <div class="result-label">Your Target Emergency Fund</div>
+              <div class="result-label">Target Emergency Fund</div>
               <div class="result-value" id="res-target-fund">$0</div>
-              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">Based on your monthly essential spending of <span id="res-monthly-total" style="font-weight: 700;">$0</span>.</p>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">Based on monthly essential spending of <span id="res-monthly-total" style="font-weight: 700;">$0</span>.</p>
             </div>
             
             <div style="margin-top: 2rem; border-top: 2px solid var(--border); padding-top: 1.5rem; display: grid; gap: 1rem;">
@@ -155,7 +154,7 @@
 
             <div style="margin-top: 2rem; background: #f0fdfa; border: 1px solid #99f6e4; padding: 1.25rem; border-radius: 12px;">
               <h4 style="color: #0d9488; margin-bottom: 0.5rem; font-weight: 800;">Why 6 Months?</h4>
-              <p style="font-size: 0.85rem; color: #0d9488; line-height: 1.5; margin: 0;">A 6-month buffer provides a robust safety net for major life disruptions like job loss, medical emergencies, or significant home repairs.</p>
+              <p style="font-size: 0.85rem; color: #0d9488; line-height: 1.5; margin: 0;">A 6-month buffer provides a robust safety net for major life disruptions like job loss or medical emergencies.</p>
             </div>
           </div>
         </div>
@@ -165,7 +164,7 @@
 
     <section style="margin-top: 4rem;">
       <h2>The Foundation of Financial Peace</h2>
-      <p>An emergency fund is a stash of money set aside to cover the financial surprises life throws your way. These surprises can be expensive and stressful. Having a buffer allows you to handle them without taking on high-interest debt.</p>
+      <p>An emergency fund is a stash of money set aside to cover the financial surprises life throws your way. Having a buffer allows you to handle them without taking on high-interest debt.</p>
       
       <h3>What Counts as an Emergency?</h3>
       <ul>
@@ -174,9 +173,6 @@
         <li>Critical car repairs.</li>
         <li>Emergency home maintenance (e.g., a leaking roof).</li>
       </ul>
-
-      <h3>How to Build It</h3>
-      <p>If the target amount seems overwhelming, start small. Aim for $1,000 or one month of expenses first. Once you hit that milestone, keep going until you reach your 3 or 6-month goal.</p>
     </section>
       <calculator-info-sections></calculator-info-sections>
   </main>

@@ -76,21 +76,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const row = document.createElement('div');
     row.className = 'debt-row';
     row.innerHTML = `
-      <div class="input-group">
+      <div class="tf-field-group">
         <label>Debt Name</label>
         <div class="input-wrapper"><input type="text" class="d-name" value="${data.name}" placeholder="e.g. Credit Card"></div>
       </div>
-      <div class="input-group">
+      <div class="tf-field-group">
         <label>Balance</label>
-        <div class="input-wrapper"><input type="number" class="d-balance" value="${data.balance}" placeholder="0" min="0"></div>
+        <div class="input-wrapper has-prefix"><span class="prefix currency-symbol">$</span><input type="number" class="d-balance" value="${data.balance}" placeholder="0" min="0"></div>
       </div>
-      <div class="input-group">
+      <div class="tf-field-group">
         <label>APR %</label>
-        <div class="input-wrapper"><input type="number" class="d-apr" value="${data.apr}" placeholder="0" step="0.01" min="0"></div>
+        <div class="input-wrapper"><input type="number" class="d-apr" value="${data.apr}" placeholder="0" step="0.01" min="0"><span class="suffix" style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-weight: 700; color: var(--text-muted);">%</span></div>
       </div>
-      <div class="input-group">
+      <div class="tf-field-group">
         <label>Min Payment</label>
-        <div class="input-wrapper"><input type="number" class="d-min" value="${data.min}" placeholder="0" min="0"></div>
+        <div class="input-wrapper has-prefix"><span class="prefix currency-symbol">$</span><input type="number" class="d-min" value="${data.min}" placeholder="0" min="0"></div>
       </div>
       <button class="remove-btn" title="Remove">&times;</button>
     `;

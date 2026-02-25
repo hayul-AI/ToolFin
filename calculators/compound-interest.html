@@ -116,49 +116,51 @@
 
     <div class="card">
       <div class="calc-grid">
-        <div id="inputs">
-          <div class="input-group">
-            <label for="initial-amount">Initial Investment</label>
-            <div class="input-wrapper" style="position: relative; display: flex; align-items: center;">
-              <span style="position: absolute; left: 16px; font-weight: 700; color: var(--text-muted);" class="prefix currency-symbol">$</span>
-              <input type="number" id="initial-amount" value="10000" step="100" style="padding-left: 35px;">
+        <div id="inputs" class="tf-form-container">
+          <div class="tf-field-grid">
+            <div class="tf-field-group">
+              <label for="initial-amount">Initial Investment</label>
+              <div class="input-wrapper has-prefix">
+                <span class="prefix currency-symbol">$</span>
+                <input type="number" id="initial-amount" value="10000" step="100">
+              </div>
+            </div>
+
+            <div class="tf-field-group">
+              <label for="monthly-contribution">Monthly Contribution</label>
+              <div class="input-wrapper has-prefix">
+                <span class="prefix currency-symbol">$</span>
+                <input type="number" id="monthly-contribution" value="500" step="50">
+              </div>
+            </div>
+
+            <div class="tf-field-group">
+              <label for="rate-of-return">Estimated Rate of Return</label>
+              <div class="input-wrapper">
+                <input type="number" id="rate-of-return" value="7" step="0.1">
+                <span class="suffix" style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-weight: 700; color: var(--text-muted);">%</span>
+              </div>
+            </div>
+
+            <div class="tf-field-group">
+              <label for="years">Investment Period (Years)</label>
+              <div class="input-wrapper">
+                <input type="number" id="years" value="20" step="1">
+              </div>
+            </div>
+
+            <div class="tf-field-group">
+              <label for="compounding">Compounding Frequency</label>
+              <div class="input-wrapper">
+                <select id="compounding">
+                  <option value="12">Monthly</option>
+                  <option value="1">Annually</option>
+                </select>
+              </div>
             </div>
           </div>
 
-          <div class="input-group">
-            <label for="monthly-contribution">Monthly Contribution</label>
-            <div class="input-wrapper" style="position: relative; display: flex; align-items: center;">
-              <span style="position: absolute; left: 16px; font-weight: 700; color: var(--text-muted);" class="prefix currency-symbol">$</span>
-              <input type="number" id="monthly-contribution" value="500" step="50" style="padding-left: 35px;">
-            </div>
-          </div>
-
-          <div class="input-group">
-            <label for="rate-of-return">Estimated Rate of Return</label>
-            <div class="input-wrapper" style="position: relative; display: flex; align-items: center;">
-              <input type="number" id="rate-of-return" value="7" step="0.1" style="padding-right: 35px;">
-              <span style="position: absolute; right: 16px; font-weight: 700; color: var(--text-muted);">%</span>
-            </div>
-          </div>
-
-          <div class="input-group">
-            <label for="years">Investment Period (Years)</label>
-            <div class="input-wrapper">
-              <input type="number" id="years" value="20" step="1">
-            </div>
-          </div>
-
-          <div class="input-group">
-            <label for="compounding">Compounding Frequency</label>
-            <div class="input-wrapper">
-              <select id="compounding">
-                <option value="12">Monthly</option>
-                <option value="1">Annually</option>
-              </select>
-            </div>
-          </div>
-
-          <button id="calculate-btn" style="background: var(--primary); color: white; border: none; padding: 16px; border-radius: var(--radius); font-weight: 800; font-size: 1.1rem; cursor: pointer; width: 100%; transition: background 0.2s;">
+          <button id="calculate-btn" style="background: var(--primary); color: white; border: none; padding: 18px; border-radius: 12px; font-weight: 800; font-size: 1.1rem; cursor: pointer; width: 100%; transition: all 0.2s;">
             Calculate Growth
           </button>
         </div>

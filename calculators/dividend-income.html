@@ -34,10 +34,6 @@
         <a href="/contact.html">Contact</a>
         <select id="currency-selector">
           <option value="USD" selected>USD — US Dollar ($)</option>
-          <option value="EUR">EUR — Euro (€)</option>
-          <option value="GBP">GBP — British Pound (£)</option>
-          <option value="JPY">JPY — Japanese Yen (¥)</option>
-          <option value="KRW">KRW — South Korean Won (₩)</option>
         </select>
       </nav>
     </div>
@@ -55,47 +51,39 @@
       <p>Estimate how much passive income your portfolio can generate based on dividend yield and investment size.</p>
     </div>
 
-    <div class="notice-box">
-      <ul>
-        <li>NOT FINANCIAL ADVICE</li>
-        <li>EDUCATIONAL USE</li>
-        <li>ESTIMATES ONLY</li>
-        <li>GROSS INCOME BEFORE TAXES</li>
-      </ul>
-    </div>
-
     <div class="card">
       <div class="calc-grid">
-        <div id="inputs">
-          <div class="input-group">
-            <label for="portfolio-value">Portfolio Value (or Target)</label>
-            <div class="input-wrapper has-prefix">
-              <span class="prefix currency-symbol">$</span>
-              <input type="number" id="portfolio-value" value="100000" step="1000">
+        <div id="inputs" class="tf-form-container">
+          <div class="tf-field-grid">
+            <div class="tf-field-group">
+              <label for="portfolio-value">Portfolio Value</label>
+              <div class="input-wrapper has-prefix">
+                <span class="prefix currency-symbol">$</span>
+                <input type="number" id="portfolio-value" value="100000" step="1000">
+              </div>
+            </div>
+
+            <div class="tf-field-group">
+              <label for="dividend-yield">Dividend Yield (%)</label>
+              <div class="input-wrapper">
+                <input type="number" id="dividend-yield" value="3.5" step="0.1">
+                <span class="suffix" style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-weight: 700; color: var(--text-muted);">%</span>
+              </div>
+            </div>
+
+            <div class="tf-field-group">
+              <label for="payout-frequency">Dividend Frequency</label>
+              <div class="input-wrapper">
+                <select id="payout-frequency">
+                  <option value="4">Quarterly (Most Stocks)</option>
+                  <option value="12">Monthly (Some ETFs/REITs)</option>
+                  <option value="1">Annually</option>
+                </select>
+              </div>
             </div>
           </div>
 
-          <div class="input-group">
-            <label for="dividend-yield">Dividend Yield (%)</label>
-            <div class="input-wrapper">
-              <input type="number" id="dividend-yield" value="3.5" step="0.1">
-              <span class="suffix">%</span>
-            </div>
-            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">The annual dividend payment divided by the stock price.</p>
-          </div>
-
-          <div class="input-group">
-            <label for="payout-frequency">Dividend Frequency</label>
-            <div class="input-wrapper">
-              <select id="payout-frequency">
-                <option value="4">Quarterly (Most Stocks)</option>
-                <option value="12">Monthly (Some ETFs/REITs)</option>
-                <option value="1">Annually</option>
-              </select>
-            </div>
-          </div>
-
-          <button id="calculate-btn" style="background: var(--primary); color: white; border: none; padding: 16px; border-radius: var(--radius); font-weight: 800; font-size: 1.1rem; cursor: pointer; width: 100%; transition: background 0.2s;">Calculate Income</button>
+          <button id="calculate-btn" style="background: var(--primary); color: white; border: none; padding: 18px; border-radius: 12px; font-weight: 800; font-size: 1.1rem; cursor: pointer; width: 100%; transition: all 0.2s;">Calculate Income</button>
         </div>
 
         <div id="results">
@@ -129,10 +117,9 @@
 
     </div>
 
-    <section>
+    <section style="margin-top: 4rem;">
       <h2>What is Dividend Income?</h2>
-      <p>Dividends are payments made by a corporation to its shareholders, usually as a distribution of profits. When a corporation earns a profit or surplus, it is able to pay a proportion of the profit as a dividend to shareholders.</p>
-      <p>Dividend income is a popular form of passive income, especially for long-term investors and retirees. The "Dividend Yield" is a key metric that tells you how much a company pays out in dividends each year relative to its stock price.</p>
+      <p>Dividends are payments made by a corporation to its shareholders, usually as a distribution of profits.</p>
     </section>
       <calculator-info-sections></calculator-info-sections>
   </main>
@@ -156,27 +143,13 @@
             </span>
             <span class="logo-text">ToolFin</span>
           </a>
-          <p style="margin-top: 1.5rem;">Practical financial literacy tools designed for global clarity and educational empowerment.</p>
+          <p style="margin-top: 1.5rem;">Smarter financial modeling for global clarity.</p>
         </div>
         <div class="footer-links">
           <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Platform</h5>
           <ul style="list-style: none; padding: 0;">
             <li><a href="/">Home</a></li>
             <li><a href="/about.html">About ToolFin</a></li>
-            <li><a href="/methodology.html">Methodology</a></li>
-          </ul>
-        </div>
-        <div class="footer-links">
-          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Legal</h5>
-          <ul style="list-style: none; padding: 0;">
-            <li><a href="/disclaimer.html">Disclaimer</a></li>
-            <li><a href="/editorial-policy.html">Editorial Policy</a></li>
-          </ul>
-        </div>
-        <div class="footer-links">
-          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Support</h5>
-          <ul style="list-style: none; padding: 0;">
-            <li><a href="/contact.html">Contact</a></li>
           </ul>
         </div>
       </div>

@@ -16,14 +16,17 @@
       margin-bottom: 2rem;
     }
     .product-box {
-      padding: 1.5rem;
+      padding: 2rem;
       border-radius: 12px;
       border: 2px solid var(--border);
       position: relative;
+      background: white;
+      transition: all 0.3s ease;
     }
     .product-box.better {
       border-color: #10b981;
       background: #f0fdf4;
+      box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.1);
     }
     .best-value-badge {
       position: absolute;
@@ -40,13 +43,15 @@
     }
     .product-box.better .best-value-badge { display: block; }
     .unit-price-display {
-      font-size: 1.5rem;
-      font-weight: 800;
+      font-size: 1.75rem;
+      font-weight: 900;
       color: var(--primary);
-      margin-top: 1rem;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px dashed var(--border);
     }
     @media (max-width: 768px) {
-      .comparison-row { grid-template-columns: 1fr; }
+      .comparison-row { grid-template-columns: 1fr; gap: 1.5rem; }
     }
   </style>
 </head>
@@ -98,24 +103,30 @@
         <div id="product-1" class="product-box">
           <div class="best-value-badge">Best Value</div>
           <h3 style="margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: 800;">Option A</h3>
-          <div class="input-group">
-            <label>Price</label>
-            <div class="input-wrapper has-prefix">
-              <span class="prefix currency-symbol">$</span>
-              <input type="number" id="p1-price" value="5.99" step="0.01">
+          <div class="tf-form-container">
+            <div class="tf-field-group">
+              <label>Price</label>
+              <div class="input-wrapper has-prefix">
+                <span class="prefix currency-symbol">$</span>
+                <input type="number" id="p1-price" value="5.99" step="0.01">
+              </div>
             </div>
-          </div>
-          <div class="input-group">
-            <label>Quantity / Size</label>
-            <div style="display: flex; gap: 8px;">
-              <input type="number" id="p1-qty" value="16" step="1" style="flex: 2; padding: 12px; border: 2px solid var(--border); border-radius: 12px; font-weight: 600;">
-              <select id="p1-unit" style="flex: 1.5; padding: 12px; border: 2px solid var(--border); border-radius: 12px; font-weight: 600; background: white;">
-                <option value="g">g</option>
-                <option value="kg">kg</option>
-                <option value="mg">mg</option>
-                <option value="oz" selected>oz</option>
-                <option value="lb">lb</option>
-              </select>
+            <div class="tf-field-group">
+              <label>Quantity / Size</label>
+              <div style="display: flex; gap: 8px;">
+                <div class="input-wrapper" style="flex: 2;">
+                  <input type="number" id="p1-qty" value="16" step="1">
+                </div>
+                <div class="input-wrapper" style="flex: 1.5;">
+                  <select id="p1-unit">
+                    <option value="g">g</option>
+                    <option value="kg">kg</option>
+                    <option value="mg">mg</option>
+                    <option value="oz" selected>oz</option>
+                    <option value="lb">lb</option>
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
           <div class="unit-price-display" id="p1-unit-price">$0.00 / oz</div>
@@ -125,24 +136,30 @@
         <div id="product-2" class="product-box">
           <div class="best-value-badge">Best Value</div>
           <h3 style="margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: 800;">Option B</h3>
-          <div class="input-group">
-            <label>Price</label>
-            <div class="input-wrapper has-prefix">
-              <span class="prefix currency-symbol">$</span>
-              <input type="number" id="p2-price" value="9.99" step="0.01">
+          <div class="tf-form-container">
+            <div class="tf-field-group">
+              <label>Price</label>
+              <div class="input-wrapper has-prefix">
+                <span class="prefix currency-symbol">$</span>
+                <input type="number" id="p2-price" value="9.99" step="0.01">
+              </div>
             </div>
-          </div>
-          <div class="input-group">
-            <label>Quantity / Size</label>
-            <div style="display: flex; gap: 8px;">
-              <input type="number" id="p2-qty" value="32" step="1" style="flex: 2; padding: 12px; border: 2px solid var(--border); border-radius: 12px; font-weight: 600;">
-              <select id="p2-unit" style="flex: 1.5; padding: 12px; border: 2px solid var(--border); border-radius: 12px; font-weight: 600; background: white;">
-                <option value="g">g</option>
-                <option value="kg">kg</option>
-                <option value="mg">mg</option>
-                <option value="oz" selected>oz</option>
-                <option value="lb">lb</option>
-              </select>
+            <div class="tf-field-group">
+              <label>Quantity / Size</label>
+              <div style="display: flex; gap: 8px;">
+                <div class="input-wrapper" style="flex: 2;">
+                  <input type="number" id="p2-qty" value="32" step="1">
+                </div>
+                <div class="input-wrapper" style="flex: 1.5;">
+                  <select id="p2-unit">
+                    <option value="g">g</option>
+                    <option value="kg">kg</option>
+                    <option value="mg">mg</option>
+                    <option value="oz" selected>oz</option>
+                    <option value="lb">lb</option>
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
           <div class="unit-price-display" id="p2-unit-price">$0.00 / oz</div>
@@ -157,14 +174,11 @@
     <section style="margin-top: 4rem;">
       <h2>How to Shop Smarter</h2>
       <p>Grocery stores often show the unit price on the shelf tag, but not always for every item or across different brands. Using a unit price calculator allows you to compare "bulk" deals against smaller packages to see if you're actually saving money.</p>
-      <h3>Tip: Use Consistent Units</h3>
-      <p>To get an accurate comparison, make sure you're using the same unit of measurement for both items (e.g., both in ounces, both in grams, or both by count).</p>
     </section>
       <calculator-info-sections></calculator-info-sections>
   </main>
 
   <footer>
-    <!-- Standard Footer -->
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">

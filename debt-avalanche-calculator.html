@@ -280,43 +280,43 @@
       <div class="card">
         <div id="error-banner" class="error-banner"></div>
         
-        <div id="debt-input-section">
-          <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Step 1: Enter Your Debts</h2>
+        <div id="debt-input-section" class="tf-form-container">
+          <h3 style="font-size: 1.1rem; font-weight: 800; margin-bottom: 0.5rem;">Step 1: Your Debts</h3>
           <div id="debt-list">
             <!-- Rows injected by JS -->
           </div>
-          <button id="add-debt-btn" style="background: var(--primary-soft); color: var(--primary); border: 2px dashed var(--primary); padding: 14px; border-radius: 12px; font-weight: 700; cursor: pointer; width: 100%; margin-top: 0.5rem;">
+          <button id="add-debt-btn" style="background: var(--primary-soft); color: var(--primary); border: 2.5px dashed var(--primary); padding: 14px; border-radius: 12px; font-weight: 700; cursor: pointer; width: 100%; transition: all 0.2s;">
             + Add Another Debt
           </button>
-        </div>
 
-        <div style="margin-top: 3rem; padding-top: 2.5rem; border-top: 2px solid var(--border);">
-          <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Step 2: Payment Strategy</h2>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-            <div class="input-group">
-              <label for="extra-payment">Monthly Extra Payment</label>
-              <div class="input-wrapper" style="position: relative;">
-                <span style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-weight: 700; color: var(--text-muted);" class="currency-symbol">$</span>
-                <input type="number" id="extra-payment" value="200" step="10" style="padding-left: 35px;">
+          <div style="margin-top: 1rem; padding-top: 2rem; border-top: 2px solid var(--border);">
+            <h3 style="font-size: 1.1rem; font-weight: 800; margin-bottom: 1.5rem;">Step 2: Payment Strategy</h3>
+            <div class="tf-field-grid">
+              <div class="tf-field-group">
+                <label for="extra-payment">Monthly Extra Payment</label>
+                <div class="input-wrapper has-prefix">
+                  <span class="prefix currency-symbol">$</span>
+                  <input type="number" id="extra-payment" value="200" step="10">
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">Amount to pay above combined minimums.</p>
               </div>
-              <small style="color: var(--text-muted); display: block; margin-top: 0.5rem;">Amount to pay above your combined minimum payments.</small>
-            </div>
-            <div class="input-group start-month">
-              <label for="start-date">Start Month</label>
-              <div class="input-wrapper">
-                <input type="text" id="start-date" class="month-picker" placeholder="Select Month" autocomplete="off">
+              <div class="tf-field-group">
+                <label for="start-date">Start Month</label>
+                <div class="input-wrapper">
+                  <input type="text" id="start-date" class="month-picker" placeholder="Select Month" autocomplete="off">
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div style="display: flex; gap: 1rem; margin-top: 2rem;">
-          <button id="calculate-btn" style="background: var(--primary); color: white; border: none; padding: 18px; border-radius: 12px; font-weight: 800; font-size: 1.1rem; cursor: pointer; flex: 2; transition: transform 0.2s;">
-            Calculate Avalanche Plan
-          </button>
-          <button id="reset-btn" style="background: var(--secondary); color: white; border: none; padding: 18px; border-radius: 12px; font-weight: 800; font-size: 1.1rem; cursor: pointer; flex: 1;">
-            Reset
-          </button>
+          <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+            <button id="calculate-btn" style="background: var(--primary); color: white; border: none; padding: 18px; border-radius: 12px; font-weight: 800; font-size: 1.1rem; cursor: pointer; flex: 2; transition: all 0.2s;">
+              Calculate Avalanche Plan
+            </button>
+            <button id="reset-btn" style="background: var(--bg-main); color: var(--secondary); border: 1.5px solid var(--border); padding: 18px; border-radius: 12px; font-weight: 800; font-size: 1.1rem; cursor: pointer; flex: 1; transition: all 0.2s;">
+              Reset
+            </button>
+          </div>
         </div>
       </div>
     </section>

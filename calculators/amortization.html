@@ -39,57 +39,6 @@
         <a href="/contact.html">Contact</a>
         <select id="currency-selector">
           <option value="USD" selected>USD — US Dollar ($)</option>
-          <option value="EUR">EUR — Euro (€)</option>
-          <option value="GBP">GBP — British Pound (£)</option>
-          <option value="JPY">JPY — Japanese Yen (¥)</option>
-          <option value="CNY">CNY — Chinese Yuan (¥)</option>
-          <option value="KRW">KRW — South Korean Won (₩)</option>
-          <option value="AUD">AUD — Australian Dollar (A$)</option>
-          <option value="CAD">CAD — Canadian Dollar (C$)</option>
-          <option value="NZD">NZD — New Zealand Dollar (NZ$)</option>
-          <option value="CHF">CHF — Swiss Franc (CHF)</option>
-          <option value="HKD">HKD — Hong Kong Dollar (HK$)</option>
-          <option value="SGD">SGD — Singapore Dollar (S$)</option>
-          <option value="TWD">TWD — Taiwan Dollar (NT$)</option>
-          <option value="SEK">SEK — Swedish Krona (kr)</option>
-          <option value="NOK">NOK — Norwegian Krone (kr)</option>
-          <option value="DKK">DKK — Danish Krone (kr)</option>
-          <option value="PLN">PLN — Polish Złoty (zł)</option>
-          <option value="CZK">CZK — Czech Koruna (Kč)</option>
-          <option value="HUF">HUF — Hungarian Forint (Ft)</option>
-          <option value="RON">RON — Romanian Leu (lei)</option>
-          <option value="BGN">BGN — Bulgarian Lev (лв)</option>
-          <option value="TRY">TRY — Turkish Lira (₺)</option>
-          <option value="ILS">ILS — Israeli Shekel (₪)</option>
-          <option value="AED">AED — UAE Dirham (د.إ)</option>
-          <option value="SAR">SAR — Saudi Riyal (﷼)</option>
-          <option value="QAR">QAR — Qatari Riyal (﷼)</option>
-          <option value="KWD">KWD — Kuwaiti Dinar (KD)</option>
-          <option value="BHD">BHD — Bahraini Dinar (BD)</option>
-          <option value="OMR">OMR — Omani Rial (﷼)</option>
-          <option value="INR">INR — Indian Rupee (₹)</option>
-          <option value="PKR">PKR — Pakistani Rupee (₨)</option>
-          <option value="BDT">BDT — Bangladeshi Taka (৳)</option>
-          <option value="LKR">LKR — Sri Lankan Rupee (₨)</option>
-          <option value="THB">THB — Thai Baht (฿)</option>
-          <option value="VND">VND — Vietnamese Dong (₫)</option>
-          <option value="IDR">IDR — Indonesian Rupiah (Rp)</option>
-          <option value="MYR">MYR — Malaysian Ringgit (RM)</option>
-          <option value="PHP">PHP — Philippine Peso (₱)</option>
-          <option value="ZAR">ZAR — South African Rand (R)</option>
-          <option value="EGP">EGP — Egyptian Pound (E£)</option>
-          <option value="NGN">NGN — Nigerian Naira (₦)</option>
-          <option value="KES">KES — Kenyan Shilling (KSh)</option>
-          <option value="GHS">GHS — Ghanaian Cedi (₵)</option>
-          <option value="MAD">MAD — Moroccan Dirham (MAD)</option>
-          <option value="RUB">RUB — Russian Ruble (₽)</option>
-          <option value="UAH">UAH — Ukrainian Hryvnia (₴)</option>
-          <option value="BRL">BRL — Brazilian Real (R$)</option>
-          <option value="ARS">ARS — Argentine Peso ($)</option>
-          <option value="CLP">CLP — Chilean Peso ($)</option>
-          <option value="COP">COP — Colombian Peso ($)</option>
-          <option value="PEN">PEN — Peruvian Sol (S/)</option>
-          <option value="MXN">MXN — Mexican Peso ($)</option>
         </select>
       </nav>
     </div>
@@ -109,58 +58,61 @@
 
     <div class="card">
       <div class="calc-grid">
-        <div id="inputs">
-          <div class="input-group">
-            <label for="loan-amount">Loan Amount</label>
-            <div class="input-wrapper" style="position: relative; display: flex; align-items: center;">
-              <span style="position: absolute; left: 16px; font-weight: 700; color: var(--text-muted);" class="prefix currency-symbol">$</span>
-              <input type="number" id="loan-amount" placeholder="e.g. 250000" step="1000" style="padding-left: 35px;">
+        <div id="inputs" class="tf-form-container">
+          <div class="tf-field-grid">
+            <div class="tf-field-group">
+              <label for="loan-amount">Loan Amount</label>
+              <div class="input-wrapper has-prefix">
+                <span class="prefix currency-symbol">$</span>
+                <input type="number" id="loan-amount" placeholder="e.g. 250000" step="1000">
+              </div>
             </div>
-          </div>
 
-          <div class="input-group">
-            <label for="interest-rate">Annual Interest Rate (APR %)</label>
-            <div class="input-wrapper" style="position: relative; display: flex; align-items: center;">
-              <input type="number" id="interest-rate" placeholder="e.g. 6.5" step="0.125" style="padding-right: 35px;">
-              <span style="position: absolute; right: 16px; font-weight: 700; color: var(--text-muted);">%</span>
+            <div class="tf-field-group">
+              <label for="interest-rate">Annual Rate (APR %)</label>
+              <div class="input-wrapper">
+                <input type="number" id="interest-rate" placeholder="e.g. 6.5" step="0.125">
+                <span class="suffix" style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-weight: 700; color: var(--text-muted);">%</span>
+              </div>
             </div>
-          </div>
 
-          <div class="input-group">
-            <label for="loan-term">Loan Term (Years)</label>
-            <div class="input-wrapper">
-              <input type="number" id="loan-term" placeholder="e.g. 30" step="1">
+            <div class="tf-field-group">
+              <label for="loan-term">Loan Term (Years)</label>
+              <div class="input-wrapper">
+                <input type="number" id="loan-term" placeholder="e.g. 30" step="1">
+              </div>
             </div>
-          </div>
 
-          <div class="input-group">
-            <label for="start-date">Start Month</label>
-            <div class="input-wrapper" style="position: relative; display: flex; align-items: center;">
-              <input type="text" id="start-date" class="month-picker" placeholder="Select Month" autocomplete="off" style="padding-right: 40px;">
-              <svg style="position: absolute; right: 12px; color: var(--text-muted); pointer-events: none;" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            <div class="tf-field-group">
+              <label for="start-date">Start Month</label>
+              <div class="input-wrapper">
+                <input type="text" id="start-date" class="month-picker" placeholder="Select Month" autocomplete="off">
+              </div>
             </div>
-          </div>
 
-          <div class="input-group">
-            <label for="extra-payment">Optional Extra Monthly Payment</label>
-            <div class="input-wrapper" style="position: relative; display: flex; align-items: center;">
-              <span style="position: absolute; left: 16px; font-weight: 700; color: var(--text-muted);" class="prefix currency-symbol">$</span>
-              <input type="number" id="extra-payment" placeholder="0" step="10" style="padding-left: 35px;">
+            <div class="tf-field-group">
+              <label for="extra-payment">Extra Monthly Payment</label>
+              <div class="input-wrapper has-prefix">
+                <span class="prefix currency-symbol">$</span>
+                <input type="number" id="extra-payment" placeholder="0" step="10">
+              </div>
             </div>
-          </div>
 
-          <div class="input-group">
-            <label for="frequency">Payment Frequency</label>
-            <select id="frequency" disabled style="background-color: var(--primary-soft); cursor: not-allowed;">
-              <option value="monthly">Monthly (Default)</option>
-            </select>
+            <div class="tf-field-group">
+              <label for="frequency">Payment Frequency</label>
+              <div class="input-wrapper">
+                <select id="frequency" disabled style="background-color: var(--bg-main); cursor: not-allowed; opacity: 0.7;">
+                  <option value="monthly">Monthly (Default)</option>
+                </select>
+              </div>
+            </div>
           </div>
 
           <div style="display: flex; gap: 1rem; margin-top: 1rem;">
-            <button id="generate-btn" style="flex: 2; background: var(--primary); color: white; border: none; padding: 16px; border-radius: var(--radius); font-weight: 800; font-size: 1.1rem; cursor: pointer;">
+            <button id="generate-btn" style="flex: 2; background: var(--primary); color: white; border: none; padding: 18px; border-radius: 12px; font-weight: 800; font-size: 1.1rem; cursor: pointer; transition: all 0.2s;">
               Generate Schedule
             </button>
-            <button id="reset-btn" style="flex: 1; background: var(--primary-soft); color: var(--primary); border: none; padding: 16px; border-radius: var(--radius); font-weight: 800; font-size: 1.1rem; cursor: pointer;">
+            <button id="reset-btn" style="flex: 1; background: var(--bg-main); color: var(--secondary); border: 1.5px solid var(--border); padding: 18px; border-radius: 12px; font-weight: 800; font-size: 1.1rem; cursor: pointer; transition: all 0.2s;">
               Reset
             </button>
           </div>

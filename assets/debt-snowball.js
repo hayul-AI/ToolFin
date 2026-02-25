@@ -111,19 +111,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const row = document.createElement('div');
     row.className = 'debt-row';
     row.innerHTML = `
-      <div class="input-group">
+      <div class="tf-field-group">
         <label>Debt Name</label>
         <div class="input-wrapper"><input type="text" class="debt-name" value="${name}" placeholder="e.g. Visa"></div>
       </div>
-      <div class="input-group">
+      <div class="tf-field-group">
         <label>Balance</label>
         <div class="input-wrapper"><input type="number" class="debt-balance" value="${balance}" placeholder="0"></div>
       </div>
-      <div class="input-group">
+      <div class="tf-field-group">
         <label>APR %</label>
         <div class="input-wrapper"><input type="number" class="debt-apr" value="${apr}" placeholder="0" step="0.01"></div>
       </div>
-      <div class="input-group">
+      <div class="tf-field-group">
         <label>Min Payment</label>
         <div class="input-wrapper"><input type="number" class="debt-min" value="${minPayment}" placeholder="0"></div>
       </div>
