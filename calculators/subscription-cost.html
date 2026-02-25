@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subscription Cost Calculator - ToolFin</title>
+  <meta name="description" content="Track your recurring subscriptions and see how much they cost you over time. Analyze monthly, annual, and long-term spending on streaming, apps, and services.">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    .subscription-row {
+      display: grid;
+      grid-template-columns: 2fr 1.5fr 1fr auto;
+      gap: 1rem;
+      align-items: end;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .remove-btn {
+      background: #fee2e2;
+      color: #991b1b;
+      border: none;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .remove-btn:hover {
+      background: #fecaca;
+    }
+    .add-btn {
+      background: #f1f5f9;
+      color: var(--primary);
+      border: 2px dashed var(--border);
+      padding: 1rem;
+      width: 100%;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      margin-top: 1rem;
+      transition: all 0.2s;
+    }
+    .add-btn:hover {
+      background: #e2e8f0;
+      border-color: var(--primary);
+    }
+    @media (max-width: 640px) {
+      .subscription-row {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav-container">
+      <a class="logo" href="/" aria-label="ToolFin Home">
+  <span class="logo-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+      <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+      <circle cx="8" cy="13" r="1"></circle>
+      <circle cx="12" cy="13" r="1"></circle>
+      <circle cx="16" cy="13" r="1"></circle>
+      <circle cx="8" cy="17" r="1"></circle>
+      <circle cx="12" cy="17" r="1"></circle>
+      <circle cx="16" cy="17" r="1"></circle>
+    </svg>
+  </span>
+  <span class="logo-text">ToolFin</span>
+</a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/methodology.html">Methodology</a>
+        <a href="/contact.html">Contact</a>
+        <select id="currency-selector"></select>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav style="margin: 2rem 0 1rem; font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">
+      <a href="/" style="color: inherit; text-decoration: none;">Home</a> / 
+      <a href="/everyday.html" style="color: inherit; text-decoration: none;">Everyday Finance</a> / 
+      Subscription Cost
+    </nav>
+
+    <div class="hero" style="text-align: left; padding: 2rem 0 3rem;">
+      <h1 style="font-size: 3rem;">Subscription Cost Calculator</h1>
+      <p>List your recurring services to see the true long-term impact on your wealth. Small monthly fees add up to thousands over time.</p>
+    </div>
+
+    <div class="card">
+      <div class="calc-grid">
+        <div id="inputs">
+          <div id="subscription-list">
+            <!-- Rows will be added here -->
+          </div>
+          <button id="add-service" class="add-btn">+ Add Subscription Service</button>
+        </div>
+
+        <div id="results">
+          <div class="results-panel">
+            <div class="result-item">
+              <div class="result-label">Total Monthly Cost</div>
+              <div class="result-value" id="monthly-total">$0.00</div>
+            </div>
+            
+            <div style="margin-top: 2rem; border-top: 2px solid var(--border); padding-top: 1.5rem; display: grid; gap: 1rem;">
+              <div style="display: flex; justify-content: space-between;">
+                <span style="font-weight: 700; color: var(--text-muted);">Total Annual Cost</span>
+                <span id="yearly-total" style="font-weight: 800;">$0</span>
+              </div>
+              <div style="display: flex; justify-content: space-between;">
+                <span style="font-weight: 700; color: var(--text-muted);">5-Year Spending</span>
+                <span id="five-year-total" style="font-weight: 800; color: #92400e;">$0</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 0.5rem;">
+                <span style="font-weight: 700; color: var(--text-main);">10-Year Spending</span>
+                <span id="ten-year-total" style="font-weight: 900; color: #e11d48;">$0</span>
+              </div>
+            </div>
+
+            <div id="interpretation-text" style="margin-top: 1.5rem; padding: 1rem; background: #f8fafc; border-radius: 8px; font-size: 0.95rem; line-height: 1.5; font-weight: 500;">
+              Small recurring payments can grow into large long-term expenses. Add your first service to start tracking.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section style="margin-top: 4rem;">
+      <h2>What This Calculator Does</h2>
+      <p>The Subscription Cost Calculator aggregates all your recurring digital and physical services into a single financial overview. By breaking down your spending into monthly, annual, and decade-long projections, it reveals the hidden "leakage" in your budget caused by the modern subscription economy.</p>
+
+      <h2>Why Subscription Spending Adds Up</h2>
+      <p>Subscriptions are designed to be "sticky." Because each individual charge (e.g., $14.99) feels insignificant, users often forget to cancel services they no longer use. This is known as "subscription fatigue." When you compound these costs over 5 or 10 years, you realize that a single streaming service can cost you over $1,800, and a full suite of services can easily reach tens of thousands of dollars.</p>
+
+      <h2>Result Interpretation</h2>
+      <p>The projections assume you keep the same services at the same prices for the duration. In reality, prices often increase over time (inflation), meaning the long-term cost is likely even higher than shown.</p>
+      <ul>
+        <li><strong>Monthly Total:</strong> This is your current recurring overhead. High overhead reduces your ability to adapt to income changes.</li>
+        <li><strong>Annual Cost:</strong> Compare this to a large one-time purchase (like a vacation or new laptop) to put the value in perspective.</li>
+        <li><strong>10-Year Projection:</strong> This represents "opportunity cost"—money that could have been invested in a retirement account or a down payment.</li>
+      </ul>
+
+      <h2>Example Scenario</h2>
+      <p>A typical modern household might have:</p>
+      <ul>
+        <li>Netflix: $15.49/mo</li>
+        <li>Spotify Family: $16.99/mo</li>
+        <li>Amazon Prime: $139/yr ($11.58/mo)</li>
+        <li>Gym Membership: $50/mo</li>
+        <li>Cloud Storage: $2.99/mo</li>
+      </ul>
+      <p>Total Monthly: <strong>$97.05</strong>. Over 10 years, this household spends <strong>$11,646</strong> on these basic services.</p>
+
+      <h2>Practical Tips to Control Recurring Costs</h2>
+      <ul>
+        <li><strong>The "One-In, One-Out" Rule:</strong> Never add a new subscription without canceling one you already have.</li>
+        <li><strong>Switch to Annual Billing:</strong> Most services offer a 15-20% discount if you pay for a full year upfront. Use this calculator to see if the annual savings are worth the lump sum payment.</li>
+        <li><strong>Audit your bank statements monthly:</strong> Look for "ghost" subscriptions—services you signed up for once and forgot about.</li>
+        <li><strong>Rotate Streaming Services:</strong> Subscribe to one platform for a month, watch your favorite shows, then cancel and move to the next. You don't need all of them active at once.</li>
+        <li><strong>Check for Bundles:</strong> Mobile carriers and credit card companies often include streaming or music services for free as part of your existing plan.</li>
+      </ul>
+
+      <h2>Frequently Asked Questions (FAQ)</h2>
+      <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
+        <div>
+          <h4 style="margin-bottom: 0.5rem;">Should I include utilities like electricity?</h4>
+          <p>No. While utilities are recurring, they are essential living expenses. This calculator is best used for "optional" or lifestyle subscriptions like media, fitness, software, and membership boxes.</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 0.5rem;">How do I handle free trials?</h4>
+          <p>Enter them with a $0 price, but set a reminder on your phone to cancel before the billing starts. Many people lose money by forgetting to cancel "free" trials.</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 0.5rem;">What is the "average" subscription spend?</h4>
+          <p>Recent studies suggest the average US consumer spends over $200 per month on subscriptions, often underestimating their actual spend by more than half.</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 0.5rem;">Is annual billing always better?</h4>
+          <p>Only if you are certain you will use the service for the full 12 months. If you might cancel in 3 months, monthly billing is actually cheaper despite the higher per-month rate.</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 0.5rem;">Can subscriptions hurt my credit score?</h4>
+          <p>Standard monthly subscriptions usually don't help or hurt your score directly, but missing a payment that goes to collections can severely damage your credit.</p>
+        </div>
+      </div>
+
+      <div class="compliance-statements" style="margin-top: 3rem; padding: 2rem; background: #f1f5f9; border-radius: 12px; font-size: 0.9rem;">
+        <p><strong>Legal Disclaimer:</strong> All calculations are estimates based on user inputs. Actual charges and billing cycles may vary by provider. This tool is for educational purposes only and does not represent financial advice.</p>
+        <p>Currency selection affects formatting and display only and does not use live exchange rates.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Related Calculators</h2>
+      <div class="next-steps-grid">
+        <a href="/calculators/budget-planner.html" class="next-step-card">
+          <strong>Budget Planner</strong>
+          <p>See how your subscriptions fit into the 50/30/20 rule.</p>
+        </a>
+        <a href="/calculators/emergency-fund.html" class="next-step-card">
+          <strong>Emergency Fund Calculator</strong>
+          <p>Find out how much you need to save to cover your monthly overhead.</p>
+        </a>
+        <a href="/calculators/compound-interest.html" class="next-step-card">
+          <strong>Compound Interest Calculator</strong>
+          <p>See what would happen if you invested your subscription money instead.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" aria-label="ToolFin Home">
+  <span class="logo-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+      <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+      <circle cx="8" cy="13" r="1"></circle>
+      <circle cx="12" cy="13" r="1"></circle>
+      <circle cx="16" cy="13" r="1"></circle>
+      <circle cx="8" cy="17" r="1"></circle>
+      <circle cx="12" cy="17" r="1"></circle>
+      <circle cx="16" cy="17" r="1"></circle>
+    </svg>
+  </span>
+  <span class="logo-text">ToolFin</span>
+</a>
+          <p style="margin-top: 1.5rem;">Smarter financial modeling for global clarity.</p>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Platform</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/">Home</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/about.html">About ToolFin</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/methodology.html">Methodology</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Legal</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/disclaimer.html">Disclaimer</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/editorial-policy.html">Editorial Policy</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Support</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="trust-strip">
+        NOT FINANCIAL ADVICE • EDUCATIONAL USE ONLY • ESTIMATES ONLY • JURISDICTION DIFFERENCES APPLY
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/assets/subscription-cost.js"></script>
+  <script src="/assets/currency-options.js"></script>
+  <script src="/assets/tf-state.js"></script>
+</body>
+</html>
