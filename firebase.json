@@ -6,6 +6,12 @@
       "**/.*",
       "**/node_modules/**",
       "update_logo*.js"
+    ],
+    "rewrites": [
+      {
+        "source": "/ads.txt",
+        "destination": "/public/ads.txt"
+      }
     ]
   }
 }
