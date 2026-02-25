@@ -35,10 +35,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const daily = hoursWeek > 0 ? (weekly / hoursWeek) * 8 : 0; // Standard 8hr day benchmark
 
     // Update UI
-    resHourly.textContent = formatCurrencyDecimal(hourly);
-    resMonthly.textContent = formatCurrencyDecimal(monthly);
-    resWeekly.textContent = formatCurrencyDecimal(weekly);
-    resDaily.textContent = formatCurrencyDecimal(daily);
+    resHourly.innerHTML = formatCurrencyDecimal(hourly);
+    resMonthly.innerHTML = formatCurrencyDecimal(monthly);
+    resWeekly.innerHTML = formatCurrencyDecimal(weekly);
+    resDaily.innerHTML = formatCurrencyDecimal(daily);
   }
 
   salaryInput.addEventListener('input', () => updateResults('salary'));

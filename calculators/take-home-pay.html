@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Salary Hourly Calculator - ToolFin</title>
+  <title>Take Home Pay Calculator - ToolFin</title>
   <link rel="stylesheet" href="/assets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
@@ -91,15 +94,15 @@
   </header>
 
   <main class="container">
-    <nav style="margin-bottom: 1rem; font-size: 0.9rem; color: var(--text-muted);">
-      <a href="/" style="color: inherit; text-decoration: none;">Home</a> > 
-      <a href="/" style="color: inherit; text-decoration: none;">Calculators</a> > 
-      Salary ↔ Hourly Converter
+    <nav style="margin: 2rem 0 1rem; font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">
+      <a href="/" style="color: inherit; text-decoration: none;">Home</a> / 
+      <a href="/income.html" style="color: inherit; text-decoration: none;">Income & Salary</a> / 
+      Take Home Pay Calculator
     </nav>
 
-    <div class="hero" style="text-align: left;">
-      <h1>Salary ↔ Hourly Converter</h1>
-      <p>Convert your annual salary to an hourly wage and visualize your gross earnings across different timeframes.</p>
+    <div class="hero" style="text-align: left; padding: 2rem 0 3rem;">
+      <h1 style="font-size: 3rem;">Take Home Pay Calculator</h1>
+      <p>Estimate your actual paycheck after federal and state taxes, Social Security, and other common deductions.</p>
     </div>
 
     <div class="notice-box">
@@ -119,54 +122,85 @@
             <label for="annual-salary">Annual Salary (Gross)</label>
             <div class="input-wrapper has-prefix">
               <span class="prefix currency-symbol">$</span>
-              <input type="number" id="annual-salary" value="60000" step="1000">
+              <input type="number" id="annual-salary" value="75000" step="1000">
             </div>
           </div>
 
           <div class="input-group">
-            <label for="hours-week">Hours per Week</label>
+            <label for="pay-frequency">Pay Frequency</label>
             <div class="input-wrapper">
-              <input type="number" id="hours-week" value="40" step="1">
+              <select id="pay-frequency">
+                <option value="weekly">Weekly (52 paychecks)</option>
+                <option value="biweekly" selected>Bi-Weekly (26 paychecks)</option>
+                <option value="semimonthly">Semi-Monthly (24 paychecks)</option>
+                <option value="monthly">Monthly (12 paychecks)</option>
+                <option value="annually">Annually (1 paycheck)</option>
+              </select>
             </div>
           </div>
 
           <div class="input-group">
-            <label for="weeks-year">Weeks per Year</label>
+            <label for="filing-status">Filing Status</label>
             <div class="input-wrapper">
-              <input type="number" id="weeks-year" value="52" step="1">
+              <select id="filing-status">
+                <option value="single" selected>Single</option>
+                <option value="married">Married Filing Jointly</option>
+                <option value="head">Head of Household</option>
+              </select>
             </div>
           </div>
 
-          <div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border);">
-            <div class="input-group">
-              <label for="hourly-rate">Hourly Rate Equivalent</label>
-              <div class="input-wrapper has-prefix">
-                <span class="prefix currency-symbol">$</span>
-                <input type="number" id="hourly-rate" step="0.01">
-              </div>
-              <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">Changing this will update the annual salary.</p>
+          <div class="input-group">
+            <label for="state-tax-rate">State Tax Rate (Est. %)</label>
+            <div class="input-wrapper" style="position: relative; display: flex; align-items: center;">
+              <input type="number" id="state-tax-rate" value="5.0" step="0.1" style="padding-right: 35px;">
+              <span style="position: absolute; right: 16px; font-weight: 700; color: var(--text-muted);">%</span>
             </div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">Enter estimated effective state tax rate.</p>
           </div>
+
+          <div class="input-group">
+            <label for="deductions">Other Monthly Deductions</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="deductions" value="0" step="10">
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">e.g., 401k, Insurance (Monthly)</p>
+          </div>
+
+          <button id="calculate-btn" style="background: var(--primary); color: white; border: none; padding: 16px; border-radius: var(--radius); font-weight: 800; font-size: 1.1rem; cursor: pointer; width: 100%; transition: background 0.2s;">Calculate Net Pay</button>
         </div>
 
         <div id="results">
           <div class="results-panel">
             <div class="result-item">
-              <div class="result-label">Hourly Equivalent</div>
-              <div class="result-value" id="res-hourly">$0.00</div>
+              <div class="result-label">Take Home Pay (Per Paycheck)</div>
+              <div class="result-value" id="res-paycheck">$0.00</div>
             </div>
-            <div class="result-item">
-              <div class="result-label">Monthly Gross</div>
-              <div class="result-value" id="res-monthly">$0.00</div>
-            </div>
+            
             <div style="margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1rem;">
-              <div class="result-item">
-                <div class="result-label">Weekly Gross</div>
-                <div style="font-weight: 600;" id="res-weekly">$0.00</div>
-              </div>
-              <div class="result-item">
-                <div class="result-label">Daily Gross (8hr)</div>
-                <div style="font-weight: 600;" id="res-daily">$0.00</div>
+              <h4 style="margin: 0 0 1rem; color: var(--secondary);">Estimated Breakdown (Annual)</h4>
+              <div style="display: grid; gap: 0.75rem;">
+                <div style="display: flex; justify-content: space-between;">
+                  <span style="color: var(--text-muted);">Gross Income</span>
+                  <span style="font-weight: 600;" id="break-gross">$0</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span style="color: var(--text-muted);">Federal Tax (Est.)</span>
+                  <span style="font-weight: 600; color: #e11d48;" id="break-fed">$0</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span style="color: var(--text-muted);">FICA (SS & Medicare)</span>
+                  <span style="font-weight: 600; color: #e11d48;" id="break-fica">$0</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span style="color: var(--text-muted);">State Tax (Est.)</span>
+                  <span style="font-weight: 600; color: #e11d48;" id="break-state">$0</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; border-top: 1px dashed var(--border); padding-top: 0.5rem;">
+                  <span style="color: var(--text-main); font-weight: 700;">Net Annual Income</span>
+                  <span style="font-weight: 800; color: var(--primary);" id="break-net">$0</span>
+                </div>
               </div>
             </div>
           </div>
@@ -180,70 +214,10 @@
     </div>
 
     <section>
-      <h2>Result Interpretation</h2>
-      <p>Comparing annual salary to an hourly rate helps in benchmarking your compensation against industry standards or other job offers. Standard full-time employment is often benchmarked at 2,080 hours per year (40 hours/week x 52 weeks).</p>
-      <p>It is important to note that these figures represent "gross" earnings before any deductions. The actual "take-home" pay will be lower depending on your jurisdiction's tax laws, social security contributions, and benefit elections.</p>
-      <p>This interpretation provides a mathematical framework for compensation comparison and does not reflect a specific evaluation of your personal earning potential.</p>
+      <h2>Why calculate take-home pay?</h2>
+      <p>Understanding your net income—the amount that actually hits your bank account—is critical for effective budgeting. Your gross salary is often significantly different from your spending power due to various mandatory and voluntary deductions.</p>
+      <p>This upcoming tool will help you model different scenarios, such as the impact of increasing retirement contributions or moving to a different state with different tax rates.</p>
     </section>
-
-    <section>
-      <h2>Real-Life Example</h2>
-      <p>An annual salary of <strong>$75,000</strong> based on a <strong>40-hour work week</strong> and <strong>52 weeks per year</strong> equates to an hourly rate of approximately <strong>$36.06</strong>. If you work <strong>45 hours per week</strong> instead, that same annual salary effectively drops your hourly rate to <strong>$32.05</strong>, highlighting how work-life balance affects your "true" hourly value.</p>
-    </section>
-
-    <section>
-      <h2>Things to Watch</h2>
-      <ul>
-        <li><strong>Taxes:</strong> Income tax varies significantly by country, state, and even city.</li>
-        <li><strong>Benefits:</strong> Insurance, retirement matching, and paid time off (PTO) can add significant value that isn't reflected in the raw hourly rate.</li>
-        <li><strong>Overtime:</strong> Hourly roles often pay a premium for hours worked beyond 40 per week, whereas salaried roles typically do not.</li>
-        <li><strong>Unpaid Leave:</strong> If you take unpaid time off, your actual annual earnings will be lower than the projected salary.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>FAQ</h2>
-      <div class="faq-item">
-        <h3>How many work hours are in a year?</h3>
-        <p>A standard work year is 2,080 hours (40 hours/week × 52 weeks). This is the most common benchmark for salary conversions.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Does this include bonuses?</h3>
-        <p>This calculator focuses on base pay. If you have a guaranteed bonus, you can add it to the annual salary input for a total compensation estimate.</p>
-      </div>
-      <div class="faq-item">
-        <h3>What is "Gross" pay?</h3>
-        <p>Gross pay is the total amount earned before any taxes, insurance, or other deductions are taken out of your paycheck.</p>
-      </div>
-    </section>
-
-    <section>
-      <h2>Next Steps</h2>
-      <div class="next-steps-grid">
-        <a href="/calculators/mortgage.html" class="next-step-card">
-          <strong>Plan a Mortgage</strong>
-          <p>Commonly used next to see how much of your monthly gross income would go toward housing.</p>
-        </a>
-        <a href="/calculators/compound-interest.html" class="next-step-card">
-          <strong>Model Savings</strong>
-          <p>Often reviewed to determine what percentage of your hourly wage can be directed toward long-term growth.</p>
-        </a>
-        <a href="/calculators/roi.html" class="next-step-card">
-          <strong>Evaluate Career Moves</strong>
-          <p>Commonly used to see if a promotion's salary increase matches the increased time commitment.</p>
-        </a>
-      </div>
-    </section>
-
-    <div class="card" style="background: #eef2f7; border: none;">
-      <h4>Trust & Methodology</h4>
-      <p style="font-size: 0.9rem;">Learn more about how we handle data and calculations:</p>
-      <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
-        <a href="/about.html" style="font-size: 0.85rem; color: var(--primary);">About ToolFin</a>
-        <a href="/methodology.html" style="font-size: 0.85rem; color: var(--primary);">Methodology</a>
-        <a href="/disclaimer.html" style="font-size: 0.85rem; color: var(--primary);">Disclaimer</a>
-      </div>
-    </div>
   </main>
 
   <footer>
@@ -268,37 +242,37 @@
   </span>
   <span class="logo-text">ToolFin</span>
 </a>
-          <p>Practical financial literacy tools for global clarity.</p>
+          <p style="margin-top: 1.5rem;">Practical financial literacy tools designed for global clarity and educational empowerment.</p>
         </div>
         <div class="footer-links">
-          <h5>Platform</h5>
-          <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about.html">About ToolFin</a></li>
-            <li><a href="/methodology.html">Methodology</a></li>
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Platform</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/">Home</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/about.html">About ToolFin</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/methodology.html">Methodology</a></li>
           </ul>
         </div>
         <div class="footer-links">
-          <h5>Legal</h5>
-          <ul>
-            <li><a href="/disclaimer.html">Disclaimer</a></li>
-            <li><a href="/editorial-policy.html">Editorial Policy</a></li>
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Legal</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/disclaimer.html">Disclaimer</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/editorial-policy.html">Editorial Policy</a></li>
           </ul>
         </div>
         <div class="footer-links">
-          <h5>Support</h5>
-          <ul>
-            <li><a href="/contact.html">Contact</a></li>
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Support</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/contact.html">Contact</a></li>
           </ul>
         </div>
       </div>
       <div class="trust-strip">
-        Not financial advice • Educational use only • Estimates based on user input • Jurisdiction differences apply
+        NOT FINANCIAL ADVICE • EDUCATIONAL USE ONLY • ESTIMATES ONLY • JURISDICTION DIFFERENCES APPLY
       </div>
     </div>
   </footer>
 
-  <script type="module" src="/assets/salary.js"></script>
+  <script type="module" src="/assets/take-home-pay.js"></script>
 <script src="/assets/currency-options.js"></script>
 <script src="/assets/tf-export.js"></script>
 <script src="/assets/tf-state.js"></script>

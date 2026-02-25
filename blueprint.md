@@ -8,6 +8,11 @@ ToolFin is a "money problem solving platform" designed for English-speaking glob
 - **Design:** SaaS UI (White + Blue), card-based layout, responsive typography.
 - **Branding:** Minimalist finance chart icon (blue graph on white).
 - **Compliance:** Strict avoidance of advisory language; mandatory disclosure statements on all results; dedicated trust signals.
+- **UI Fixes & Enhancements:**
+    - Fixed currency unit clipping in header by increasing `min-width` and setting `line-height: normal`.
+    - Added global `.has-prefix` and `.prefix` styling to `style.css` to fix currency symbols in calculator inputs.
+    - **Global Currency Options:** Implemented `assets/currency-options.js` to standardize the currency dropdown across ALL pages (30+ pages).
+    - **TF State Management & Export:** Created `assets/tf-state.js` and `assets/tf-export.js` to automatically inject Save/Load/Clear/Export PDF capabilities into all calculator pages via generic DOM scanning, requiring no page-specific overrides.
 - **IA:** 
     - **Home:** Category-based portal (Loans, Income, Investments, Housing, Everyday).
     - **Category Pages:** `loans.html`, `income.html`, `investments.html`, `housing.html`, `everyday.html`.

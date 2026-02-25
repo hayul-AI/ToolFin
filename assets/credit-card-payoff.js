@@ -52,8 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (balance <= 0 || monthlyPayment <= 0) {
       monthsResult.textContent = '0';
-      totalInterestResult.textContent = formatCurrency(0);
-      totalPaidResult.textContent = formatCurrency(0);
+      totalInterestResult.innerHTML = formatCurrency(0);
+      totalPaidResult.innerHTML = formatCurrency(0);
       interpretationBox.textContent = 'Enter values to see interpretation.';
       extraScenarioPanel.style.display = 'none';
       return;
@@ -72,8 +72,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Update Main Results
     monthsResult.textContent = `${baseResult.months} months`;
-    totalInterestResult.textContent = formatCurrency(baseResult.totalInterest);
-    totalPaidResult.textContent = formatCurrency(baseResult.totalAmountPaid);
+    totalInterestResult.innerHTML = formatCurrency(baseResult.totalInterest);
+    totalPaidResult.innerHTML = formatCurrency(baseResult.totalAmountPaid);
 
     // Interpretation
     if (baseResult.months < 12) {
@@ -93,9 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
         extraScenarioPanel.style.display = 'block';
         newPayoffTimeResult.textContent = `${extraResult.months} months`;
         timeSavedResult.textContent = `${baseResult.months - extraResult.months} months`;
-        interestSavedResult.textContent = formatCurrency(baseResult.totalInterest - extraResult.months > 0 ? baseResult.totalInterest - extraResult.totalInterest : 0);
         // Correcting interest saved logic
-        interestSavedResult.textContent = formatCurrency(Math.max(0, baseResult.totalInterest - extraResult.totalInterest));
+        interestSavedResult.innerHTML = formatCurrency(Math.max(0, baseResult.totalInterest - extraResult.totalInterest));
       } else {
         extraScenarioPanel.style.display = 'none';
       }

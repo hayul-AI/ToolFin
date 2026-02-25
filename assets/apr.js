@@ -122,15 +122,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Render Results
     resAPR.textContent = calculatedAPR.toFixed(3) + '%';
-    resPayment.textContent = formatCurrencyDecimal(monthlyPayment);
-    resTotalInterest.textContent = formatCurrencyDecimal(totalInterest);
-    resTotalCost.textContent = formatCurrencyDecimal(totalPaid + fees);
+    resPayment.innerHTML = formatCurrencyDecimal(monthlyPayment);
+    resTotalInterest.innerHTML = formatCurrencyDecimal(totalInterest);
+    resTotalCost.innerHTML = formatCurrencyDecimal(totalPaid + fees);
 
     // Breakdown
-    breakPrincipal.textContent = formatCurrencyDecimal(principal);
-    breakFees.textContent = formatCurrencyDecimal(fees);
-    breakInterest.textContent = formatCurrencyDecimal(totalInterest);
-    breakTotal.textContent = formatCurrencyDecimal(totalPaid + fees);
+    breakPrincipal.innerHTML = formatCurrencyDecimal(principal);
+    breakFees.innerHTML = formatCurrencyDecimal(fees);
+    breakInterest.innerHTML = formatCurrencyDecimal(totalInterest);
+    breakTotal.innerHTML = formatCurrencyDecimal(totalPaid + fees);
 
     breakdownSection.style.display = 'block';
   }

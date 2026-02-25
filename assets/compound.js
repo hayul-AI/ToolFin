@@ -43,9 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const growth = totalFV - totalContributed;
 
     // Update UI
-    endBalance.textContent = formatCurrency(totalFV);
-    totalContributions.textContent = formatCurrency(totalContributed);
-    totalGrowth.textContent = formatCurrency(growth);
+    endBalance.innerHTML = formatCurrency(totalFV);
+    totalContributions.innerHTML = formatCurrency(totalContributed);
+    totalGrowth.innerHTML = formatCurrency(growth);
   }
 
   [initialAmountInput, monthlyContributionInput, rateInput, yearsInput, compoundingInput].forEach(el => {

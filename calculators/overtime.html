@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Housing & Real Estate Calculators - ToolFin</title>
-  <meta name="description" content="Calculate mortgage payments, rent vs buy scenarios, affordability, and closing costs. Essential tools for homebuyers and real estate investors.">
+  <title>Overtime Calculator - ToolFin</title>
   <link rel="stylesheet" href="/assets/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -95,91 +94,118 @@
   </header>
 
   <main class="container">
-    <div class="hero" style="padding: 3rem 0 2rem; text-align: left;">
-      <p style="margin: 0; font-size: 0.9rem; font-weight: 600; color: var(--primary); text-transform: uppercase; letter-spacing: 1px;">Category</p>
-      <h1 style="margin-top: 0.5rem; font-size: 2.5rem;">Housing & Real Estate</h1>
-      <p style="margin: 1rem 0 0; max-width: 600px;">Navigate the housing market with confidence. Whether you are buying your first home or investing in property, our tools help you understand the costs and potential returns.</p>
+    <nav style="margin: 2rem 0 1rem; font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">
+      <a href="/" style="color: inherit; text-decoration: none;">Home</a> / 
+      <a href="/income.html" style="color: inherit; text-decoration: none;">Income & Salary</a> / 
+      Overtime Calculator
+    </nav>
+
+    <div class="hero" style="text-align: left; padding: 2rem 0 3rem;">
+      <h1 style="font-size: 3rem;">Overtime Calculator</h1>
+      <p>Determine exactly how much extra you'll earn from overtime hours, including time-and-a-half and double-time rates.</p>
+    </div>
+
+    <div class="notice-box">
+      <h4>Notice</h4>
+      <ul>
+        <li>Not financial advice</li>
+        <li>Educational use</li>
+        <li>Estimates only</li>
+        <li>Jurisdiction differences</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="calc-grid">
+        <div id="inputs">
+          <div class="input-group">
+            <label for="hourly-rate">Hourly Rate (Regular)</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="hourly-rate" value="25.00" step="0.50">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="reg-hours">Regular Hours Worked</label>
+            <div class="input-wrapper">
+              <input type="number" id="reg-hours" value="40" step="1">
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">Standard hours per pay period (e.g., 40 per week).</p>
+          </div>
+
+          <div class="input-group">
+            <label for="ot-hours">Overtime Hours (1.5x)</label>
+            <div class="input-wrapper">
+              <input type="number" id="ot-hours" value="5" step="0.5">
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">Hours paid at time-and-a-half.</p>
+          </div>
+
+          <div class="input-group">
+            <label for="dt-hours">Double Time Hours (2x)</label>
+            <div class="input-wrapper">
+              <input type="number" id="dt-hours" value="0" step="0.5">
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">Hours paid at double rate (e.g., holidays).</p>
+          </div>
+
+          <button id="calculate-btn" style="background: var(--primary); color: white; border: none; padding: 16px; border-radius: var(--radius); font-weight: 800; font-size: 1.1rem; cursor: pointer; width: 100%; transition: background 0.2s;">Calculate Total Pay</button>
+        </div>
+
+        <div id="results">
+          <div class="results-panel">
+            <div class="result-item">
+              <div class="result-label">Total Gross Pay</div>
+              <div class="result-value" id="res-total-gross">$0.00</div>
+            </div>
+            
+            <div style="margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1rem;">
+              <h4 style="margin: 0 0 1rem; color: var(--secondary);">Pay Breakdown</h4>
+              <div style="display: grid; gap: 0.75rem;">
+                <div style="display: flex; justify-content: space-between;">
+                  <span style="color: var(--text-muted);">Regular Pay</span>
+                  <span style="font-weight: 600;" id="break-reg">$0</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span style="color: var(--text-muted);">Overtime Pay (1.5x)</span>
+                  <span style="font-weight: 600; color: var(--primary);" id="break-ot">$0</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span style="color: var(--text-muted);">Double Time Pay (2x)</span>
+                  <span style="font-weight: 600; color: var(--primary);" id="break-dt">$0</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; border-top: 1px dashed var(--border); padding-top: 0.5rem;">
+                  <span style="color: var(--text-main); font-weight: 700;">Total Gross</span>
+                  <span style="font-weight: 800; color: var(--primary);" id="break-total">$0</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top: 1.5rem; background: var(--bg-main); padding: 1rem; border-radius: 8px; font-size: 0.9rem;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem;">
+                <span style="color: var(--text-muted);">OT Hourly Rate:</span>
+                <span id="ot-rate-display" style="font-weight: 600;">$0</span>
+              </div>
+              <div style="display: flex; justify-content: space-between;">
+                <span style="color: var(--text-muted);">DT Hourly Rate:</span>
+                <span id="dt-rate-display" style="font-weight: 600;">$0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="compliance-statements">
+        <p>“This result is a mathematical estimate based solely on the values you entered. It represents gross pay before any tax withholdings or benefit deductions.”</p>
+        <p>“ToolFin is built to support clarity and education—not to replace professional financial or legal advice.”</p>
+      </div>
     </div>
 
     <section>
-      <div class="hub-grid">
-        <!-- Rent vs Buy -->
-        <a href="/calculators/rent-vs-buy.html" class="hub-card">
-          <div class="card-accent" aria-hidden="true">
-            <span class="bar bar-long"></span>
-            <span class="bar bar-short"></span>
-          </div>
-          <h3>Rent vs Buy Calculator</h3>
-          <p>Determine if it makes more financial sense to rent or buy a home in your area.</p>
-          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Compare Options →</span>
-        </a>
-
-        <!-- Mortgage Calculator -->
-        <a href="/calculators/mortgage.html" class="hub-card">
-          <div class="card-accent" aria-hidden="true">
-            <span class="bar bar-long"></span>
-            <span class="bar bar-short"></span>
-          </div>
-          <h3>Mortgage Calculator</h3>
-          <p>Estimate your monthly mortgage payment including principal, interest, taxes, and insurance.</p>
-          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Calculate Payment →</span>
-        </a>
-
-        <!-- Down Payment -->
-        <a href="/calculators/down-payment.html" class="hub-card">
-          <div class="card-accent" aria-hidden="true">
-            <span class="bar bar-long"></span>
-            <span class="bar bar-short"></span>
-          </div>
-          <h3>Down Payment Calculator</h3>
-          <p>See how different down payment amounts affect your loan size and monthly payments.</p>
-          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Plan Down Payment →</span>
-        </a>
-
-        <!-- Property Tax -->
-        <a href="/calculators/property-tax.html" class="hub-card">
-          <div class="card-accent" aria-hidden="true">
-            <span class="bar bar-long"></span>
-            <span class="bar bar-short"></span>
-          </div>
-          <h3>Property Tax Estimator</h3>
-          <p>Estimate your annual property tax bill based on assessed home value and local rates.</p>
-          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Estimate Taxes →</span>
-        </a>
-
-        <!-- Closing Costs -->
-        <a href="/calculators/closing-costs.html" class="hub-card">
-          <div class="card-accent" aria-hidden="true">
-            <span class="bar bar-long"></span>
-            <span class="bar bar-short"></span>
-          </div>
-          <h3>Closing Cost Calculator</h3>
-          <p>Get a clearer picture of the upfront fees required to finalize your home purchase.</p>
-          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Calculate Fees →</span>
-        </a>
-
-        <!-- Affordability -->
-        <a href="/calculators/home-affordability.html" class="hub-card">
-          <div class="card-accent" aria-hidden="true">
-            <span class="bar bar-long"></span>
-            <span class="bar bar-short"></span>
-          </div>
-          <h3>Home Affordability</h3>
-          <p>Find out how much house you can afford based on your income and debts.</p>
-          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Check Affordability →</span>
-        </a>
-
-        <!-- Extra Payment -->
-        <a href="/calculators/mortgage-extra-payment.html" class="hub-card">
-          <div class="card-accent" aria-hidden="true">
-            <span class="bar bar-long"></span>
-            <span class="bar bar-short"></span>
-          </div>
-          <h3>Mortgage Extra Payment</h3>
-          <p>See how much interest you can save by making additional principal payments.</p>
-          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Calculate Savings →</span>
-        </a>
-      </div>
+      <h2>What is an Overtime Calculator?</h2>
+      <p>An overtime calculator helps employees understand their total earnings when working more than the standard hours. Most jurisdictions require a higher pay rate for overtime work, typically 1.5 times the normal hourly rate (Time-and-a-Half) or 2 times the normal rate (Double-Time).</p>
+      <p>This upcoming tool will allow you to enter your base pay and overtime hours to see the gross impact on your next paycheck.</p>
     </section>
   </main>
 
@@ -220,7 +246,6 @@
           <ul style="list-style: none; padding: 0;">
             <li style="margin-bottom: 0.75rem;"><a href="/disclaimer.html">Disclaimer</a></li>
             <li style="margin-bottom: 0.75rem;"><a href="/editorial-policy.html">Editorial Policy</a></li>
-            <li style="margin-bottom: 0.75rem;"><a href="#">Privacy Policy</a></li>
           </ul>
         </div>
         <div class="footer-links">
@@ -235,7 +260,8 @@
       </div>
     </div>
   </footer>
-  <script type="module" src="/assets/common.js"></script>
+
+  <script type="module" src="/assets/overtime.js"></script>
 <script src="/assets/currency-options.js"></script>
 <script src="/assets/tf-export.js"></script>
 <script src="/assets/tf-state.js"></script>

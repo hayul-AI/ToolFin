@@ -76,19 +76,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const row = document.createElement('div');
     row.className = 'debt-row';
     row.innerHTML = `
-      <div class="input-group" style="margin-bottom: 0;">
+      <div class="input-group">
         <label>Debt Name</label>
         <div class="input-wrapper"><input type="text" class="d-name" value="${data.name}" placeholder="e.g. Credit Card"></div>
       </div>
-      <div class="input-group" style="margin-bottom: 0;">
+      <div class="input-group">
         <label>Balance</label>
         <div class="input-wrapper"><input type="number" class="d-balance" value="${data.balance}" placeholder="0" min="0"></div>
       </div>
-      <div class="input-group" style="margin-bottom: 0;">
+      <div class="input-group">
         <label>APR %</label>
         <div class="input-wrapper"><input type="number" class="d-apr" value="${data.apr}" placeholder="0" step="0.01" min="0"></div>
       </div>
-      <div class="input-group" style="margin-bottom: 0;">
+      <div class="input-group">
         <label>Min Payment</label>
         <div class="input-wrapper"><input type="number" class="d-min" value="${data.min}" placeholder="0" min="0"></div>
       </div>
@@ -266,14 +266,14 @@ document.addEventListener('DOMContentLoaded', () => {
     payoffDate.setMonth(payoffDate.getMonth() + avalanche.months);
     
     document.getElementById('res-payoff-date').textContent = formatDate(payoffDate);
-    document.getElementById('res-total-interest').textContent = formatCurrency(avalanche.totalInterest);
+    document.getElementById('res-total-interest').innerHTML = formatCurrency(avalanche.totalInterest);
     document.getElementById('res-total-time').textContent = avalanche.months >= MAX_MONTHS ? "100+ Years" : `${Math.floor(avalanche.months / 12)}y ${avalanche.months % 12}m`;
-    document.getElementById('res-total-paid').textContent = formatCurrency(avalanche.totalPaid);
+    document.getElementById('res-total-paid').innerHTML = formatCurrency(avalanche.totalPaid);
 
     const interestSaved = baseline.totalInterest - avalanche.totalInterest;
     const timeSaved = baseline.months - avalanche.months;
 
-    document.getElementById('res-savings-interest').textContent = formatCurrency(Math.max(0, interestSaved));
+    document.getElementById('res-savings-interest').innerHTML = formatCurrency(Math.max(0, interestSaved));
     document.getElementById('res-savings-time').textContent = timeSaved > 0 ? `${Math.floor(timeSaved / 12)}y ${timeSaved % 12}m` : '0m';
 
     renderChart(avalanche.history);
@@ -295,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const bar = document.createElement('div');
       bar.className = 'bar-item';
       bar.style.height = `${Math.max(2, height)}%`;
-      bar.title = `Month ${h.month}: ${formatCurrency(h.balance)}`;
+      bar.title = `Month ${h.month}: ${formatCurrency(h.balance, 0, false)}`;
       chart.appendChild(bar);
     });
   }

@@ -111,19 +111,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const row = document.createElement('div');
     row.className = 'debt-row';
     row.innerHTML = `
-      <div class="input-group" style="margin-bottom: 0;">
+      <div class="input-group">
         <label>Debt Name</label>
         <div class="input-wrapper"><input type="text" class="debt-name" value="${name}" placeholder="e.g. Visa"></div>
       </div>
-      <div class="input-group" style="margin-bottom: 0;">
+      <div class="input-group">
         <label>Balance</label>
         <div class="input-wrapper"><input type="number" class="debt-balance" value="${balance}" placeholder="0"></div>
       </div>
-      <div class="input-group" style="margin-bottom: 0;">
+      <div class="input-group">
         <label>APR %</label>
         <div class="input-wrapper"><input type="number" class="debt-apr" value="${apr}" placeholder="0" step="0.01"></div>
       </div>
-      <div class="input-group" style="margin-bottom: 0;">
+      <div class="input-group">
         <label>Min Payment</label>
         <div class="input-wrapper"><input type="number" class="debt-min" value="${minPayment}" placeholder="0"></div>
       </div>
@@ -268,8 +268,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     resPayoffDate.textContent = payoffDate.toLocaleDateString(undefined, { month: 'long', year: 'numeric' });
     resDuration.textContent = `${Math.floor(totalMonths / 12)} years, ${totalMonths % 12} months`;
-    resInterest.textContent = formatCurrency(totalInterest);
-    resTotal.textContent = formatCurrency(totalPaid);
+    resInterest.innerHTML = formatCurrency(totalInterest);
+    resTotal.innerHTML = formatCurrency(totalPaid);
 
     // Interpretation
     if (totalMonths < 24) {

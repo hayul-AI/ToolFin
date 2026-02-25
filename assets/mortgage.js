@@ -50,11 +50,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalMonthly = monthlyPayment + (annualTax / 12) + (annualInsurance / 12) + monthlyPMI;
 
     // Update UI
-    monthlyPI.textContent = formatCurrencyDecimal(monthlyPayment);
-    monthlyTotal.textContent = formatCurrencyDecimal(totalMonthly);
-    totalPrincipal.textContent = formatCurrency(principal);
-    totalInterest.textContent = formatCurrency(totalInt);
-    totalPaid.textContent = formatCurrency(totalCost + (annualTax * termYears) + (annualInsurance * termYears) + (monthlyPMI * numberOfPayments));
+    monthlyPI.innerHTML = formatCurrencyDecimal(monthlyPayment);
+    monthlyTotal.innerHTML = formatCurrencyDecimal(totalMonthly);
+    totalPrincipal.innerHTML = formatCurrency(principal);
+    totalInterest.innerHTML = formatCurrency(totalInt);
+    totalPaid.innerHTML = formatCurrency(totalCost + (annualTax * termYears) + (annualInsurance * termYears) + (monthlyPMI * numberOfPayments));
   }
 
   // Event Listeners for auto-syncing down payment

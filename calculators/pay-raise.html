@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Housing & Real Estate Calculators - ToolFin</title>
-  <meta name="description" content="Calculate mortgage payments, rent vs buy scenarios, affordability, and closing costs. Essential tools for homebuyers and real estate investors.">
+  <title>Pay Raise Calculator - ToolFin</title>
   <link rel="stylesheet" href="/assets/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -95,91 +94,98 @@
   </header>
 
   <main class="container">
-    <div class="hero" style="padding: 3rem 0 2rem; text-align: left;">
-      <p style="margin: 0; font-size: 0.9rem; font-weight: 600; color: var(--primary); text-transform: uppercase; letter-spacing: 1px;">Category</p>
-      <h1 style="margin-top: 0.5rem; font-size: 2.5rem;">Housing & Real Estate</h1>
-      <p style="margin: 1rem 0 0; max-width: 600px;">Navigate the housing market with confidence. Whether you are buying your first home or investing in property, our tools help you understand the costs and potential returns.</p>
+    <nav style="margin: 2rem 0 1rem; font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">
+      <a href="/" style="color: inherit; text-decoration: none;">Home</a> / 
+      <a href="/income.html" style="color: inherit; text-decoration: none;">Income & Salary</a> / 
+      Pay Raise Calculator
+    </nav>
+
+    <div class="hero" style="text-align: left; padding: 2rem 0 3rem;">
+      <h1 style="font-size: 3rem;">Pay Raise Calculator</h1>
+      <p>Analyze the impact of a salary increase on your daily, weekly, and monthly earnings.</p>
+    </div>
+
+    <div class="notice-box">
+      <h4>Notice</h4>
+      <ul>
+        <li>Not financial advice</li>
+        <li>Educational use</li>
+        <li>Estimates only</li>
+        <li>Jurisdiction differences</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="calc-grid">
+        <div id="inputs">
+          <div class="input-group">
+            <label for="current-salary">Current Annual Salary (Gross)</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="current-salary" value="60000" step="1000">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="raise-amount">Raise Amount</label>
+            <div style="display: flex; gap: 1rem;">
+              <div class="input-wrapper has-prefix" style="flex: 2;">
+                <span class="prefix currency-symbol">$</span>
+                <input type="number" id="raise-amount" value="3000" step="500">
+              </div>
+              <div class="input-wrapper" style="flex: 1; position: relative; display: flex; align-items: center;">
+                <input type="number" id="raise-percent" value="5" step="0.1" style="padding-right: 35px; text-align: right;">
+                <span style="position: absolute; right: 16px; font-weight: 700; color: var(--text-muted);">%</span>
+              </div>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">Adjust either the dollar amount or the percentage.</p>
+          </div>
+
+          <button id="calculate-btn" style="background: var(--primary); color: white; border: none; padding: 16px; border-radius: var(--radius); font-weight: 800; font-size: 1.1rem; cursor: pointer; width: 100%; transition: background 0.2s;">Calculate New Salary</button>
+        </div>
+
+        <div id="results">
+          <div class="results-panel">
+            <div class="result-item">
+              <div class="result-label">New Annual Salary</div>
+              <div class="result-value" id="res-new-salary">$0</div>
+            </div>
+            
+            <div style="margin-top: 2rem; border-top: 2px solid var(--border); padding-top: 1.5rem;">
+              <h4 style="margin: 0 0 1rem; color: var(--secondary);">Incremental Gain (Gross)</h4>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                <div class="result-item" style="margin-bottom: 0;">
+                  <div class="result-label" style="font-size: 0.75rem;">Monthly</div>
+                  <div id="gain-monthly" style="font-size: 1.5rem; font-weight: 800; color: var(--primary);">$0</div>
+                </div>
+                <div class="result-item" style="margin-bottom: 0;">
+                  <div class="result-label" style="font-size: 0.75rem;">Bi-Weekly</div>
+                  <div id="gain-biweekly" style="font-size: 1.5rem; font-weight: 800; color: var(--primary);">$0</div>
+                </div>
+                <div class="result-item" style="margin-bottom: 0;">
+                  <div class="result-label" style="font-size: 0.75rem;">Weekly</div>
+                  <div id="gain-weekly" style="font-size: 1.5rem; font-weight: 800; color: var(--primary);">$0</div>
+                </div>
+                <div class="result-item" style="margin-bottom: 0;">
+                  <div class="result-label" style="font-size: 0.75rem;">Daily</div>
+                  <div id="gain-daily" style="font-size: 1.5rem; font-weight: 800; color: var(--primary);">$0</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="compliance-statements">
+        <p>“This result is a mathematical estimate based solely on the values you entered. It represents gross income changes before any tax withholdings or benefit adjustments.”</p>
+        <p>“ToolFin is built to support clarity and education—not to replace professional career or financial advice.”</p>
+      </div>
     </div>
 
     <section>
-      <div class="hub-grid">
-        <!-- Rent vs Buy -->
-        <a href="/calculators/rent-vs-buy.html" class="hub-card">
-          <div class="card-accent" aria-hidden="true">
-            <span class="bar bar-long"></span>
-            <span class="bar bar-short"></span>
-          </div>
-          <h3>Rent vs Buy Calculator</h3>
-          <p>Determine if it makes more financial sense to rent or buy a home in your area.</p>
-          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Compare Options →</span>
-        </a>
-
-        <!-- Mortgage Calculator -->
-        <a href="/calculators/mortgage.html" class="hub-card">
-          <div class="card-accent" aria-hidden="true">
-            <span class="bar bar-long"></span>
-            <span class="bar bar-short"></span>
-          </div>
-          <h3>Mortgage Calculator</h3>
-          <p>Estimate your monthly mortgage payment including principal, interest, taxes, and insurance.</p>
-          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Calculate Payment →</span>
-        </a>
-
-        <!-- Down Payment -->
-        <a href="/calculators/down-payment.html" class="hub-card">
-          <div class="card-accent" aria-hidden="true">
-            <span class="bar bar-long"></span>
-            <span class="bar bar-short"></span>
-          </div>
-          <h3>Down Payment Calculator</h3>
-          <p>See how different down payment amounts affect your loan size and monthly payments.</p>
-          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Plan Down Payment →</span>
-        </a>
-
-        <!-- Property Tax -->
-        <a href="/calculators/property-tax.html" class="hub-card">
-          <div class="card-accent" aria-hidden="true">
-            <span class="bar bar-long"></span>
-            <span class="bar bar-short"></span>
-          </div>
-          <h3>Property Tax Estimator</h3>
-          <p>Estimate your annual property tax bill based on assessed home value and local rates.</p>
-          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Estimate Taxes →</span>
-        </a>
-
-        <!-- Closing Costs -->
-        <a href="/calculators/closing-costs.html" class="hub-card">
-          <div class="card-accent" aria-hidden="true">
-            <span class="bar bar-long"></span>
-            <span class="bar bar-short"></span>
-          </div>
-          <h3>Closing Cost Calculator</h3>
-          <p>Get a clearer picture of the upfront fees required to finalize your home purchase.</p>
-          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Calculate Fees →</span>
-        </a>
-
-        <!-- Affordability -->
-        <a href="/calculators/home-affordability.html" class="hub-card">
-          <div class="card-accent" aria-hidden="true">
-            <span class="bar bar-long"></span>
-            <span class="bar bar-short"></span>
-          </div>
-          <h3>Home Affordability</h3>
-          <p>Find out how much house you can afford based on your income and debts.</p>
-          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Check Affordability →</span>
-        </a>
-
-        <!-- Extra Payment -->
-        <a href="/calculators/mortgage-extra-payment.html" class="hub-card">
-          <div class="card-accent" aria-hidden="true">
-            <span class="bar bar-long"></span>
-            <span class="bar bar-short"></span>
-          </div>
-          <h3>Mortgage Extra Payment</h3>
-          <p>See how much interest you can save by making additional principal payments.</p>
-          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Calculate Savings →</span>
-        </a>
-      </div>
+      <h2>Why calculate your pay raise?</h2>
+      <p>A pay raise is more than just a higher annual number. Breaking it down into monthly or weekly increments helps you understand how it will practically affect your lifestyle and budget. For example, a $5,000 raise might seem large, but knowing it results in roughly $192 extra per bi-weekly paycheck (before taxes) provides better context for planning.</p>
+      <p>Remember that a higher gross salary might also push you into a higher tax bracket or affect your eligibility for certain tax credits, so the "net" gain may be slightly different than the "gross" gain shown here.</p>
     </section>
   </main>
 
@@ -220,7 +226,6 @@
           <ul style="list-style: none; padding: 0;">
             <li style="margin-bottom: 0.75rem;"><a href="/disclaimer.html">Disclaimer</a></li>
             <li style="margin-bottom: 0.75rem;"><a href="/editorial-policy.html">Editorial Policy</a></li>
-            <li style="margin-bottom: 0.75rem;"><a href="#">Privacy Policy</a></li>
           </ul>
         </div>
         <div class="footer-links">
@@ -235,7 +240,8 @@
       </div>
     </div>
   </footer>
-  <script type="module" src="/assets/common.js"></script>
+
+  <script type="module" src="/assets/pay-raise.js"></script>
 <script src="/assets/currency-options.js"></script>
 <script src="/assets/tf-export.js"></script>
 <script src="/assets/tf-state.js"></script>

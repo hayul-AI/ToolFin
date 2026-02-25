@@ -91,24 +91,23 @@
   </header>
 
   <main class="container">
-    <nav style="margin-bottom: 1rem; font-size: 0.9rem; color: var(--text-muted);">
-      <a href="/" style="color: inherit; text-decoration: none;">Home</a> > 
-      <a href="/" style="color: inherit; text-decoration: none;">Calculators</a> > 
-      ROI Calculator
+    <nav style="margin: 2rem 0 1rem; font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">
+      <a href="/" style="color: inherit; text-decoration: none;">Home</a> / 
+      <a href="/investments.html" style="color: inherit; text-decoration: none;">Investments</a> / 
+      Return on Investment (ROI)
     </nav>
 
-    <div class="hero" style="text-align: left;">
-      <h1>ROI Calculator</h1>
-      <p>Measure the profitability of an investment and understand your annualized growth rate.</p>
+    <div class="hero" style="text-align: left; padding: 2rem 0 3rem;">
+      <h1 style="font-size: 3rem;">ROI Calculator</h1>
+      <p>Measure the profitability of an investment and understand your annualized growth rate (CAGR).</p>
     </div>
 
     <div class="notice-box">
-      <h4>Notice</h4>
       <ul>
-        <li>Not financial advice</li>
-        <li>Educational use</li>
-        <li>Estimates only</li>
-        <li>Jurisdiction differences</li>
+        <li>NOT FINANCIAL ADVICE</li>
+        <li>EDUCATIONAL USE</li>
+        <li>ESTIMATES ONLY</li>
+        <li>JURISDICTION DIFFERENCES</li>
       </ul>
     </div>
 
@@ -136,25 +135,26 @@
             <div class="input-wrapper">
               <input type="number" id="investment-period" value="3" step="0.5">
             </div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">Used to calculate the Annualized ROI (CAGR).</p>
           </div>
 
-          <button id="calculate-btn">Calculate ROI</button>
+          <button id="calculate-btn" style="background: var(--primary); color: white; border: none; padding: 16px; border-radius: var(--radius); font-weight: 800; font-size: 1.1rem; cursor: pointer; width: 100%; transition: background 0.2s;">Calculate ROI</button>
         </div>
 
         <div id="results">
           <div class="results-panel">
             <div class="result-item">
               <div class="result-label">Total ROI</div>
-              <div class="result-value" id="total-roi">0%</div>
+              <div class="result-value" id="total-roi" style="color: #10b981;">0%</div>
             </div>
             <div class="result-item">
               <div class="result-label">Annualized ROI (CAGR)</div>
-              <div class="result-value" id="annualized-roi">0%</div>
+              <div class="result-value" id="annualized-roi" style="color: var(--secondary); font-size: 2rem;">0%</div>
             </div>
-            <div style="margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1rem;">
+            <div style="margin-top: 2rem; border-top: 2px solid var(--border); padding-top: 1.5rem;">
               <div class="result-item">
                 <div class="result-label">Total Profit/Loss</div>
-                <div style="font-weight: 600;" id="total-profit">$0</div>
+                <div id="total-profit" style="font-size: 1.5rem; font-weight: 800;">$0</div>
               </div>
             </div>
           </div>
@@ -286,5 +286,8 @@
   </footer>
 
   <script type="module" src="/assets/roi.js"></script>
+<script src="/assets/currency-options.js"></script>
+<script src="/assets/tf-export.js"></script>
+<script src="/assets/tf-state.js"></script>
 </body>
 </html>

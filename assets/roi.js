@@ -17,9 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const years = parseFloat(periodInput.value) || 0;
 
     if (cost === 0) {
-      totalROI.textContent = '0%';
-      annualizedROI.textContent = '0%';
-      totalProfit.textContent = formatCurrency(0);
+      totalROI.textContent = '0.00%';
+      annualizedROI.textContent = '0.00%';
+      totalProfit.innerHTML = formatCurrency(0);
       return;
     }
 
@@ -27,18 +27,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const roi = (profit / cost) * 100;
     
     let cagr = 0;
-    if (years > 0 && finalValue > 0) {
+    if (years > 0 && finalValue > 0 && cost > 0) {
       // CAGR = [(FV/PV)^(1/n)] - 1
       cagr = (Math.pow(finalValue / cost, 1 / years) - 1) * 100;
     }
 
     // Update UI
     totalROI.textContent = `${roi.toFixed(2)}%`;
-    annualizedROI.textContent = (years > 0 && finalValue > 0) ? `${cagr.toFixed(2)}%` : 'N/A';
-    totalProfit.textContent = formatCurrency(profit);
+    totalROI.style.color = roi >= 0 ? '#10b981' : '#e11d48';
     
-    // Style profit
-    totalProfit.style.color = profit >= 0 ? '#2ecc71' : '#e74c3c';
+    annualizedROI.textContent = (years > 0 && finalValue > 0) ? `${cagr.toFixed(2)}%` : 'N/A';
+    
+    totalProfit.innerHTML = formatCurrencyDecimal(profit);
+    totalProfit.style.color = profit >= 0 ? '#10b981' : '#e11d48';
   }
 
   [costInput, returnInput, periodInput].forEach(el => {
@@ -47,9 +48,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   calculateBtn.addEventListener('click', calculate);
 
+  // Wiring currency change
+  window.addEventListener('currencyChange', () => {
+    calculate();
+  });
+
   // Initial Calculation
   calculate();
-
-  // Listen for global currency changes
-  window.addEventListener('currencyChange', calculate);
 });

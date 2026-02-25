@@ -104,9 +104,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const extraMonthly = Math.max(0, parseFloat(extraPaymentInput.value) || 0);
 
     if (principalNet <= 0 || years <= 0) {
-      monthlyPaymentResult.textContent = formatCurrency(0);
-      totalInterestResult.textContent = formatCurrency(0);
-      totalPaidResult.textContent = formatCurrency(0);
+      monthlyPaymentResult.innerHTML = formatCurrency(0);
+      totalInterestResult.innerHTML = formatCurrency(0);
+      totalPaidResult.innerHTML = formatCurrency(0);
       extraScenarioPanel.style.display = 'none';
       payoffNote.style.display = 'none';
       return;
@@ -119,9 +119,9 @@ document.addEventListener('DOMContentLoaded', () => {
       res = computeAmortized(principalNet, apr, months, extraMonthly);
     }
 
-    monthlyPaymentResult.textContent = formatCurrencyDecimal(res.monthlyPayment);
-    totalInterestResult.textContent = formatCurrency(res.totalInterest);
-    totalPaidResult.textContent = formatCurrency(res.totalPaid);
+    monthlyPaymentResult.innerHTML = formatCurrencyDecimal(res.monthlyPayment);
+    totalInterestResult.innerHTML = formatCurrency(res.totalInterest);
+    totalPaidResult.innerHTML = formatCurrency(res.totalPaid);
 
     if (res.paidOffEarly) {
       payoffNote.textContent = `Paid off early in ${res.payoffMonths} months (term was ${months} months).`;
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ? computeInterestOnly(principalNet, apr, months, 0)
         : computeAmortized(principalNet, apr, months, 0);
       
-      interestSavedResult.textContent = formatCurrency(Math.max(0, baseline.totalInterest - res.totalInterest));
+      interestSavedResult.innerHTML = formatCurrency(Math.max(0, baseline.totalInterest - res.totalInterest));
     } else {
       payoffNote.style.display = 'none';
       extraScenarioPanel.style.display = 'none';

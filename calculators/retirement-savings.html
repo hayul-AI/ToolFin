@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retirement Savings Calculator - ToolFin</title>
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container nav-container">
+      <a class="logo" href="/" aria-label="ToolFin Home">
+        <span class="logo-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+            <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+            <circle cx="8" cy="13" r="1"></circle>
+            <circle cx="12" cy="13" r="1"></circle>
+            <circle cx="16" cy="13" r="1"></circle>
+            <circle cx="8" cy="17" r="1"></circle>
+            <circle cx="12" cy="17" r="1"></circle>
+            <circle cx="16" cy="17" r="1"></circle>
+          </svg>
+        </span>
+        <span class="logo-text">ToolFin</span>
+      </a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/methodology.html">Methodology</a>
+        <a href="/contact.html">Contact</a>
+        <select id="currency-selector">
+          <option value="USD" selected>USD — US Dollar ($)</option>
+          <option value="EUR">EUR — Euro (€)</option>
+          <option value="GBP">GBP — British Pound (£)</option>
+          <option value="JPY">JPY — Japanese Yen (¥)</option>
+          <option value="KRW">KRW — South Korean Won (₩)</option>
+        </select>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav style="margin: 2rem 0 1rem; font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">
+      <a href="/" style="color: inherit; text-decoration: none;">Home</a> / 
+      <a href="/investments.html" style="color: inherit; text-decoration: none;">Investments</a> / 
+      Retirement Savings Calculator
+    </nav>
+
+    <div class="hero" style="text-align: left; padding: 2rem 0 3rem;">
+      <h1 style="font-size: 3rem;">Retirement Savings Calculator</h1>
+      <p>Estimate how much you will have saved for retirement based on your current age, contributions, and expected returns.</p>
+    </div>
+
+    <div class="notice-box">
+      <ul>
+        <li>NOT FINANCIAL ADVICE</li>
+        <li>EDUCATIONAL USE</li>
+        <li>ESTIMATES ONLY</li>
+        <li>LONG-TERM PROJECTION</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="calc-grid">
+        <div id="inputs">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+            <div class="input-group">
+              <label for="current-age">Current Age</label>
+              <div class="input-wrapper">
+                <input type="number" id="current-age" value="30" min="1" max="100">
+              </div>
+            </div>
+            <div class="input-group">
+              <label for="retirement-age">Retirement Age</label>
+              <div class="input-wrapper">
+                <input type="number" id="retirement-age" value="65" min="1" max="100">
+              </div>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="initial-balance">Current Retirement Savings</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="initial-balance" value="50000" step="1000">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="monthly-contribution">Monthly Contribution</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="monthly-contribution" value="1000" step="100">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="return-rate">Expected Annual Return (%)</label>
+            <div class="input-wrapper">
+              <input type="number" id="return-rate" value="7" step="0.1">
+              <span class="suffix">%</span>
+            </div>
+          </div>
+
+          <button id="calculate-btn" style="background: var(--primary); color: white; border: none; padding: 16px; border-radius: var(--radius); font-weight: 800; font-size: 1.1rem; cursor: pointer; width: 100%; transition: background 0.2s;">Calculate Savings</button>
+        </div>
+
+        <div id="results">
+          <div class="results-panel" style="background: #f8fafc; border-color: var(--primary-soft);">
+            <div class="result-item">
+              <div class="result-label">Portfolio at Retirement</div>
+              <div class="result-value" id="res-total-balance">$0.00</div>
+            </div>
+            
+            <div style="margin-top: 2rem; border-top: 2px solid var(--border); padding-top: 1.5rem; display: grid; gap: 1rem;">
+              <div style="display: flex; justify-content: space-between;">
+                <span style="color: var(--text-muted);">Years to Save</span>
+                <span style="font-weight: 600;" id="res-years">0</span>
+              </div>
+              <div style="display: flex; justify-content: space-between;">
+                <span style="color: var(--text-muted);">Total Contributions</span>
+                <span style="font-weight: 600;" id="res-contributions">$0</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; border-top: 1px dashed var(--border); padding-top: 0.5rem;">
+                <span style="color: var(--text-main); font-weight: 700;">Monthly Income Potential*</span>
+                <span style="font-weight: 800; color: #10b981;" id="res-monthly-draw">$0</span>
+              </div>
+              <p style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.4;">*Potential monthly income using the "4% Rule" for safe annual withdrawals.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="compliance-statements">
+        <p>“This result is a mathematical projection based on constant annual returns. Actual market returns fluctuate and are not guaranteed.”</p>
+        <p>“ToolFin is built to support clarity and education—not to replace professional financial or retirement planning advice.”</p>
+      </div>
+    </div>
+
+    <section>
+      <h2>Planning for Retirement</h2>
+      <p>Retirement savings are built on the foundation of compound interest and time. By contributing regularly to your retirement accounts, you allow your money to grow exponentially. This calculator helps you see the long-term impact of starting early and maintaining consistent contributions.</p>
+      <p>The "4% Rule" shown in the results is a common benchmark used by retirees to determine a safe amount to withdraw from their portfolio each year without running out of money over a 30-year retirement period.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" aria-label="ToolFin Home">
+            <span class="logo-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+                <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+                <circle cx="8" cy="13" r="1"></circle>
+                <circle cx="12" cy="13" r="1"></circle>
+                <circle cx="16" cy="13" r="1"></circle>
+                <circle cx="8" cy="17" r="1"></circle>
+                <circle cx="12" cy="17" r="1"></circle>
+                <circle cx="16" cy="17" r="1"></circle>
+              </svg>
+            </span>
+            <span class="logo-text">ToolFin</span>
+          </a>
+          <p style="margin-top: 1.5rem;">Practical financial literacy tools designed for global clarity and educational empowerment.</p>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Platform</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about.html">About ToolFin</a></li>
+            <li><a href="/methodology.html">Methodology</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Legal</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li><a href="/disclaimer.html">Disclaimer</a></li>
+            <li><a href="/editorial-policy.html">Editorial Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Support</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="trust-strip">
+        NOT FINANCIAL ADVICE • EDUCATIONAL USE ONLY • ESTIMATES ONLY • JURISDICTION DIFFERENCES APPLY
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/currency-options.js"></script>
+  <script type="module" src="/assets/retirement-savings.js"></script>
+<script src="/assets/tf-export.js"></script>
+<script src="/assets/tf-state.js"></script>
+</body>
+</html>

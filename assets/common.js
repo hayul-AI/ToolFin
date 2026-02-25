@@ -49,24 +49,38 @@ export function setCurrency(code) {
   }
 }
 
-export function formatCurrency(amount, decimalPlaces = 0) {
+export function formatCurrency(amount, decimalPlaces = 0, asHtml = true) {
   const locale = navigator.language || 'en-US';
   try {
-    return new Intl.NumberFormat(locale, {
+    const formatter = new Intl.NumberFormat(locale, {
       style: 'currency',
       currency: currentCurrencyCode,
       minimumFractionDigits: decimalPlaces,
       maximumFractionDigits: decimalPlaces
-    }).format(amount);
+    });
+
+    if (decimalPlaces === 0) return formatter.format(amount);
+
+    if (!asHtml) return formatter.format(amount);
+
+    return formatter.formatToParts(amount).map(part => {
+      if (part.type === 'fraction') return `<span class="decimal-small">${part.value}</span>`;
+      return part.value;
+    }).join('');
   } catch (e) {
-    // Fallback if currency code is not supported by Intl
     const symbol = getCurrencySymbol(currentCurrencyCode);
-    return `${symbol}${amount.toFixed(decimalPlaces)}`;
+    const fixed = amount.toFixed(decimalPlaces);
+    if (decimalPlaces > 0) {
+      if (!asHtml) return `${symbol}${fixed}`;
+      const parts = fixed.split('.');
+      return `${symbol}${parts[0]}.<span class="decimal-small">${parts[1]}</span>`;
+    }
+    return `${symbol}${fixed}`;
   }
 }
 
-export function formatCurrencyDecimal(amount) {
-  return formatCurrency(amount, 2);
+export function formatCurrencyDecimal(amount, asHtml = true) {
+  return formatCurrency(amount, 2, asHtml);
 }
 
 // Global UI Setup

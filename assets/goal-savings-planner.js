@@ -118,8 +118,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Outputs
-        resMonthlySavings.textContent = formatCurrencyDecimal(requiredMonthly);
-        resEndingBalance.textContent = formatCurrencyDecimal(targetAmount);
+        resMonthlySavings.innerHTML = formatCurrencyDecimal(requiredMonthly);
+        resEndingBalance.innerHTML = formatCurrencyDecimal(targetAmount);
 
         // Schedule Generation
         let balance = startBalance;
@@ -148,8 +148,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        resTotalContributions.textContent = formatCurrencyDecimal(totalContributions);
-        resTotalGrowth.textContent = formatCurrencyDecimal(totalGrowth);
+        resTotalContributions.innerHTML = formatCurrencyDecimal(totalContributions);
+        resTotalGrowth.innerHTML = formatCurrencyDecimal(totalGrowth);
 
         renderTable(schedule);
         

@@ -80,12 +80,36 @@ header {
   align-items: center;
 }
 
+@media (max-width: 1024px) {
+  .nav-links {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  .nav-links {
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  header {
+    height: auto;
+    padding: 1.5rem 0;
+  }
+}
+
 .nav-links a {
   text-decoration: none;
   color: var(--secondary);
   font-weight: 600;
   font-size: 0.95rem;
   transition: all 0.2s;
+  white-space: nowrap;
 }
 
 .nav-links a:hover {
@@ -93,7 +117,8 @@ header {
 }
 
 #currency-selector {
-  min-width: 140px;
+  min-width: 160px;
+  width: auto;
   height: 38px;
   border-radius: 10px;
   border: 1px solid #e5e7eb;
@@ -105,6 +130,28 @@ header {
   color: var(--text-main);
   transition: all 0.2s;
   outline: none;
+  line-height: normal;
+}
+
+/* Prefix & Input Wrapper Styles */
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.input-wrapper.has-prefix input {
+  padding-left: 40px;
+}
+
+.prefix {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: 700;
+  color: var(--text-muted);
+  pointer-events: none;
+  z-index: 5;
 }
 
 /* Hero Sections */
@@ -243,13 +290,44 @@ header {
 }
 
 .input-group {
-  margin-bottom: 1.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.debt-row,
+.item-row {
+  display: grid;
+  gap: 1rem;
+  align-items: center;
+  background: var(--bg-main);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  margin-bottom: 1.5rem;
+  position: relative;
+  border: 1px solid var(--border);
+}
+
+.debt-row {
+  grid-template-columns: 2fr 1fr 1fr 1fr auto;
+}
+
+.item-row {
+  grid-template-columns: 1.6fr 1fr auto;
+}
+
+@media (max-width: 768px) {
+  .debt-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .item-row {
+    grid-template-columns: 1fr;
+  }
 }
 
 .input-group label {
   display: block;
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.8rem;
   font-size: 0.95rem;
   color: var(--secondary);
 }
@@ -361,6 +439,13 @@ footer {
   font-size: 14px;
 }
 
+.decimal-small {
+  font-size: 0.75em;
+  opacity: 0.8;
+  vertical-align: baseline;
+  margin-left: 1px;
+}
+
 /* Sticky Notice */
 .notice-box {
   background: #fffbeb;
@@ -384,3 +469,54 @@ footer {
   color: #92400e;
   text-transform: uppercase;
 }
+
+/* ---------- ToolFin Calculator Input Row Spacing Fix ---------- */
+
+/* each debt row becomes a proper grid */
+.tf-input-row,
+.form-row,
+.calculator-row{
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr auto;
+    gap: 14px;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+/* prevent inputs from stretching into each other */
+.debt-row input,
+.item-row input,
+.tf-input-row input,
+.form-row input,
+.calculator-row input{
+    width: 100%;
+    min-width: 0;
+}
+
+/* label field (like "Credit Card 1" / "Car Loan") */
+.debt-row input[type="text"],
+.item-row input[type="text"]{
+    padding-left: 14px;
+}
+
+/* remove inline spacing problems from specific calculator containers */
+#debt-list > .debt-row > *,
+#asset-list > .item-row > *,
+#liability-list > .item-row > *,
+.tf-input-row > *,
+.form-row > *,
+.calculator-row > *{
+    margin: 0;
+}
+
+/* mobile stacking for row components */
+@media (max-width: 720px){
+    .tf-input-row,
+    .form-row,
+    .calculator-row{
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+}
+
+/* ---------- end fix ---------- */

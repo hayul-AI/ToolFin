@@ -71,9 +71,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const monthlySavings = oldPayment - newPayment;
 
         // Render Results
-        resOldPayment.textContent = formatCurrencyDecimal(oldPayment);
-        resNewPayment.textContent = formatCurrencyDecimal(newPayment);
-        resMonthlySavings.textContent = formatCurrencyDecimal(monthlySavings);
+        resOldPayment.innerHTML = formatCurrencyDecimal(oldPayment);
+        resNewPayment.innerHTML = formatCurrencyDecimal(newPayment);
+        resMonthlySavings.innerHTML = formatCurrencyDecimal(monthlySavings);
 
         if (monthlySavings > 0.01) {
             const breakEven = closingCosts / monthlySavings;
@@ -81,12 +81,12 @@ document.addEventListener('DOMContentLoaded', () => {
             resBreakEven.style.color = "#10b981";
 
             const lifetimeSavings = (monthlySavings * months) - closingCosts;
-            resLifetimeSavings.textContent = formatCurrencyDecimal(lifetimeSavings);
+            resLifetimeSavings.innerHTML = formatCurrencyDecimal(lifetimeSavings);
             resLifetimeSavings.style.color = lifetimeSavings > 0 ? "#10b981" : "#e11d48";
         } else {
             resBreakEven.textContent = "N/A";
             resBreakEven.style.color = "#64748b";
-            resLifetimeSavings.textContent = formatCurrencyDecimal((monthlySavings * months) - closingCosts);
+            resLifetimeSavings.innerHTML = formatCurrencyDecimal((monthlySavings * months) - closingCosts);
             resLifetimeSavings.style.color = "#e11d48";
         }
     }
