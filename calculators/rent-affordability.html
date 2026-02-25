@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rent Affordability Calculator - ToolFin</title>
+  <meta name="description" content="Estimate your monthly rent budget based on your income, existing debts, and target rent-to-income ratio. See how much rent you can comfortably afford.">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container nav-container">
+      <a class="logo" href="/" aria-label="ToolFin Home">
+  <span class="logo-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+      <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+      <circle cx="8" cy="13" r="1"></circle>
+      <circle cx="12" cy="13" r="1"></circle>
+      <circle cx="16" cy="13" r="1"></circle>
+      <circle cx="8" cy="17" r="1"></circle>
+      <circle cx="12" cy="17" r="1"></circle>
+      <circle cx="16" cy="17" r="1"></circle>
+    </svg>
+  </span>
+  <span class="logo-text">ToolFin</span>
+</a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/methodology.html">Methodology</a>
+        <a href="/contact.html">Contact</a>
+        <select id="currency-selector"></select>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav style="margin: 2rem 0 1rem; font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">
+      <a href="/" style="color: inherit; text-decoration: none;">Home</a> / 
+      <a href="/housing.html" style="color: inherit; text-decoration: none;">Housing & Real Estate</a> / 
+      Rent Affordability
+    </nav>
+
+    <div class="hero" style="text-align: left; padding: 2rem 0 3rem;">
+      <h1 style="font-size: 3rem;">Rent Affordability Calculator</h1>
+      <p>Estimate a reasonable monthly rent budget based on your income, current debt obligations, and your preferred rent-to-income ratio. Find a balance between a great home and financial peace of mind.</p>
+    </div>
+
+    <div class="card">
+      <div class="calc-grid">
+        <div id="inputs">
+          <div class="input-group">
+            <label for="monthly-gross-income">Monthly Gross Income (Before Taxes)</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="monthly-gross-income" value="5000" step="100" min="0" required>
+            </div>
+          </div>
+
+          <div class="input-group" style="margin-top: 1rem; display: flex; align-items: center; gap: 0.75rem;">
+            <input type="checkbox" id="toggle-net-income" style="width: 20px; height: 20px; cursor: pointer;">
+            <label for="toggle-net-income" style="margin-bottom: 0; cursor: pointer; font-weight: 600;">Use Net Income (Take-Home) Instead?</label>
+          </div>
+
+          <div class="input-group" id="net-income-group" style="display: none; margin-top: 1rem; border-left: 3px solid var(--primary); padding-left: 1rem;">
+            <label for="monthly-net-income">Monthly Net Income</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="monthly-net-income" value="0" step="100" min="0">
+            </div>
+            <small style="color: var(--text-muted); display: block; margin-top: 0.4rem;">Using net income provides a more conservative and realistic budget.</small>
+          </div>
+
+          <div class="input-group">
+            <label for="monthly-debts">Monthly Debt Payments</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="monthly-debts" value="400" step="50" min="0">
+            </div>
+            <small style="color: var(--text-muted); display: block; margin-top: 0.4rem;">Loans, credit cards, etc. Do not include current rent.</small>
+          </div>
+
+          <div class="input-group">
+            <label for="rent-ratio">Target Rent Ratio (%)</label>
+            <div class="input-wrapper">
+              <input type="number" id="rent-ratio" value="30" step="1" min="1" max="100">
+            </div>
+            <small style="color: var(--text-muted); display: block; margin-top: 0.4rem;">30% is the standard rule of thumb.</small>
+          </div>
+
+          <div class="input-group" style="margin-top: 1.5rem; display: flex; align-items: center; gap: 0.75rem;">
+            <input type="checkbox" id="toggle-utilities" style="width: 20px; height: 20px; cursor: pointer;">
+            <label for="toggle-utilities" style="margin-bottom: 0; cursor: pointer; font-weight: 600;">Account for Utilities Separately?</label>
+          </div>
+
+          <div class="input-group" id="utilities-group" style="display: none; margin-top: 1rem; border-left: 3px solid var(--primary); padding-left: 1rem;">
+            <label for="monthly-utilities">Monthly Utilities Estimate</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="monthly-utilities" value="0" step="10" min="0">
+            </div>
+          </div>
+        </div>
+
+        <div id="results">
+          <div class="results-panel">
+            <div class="result-item">
+              <div class="result-label">Max Affordable Rent</div>
+              <div class="result-value" id="max-rent-result">$0</div>
+              <div id="rent-range-label" style="margin-top: 0.5rem; font-size: 1.1rem; font-weight: 800; color: var(--text-muted);">Range: $0 – $0</div>
+            </div>
+            
+            <div style="margin-top: 2rem; border-top: 2px solid var(--border); padding-top: 1.5rem; display: grid; gap: 1rem;">
+              <div style="display: flex; justify-content: space-between;">
+                <span style="font-weight: 700; color: var(--text-muted);">Monthly Debt Payments</span>
+                <span id="debt-display" style="font-weight: 800; color: #e11d48;">$0</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 0.5rem;">
+                <span style="font-weight: 700; color: var(--text-main);">Remaining for Everything Else</span>
+                <span id="remaining-budget" style="font-weight: 900; color: var(--primary);">$0</span>
+              </div>
+            </div>
+
+            <div id="interpretation-text" style="margin-top: 1.5rem; padding: 1rem; background: #f8fafc; border-radius: 8px; font-size: 0.9rem; line-height: 1.5; font-weight: 500;">
+              Enter your income and expenses to see your affordability results.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section style="margin-top: 4rem;">
+      <h2>What This Calculator Does</h2>
+      <p>The Rent Affordability Calculator helps you define a sustainable budget for your next home. It uses the widely accepted "30% Rule" while also allowing you to account for existing debts and utilities to ensure you aren't spread too thin financially.</p>
+
+      <h2>How Rent-to-Income Guidelines Work</h2>
+      <p>Financial experts and landlords typically suggest that your housing costs should not exceed <strong>30% of your gross monthly income</strong>. This is often the maximum threshold used by property managers to approve tenants. However, "affordability" is personal. If you have significant student loans or car payments, 30% might feel like a struggle, and you may want to aim closer to 20% or 25%.</p>
+
+      <h2>Result Interpretation</h2>
+      <p>The calculator provides three key metrics to guide your search:</p>
+      <ul>
+        <li><strong>Max Affordable Rent:</strong> This is the limit based on your chosen ratio, after subtracting existing debts and estimated utilities.</li>
+        <li><strong>Suggested Rent Range:</strong> This shows the spread between 25% (very comfortable) and 35% (reaching the limit) of your income.</li>
+        <li><strong>Remaining Budget:</strong> This represents the "disposable" income you have left for groceries, entertainment, savings, and taxes (if using gross income).</li>
+      </ul>
+
+      <h2>Example Scenario</h2>
+      <p>Suppose you earn $5,000 per month gross and have $400 in monthly debt (car/credit cards). Using the 30% rule ($1,500 budget):</p>
+      <ul>
+        <li>Without considering debts, your limit is $1,500.</li>
+        <li><strong>After debts:</strong> Your safe rent budget drops to <strong>$1,100</strong> if you want to maintain the same overall debt-to-income balance.</li>
+      </ul>
+
+      <h2>Practical Tips for Renters</h2>
+      <ul>
+        <li><strong>Calculate based on Take-Home pay.</strong> While landlords look at gross income, you live on your net pay. Using your actual paycheck amount in this calculator provides a much safer budget.</li>
+        <li><strong>Factor in "Hidden" Costs.</strong> Don't forget laundry, parking, pet fees, and renter's insurance when looking at listing prices.</li>
+        <li><strong>Check your credit score first.</strong> A higher score can sometimes waive high security deposits or allow you to rent with a slightly higher DTI ratio.</li>
+        <li><strong>Consider a roommate.</strong> Splitting a two-bedroom apartment is often 20-30% cheaper than renting a one-bedroom or studio alone.</li>
+        <li><strong>Negotiate utilities.</strong> Some older buildings include heat or water in the rent price, which can effectively increase your "affordable" base rent.</li>
+      </ul>
+
+      <h2>Frequently Asked Questions (FAQ)</h2>
+      <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
+        <div>
+          <h4 style="margin-bottom: 0.5rem;">Why is 30% the standard?</h4>
+          <p>This benchmark originated from US government housing programs in the 1960s. It was designed to ensure that families had enough income left over for other life essentials.</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 0.5rem;">Can I rent if I make less than 3x the rent?</h4>
+          <p>It is difficult. Most institutional landlords require your monthly gross income to be at least 3 times the rent (which is the 33% rule). You may need a guarantor or co-signer if you fall below this.</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 0.5rem;">Should I count my retirement contributions as debt?</h4>
+          <p>No, but they do reduce your take-home pay. If you contribute heavily to a 401(k), using the "Net Income" toggle in this calculator will give you a better result.</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 0.5rem;">Do utilities usually include internet and cable?</h4>
+          <p>Generally, "utilities" refers to electricity, water, gas, and trash. Internet and phone are considered subscription services, but you should definitely include them in your personal budget planning.</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 0.5rem;">How much should I save for a security deposit?</h4>
+          <p>Expect to have at least 3 times your monthly rent budget saved before moving: first month's rent, last month's rent, and a security deposit (usually equal to one month).</p>
+        </div>
+      </div>
+
+      <div class="compliance-statements" style="margin-top: 3rem; padding: 2rem; background: #f1f5f9; border-radius: 12px; font-size: 0.9rem;">
+        <p><strong>Legal Disclaimer:</strong> All results are estimates and do not account for every expense or local market condition. Individual budgets vary. This tool is for educational purposes only and is not financial advice.</p>
+        <p>Currency selection affects formatting and display only and does not use live exchange rates.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Related Calculators</h2>
+      <div class="next-steps-grid">
+        <a href="/calculators/rent-vs-buy.html" class="next-step-card">
+          <strong>Rent vs Buy Calculator</strong>
+          <p>Check if it makes more sense to keep renting or start looking for a home.</p>
+        </a>
+        <a href="/calculators/take-home-pay.html" class="next-step-card">
+          <strong>Take Home Pay Calculator</strong>
+          <p>Find out exactly how much you bring home after all taxes and deductions.</p>
+        </a>
+        <a href="/calculators/budget-planner.html" class="next-step-card">
+          <strong>Budget Planner</strong>
+          <p>Create a full breakdown of your monthly income and every expense.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" aria-label="ToolFin Home">
+  <span class="logo-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+      <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+      <circle cx="8" cy="13" r="1"></circle>
+      <circle cx="12" cy="13" r="1"></circle>
+      <circle cx="16" cy="13" r="1"></circle>
+      <circle cx="8" cy="17" r="1"></circle>
+      <circle cx="12" cy="17" r="1"></circle>
+      <circle cx="16" cy="17" r="1"></circle>
+    </svg>
+  </span>
+  <span class="logo-text">ToolFin</span>
+</a>
+          <p style="margin-top: 1.5rem;">Smarter financial modeling for global clarity.</p>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Platform</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/">Home</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/about.html">About ToolFin</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/methodology.html">Methodology</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Legal</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/disclaimer.html">Disclaimer</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/editorial-policy.html">Editorial Policy</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Support</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="trust-strip">
+        NOT FINANCIAL ADVICE • EDUCATIONAL USE ONLY • ESTIMATES ONLY • JURISDICTION DIFFERENCES APPLY
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/assets/rent-affordability.js"></script>
+  <script src="/assets/currency-options.js"></script>
+  <script src="/assets/tf-state.js"></script>
+</body>
+</html>
