@@ -1,95 +1,104 @@
 import { formatCurrency, formatCurrencyDecimal, getCurrency } from './common.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const homePriceInput = document.getElementById('home-price');
-  const downPaymentInput = document.getElementById('down-payment');
-  const downPaymentPercentInput = document.getElementById('down-payment-percent');
-  const loanTermInput = document.getElementById('loan-term');
-  const interestRateInput = document.getElementById('interest-rate');
-  const propertyTaxInput = document.getElementById('property-tax');
-  const homeInsuranceInput = document.getElementById('home-insurance');
-  const pmiToggle = document.getElementById('pmi-toggle');
+  const inputs = {
+    homePrice: document.getElementById('home-price'),
+    downPayment: document.getElementById('down-payment'),
+    downPercent: document.getElementById('down-payment-percent'),
+    loanTerm: document.getElementById('loan-term'),
+    interestRate: document.getElementById('interest-rate'),
+    propertyTax: document.getElementById('property-tax'),
+    homeInsurance: document.getElementById('home-insurance'),
+    pmiToggle: document.getElementById('pmi-toggle')
+  };
+
+  const results = {
+    monthlyPI: document.getElementById('res-monthly-pi'),
+    monthlyTotal: document.getElementById('res-monthly-total'),
+    totalPrincipal: document.getElementById('res-total-principal'),
+    totalInterest: document.getElementById('res-total-interest'),
+    totalCost: document.getElementById('res-total-cost')
+  };
+
   const calculateBtn = document.getElementById('calculate-btn');
 
-  // Result Elements
-  const monthlyPI = document.getElementById('monthly-pi');
-  const monthlyTotal = document.getElementById('monthly-total');
-  const totalPrincipal = document.getElementById('total-principal');
-  const totalInterest = document.getElementById('total-interest');
-  const totalPaid = document.getElementById('total-paid');
-
   function calculate() {
-    const price = parseFloat(homePriceInput.value) || 0;
-    const downPayment = parseFloat(downPaymentInput.value) || 0;
-    const termYears = parseFloat(loanTermInput.value) || 0;
-    const annualRate = parseFloat(interestRateInput.value) || 0;
+    const price = parseFloat(inputs.homePrice.value) || 0;
+    const downAmount = parseFloat(inputs.downPayment.value) || 0;
+    const termYears = parseFloat(inputs.loanTerm.value) || 30;
+    const annualRate = parseFloat(inputs.interestRate.value) || 0;
     
-    const principal = price - downPayment;
+    const principal = price - downAmount;
     const monthlyRate = (annualRate / 100) / 12;
     const numberOfPayments = termYears * 12;
 
-    let monthlyPayment = 0;
-    if (monthlyRate === 0) {
-      monthlyPayment = principal / numberOfPayments;
-    } else {
-      monthlyPayment = principal * (monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments)) / (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
+    let monthlyPI = 0;
+    if (principal > 0) {
+      if (monthlyRate === 0) {
+        monthlyPI = principal / numberOfPayments;
+      } else {
+        monthlyPI = principal * (monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments)) / (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
+      }
     }
 
-    const totalCost = monthlyPayment * numberOfPayments;
-    const totalInt = totalCost - principal;
-
-    // Advanced additions
-    const annualTax = parseFloat(propertyTaxInput.value) || 0;
-    const annualInsurance = parseFloat(homeInsuranceInput.value) || 0;
-    let monthlyPMI = 0;
-    if (pmiToggle.checked && (downPayment / price) < 0.2) {
-      // Simple PMI estimate: 0.5% of loan amount annually
-      monthlyPMI = (principal * 0.005) / 12;
+    const annualTax = parseFloat(inputs.propertyTax.value) || 0;
+    const annualIns = parseFloat(inputs.homeInsurance.value) || 0;
+    
+    let pmi = 0;
+    if (inputs.pmiToggle.checked && (downAmount / price) < 0.2) {
+      // 0.5% annual estimate for PMI
+      pmi = (principal * 0.005) / 12;
     }
 
-    const totalMonthly = monthlyPayment + (annualTax / 12) + (annualInsurance / 12) + monthlyPMI;
+    const totalMonthly = monthlyPI + (annualTax / 12) + (annualIns / 12) + pmi;
+    const totalPaid = (monthlyPI * numberOfPayments) + (annualTax * termYears) + (annualIns * termYears) + (pmi * numberOfPayments);
+    const totalInt = (monthlyPI * numberOfPayments) - principal;
 
     // Update UI
-    monthlyPI.innerHTML = formatCurrencyDecimal(monthlyPayment);
-    monthlyTotal.innerHTML = formatCurrencyDecimal(totalMonthly);
-    totalPrincipal.innerHTML = formatCurrency(principal);
-    totalInterest.innerHTML = formatCurrency(totalInt);
-    totalPaid.innerHTML = formatCurrency(totalCost + (annualTax * termYears) + (annualInsurance * termYears) + (monthlyPMI * numberOfPayments));
+    results.monthlyPI.innerHTML = formatCurrencyDecimal(monthlyPI);
+    results.monthlyTotal.innerHTML = formatCurrencyDecimal(totalMonthly);
+    results.totalPrincipal.innerHTML = formatCurrency(principal);
+    results.totalInterest.innerHTML = formatCurrency(totalInt);
+    results.totalCost.innerHTML = formatCurrency(totalPaid);
   }
 
-  // Event Listeners for auto-syncing down payment
-  homePriceInput.addEventListener('input', () => {
-    const price = parseFloat(homePriceInput.value) || 0;
-    const percent = parseFloat(downPaymentPercentInput.value) || 0;
-    downPaymentInput.value = (price * (percent / 100)).toFixed(0);
+  // Auto-sync down payment amount and percentage
+  inputs.homePrice.addEventListener('input', () => {
+    const price = parseFloat(inputs.homePrice.value) || 0;
+    const percent = parseFloat(inputs.downPercent.value) || 0;
+    inputs.downPayment.value = Math.round(price * (percent / 100));
     calculate();
   });
 
-  downPaymentInput.addEventListener('input', () => {
-    const price = parseFloat(homePriceInput.value) || 0;
-    const amount = parseFloat(downPaymentInput.value) || 0;
+  inputs.downPayment.addEventListener('input', () => {
+    const price = parseFloat(inputs.homePrice.value) || 0;
+    const amount = parseFloat(inputs.downPayment.value) || 0;
     if (price > 0) {
-      downPaymentPercentInput.value = ((amount / price) * 100).toFixed(1);
+      inputs.downPercent.value = ((amount / price) * 100).toFixed(1);
     }
     calculate();
   });
 
-  downPaymentPercentInput.addEventListener('input', () => {
-    const price = parseFloat(homePriceInput.value) || 0;
-    const percent = parseFloat(downPaymentPercentInput.value) || 0;
-    downPaymentInput.value = (price * (percent / 100)).toFixed(0);
+  inputs.downPercent.addEventListener('input', () => {
+    const price = parseFloat(inputs.homePrice.value) || 0;
+    const percent = parseFloat(inputs.downPercent.value) || 0;
+    inputs.downPayment.value = Math.round(price * (percent / 100));
     calculate();
   });
 
-  [loanTermInput, interestRateInput, propertyTaxInput, homeInsuranceInput, pmiToggle].forEach(el => {
-    el.addEventListener('input', calculate);
+  // Re-calculate on any change
+  Object.values(inputs).forEach(input => {
+    if (input.type === 'checkbox') {
+      input.addEventListener('change', calculate);
+    } else {
+      input.addEventListener('input', calculate);
+    }
   });
 
   calculateBtn.addEventListener('click', calculate);
 
-  // Initial Calculation
-  calculate();
-
-  // Listen for global currency changes
+  // Sync with global currency selector
   window.addEventListener('currencyChange', calculate);
+
+  calculate();
 });
