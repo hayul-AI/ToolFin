@@ -2,96 +2,125 @@
 (function() {
   console.log("ToolFin State Module Loading...");
 
-  // --- PDF Export Logic ---
-  window.exportToPDF = function() {
-    const title = document.title.split('-')[0].trim();
-    
-    // Scan inputs
-    const inputs = Array.from(document.querySelectorAll('main input, main select')).filter(i => i.id && i.type !== 'button' && i.type !== 'submit');
-    const inputData = inputs.map(input => {
-      let labelEl = document.querySelector(`label[for="${input.id}"]`);
-      let labelText = labelEl ? labelEl.innerText.replace(/\n/g, ' ') : input.id;
-      
-      let val = '';
-      if (input.type === 'checkbox') {
-        val = input.checked ? 'Yes' : 'No';
-      } else if (input.tagName === 'SELECT') {
-        val = input.options[input.selectedIndex] ? input.options[input.selectedIndex].text : input.value;
-      } else {
-        val = input.value;
-      }
-      
-      return `<tr><td style="padding:8px; border-bottom:1px solid #ddd;"><strong>${labelText}</strong></td><td style="padding:8px; border-bottom:1px solid #ddd; text-align:right;">${val}</td></tr>`;
-    }).join('');
+  // Load html2canvas for PNG/JPG support
+  if (!document.getElementById('html2canvas-script')) {
+    const script = document.createElement('script');
+    script.id = 'html2canvas-script';
+    script.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
+    document.head.appendChild(script);
+  }
 
-    // Scan results
-    let resultsHTML = '';
-    const resultsPanel = document.querySelector('.results-panel') || document.querySelector('#results-area') || document.querySelector('#results') || document.querySelector('.output-card');
-    
-    if (resultsPanel) {
-       const clone = resultsPanel.cloneNode(true);
-       clone.querySelectorAll('button, .tf-state-actions, #tf-state-actions').forEach(el => el.remove());
-       resultsHTML = clone.innerHTML;
-    } else {
-       resultsHTML = '<p>No results found. Please calculate first.</p>';
-    }
-
-    const printWindow = window.open('', '_blank');
-    if (!printWindow) {
-      alert("Please allow pop-ups to export the PDF report.");
-      return;
-    }
-
-    printWindow.document.write(`
+  // --- Report Generation Logic ---
+  function getReportHTML(title, inputData, resultsHTML) {
+    return `
       <!DOCTYPE html>
       <html>
       <head>
-        <title>Export - ${title}</title>
+        <title>${title} - ToolFin Report</title>
         <style>
-          body { font-family: 'Inter', -apple-system, sans-serif; padding: 40px; color: #1e293b; max-width: 800px; margin: 0 auto; line-height: 1.6; }
-          h1 { color: #0061FF; border-bottom: 2px solid #EBF3FF; padding-bottom: 10px; }
-          h2 { margin-top: 30px; color: #475569; }
+          body { font-family: 'Inter', -apple-system, sans-serif; padding: 40px; color: #1e293b; max-width: 800px; margin: 0 auto; line-height: 1.6; background: white; }
+          .report-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #EBF3FF; padding-bottom: 15px; margin-bottom: 20px; }
+          .report-header h1 { color: #0061FF; margin: 0; font-size: 24px; }
+          .report-date { font-size: 14px; color: #64748b; }
+          h2 { margin-top: 30px; color: #475569; font-size: 18px; border-left: 4px solid #0061FF; padding-left: 10px; }
           table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
-          .report-footer { margin-top: 50px; font-size: 0.8rem; color: #64748b; border-top: 1px solid #e2e8f0; padding-top: 20px; text-align: center; }
-          .result-label { font-size: 0.85rem; font-weight: 700; color: #64748b; text-transform: uppercase; margin-bottom: 0.5rem; }
-          .result-value { font-size: 2rem; font-weight: 900; color: #0061FF; }
-          .result-item { margin-bottom: 1.5rem; }
-          .card-accent, .tf-state-actions, button { display: none !important; }
+          td { padding: 10px; border-bottom: 1px solid #f1f5f9; font-size: 14px; }
+          .label { font-weight: 700; color: #1e293b; }
+          .value { text-align: right; font-weight: 600; color: #0061FF; }
+          .results-container { background: #f8fafc; padding: 25px; border-radius: 16px; border: 1px solid #e2e8f0; }
+          .report-footer { margin-top: 50px; font-size: 12px; color: #94a3b8; border-top: 1px solid #f1f5f9; padding-top: 20px; text-align: center; }
+          /* Preserve site result styles */
+          .result-label { font-size: 12px; font-weight: 700; color: #64748b; text-transform: uppercase; margin-bottom: 5px; }
+          .result-value { font-size: 28px; font-weight: 900; color: #0061FF; margin-bottom: 15px; }
+          .result-item { margin-bottom: 20px; }
+          .card-accent, .tf-state-actions, button, #tf-state-actions { display: none !important; }
         </style>
       </head>
       <body>
-        <h1>${title} - Report</h1>
-        <p>Generated on: ${new Date().toLocaleDateString()}</p>
+        <div class="report-header">
+          <h1>ToolFin Report</h1>
+          <div class="report-date">${new Date().toLocaleDateString()}</div>
+        </div>
+        <p style="font-weight: 600; font-size: 18px; color: #1e293b; margin-bottom: 20px;">${title}</p>
         
         <h2>Inputs</h2>
         <table><tbody>${inputData}</tbody></table>
         
-        <h2>Results</h2>
-        <div style="background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
-          ${resultsHTML}
-        </div>
+        <h2>Calculated Results</h2>
+        <div class="results-container">${resultsHTML}</div>
         
         <div class="report-footer">
-          Generated by ToolFin Calculator. Not financial advice. Estimates only.
+          Generated by ToolFin (toolfin.com). Not financial advice. Educational estimates only.
         </div>
-        <script>
-          window.onload = function() {
-            setTimeout(() => { window.print(); }, 500);
-          }
-        </script>
       </body>
       </html>
-    `);
-    printWindow.document.close();
+    `;
+  }
+
+  window.downloadReport = function(format) {
+    const title = document.title.split('-')[0].trim();
+    const inputs = Array.from(document.querySelectorAll('main input, main select')).filter(i => i.id && i.type !== 'button' && i.type !== 'submit' && i.id !== 'currency-selector');
+    
+    const inputData = inputs.map(input => {
+      let labelEl = document.querySelector(`label[for="${input.id}"]`);
+      let labelText = labelEl ? labelEl.innerText.replace(/\n/g, ' ') : input.id;
+      let val = input.tagName === 'SELECT' ? (input.options[input.selectedIndex]?.text || input.value) : (input.type === 'checkbox' ? (input.checked ? 'Yes' : 'No') : input.value);
+      return `<tr><td class="label">${labelText}</td><td class="value">${val}</td></tr>`;
+    }).join('');
+
+    const resultsPanel = document.querySelector('.results-panel') || document.querySelector('#results-area') || document.querySelector('#results') || document.querySelector('.output-card');
+    let resultsHTML = resultsPanel ? resultsPanel.innerHTML : '<p>No results found. Please calculate first.</p>';
+    
+    // Clean resultsHTML
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = resultsHTML;
+    tempDiv.querySelectorAll('button, .tf-state-actions, #tf-state-actions').forEach(el => el.remove());
+    resultsHTML = tempDiv.innerHTML;
+
+    const fullHTML = getReportHTML(title, inputData, resultsHTML);
+
+    if (format === 'pdf') {
+      const printWindow = window.open('', '_blank');
+      if (!printWindow) return alert("Please allow pop-ups.");
+      printWindow.document.write(fullHTML);
+      printWindow.document.close();
+      printWindow.onload = () => setTimeout(() => { printWindow.print(); }, 500);
+    } else {
+      // Image Export (PNG/JPG)
+      if (typeof html2canvas === 'undefined') return alert("Loading assets... please try again in a second.");
+      
+      const container = document.createElement('div');
+      container.style.position = 'fixed';
+      container.style.left = '-9999px';
+      container.style.top = '0';
+      container.style.width = '800px';
+      container.innerHTML = fullHTML;
+      document.body.appendChild(container);
+
+      // Wait for font/styles
+      setTimeout(() => {
+        html2canvas(container, {
+          backgroundColor: '#ffffff',
+          scale: 2, // Higher quality
+          logging: false,
+          useCORS: true
+        }).then(canvas => {
+          const link = document.createElement('a');
+          const fileName = `${title.toLowerCase().replace(/\s+/g, '-')}-report`;
+          link.download = `${fileName}.${format}`;
+          link.href = canvas.toDataURL(format === 'png' ? 'image/png' : 'image/jpeg', 0.9);
+          link.click();
+          document.body.removeChild(container);
+        });
+      }, 100);
+    }
   };
 
   // --- UI Injection Logic ---
   function injectUI() {
     const main = document.querySelector('main');
     if (!main || document.getElementById('tf-state-actions')) return;
-    
-    const inputs = main.querySelectorAll('input, select');
-    if (inputs.length === 0) return;
+    if (main.querySelectorAll('input, select').length === 0) return;
     
     const uiContainer = document.createElement('div');
     uiContainer.id = 'tf-state-actions';
@@ -103,10 +132,17 @@
     const primaryBtn = `background:#0061FF; color:white; border-color:#004ecc; box-shadow:0 4px 6px -1px rgba(0,97,255,0.2); ${btnBase}`;
     
     uiContainer.innerHTML = `
-      <button id="tf-btn-save" style="${whiteBtn}"><span>💾</span> Save Data</button>
-      <button id="tf-btn-load" style="${whiteBtn}"><span>📂</span> Load Data</button>
+      <button id="tf-btn-save" style="${whiteBtn}"><span>💾</span> Save</button>
+      <button id="tf-btn-load" style="${whiteBtn}"><span>📂</span> Load</button>
       <button id="tf-btn-clear" style="${whiteBtn} color:#e11d48;"><span>🗑️</span> Reset</button>
-      <button id="tf-btn-export" style="${primaryBtn}"><span>📄</span> Export PDF Report</button>
+      <div style="display:flex; gap:0;">
+        <button id="tf-btn-download" style="${primaryBtn} border-top-right-radius:0; border-bottom-right-radius:0;"><span>📄</span> Download Report</button>
+        <select id="tf-format-selector" style="background:#0061FF; color:white; border:1px solid #004ecc; border-left:none; padding:0 10px; border-top-right-radius:12px; border-bottom-right-radius:12px; cursor:pointer; font-weight:700; font-size:13px; outline:none;">
+          <option value="pdf">PDF</option>
+          <option value="png">PNG</option>
+          <option value="jpg">JPG</option>
+        </select>
+      </div>
     `;
     
     const resultsSelectors = ['.results-panel', '#results-area', '#results', '.output-card', '#results-section'];
@@ -115,11 +151,7 @@
       const el = document.querySelector(s);
       if (el) { targetElement = el.closest('.card') || el; break; }
     }
-
-    if (!targetElement) {
-      const calcSection = document.getElementById('calculator-section') || document.querySelector('.calc-grid')?.closest('section');
-      targetElement = calcSection || main.querySelector('.card');
-    }
+    if (!targetElement) targetElement = document.getElementById('calculator-section') || document.querySelector('.calc-grid')?.closest('section') || main.querySelector('.card');
 
     if (targetElement) targetElement.after(uiContainer);
     else main.prepend(uiContainer);
@@ -128,7 +160,10 @@
     document.getElementById('tf-btn-save').addEventListener('click', saveState);
     document.getElementById('tf-btn-load').addEventListener('click', loadState);
     document.getElementById('tf-btn-clear').addEventListener('click', clearState);
-    document.getElementById('tf-btn-export').addEventListener('click', window.exportToPDF);
+    document.getElementById('tf-btn-download').addEventListener('click', () => {
+      const fmt = document.getElementById('tf-format-selector').value;
+      downloadReport(fmt);
+    });
 
     // Hover effects
     const setupHover = (id, isPrimary) => {
@@ -145,7 +180,7 @@
       };
     };
     ['tf-btn-save', 'tf-btn-load', 'tf-btn-clear'].forEach(id => setupHover(id, false));
-    setupHover('tf-btn-export', true);
+    setupHover('tf-btn-download', true);
   }
 
   function getStorageKey() { return 'tf_state_' + window.location.pathname; }
@@ -169,8 +204,7 @@
     if (!stateStr) return alert('No saved data found.');
     try {
       const state = JSON.parse(stateStr);
-      const inputs = Array.from(document.querySelectorAll('main input, main select, main textarea'));
-      inputs.forEach(input => {
+      Array.from(document.querySelectorAll('main input, main select, main textarea')).forEach(input => {
         if (state[input.id] !== undefined) {
           if (input.type === 'checkbox' || input.type === 'radio') input.checked = state[input.id];
           else input.value = state[input.id];
