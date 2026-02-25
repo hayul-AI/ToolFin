@@ -16,23 +16,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const row = document.createElement('div');
     row.className = 'subscription-row';
     row.innerHTML = `
-      <div class="input-group">
+      <div class="tf-field-group">
         <label>Service Name</label>
-        <input type="text" class="service-name" placeholder="e.g. Netflix">
+        <div class="input-wrapper">
+          <input type="text" class="service-name" placeholder="e.g. Netflix">
+        </div>
       </div>
-      <div class="input-group">
+      <div class="tf-field-group">
         <label>Price</label>
         <div class="input-wrapper has-prefix">
           <span class="prefix currency-symbol">$</span>
           <input type="number" class="service-price" value="15" step="0.01" min="0">
         </div>
       </div>
-      <div class="input-group">
+      <div class="tf-field-group">
         <label>Billing</label>
-        <select class="service-cycle">
-          <option value="monthly">Monthly</option>
-          <option value="yearly">Annual</option>
-        </select>
+        <div class="input-wrapper">
+          <select class="service-cycle">
+            <option value="monthly">Monthly</option>
+            <option value="yearly">Annual</option>
+          </select>
+        </div>
       </div>
       <button class="remove-btn">Remove</button>
     `;

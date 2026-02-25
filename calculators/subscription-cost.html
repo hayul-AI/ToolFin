@@ -10,42 +10,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    .subscription-row {
-      display: flex;
-      align-items: flex-end;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 18px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--border);
-      overflow: visible; /* Ensure dropdowns aren't clipped */
-    }
-    .subscription-row .input-group {
-      margin-bottom: 0;
-    }
-    /* 1) Service Name: flex-1, min-w-180 */
-    .subscription-row .input-group:nth-child(1) {
-      flex: 1;
-      min-width: 180px;
-    }
-    /* 2) Price: w-110 */
-    .subscription-row .input-group:nth-child(2) {
-      width: 110px;
-    }
-    .subscription-row .input-group:nth-child(2) .input-wrapper {
-      width: 110px !important;
-      min-width: 110px !important;
-    }
-    /* 3) Billing: w-130, shrink-0 */
-    .subscription-row .input-group:nth-child(3) {
-      width: 130px;
-      flex-shrink: 0;
-    }
-    .subscription-row .input-group:nth-child(3) select {
-      width: 130px !important;
-      min-width: 130px !important;
-    }
-    /* 4) Remove Button: shrink-0, whitespace-nowrap */
     .remove-btn {
       background: #fee2e2;
       color: #991b1b;
@@ -55,12 +19,11 @@
       cursor: pointer;
       font-weight: 600;
       transition: background 0.2s;
-      height: 48px;
+      height: 48px; /* Align with larger inputs */
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      white-space: nowrap;
     }
     .remove-btn:hover {
       background: #fecaca;
@@ -80,29 +43,6 @@
     .add-btn:hover {
       background: #e2e8f0;
       border-color: var(--primary);
-    }
-    /* Responsive overrides */
-    @media (max-width: 900px) {
-      /* Handled by flex-wrap and min-widths effectively, but for exact 2-row layout if needed: */
-      .subscription-row .input-group:nth-child(1) {
-        flex-basis: 100%;
-      }
-    }
-    @media (max-width: 520px) {
-      .subscription-row {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 12px;
-      }
-      .subscription-row .input-group,
-      .subscription-row .input-wrapper,
-      .subscription-row select {
-        width: 100% !important;
-        min-width: 0 !important;
-      }
-      .remove-btn {
-        width: 100%;
-      }
     }
   </style>
 </head>

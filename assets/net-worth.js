@@ -17,12 +17,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const row = document.createElement('div');
     row.className = 'item-row';
     row.innerHTML = `
-      <div class="input-wrapper">
-        <input type="text" class="item-name" placeholder="${type === 'asset' ? 'e.g. Savings' : 'e.g. Car Loan'}" value="${name}">
+      <div class="tf-field-group">
+        <label>${type === 'asset' ? 'Asset' : 'Liability'} Name</label>
+        <div class="input-wrapper">
+          <input type="text" class="item-name" placeholder="${type === 'asset' ? 'e.g. Savings' : 'e.g. Car Loan'}" value="${name}">
+        </div>
       </div>
-      <div class="input-wrapper has-prefix">
-        <span class="prefix currency-symbol">$</span>
-        <input type="number" class="item-value" value="${value}" step="100">
+      <div class="tf-field-group">
+        <label>Value</label>
+        <div class="input-wrapper has-prefix">
+          <span class="prefix currency-symbol">$</span>
+          <input type="number" class="item-value" value="${value}" step="100">
+        </div>
       </div>
       <button class="remove-btn" title="Remove">&times;</button>
     `;
