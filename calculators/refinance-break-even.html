@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Refinance Break-Even Calculator - ToolFin</title>
+  <meta name="description" content="Calculate your mortgage refinance break-even point. See how long it takes for monthly savings to cover closing costs and if refinancing makes sense for you.">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container nav-container">
+      <a class="logo" href="/" aria-label="ToolFin Home">
+  <span class="logo-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+      <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+      <circle cx="8" cy="13" r="1"></circle>
+      <circle cx="12" cy="13" r="1"></circle>
+      <circle cx="16" cy="13" r="1"></circle>
+      <circle cx="8" cy="17" r="1"></circle>
+      <circle cx="12" cy="17" r="1"></circle>
+      <circle cx="16" cy="17" r="1"></circle>
+    </svg>
+  </span>
+  <span class="logo-text">ToolFin</span>
+</a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/methodology.html">Methodology</a>
+        <a href="/contact.html">Contact</a>
+        <select id="currency-selector"></select>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav style="margin: 2rem 0 1rem; font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">
+      <a href="/" style="color: inherit; text-decoration: none;">Home</a> / 
+      <a href="/housing.html" style="color: inherit; text-decoration: none;">Housing & Real Estate</a> / 
+      Refinance Break-Even
+    </nav>
+
+    <div class="hero" style="text-align: left; padding: 2rem 0 3rem;">
+      <h1 style="font-size: 3rem;">Refinance Break-Even Calculator</h1>
+      <p>Find out exactly how long it will take for your monthly interest savings to "pay back" the closing costs of a new loan. Determine if refinancing is a smart financial move for your timeline.</p>
+    </div>
+
+    <div class="card">
+      <div class="calc-grid">
+        <div id="inputs">
+          <div class="input-group">
+            <label for="loan-balance">Remaining Loan Balance</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="loan-balance" value="300000" step="1000" min="0" required>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="input-group">
+              <label for="current-rate">Current Rate (%)</label>
+              <div class="input-wrapper">
+                <input type="number" id="current-rate" value="6.5" step="0.1" min="0" required>
+              </div>
+            </div>
+            <div class="input-group">
+              <label for="current-term">Remaining Term</label>
+              <div class="input-wrapper">
+                <select id="current-term" class="input">
+                  <option value="5">5 Years</option>
+                  <option value="10">10 Years</option>
+                  <option value="15">15 Years</option>
+                  <option value="20">20 Years</option>
+                  <option value="25" selected>25 Years</option>
+                  <option value="30">30 Years</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed var(--border);">
+            <div class="input-group">
+              <label for="new-rate">New Rate (%)</label>
+              <div class="input-wrapper">
+                <input type="number" id="new-rate" value="5.5" step="0.1" min="0" required>
+              </div>
+            </div>
+            <div class="input-group">
+              <label for="new-term">New Term</label>
+              <div class="input-wrapper">
+                <select id="new-term" class="input">
+                  <option value="5">5 Years</option>
+                  <option value="10">10 Years</option>
+                  <option value="15">15 Years</option>
+                  <option value="20">20 Years</option>
+                  <option value="30" selected>30 Years</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="closing-costs">Estimated Closing Costs</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="closing-costs" value="5000" step="100" min="0" required>
+            </div>
+            <small style="color: var(--text-muted); display: block; margin-top: 0.4rem;">Usually 2% to 5% of the loan amount.</small>
+          </div>
+
+          <div class="input-group" style="margin-top: 1.5rem; display: flex; align-items: center; gap: 0.75rem;">
+            <input type="checkbox" id="toggle-cashout" style="width: 20px; height: 20px; cursor: pointer;">
+            <label for="toggle-cashout" style="margin-bottom: 0; cursor: pointer; font-weight: 600;">Include Cash-Out Amount?</label>
+          </div>
+
+          <div class="input-group" id="cashout-group" style="display: none; margin-top: 1rem; border-left: 3px solid var(--primary); padding-left: 1rem;">
+            <label for="cash-out">Cash-Out Amount</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="cash-out" value="0" step="1000" min="0">
+            </div>
+          </div>
+        </div>
+
+        <div id="results">
+          <div class="results-panel">
+            <div class="result-item">
+              <div class="result-label">Break-Even Time</div>
+              <div class="result-value" id="break-even-result">0 Months</div>
+              <div id="break-even-years" style="margin-top: 0.5rem; font-size: 1.1rem; font-weight: 800; color: var(--text-muted);">(0.0 Years)</div>
+            </div>
+            
+            <div style="margin-top: 2rem; border-top: 2px solid var(--border); padding-top: 1.5rem; display: grid; gap: 1rem;">
+              <div style="display: flex; justify-content: space-between;">
+                <span style="font-weight: 700; color: var(--text-muted);">Current Payment</span>
+                <span id="current-payment-display" style="font-weight: 800;">$0</span>
+              </div>
+              <div style="display: flex; justify-content: space-between;">
+                <span style="font-weight: 700; color: var(--text-muted);">New Payment</span>
+                <span id="new-payment-display" style="font-weight: 800;">$0</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 0.5rem;">
+                <span style="font-weight: 700; color: var(--text-main);">Monthly Savings</span>
+                <span id="monthly-savings-display" style="font-weight: 900; color: #166534;">$0</span>
+              </div>
+            </div>
+
+            <div id="interpretation-note" style="margin-top: 1.5rem; padding: 1rem; background: #f8fafc; border-radius: 8px; font-size: 0.9rem; line-height: 1.5; font-weight: 500;">
+              If you plan to move before your break-even point, refinancing may not pay off.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section style="margin-top: 4rem;">
+      <h2>What This Calculator Does</h2>
+      <p>The Refinance Break-Even Calculator determines the "recoupment period"—the number of months it takes for the monthly savings generated by a lower interest rate to equal the up-front costs of obtaining the new loan. It helps you decide if the long-term benefit of a lower rate outweighs the immediate expense of closing costs.</p>
+
+      <h2>How Break-Even Works</h2>
+      <p>Refinancing isn't free. Even if you "roll" the costs into the loan balance, you are still paying for them. The logic is simple: if you spend $5,000 on closing costs to save $200 per month, it will take you 25 months ($5,000 / $200) to break even. Every month after that is "pure profit." If you sell the house in 20 months, you have actually lost money by refinancing.</p>
+
+      <h2>How Monthly Payments Are Estimated</h2>
+      <p>The calculator uses a standard amortization formula to estimate the <strong>Principal and Interest (P&I)</strong> portions of your payment. It does not include taxes, homeowners insurance, or private mortgage insurance (PMI), as these typically remain similar regardless of your interest rate (unless you are moving to a different loan type or elimination of PMI is part of your goal).</p>
+
+      <h2>Result Interpretation</h2>
+      <p>A "good" break-even period depends on your plans for the property:</p>
+      <ul>
+        <li><strong>Short-Term (under 2 years):</strong> Generally considered an excellent candidate for refinancing if you plan to stay for 5+ years.</li>
+        <li><strong>Mid-Term (3 to 5 years):</strong> Acceptable, but you should be certain you won't relocate or sell before the period ends.</li>
+        <li><strong>Long-Term (over 5 years):</strong> May not be worth it unless the interest rate drop is significant or you are specifically looking to change the loan term (e.g., switching from a 30-year to a 15-year mortgage).</li>
+      </ul>
+
+      <h2>Example Scenario</h2>
+      <p>Imagine you have a $300,000 balance at 7% interest with 25 years left ($2,120 payment). You find a new 30-year loan at 6% with $6,000 in closing costs. Your new payment becomes $1,798.</p>
+      <ul>
+        <li><strong>Monthly Savings:</strong> $322</li>
+        <li><strong>Closing Costs:</strong> $6,000</li>
+        <li><strong>Break-Even:</strong> 18.6 Months (approx. 1.5 years)</li>
+      </ul>
+
+      <h2>Practical Tips for Refinancing</h2>
+      <ul>
+        <li><strong>Shop Multiple Lenders:</strong> Closing costs can vary significantly between banks. Get at least three Loan Estimates to compare "Section A" fees.</li>
+        <li><strong>Consider "No-Cost" Refis:</strong> Some lenders offer a higher interest rate in exchange for paying your closing costs. This eliminates the break-even period but reduces your long-term savings.</li>
+        <li><strong>Watch the Clock:</strong> If you reset a 25-year remaining term back to a new 30-year term, you might save money monthly, but you could pay more in total interest over the life of the loan.</li>
+        <li><strong>Check your Credit Score:</strong> A higher score unlocks the lowest available rates, which dramatically shortens your break-even time.</li>
+      </ul>
+
+      <h2>Frequently Asked Questions (FAQ)</h2>
+      <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
+        <div>
+          <h4 style="margin-bottom: 0.5rem;">What are typical closing costs for a refinance?</h4>
+          <p>Expect to pay between 2% and 5% of your loan amount. This includes appraisal fees, title insurance, origination charges, and credit report fees.</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 0.5rem;">Should I refinance if I plan to sell in 3 years?</h4>
+          <p>Only if your break-even point is well under 36 months. Always leave a "buffer" of 6-12 months in case your plans change and you sell earlier than expected.</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 0.5rem;">Does a cash-out refinance change the break-even?</h4>
+          <p>Yes. A cash-out refinance increases your principal balance, which can increase your monthly payment even if the interest rate is lower. In this case, the "benefit" isn't monthly savings, but rather the access to liquid capital.</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 0.5rem;">Can I roll closing costs into the loan?</h4>
+          <p>Yes, most lenders allow this. However, it increases your loan balance and interest paid, which the calculator accounts for if you include those costs in the "Remaining Balance" or "Cash-Out" fields.</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 0.5rem;">What is the "1% Rule"?</h4>
+          <p>A common rule of thumb says you should refinance if you can lower your rate by at least 1%. However, with modern low-cost options, even a 0.5% drop can make sense if you stay in the home long enough.</p>
+        </div>
+      </div>
+
+      <div class="compliance-statements" style="margin-top: 3rem; padding: 2rem; background: #f1f5f9; border-radius: 12px; font-size: 0.9rem;">
+        <p><strong>Legal Disclaimer:</strong> All results are mathematical estimates for educational purposes only. Actual rates, fees, and loan terms vary by lender and borrower qualifications. This is not financial advice.</p>
+        <p>Currency selection affects formatting and display only and does not use live exchange rates.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Related Calculators</h2>
+      <div class="next-steps-grid">
+        <a href="/calculators/mortgage.html" class="next-step-card">
+          <strong>Mortgage Calculator</strong>
+          <p>Calculate full monthly payments including taxes and insurance.</p>
+        </a>
+        <a href="/calculators/mortgage-extra-payment.html" class="next-step-card">
+          <strong>Extra Payment Calculator</strong>
+          <p>See how much time and interest you save by adding extra to your current loan.</p>
+        </a>
+        <a href="/calculators/apr.html" class="next-step-card">
+          <strong>APR Calculator</strong>
+          <p>Compare the true cost of different loan offers side-by-side.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" aria-label="ToolFin Home">
+  <span class="logo-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+      <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+      <circle cx="8" cy="13" r="1"></circle>
+      <circle cx="12" cy="13" r="1"></circle>
+      <circle cx="16" cy="13" r="1"></circle>
+      <circle cx="8" cy="17" r="1"></circle>
+      <circle cx="12" cy="17" r="1"></circle>
+      <circle cx="16" cy="17" r="1"></circle>
+    </svg>
+  </span>
+  <span class="logo-text">ToolFin</span>
+</a>
+          <p style="margin-top: 1.5rem;">Smarter financial modeling for global clarity.</p>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Platform</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/">Home</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/about.html">About ToolFin</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/methodology.html">Methodology</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Legal</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/disclaimer.html">Disclaimer</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/editorial-policy.html">Editorial Policy</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Support</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="trust-strip">
+        NOT FINANCIAL ADVICE • EDUCATIONAL USE ONLY • ESTIMATES ONLY • JURISDICTION DIFFERENCES APPLY
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/assets/refinance-break-even.js"></script>
+  <script src="/assets/currency-options.js"></script>
+  <script src="/assets/tf-state.js"></script>
+</body>
+</html>
