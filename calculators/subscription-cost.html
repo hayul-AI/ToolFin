@@ -12,12 +12,22 @@
   <style>
     .subscription-row {
       display: grid;
-      grid-template-columns: 2fr 1.5fr 1fr auto;
-      gap: 1rem;
+      grid-template-columns: minmax(220px, 1fr) 160px 160px auto;
+      column-gap: 18px;
+      row-gap: 10px;
       align-items: end;
-      margin-bottom: 1rem;
-      padding-bottom: 1rem;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
       border-bottom: 1px solid var(--border);
+    }
+    .subscription-row .input-group {
+      margin-bottom: 0;
+    }
+    .subscription-row input, .subscription-row select {
+      width: 100%;
+    }
+    .subscription-row .input-wrapper {
+      width: 160px;
     }
     .remove-btn {
       background: #fee2e2;
@@ -28,6 +38,10 @@
       cursor: pointer;
       font-weight: 600;
       transition: background 0.2s;
+      height: 42px; /* Center with inputs */
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .remove-btn:hover {
       background: #fecaca;
@@ -48,10 +62,17 @@
       background: #e2e8f0;
       border-color: var(--primary);
     }
-    @media (max-width: 640px) {
+    @media (max-width: 767px) {
       .subscription-row {
-        grid-template-columns: 1fr;
-        gap: 0.5rem;
+        grid-template-columns: 1fr 1fr auto;
+        gap: 12px;
+      }
+      .subscription-row > div:first-child {
+        grid-column: span 3;
+      }
+      .subscription-row .input-wrapper,
+      .subscription-row select {
+        width: 100%;
       }
     }
   </style>

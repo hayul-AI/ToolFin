@@ -16,20 +16,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const row = document.createElement('div');
     row.className = 'subscription-row';
     row.innerHTML = `
-      <div class="input-group" style="margin-bottom: 0;">
+      <div class="input-group">
         <label>Service Name</label>
-        <input type="text" class="service-name" placeholder="e.g. Netflix" style="padding: 0.6rem;">
+        <input type="text" class="service-name" placeholder="e.g. Netflix">
       </div>
-      <div class="input-group" style="margin-bottom: 0;">
+      <div class="input-group">
         <label>Price</label>
         <div class="input-wrapper has-prefix">
           <span class="prefix currency-symbol">$</span>
           <input type="number" class="service-price" value="15" step="0.01" min="0">
         </div>
       </div>
-      <div class="input-group" style="margin-bottom: 0;">
+      <div class="input-group">
         <label>Billing</label>
-        <select class="service-cycle" style="padding: 0.6rem; width: 100%; border: 1px solid var(--border); border-radius: 6px;">
+        <select class="service-cycle">
           <option value="monthly">Monthly</option>
           <option value="yearly">Annual</option>
         </select>
@@ -70,10 +70,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const total10Yr = totalYearly * 10;
 
     // Update UI
-    results.monthly.innerHTML = formatCurrencyDecimal(totalMonthly);
-    results.yearly.innerHTML = formatCurrencyDecimal(totalYearly);
-    results.fiveYear.innerHTML = formatCurrencyDecimal(total5Yr);
-    results.tenYear.innerHTML = formatCurrencyDecimal(total10Yr);
+    results.monthly.textContent = formatCurrencyDecimal(totalMonthly, false);
+    results.yearly.textContent = formatCurrencyDecimal(totalYearly, false);
+    results.fiveYear.textContent = formatCurrencyDecimal(total5Yr, false);
+    results.tenYear.textContent = formatCurrencyDecimal(total10Yr, false);
 
     updateInterpretation(totalMonthly, rows.length);
   }
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    let text = `You currently have ${count} subscription${count > 1 ? 's' : ''} costing you ${formatCurrencyDecimal(monthly)} per month. `;
+    let text = `You currently have ${count} subscription${count > 1 ? 's' : ''} costing you ${formatCurrencyDecimal(monthly, false)} per month. `;
     
     if (monthly > 150) {
       text += "Your recurring spending is relatively high. Auditing these services could significantly boost your monthly savings.";
