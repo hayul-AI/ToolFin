@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retirement Contribution Calculator - ToolFin</title>
+  <meta name="description" content="Estimate how your salary contributions and employer matches grow into retirement savings over time with our retirement contribution calculator.">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container nav-container">
+      <a class="logo" href="/" aria-label="ToolFin Home">
+  <span class="logo-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+      <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+      <circle cx="8" cy="13" r="1"></circle>
+      <circle cx="12" cy="13" r="1"></circle>
+      <circle cx="16" cy="13" r="1"></circle>
+      <circle cx="8" cy="17" r="1"></circle>
+      <circle cx="12" cy="17" r="1"></circle>
+      <circle cx="16" cy="17" r="1"></circle>
+    </svg>
+  </span>
+  <span class="logo-text">ToolFin</span>
+</a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/methodology.html">Methodology</a>
+        <a href="/contact.html">Contact</a>
+        <select id="currency-selector"></select>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav style="margin: 2rem 0 1rem; font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">
+      <a href="/" style="color: inherit; text-decoration: none;">Home</a> / 
+      <a href="/income.html" style="color: inherit; text-decoration: none;">Income, Tax & Salary</a> / 
+      Retirement Contribution
+    </nav>
+
+    <div class="hero" style="text-align: left; padding: 2rem 0 3rem;">
+      <h1 style="font-size: 3rem;">Retirement Contribution Calculator</h1>
+      <p>Estimate how your salary contributions and employer matches grow into retirement savings. See the power of consistent investing over your career.</p>
+    </div>
+
+    <div class="card">
+      <div class="calc-grid">
+        <div id="inputs">
+          <div class="input-group">
+            <label for="annual-salary">Annual Salary</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="annual-salary" value="60000" step="1000" min="0" required>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="contribution-rate">Contribution Rate (%)</label>
+            <div class="input-wrapper">
+              <input type="number" id="contribution-rate" value="5" step="0.1" min="0" max="100">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="employer-match">Employer Match (%)</label>
+            <div class="input-wrapper">
+              <input type="number" id="employer-match" value="3" step="0.1" min="0" max="100">
+            </div>
+            <small style="color: var(--text-muted); display: block; margin-top: 0.4rem;">The percentage of your salary your employer adds.</small>
+          </div>
+
+          <div class="input-group">
+            <label for="annual-return">Annual Investment Return (%)</label>
+            <div class="input-wrapper">
+              <input type="number" id="annual-return" value="6" step="0.1" min="-100">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="years-invest">Years to Invest</label>
+            <div class="input-wrapper">
+              <input type="number" id="years-invest" value="30" step="1" min="1" max="60">
+            </div>
+          </div>
+        </div>
+
+        <div id="results">
+          <div class="results-panel">
+            <div class="result-item">
+              <div class="result-label">Estimated Retirement Balance</div>
+              <div class="result-value" id="future-balance-result">$0</div>
+            </div>
+            
+            <div style="margin-top: 2rem; border-top: 2px solid var(--border); padding-top: 1.5rem; display: grid; gap: 1rem;">
+              <div style="display: flex; justify-content: space-between;">
+                <span style="font-weight: 700; color: var(--text-muted);">Annual Employee Contribution</span>
+                <span id="annual-employee-contrib" style="font-weight: 800;">$0</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 0.5rem;">
+                <span style="font-weight: 700; color: var(--text-muted);">Annual Employer Contribution</span>
+                <span id="annual-employer-contrib" style="font-weight: 800;">$0</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 0.5rem;">
+                <span style="font-weight: 700; color: var(--text-main);">Total Contributions Per Year</span>
+                <span id="total-annual-contrib" style="font-weight: 900; color: var(--primary);">$0</span>
+              </div>
+            </div>
+
+            <div id="interpretation-text" style="margin-top: 1.5rem; padding: 1rem; background: #f8fafc; border-radius: 8px; font-size: 0.9rem; line-height: 1.5; font-weight: 500;">
+              Your retirement balance is projected based on your current inputs.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 2rem;">
+      <h3>Contribution Growth Over Time</h3>
+      <div style="overflow-x: auto; margin-top: 1rem;">
+        <table style="width: 100%; border-collapse: collapse; text-align: left;">
+          <thead>
+            <tr style="border-bottom: 2px solid var(--border);">
+              <th style="padding: 1rem 0.5rem; font-weight: 700;">Year</th>
+              <th style="padding: 1rem 0.5rem; font-weight: 700;">Balance Estimate</th>
+            </tr>
+          </thead>
+          <tbody id="growth-table-body">
+            <!-- Table rows will be injected by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <section style="margin-top: 4rem;">
+      <h2>What This Calculator Does</h2>
+      <p>The Retirement Contribution Calculator helps you visualize the future value of your retirement account based on your salary, your contribution rate, and your employer's matching contributions. It demonstrates how consistent contributions, combined with compound interest, can build significant wealth over a long-term horizon.</p>
+
+      <h2>How the Calculation Works</h2>
+      <p>This calculator uses the formula for the future value of an ordinary annuity to estimate your balance. Each year, your total contributions (yours plus your employer's) are added to the account and then grow at the assumed annual investment return rate.</p>
+      <p>The core concept is <strong>compound interest</strong>: you earn returns not just on your original contributions, but also on the returns those contributions have already generated in previous years. This creates an "snowball effect" where your balance grows faster the longer you stay invested.</p>
+
+      <h2>Result Interpretation</h2>
+      <p>Your results show the estimated final balance at the end of your investment period. Key takeaways usually include:</p>
+      <ul>
+        <li><strong>Maximize the Match:</strong> Employer matching is essentially a "100% return" on the portion of your salary you contribute to meet the match limit. It is one of the most effective ways to boost your retirement savings.</li>
+        <li><strong>Small Rates, Big Impact:</strong> Increasing your contribution rate by even 1% or 2% early in your career can result in hundreds of thousands of dollars in additional savings by retirement.</li>
+        <li><strong>Time is Your Best Friend:</strong> The "Years to Invest" field typically has the most dramatic impact on the final result. Starting just 5 or 10 years earlier can double your eventual nest egg.</li>
+      </ul>
+
+      <h2>Example Scenario</h2>
+      <p>Suppose you earn $60,000 per year. You contribute 5% ($3,000) and your employer matches 3% ($1,800), for a total of $4,800 per year. If you invest this for 30 years at a 6% average annual return, your estimated balance would grow to approximately <strong>$380,000</strong>, despite only contributing $144,000 total.</p>
+
+      <h2>Practical Tips for Retirement Saving</h2>
+      <ul>
+        <li><strong>Contribute at least enough to get the full employer match.</strong> Don't leave free money on the table.</li>
+        <li><strong>Automate your savings.</strong> Have your contributions taken directly from your paycheck so you never "see" the money and aren't tempted to spend it.</li>
+        <li><strong>Increase your rate with every raise.</strong> When you get a salary increase, dedicate half of the raise to your retirement contribution before you get used to the higher take-home pay.</li>
+        <li><strong>Consider your risk tolerance.</strong> Younger investors can typically afford higher-return (but more volatile) investments like stocks, while those closer to retirement may prefer more stable bonds.</li>
+        <li><strong>Stay the course.</strong> Markets fluctuate, but retirement is a long-term goal. Avoid making emotional decisions based on short-term market movements.</li>
+      </ul>
+
+      <h2>Frequently Asked Questions (FAQ)</h2>
+      <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
+        <div>
+          <h4 style="margin-bottom: 0.5rem;">Does this calculator account for inflation?</h4>
+          <p>This calculator provides "nominal" values, meaning it does not automatically adjust for the future purchasing power of money. To see "real" values in today's dollars, you can subtract an estimated inflation rate (usually 2-3%) from your expected investment return.</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 0.5rem;">Should I use a Pre-tax (401k) or Post-tax (Roth) account?</h4>
+          <p>Pre-tax accounts lower your taxable income today, while Roth accounts allow you to withdraw money tax-free in retirement. The math depends on whether you expect your tax rate to be higher or lower in the future.</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 0.5rem;">What is a realistic investment return?</h4>
+          <p>The historical average return for the S&P 500 is around 10% before inflation, but many advisors suggest using a more conservative 6% or 7% for long-term planning to account for market cycles and fees.</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 0.5rem;">Can I contribute more than my employer matches?</h4>
+          <p>Yes! Most retirement plans have annual contribution limits set by the government that are much higher than a typical employer match. Check your local regulations (like IRS limits in the US) for current maximums.</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 0.5rem;">What happens if I change jobs?</h4>
+          <p>In most cases, you keep the money you contributed and the "vested" portion of your employer's contributions. You can typically roll these funds into an IRA or into your new employer's retirement plan.</p>
+        </div>
+      </div>
+
+      <div class="compliance-statements" style="margin-top: 3rem; padding: 2rem; background: #f1f5f9; border-radius: 12px; font-size: 0.9rem;">
+        <p><strong>Legal Disclaimer:</strong> All results are based on mathematical calculations and are estimates only. Investment returns are not guaranteed and actual results may vary. This is not financial or investment advice.</p>
+        <p>Currency selection affects formatting and display only and does not use live exchange rates.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Related Calculators</h2>
+      <div class="next-steps-grid">
+        <a href="/calculators/take-home-pay.html" class="next-step-card">
+          <strong>Take Home Pay Calculator</strong>
+          <p>See how retirement contributions affect your actual paycheck today.</p>
+        </a>
+        <a href="/calculators/fire-calculator.html" class="next-step-card">
+          <strong>FIRE Calculator</strong>
+          <p>Find out when you can retire based on your savings rate and expenses.</p>
+        </a>
+        <a href="/calculators/compound-interest.html" class="next-step-card">
+          <strong>Compound Interest Calculator</strong>
+          <p>Explore the general power of compounding with lump sums and additions.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" aria-label="ToolFin Home">
+  <span class="logo-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+      <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+      <circle cx="8" cy="13" r="1"></circle>
+      <circle cx="12" cy="13" r="1"></circle>
+      <circle cx="16" cy="13" r="1"></circle>
+      <circle cx="8" cy="17" r="1"></circle>
+      <circle cx="12" cy="17" r="1"></circle>
+      <circle cx="16" cy="17" r="1"></circle>
+    </svg>
+  </span>
+  <span class="logo-text">ToolFin</span>
+</a>
+          <p style="margin-top: 1.5rem;">Smarter financial modeling for global clarity.</p>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Platform</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/">Home</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/about.html">About ToolFin</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/methodology.html">Methodology</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Legal</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/disclaimer.html">Disclaimer</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/editorial-policy.html">Editorial Policy</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Support</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="trust-strip">
+        NOT FINANCIAL ADVICE • EDUCATIONAL USE ONLY • ESTIMATES ONLY • JURISDICTION DIFFERENCES APPLY
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/assets/retirement-contribution.js"></script>
+  <script src="/assets/currency-options.js"></script>
+  <script src="/assets/tf-state.js"></script>
+</body>
+</html>
