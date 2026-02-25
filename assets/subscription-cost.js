@@ -70,10 +70,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const total10Yr = totalYearly * 10;
 
     // Update UI
-    results.monthly.textContent = formatCurrencyDecimal(totalMonthly, false);
-    results.yearly.textContent = formatCurrencyDecimal(totalYearly, false);
-    results.fiveYear.textContent = formatCurrencyDecimal(total5Yr, false);
-    results.tenYear.textContent = formatCurrencyDecimal(total10Yr, false);
+    results.monthly.innerHTML = formatCurrencyDecimal(totalMonthly, false);
+    results.yearly.innerHTML = formatCurrencyDecimal(totalYearly, false);
+    results.fiveYear.innerHTML = formatCurrencyDecimal(total5Yr, false);
+    results.tenYear.innerHTML = formatCurrencyDecimal(total10Yr, false);
 
     updateInterpretation(totalMonthly, rows.length);
   }
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
       text += "Your subscription overhead is lean, which gives your budget more flexibility.";
     }
 
-    results.interpretation.textContent = text;
+    results.interpretation.innerHTML = text;
   }
 
   addBtn.addEventListener('click', () => {

@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Update UI
     results.maxRent.innerHTML = formatCurrencyDecimal(maxRentAfterDebts);
-    results.rentRange.textContent = `Suggested Range: ${formatCurrencyDecimal(rangeLow)} – ${formatCurrencyDecimal(rangeHigh)}`;
+    results.rentRange.innerHTML = `Suggested Range: ${formatCurrencyDecimal(rangeLow)} – ${formatCurrencyDecimal(rangeHigh)}`;
     results.debtDisplay.innerHTML = formatCurrencyDecimal(debts + utilities);
     results.remainingBudget.innerHTML = formatCurrencyDecimal(remaining);
 
