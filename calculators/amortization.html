@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amortization Schedule Generator | ToolFin</title>
+  <meta name="description" content="Generate a detailed loan amortization schedule. Visualize how your payments are split between principal and interest over time. Simple, educational, and free.">
+  <link rel="canonical" href="https://toolfin.example/calculators/amortization.html">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="/assets/amortization-schedule.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="container nav-container">
+      <a class="logo" href="/" aria-label="ToolFin Home">
+        <span class="logo-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+            <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+            <circle cx="8" cy="13" r="1"></circle>
+            <circle cx="12" cy="13" r="1"></circle>
+            <circle cx="16" cy="13" r="1"></circle>
+            <circle cx="8" cy="17" r="1"></circle>
+            <circle cx="12" cy="17" r="1"></circle>
+            <circle cx="16" cy="17" r="1"></circle>
+          </svg>
+        </span>
+        <span class="logo-text">ToolFin</span>
+      </a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/methodology.html">Methodology</a>
+        <a href="/contact.html">Contact</a>
+        <select id="currency-selector">
+          <option value="USD" selected>USD — US Dollar ($)</option>
+          <!-- ... (existing currencies) ... -->
+          <option value="EUR">EUR — Euro (€)</option>
+          <option value="GBP">GBP — British Pound (£)</option>
+          <option value="JPY">JPY — Japanese Yen (¥)</option>
+          <option value="CNY">CNY — Chinese Yuan (¥)</option>
+          <option value="KRW">KRW — South Korean Won (₩)</option>
+          <option value="AUD">AUD — Australian Dollar (A$)</option>
+          <option value="CAD">CAD — Canadian Dollar (C$)</option>
+          <option value="NZD">NZD — New Zealand Dollar (NZ$)</option>
+          <option value="CHF">CHF — Swiss Franc (CHF)</option>
+          <option value="HKD">HKD — Hong Kong Dollar (HK$)</option>
+          <option value="SGD">SGD — Singapore Dollar (S$)</option>
+          <option value="TWD">TWD — Taiwan Dollar (NT$)</option>
+          <option value="SEK">SEK — Swedish Krona (kr)</option>
+          <option value="NOK">NOK — Norwegian Krone (kr)</option>
+          <option value="DKK">DKK — Danish Krone (kr)</option>
+          <option value="PLN">PLN — Polish Złoty (zł)</option>
+          <option value="CZK">CZK — Czech Koruna (Kč)</option>
+          <option value="HUF">HUF — Hungarian Forint (Ft)</option>
+          <option value="RON">RON — Romanian Leu (lei)</option>
+          <option value="BGN">BGN — Bulgarian Lev (лв)</option>
+          <option value="TRY">TRY — Turkish Lira (₺)</option>
+          <option value="ILS">ILS — Israeli Shekel (₪)</option>
+          <option value="AED">AED — UAE Dirham (د.إ)</option>
+          <option value="SAR">SAR — Saudi Riyal (﷼)</option>
+          <option value="QAR">QAR — Qatari Riyal (﷼)</option>
+          <option value="KWD">KWD — Kuwaiti Dinar (KD)</option>
+          <option value="BHD">BHD — Bahraini Dinar (BD)</option>
+          <option value="OMR">OMR — Omani Rial (﷼)</option>
+          <option value="INR">INR — Indian Rupee (₹)</option>
+          <option value="PKR">PKR — Pakistani Rupee (₨)</option>
+          <option value="BDT">BDT — Bangladeshi Taka (৳)</option>
+          <option value="LKR">LKR — Sri Lankan Rupee (₨)</option>
+          <option value="THB">THB — Thai Baht (฿)</option>
+          <option value="VND">VND — Vietnamese Dong (₫)</option>
+          <option value="IDR">IDR — Indonesian Rupiah (Rp)</option>
+          <option value="MYR">MYR — Malaysian Ringgit (RM)</option>
+          <option value="PHP">PHP — Philippine Peso (₱)</option>
+          <option value="ZAR">ZAR — South African Rand (R)</option>
+          <option value="EGP">EGP — Egyptian Pound (E£)</option>
+          <option value="NGN">NGN — Nigerian Naira (₦)</option>
+          <option value="KES">KES — Kenyan Shilling (KSh)</option>
+          <option value="GHS">GHS — Ghanaian Cedi (₵)</option>
+          <option value="MAD">MAD — Moroccan Dirham (MAD)</option>
+          <option value="RUB">RUB — Russian Ruble (₽)</option>
+          <option value="UAH">UAH — Ukrainian Hryvnia (₴)</option>
+          <option value="BRL">BRL — Brazilian Real (R$)</option>
+          <option value="ARS">ARS — Argentine Peso ($)</option>
+          <option value="CLP">CLP — Chilean Peso ($)</option>
+          <option value="COP">COP — Colombian Peso ($)</option>
+          <option value="PEN">PEN — Peruvian Sol (S/)</option>
+          <option value="MXN">MXN — Mexican Peso ($)</option>
+        </select>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav style="margin: 2rem 0 1rem; font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">
+      <a href="/" style="color: inherit; text-decoration: none;">Home</a> / 
+      <a href="/loans.html" style="color: inherit; text-decoration: none;">Loans</a> / 
+      Amortization Schedule
+    </nav>
+
+    <div class="hero" style="text-align: left; padding: 1rem 0 2rem;">
+      <h1 style="font-size: 3rem;">Amortization Schedule Generator</h1>
+      <p>Visualize your path to debt freedom with a comprehensive breakdown of every payment over the life of your loan.</p>
+    </div>
+
+    <div class="card">
+      <div class="calc-grid">
+        <div id="inputs">
+          <div class="input-group">
+            <label for="loan-amount">Loan Amount</label>
+            <div class="input-wrapper" style="position: relative; display: flex; align-items: center;">
+              <span style="position: absolute; left: 16px; font-weight: 700; color: var(--text-muted);" class="prefix currency-symbol">$</span>
+              <input type="number" id="loan-amount" placeholder="e.g. 250000" step="1000" style="padding-left: 35px;">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="interest-rate">Annual Interest Rate (APR %)</label>
+            <div class="input-wrapper" style="position: relative; display: flex; align-items: center;">
+              <input type="number" id="interest-rate" placeholder="e.g. 6.5" step="0.125" style="padding-right: 35px;">
+              <span style="position: absolute; right: 16px; font-weight: 700; color: var(--text-muted);">%</span>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="loan-term">Loan Term (Years)</label>
+            <div class="input-wrapper">
+              <input type="number" id="loan-term" placeholder="e.g. 30" step="1">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="start-date">Start Month</label>
+            <div class="input-wrapper">
+              <input type="text" id="start-date" placeholder="Select month/year">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="extra-payment">Optional Extra Monthly Payment</label>
+            <div class="input-wrapper" style="position: relative; display: flex; align-items: center;">
+              <span style="position: absolute; left: 16px; font-weight: 700; color: var(--text-muted);" class="prefix currency-symbol">$</span>
+              <input type="number" id="extra-payment" placeholder="0" step="10" style="padding-left: 35px;">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="frequency">Payment Frequency</label>
+            <select id="frequency" disabled style="background-color: var(--primary-soft); cursor: not-allowed;">
+              <option value="monthly">Monthly (Default)</option>
+            </select>
+          </div>
+
+          <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+            <button id="generate-btn" style="flex: 2; background: var(--primary); color: white; border: none; padding: 16px; border-radius: var(--radius); font-weight: 800; font-size: 1.1rem; cursor: pointer;">
+              Generate Schedule
+            </button>
+            <button id="reset-btn" style="flex: 1; background: var(--primary-soft); color: var(--primary); border: none; padding: 16px; border-radius: var(--radius); font-weight: 800; font-size: 1.1rem; cursor: pointer;">
+              Reset
+            </button>
+          </div>
+          <div id="status-notice" style="margin-top: 1rem; font-size: 0.9rem; font-weight: 600; text-align: center; color: var(--text-muted);"></div>
+        </div>
+
+        <div id="results">
+          <div class="tf-empty">
+            <p style="text-align: center; margin: 2rem 0;">Enter loan details and click <strong>Generate Schedule</strong> to see your payment breakdown.</p>
+            <div class="table-container" style="overflow-x: auto;">
+              <table class="tf-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Payment</th>
+                    <th>Interest</th>
+                    <th>Principal</th>
+                    <th>Balance</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td colspan="5" style="text-align: center; padding: 3rem 0; color: var(--text-muted); font-style: italic;">
+                      Schedule will appear here
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section id="content">
+      <div style="max-width: 900px; margin: 0 auto; line-height: 1.8;">
+        <h2>Overview</h2>
+        <p>An amortization schedule is a powerful financial tool that provides a complete, payment-by-payment breakdown of a loan's lifecycle. Whether you are managing a 30-year mortgage, a 5-year auto loan, or a personal line of credit, understanding how each dollar of your hard-earned money is allocated is critical for financial transparency. Our Amortization Schedule Generator allows you to model your repayment journey, providing clarity on the division between interest and principal.</p>
+
+        <h2>What an Amortization Schedule Shows</h2>
+        <p>At its core, an amortization table tracks the reduction of your debt over time. Every time you make a fixed payment on an amortizing loan, that payment is split into two primary components: interest and principal reduction. Early in the loan's term, the balance is at its highest, meaning the interest portion of your payment is also at its peak. As you pay down the principal, the remaining balance decreases, which in turn reduces the amount of interest that accrues for the next period. This mathematical shift ensures that even though your total monthly payment stays the same, more of your money goes toward ownership (principal) as time goes on.</p>
+
+        <h2>Principal vs. Interest: The Shifting Balance</h2>
+        <p>One of the most eye-opening aspects of an amortization schedule is the "interest front-loading" effect. On a standard 30-year mortgage, for example, the first few years of payments are heavily weighted toward interest. It may feel like your balance is barely moving despite thousands of dollars in payments. However, as the schedule progresses, the ratio flips. In the final years of the loan, almost the entire payment is applied to the principal. Visualizing this transition helps borrowers understand why refinancing early in a loan term can sometimes "reset" this clock, potentially increasing the total interest paid even if the monthly payment drops.</p>
+
+        <h2>How Extra Payments Affect Your Payoff</h2>
+        <p>Making additional payments toward your principal is one of the most effective ways to save money over the life of a loan. Because interest is calculated based on the current outstanding balance, every extra dollar you pay today reduces the "base" upon which all future interest is calculated. This creates a compounding effect in reverse—shortening the term of the loan and significantly reducing the total interest cost. Our calculator includes an option for extra monthly payments to help you see how even small adjustments can shave years off a mortgage or thousands of dollars off a high-interest loan.</p>
+
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-section">
+          <div class="faq-item">
+            <h3>What is an amortization schedule?</h3>
+            <p>It is a table detailing each periodic payment on an amortizing loan (typically a mortgage or auto loan) as generated by an amortization calculator. It shows the amount of principal and the amount of interest that comprise each payment until the loan is paid off at the end of its term.</p>
+          </div>
+          <div class="faq-item">
+            <h3>How is amortization calculated?</h3>
+            <p>The calculation uses the loan amount, interest rate, and term to determine a fixed payment. The interest for each period is calculated by multiplying the periodic interest rate by the remaining principal balance. The rest of the payment is then applied to reduce the principal.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Why does the interest portion decrease over time?</h3>
+            <p>Interest is a fee charged for borrowing money, usually calculated as a percentage of the amount you still owe. As you make payments and the principal balance drops, there is less "debt" for the interest rate to act upon, resulting in a smaller interest charge each month.</p>
+          </div>
+          <div class="faq-item">
+            <h3>How do extra payments affect the schedule?</h3>
+            <p>Extra payments are typically applied directly to the principal balance. This reduces the balance faster than originally scheduled, which lowers the amount of interest that can accrue in subsequent months. This accelerates the payoff date and reduces the total interest paid over the life of the loan.</p>
+          </div>
+          <div class="faq-item">
+            <h3>What is the difference between a fixed-rate and adjustable-rate amortization?</h3>
+            <p>A fixed-rate amortization uses a consistent interest rate for the entire life of the loan, resulting in a predictable schedule. An adjustable-rate mortgage (ARM) has an interest rate that can change periodically, meaning the amortization schedule must be recalculated whenever the rate resets.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Can I use this for any type of loan?</h3>
+            <p>This generator is designed for standard "fully amortizing" loans where the payment is fixed and the balance reaches zero at the end of the term. It may not be suitable for interest-only loans, balloon loans, or credit card debt, which often use different repayment mathematics.</p>
+          </div>
+        </div>
+
+        <h2>Legal Disclaimer</h2>
+        <div class="disclaimer-text" style="font-size: 0.85rem; color: var(--text-muted); background: var(--primary-soft); padding: 1.5rem; border-radius: var(--radius); border-left: 4px solid var(--primary);">
+          <p><strong>Estimates Only:</strong> The results provided by this Amortization Schedule Generator are mathematical estimates based on the information you provide and standard financial formulas. They are intended for educational and informational purposes only.</p>
+          <p><strong>Not Financial Advice:</strong> ToolFin does not provide financial, investment, tax, or legal advice. This tool should not be used as the sole basis for making financial decisions. We recommend consulting with a qualified professional before entering into any lending or credit agreement.</p>
+          <p><strong>No Recommendations:</strong> We do not recommend specific loan products, lenders, or repayment strategies. The inclusion of "Extra Payment" fields is for modeling hypothetical scenarios and does not constitute a recommendation to pay more than your required minimum.</p>
+          <p><strong>Currency and Exchange Rates:</strong> The currency selector on this site affects only the display and formatting of numbers. This tool does not provide live currency exchange rates or account for international transaction fees or jurisdictional differences in lending laws.</p>
+        </div>
+
+        <div style="margin-top: 3rem; border-top: 1px solid var(--border); padding-top: 2rem;">
+          <h3>Internal Links & Resources</h3>
+          <ul style="list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+            <li><a href="/calculators/mortgage.html">Mortgage Calculator</a></li>
+            <li><a href="/calculators/loan-payment.html">Loan Payment Calculator</a></li>
+            <li><a href="/calculators/apr.html">APR Calculator</a></li>
+            <li><a href="/calculators/refinance.html">Refinance Calculator</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" aria-label="ToolFin Home">
+            <span class="logo-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+                <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+                <circle cx="8" cy="13" r="1"></circle>
+                <circle cx="12" cy="13" r="1"></circle>
+                <circle cx="16" cy="13" r="1"></circle>
+                <circle cx="8" cy="17" r="1"></circle>
+                <circle cx="12" cy="17" r="1"></circle>
+                <circle cx="16" cy="17" r="1"></circle>
+              </svg>
+            </span>
+            <span class="logo-text">ToolFin</span>
+          </a>
+          <p style="margin-top: 1.5rem;">Practical financial literacy tools designed for global clarity and educational empowerment.</p>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Platform</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/">Home</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/about.html">About ToolFin</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/methodology.html">Methodology</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Legal</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/disclaimer.html">Disclaimer</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/editorial-policy.html">Editorial Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Support</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="trust-strip">
+        NOT FINANCIAL ADVICE • EDUCATIONAL USE ONLY • ESTIMATES ONLY • JURISDICTION DIFFERENCES APPLY
+      </div>
+    </div>
+  </footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is an amortization schedule?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It is a table detailing each periodic payment on an amortizing loan. It shows the amount of principal and interest that comprise each payment until the loan is paid off."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is amortization calculated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The calculation uses the loan amount, interest rate, and term to determine a fixed payment. Interest for each period is calculated by multiplying the periodic interest rate by the remaining principal balance."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does the interest portion decrease over time?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "As the principal balance drops, there is less debt for the interest rate to act upon, resulting in a smaller interest charge each month."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do extra payments affect the schedule?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Extra payments are applied directly to the principal balance, reducing future interest accrual, accelerating the payoff date, and lowering total interest paid."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between a fixed-rate and adjustable-rate amortization?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A fixed-rate amortization uses a consistent interest rate for the life of the loan. An adjustable-rate mortgage has a rate that can change, requiring recalculation when the rate resets."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use this for any type of loan?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It is designed for standard fully amortizing loans. It may not be suitable for interest-only loans, balloon loans, or credit card debt."
+        }
+      }
+    ]
+  }
+  </script>
+</body>
+</html>
