@@ -117,28 +117,39 @@
 
     <div class="card">
       <div class="calc-grid">
-        <div id="inputs">
-          <div class="input-group">
-            <label for="net-profit">Net Business Profit (Annual)</label>
-            <div class="input-wrapper has-prefix">
-              <span class="prefix currency-symbol">$</span>
-              <input type="number" id="net-profit" value="50000" step="1000">
+        <div id="inputs" class="tf-form-container">
+          <div class="tf-field-grid">
+            <div class="tf-field-group">
+              <label for="net-profit">Net Business Profit (Annual)</label>
+              <div class="input-wrapper has-prefix">
+                <span class="prefix currency-symbol">$</span>
+                <input type="number" id="net-profit" value="50000" step="1000">
+              </div>
+              <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">Total income minus business expenses.</p>
             </div>
-            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">Total income minus business expenses.</p>
+
+            <div class="tf-field-group">
+              <label for="tax-rate">Self-Employment Tax Rate (%)</label>
+              <div class="input-wrapper">
+                <input type="number" id="tax-rate" value="15.3" step="0.1">
+                <span class="suffix" style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-weight: 700; color: var(--text-muted);">%</span>
+              </div>
+              <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">Default is 15.3% (US Standard).</p>
+            </div>
+
+            <div class="tf-field-group">
+              <label for="filing-status">Filing Status</label>
+              <div class="input-wrapper">
+                <select id="filing-status">
+                  <option value="single" selected>Single</option>
+                  <option value="married">Married Filing Jointly</option>
+                  <option value="head">Head of Household</option>
+                </select>
+              </div>
+            </div>
           </div>
 
-          <div class="input-group">
-            <label for="filing-status">Filing Status</label>
-            <div class="input-wrapper">
-              <select id="filing-status">
-                <option value="single" selected>Single</option>
-                <option value="married">Married Filing Jointly</option>
-                <option value="head">Head of Household</option>
-              </select>
-            </div>
-          </div>
-
-          <button id="calculate-btn" style="background: var(--primary); color: white; border: none; padding: 16px; border-radius: var(--radius); font-weight: 800; font-size: 1.1rem; cursor: pointer; width: 100%; transition: background 0.2s;">Calculate Estimated Tax</button>
+          <button id="calculate-btn" style="background: var(--primary); color: white; border: none; padding: 18px; border-radius: 12px; font-weight: 800; font-size: 1.1rem; cursor: pointer; width: 100%; transition: background 0.2s;">Calculate Estimated Tax</button>
         </div>
 
         <div id="results">
@@ -149,15 +160,11 @@
             </div>
             
             <div style="margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1rem;">
-              <h4 style="margin: 0 0 1rem; color: var(--secondary);">Tax Breakdown</h4>
+              <h4 style="margin: 0 0 1rem; color: var(--secondary);">Estimated Breakdown</h4>
               <div style="display: grid; gap: 0.75rem;">
                 <div style="display: flex; justify-content: space-between;">
-                  <span style="color: var(--text-muted);">Social Security (12.4%)</span>
-                  <span style="font-weight: 600; color: #e11d48;" id="break-ss">$0</span>
-                </div>
-                <div style="display: flex; justify-content: space-between;">
-                  <span style="color: var(--text-muted);">Medicare (2.9%)</span>
-                  <span style="font-weight: 600; color: #e11d48;" id="break-med">$0</span>
+                  <span style="color: var(--text-muted);">Calculated Tax</span>
+                  <span style="font-weight: 600; color: #e11d48;" id="break-tax">$0</span>
                 </div>
                 <div style="display: flex; justify-content: space-between; border-top: 1px dashed var(--border); padding-top: 0.5rem;">
                   <span style="color: var(--text-main); font-weight: 700;">After-Tax Profit</span>
@@ -167,12 +174,11 @@
             </div>
 
             <div style="margin-top: 1.5rem; background: var(--bg-main); padding: 1rem; border-radius: 8px; font-size: 0.85rem; color: var(--text-muted);">
-              <strong>Note:</strong> You can typically deduct 50% of your self-employment tax when calculating your adjusted gross income for federal income tax.
+              <strong>Note:</strong> Tax rates and rules vary significantly by jurisdiction. This tool provides a simplified estimate based on the provided percentage.
             </div>
           </div>
         </div>
       </div>
-
     </div>
 
     <section>
