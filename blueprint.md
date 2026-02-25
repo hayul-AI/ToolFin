@@ -28,6 +28,6 @@ ToolFin is a "money problem solving platform" designed for English-speaking glob
     - Category pages list specific calculators.
 4.  **Core Calculators:** 
     - Implemented: Mortgage, Compound Interest, ROI, Salary/Hourly, Rent vs Buy, Down Payment, Property Tax, Closing Costs, Home Affordability, Mortgage Extra Payment.
-    - Planned: Credit Card Payoff, Debt Snowball, Savings Goal, etc.
+    - Planned: Credit Card Payoff, Debt Snowball, etc.
 5.  **Navigation & SEO:** Breadcrumb navigation and semantic structure for all pages.
 6.  **Validation:** Ensure no prohibited phrases exist and all mandatory compliance rules are met.
