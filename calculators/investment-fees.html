@@ -120,71 +120,6 @@
       </div>
     </div>
 
-    <section style="margin-top: 4rem;">
-      <h2>What This Calculator Does</h2>
-      <p>The Investment Fee Calculator quantifies the "silent killer" of wealth: expense ratios and management fees. While a 1% fee might sound small, it is charged every year on your entire balance, compounded. This calculator shows you exactly how much your future nest egg is reduced by these recurring costs compared to a hypothetical zero-fee alternative.</p>
-
-      <h2>How the Calculation Works</h2>
-      <p>We perform two parallel future value projections using the standard compound interest formula with monthly contributions:</p>
-      <ol>
-        <li><strong>No-Fee Scenario:</strong> We use your "Expected Annual Return" as the growth rate.</li>
-        <li><strong>With-Fee Scenario:</strong> We subtract the "Expense Ratio" from your expected return to determine the net growth rate.</li>
-      </ol>
-      <p>The "Total Fees Paid" is the difference between these two scenarios. It represents both the actual dollars paid to the fund manager and the <strong>opportunity cost</strong>—the money those fees would have earned if they had stayed invested.</p>
-
-      <h2>Result Interpretation</h2>
-      <p>Pay close attention to the "Percentage of Potential Wealth Lost." Over 30 years, a seemingly small 1% fee can often consume 25% or more of your total potential retirement balance.</p>
-      <ul>
-        <li><strong>Low-Fee Threshold:</strong> Generally, fees below 0.20% are considered very good (common for broad index funds).</li>
-        <li><strong>High-Fee Threshold:</strong> Fees above 0.75% are considered high and are typically associated with actively managed mutual funds or "advisor-sold" products.</li>
-      </ul>
-
-      <h2>Example Scenario</h2>
-      <p>If you start with $10,000 and add $500 monthly for 30 years with a 7% return:</p>
-      <ul>
-        <li>With a <strong>0.05% fee</strong>, your balance grows to approx. <strong>$600,000</strong>.</li>
-        <li>With a <strong>1.05% fee</strong>, your balance grows to approx. <strong>$495,000</strong>.</li>
-      </ul>
-      <p>In this case, a 1% difference in fees costs you over <strong>$100,000</strong>.</p>
-
-      <h2>Practical Tips to Minimize Fees</h2>
-      <ul>
-        <li><strong>Prioritize Index Funds and ETFs:</strong> These passively managed products usually have significantly lower expense ratios than active mutual funds.</li>
-        <li><strong>Check your 401(k) options:</strong> Some employer plans have high-fee funds. Look for the "lowest cost" diversified option available.</li>
-        <li><strong>Beware of "Wrap Fees":</strong> If you use a financial advisor, ensure you understand both the underlying fund fees AND the advisor's management fee (often another 1%).</li>
-        <li><strong>Switch providers if necessary:</strong> Many modern brokerage platforms offer zero-commission trading and zero-expense ratio proprietary funds.</li>
-      </ul>
-
-      <h2>Frequently Asked Questions (FAQ)</h2>
-      <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
-        <div>
-          <h4 style="margin-bottom: 0.5rem;">What is an "Expense Ratio"?</h4>
-          <p>It is the annual fee that all mutual funds and ETFs charge their shareholders. It covers the fund's operating expenses, including management, administration, and advertising.</p>
-        </div>
-        <div>
-          <h4 style="margin-bottom: 0.5rem;">Do I pay fees even when the market is down?</h4>
-          <p>Yes. Expense ratios are calculated as a percentage of assets under management. Regardless of performance, the fund manager takes their percentage of your current balance.</p>
-        </div>
-        <div>
-          <h4 style="margin-bottom: 0.5rem;">Are high fees ever worth it?</h4>
-          <p>Occasionally, a specialized or "active" fund might outperform its benchmark enough to justify the fee, but statistical research shows that the vast majority of active funds underperform low-cost index funds over long periods.</p>
-        </div>
-        <div>
-          <h4 style="margin-bottom: 0.5rem;">Where do I find my fund's fees?</h4>
-          <p>Look for the "Expense Ratio" in the fund's prospectus or on financial research sites like Morningstar or Yahoo Finance.</p>
-        </div>
-        <div>
-          <h4 style="margin-bottom: 0.5rem;">Does this calculator include trading commissions?</h4>
-          <p>No. Most major brokerages now offer $0 commissions. This calculator focuses on the ongoing, recurring management fees which have a much larger impact over time.</p>
-        </div>
-      </div>
-
-      <div class="compliance-statements" style="margin-top: 3rem; padding: 2rem; background: #f1f5f9; border-radius: 12px; font-size: 0.9rem;">
-        <p><strong>Legal Disclaimer:</strong> All results are based on mathematical calculations and are estimates only. This calculator assumes constant returns and fees, which do not occur in real markets. Investment returns are not guaranteed. This is not financial or investment advice.</p>
-        <p>Currency selection affects formatting and display only and does not use live exchange rates.</p>
-      </div>
-    </section>
-
     <section>
       <h2>Related Calculators</h2>
       <div class="next-steps-grid">
@@ -202,6 +137,7 @@
         </a>
       </div>
     </section>
+      <calculator-info-sections></calculator-info-sections>
   </main>
 
   <footer>
@@ -257,5 +193,6 @@
   <script type="module" src="/assets/investment-fees.js"></script>
   <script src="/assets/currency-options.js"></script>
   <script src="/assets/tf-state.js"></script>
+  <script src="/assets/calculator-info-sections.js"></script>
 </body>
 </html>

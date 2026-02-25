@@ -135,71 +135,6 @@
       </div>
     </div>
 
-    <section style="margin-top: 4rem;">
-      <h2>What This Calculator Does</h2>
-      <p>The Subscription Cost Calculator aggregates all your recurring digital and physical services into a single financial overview. By breaking down your spending into monthly, annual, and decade-long projections, it reveals the hidden "leakage" in your budget caused by the modern subscription economy.</p>
-
-      <h2>Why Subscription Spending Adds Up</h2>
-      <p>Subscriptions are designed to be "sticky." Because each individual charge (e.g., $14.99) feels insignificant, users often forget to cancel services they no longer use. This is known as "subscription fatigue." When you compound these costs over 5 or 10 years, you realize that a single streaming service can cost you over $1,800, and a full suite of services can easily reach tens of thousands of dollars.</p>
-
-      <h2>Result Interpretation</h2>
-      <p>The projections assume you keep the same services at the same prices for the duration. In reality, prices often increase over time (inflation), meaning the long-term cost is likely even higher than shown.</p>
-      <ul>
-        <li><strong>Monthly Total:</strong> This is your current recurring overhead. High overhead reduces your ability to adapt to income changes.</li>
-        <li><strong>Annual Cost:</strong> Compare this to a large one-time purchase (like a vacation or new laptop) to put the value in perspective.</li>
-        <li><strong>10-Year Projection:</strong> This represents "opportunity cost"—money that could have been invested in a retirement account or a down payment.</li>
-      </ul>
-
-      <h2>Example Scenario</h2>
-      <p>A typical modern household might have:</p>
-      <ul>
-        <li>Netflix: $15.49/mo</li>
-        <li>Spotify Family: $16.99/mo</li>
-        <li>Amazon Prime: $139/yr ($11.58/mo)</li>
-        <li>Gym Membership: $50/mo</li>
-        <li>Cloud Storage: $2.99/mo</li>
-      </ul>
-      <p>Total Monthly: <strong>$97.05</strong>. Over 10 years, this household spends <strong>$11,646</strong> on these basic services.</p>
-
-      <h2>Practical Tips to Control Recurring Costs</h2>
-      <ul>
-        <li><strong>The "One-In, One-Out" Rule:</strong> Never add a new subscription without canceling one you already have.</li>
-        <li><strong>Switch to Annual Billing:</strong> Most services offer a 15-20% discount if you pay for a full year upfront. Use this calculator to see if the annual savings are worth the lump sum payment.</li>
-        <li><strong>Audit your bank statements monthly:</strong> Look for "ghost" subscriptions—services you signed up for once and forgot about.</li>
-        <li><strong>Rotate Streaming Services:</strong> Subscribe to one platform for a month, watch your favorite shows, then cancel and move to the next. You don't need all of them active at once.</li>
-        <li><strong>Check for Bundles:</strong> Mobile carriers and credit card companies often include streaming or music services for free as part of your existing plan.</li>
-      </ul>
-
-      <h2>Frequently Asked Questions (FAQ)</h2>
-      <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
-        <div>
-          <h4 style="margin-bottom: 0.5rem;">Should I include utilities like electricity?</h4>
-          <p>No. While utilities are recurring, they are essential living expenses. This calculator is best used for "optional" or lifestyle subscriptions like media, fitness, software, and membership boxes.</p>
-        </div>
-        <div>
-          <h4 style="margin-bottom: 0.5rem;">How do I handle free trials?</h4>
-          <p>Enter them with a $0 price, but set a reminder on your phone to cancel before the billing starts. Many people lose money by forgetting to cancel "free" trials.</p>
-        </div>
-        <div>
-          <h4 style="margin-bottom: 0.5rem;">What is the "average" subscription spend?</h4>
-          <p>Recent studies suggest the average US consumer spends over $200 per month on subscriptions, often underestimating their actual spend by more than half.</p>
-        </div>
-        <div>
-          <h4 style="margin-bottom: 0.5rem;">Is annual billing always better?</h4>
-          <p>Only if you are certain you will use the service for the full 12 months. If you might cancel in 3 months, monthly billing is actually cheaper despite the higher per-month rate.</p>
-        </div>
-        <div>
-          <h4 style="margin-bottom: 0.5rem;">Can subscriptions hurt my credit score?</h4>
-          <p>Standard monthly subscriptions usually don't help or hurt your score directly, but missing a payment that goes to collections can severely damage your credit.</p>
-        </div>
-      </div>
-
-      <div class="compliance-statements" style="margin-top: 3rem; padding: 2rem; background: #f1f5f9; border-radius: 12px; font-size: 0.9rem;">
-        <p><strong>Legal Disclaimer:</strong> All calculations are estimates based on user inputs. Actual charges and billing cycles may vary by provider. This tool is for educational purposes only and does not represent financial advice.</p>
-        <p>Currency selection affects formatting and display only and does not use live exchange rates.</p>
-      </div>
-    </section>
-
     <section>
       <h2>Related Calculators</h2>
       <div class="next-steps-grid">
@@ -217,6 +152,7 @@
         </a>
       </div>
     </section>
+      <calculator-info-sections></calculator-info-sections>
   </main>
 
   <footer>
@@ -272,5 +208,6 @@
   <script type="module" src="/assets/subscription-cost.js"></script>
   <script src="/assets/currency-options.js"></script>
   <script src="/assets/tf-state.js"></script>
+  <script src="/assets/calculator-info-sections.js"></script>
 </body>
 </html>

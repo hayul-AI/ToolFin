@@ -142,72 +142,6 @@
       </div>
     </div>
 
-    <section style="margin-top: 4rem;">
-      <h2>What This Calculator Does</h2>
-      <p>The Loan Affordability Calculator helps you reverse-engineer a loan amount based on your budget. Instead of asking "how much will this loan cost," it asks "based on my income and existing bills, what is the largest monthly payment I can safely add, and what loan size does that buy me?"</p>
-
-      <h2>How the Result Is Calculated</h2>
-      <p>The calculation follows a logical financial path:</p>
-      <ol>
-        <li><strong>Determine Monthly Income:</strong> We divide your annual gross income by 12.</li>
-        <li><strong>Apply DTI Cap:</strong> We calculate your "Max Total Monthly Debt" by multiplying your income by your target DTI limit (e.g., 36%).</li>
-        <li><strong>Subtract Existing Obligations:</strong> We subtract your current monthly debt payments and any estimated taxes/insurance from that cap.</li>
-        <li><strong>Calculate Loan Size:</strong> The remaining amount is treated as the maximum monthly payment for a new loan. We then use a standard amortization formula with your chosen interest rate and term to find the corresponding principal loan amount.</li>
-      </ol>
-
-      <h2>Result Interpretation</h2>
-      <p>Lenders typically look for a "Back-End" DTI ratio between 36% and 43%. A target of <strong>36%</strong> is often considered the "gold standard" for financial health, as it leaves enough room for taxes, living expenses, and savings.</p>
-      <ul>
-        <li><strong>Lowering the APR:</strong> A lower interest rate allows more of your monthly payment to go toward the principal, increasing your affordable loan amount.</li>
-        <li><strong>Extending the Term:</strong> Choosing a longer term (e.g., 30 years vs 15 years) reduces the monthly payment per dollar borrowed, which significantly increases the total amount you can afford, but results in much higher total interest costs.</li>
-      </ul>
-
-      <h2>Example Scenario</h2>
-      <p>Suppose you earn $72,000 annually ($6,000/month) and have $400 in existing monthly debt. You want to stay under a 36% DTI.</p>
-      <ul>
-        <li><strong>Max Total Debt:</strong> $6,000 x 0.36 = $2,160</li>
-        <li><strong>Available for New Loan:</strong> $2,160 - $400 = $1,760</li>
-      </ul>
-      <p>If you choose a 15-year term at 6% interest, a $1,760 monthly payment would support an estimated loan of approximately <strong>$208,500</strong>.</p>
-
-      <h2>Practical Tips for Loan Shopping</h2>
-      <ul>
-        <li><strong>Pay down existing debt:</strong> Every $100 in existing debt you eliminate can potentially increase your borrowing power by thousands of dollars.</li>
-        <li><strong>Shop for rates:</strong> Even a 0.5% difference in interest rate can have a massive impact on your affordable loan size.</li>
-        <li><strong>Don't forget the hidden costs:</strong> If you are buying a home or car, remember to account for maintenance, fuel, and utilities, which DTI doesn't include.</li>
-        <li><strong>Borrow less than the max:</strong> Just because a calculator or a lender says you can afford a certain amount doesn't mean you should. Leave room for "life" to happen.</li>
-      </ul>
-
-      <h2>Frequently Asked Questions (FAQ)</h2>
-      <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
-        <div>
-          <h4 style="margin-bottom: 0.5rem;">Why is my income before taxes used?</h4>
-          <p>Lenders use Gross Income (before taxes) because it is a standardized metric that doesn't vary based on your specific tax deductions or retirement contributions.</p>
-        </div>
-        <div>
-          <h4 style="margin-bottom: 0.5rem;">What DTI limit should I use?</h4>
-          <p>36% is the safest benchmark. Mortgage lenders often go up to 43% (and sometimes higher for FHA loans), but higher DTIs increase the risk of financial "fragility."</p>
-        </div>
-        <div>
-          <h4 style="margin-bottom: 0.5rem;">Does this include closing costs?</h4>
-          <p>No. This calculator estimates the loan principal. You should still account for down payments and closing costs (usually 2-5% of the loan amount) separately.</p>
-        </div>
-        <div>
-          <h4 style="margin-bottom: 0.5rem;">How does the loan term affect affordability?</h4>
-          <p>A longer term makes the monthly payment smaller for the same loan amount, so you can "afford" a larger loan. However, you will pay significantly more in total interest over the life of the loan.</p>
-        </div>
-        <div>
-          <h4 style="margin-bottom: 0.5rem;">Is this calculator only for mortgages?</h4>
-          <p>It can be used for any amortized loan, including personal loans or auto loans. For auto loans, typical terms are much shorter (3-7 years).</p>
-        </div>
-      </div>
-
-      <div class="compliance-statements" style="margin-top: 3rem; padding: 2rem; background: #f1f5f9; border-radius: 12px; font-size: 0.9rem;">
-        <p><strong>Legal Disclaimer:</strong> All results are based on mathematical calculations and are provided for estimation purposes only. Actual amounts and terms may vary by lender. This is not financial, legal, or tax advice.</p>
-        <p>Currency selection affects formatting and display only and does not use live exchange rates.</p>
-      </div>
-    </section>
-
     <section>
       <h2>Related Calculators</h2>
       <div class="next-steps-grid">
@@ -225,6 +159,7 @@
         </a>
       </div>
     </section>
+      <calculator-info-sections></calculator-info-sections>
   </main>
 
   <footer>
@@ -280,5 +215,6 @@
   <script type="module" src="/assets/loan-affordability-calculator.js"></script>
   <script src="/assets/currency-options.js"></script>
   <script src="/assets/tf-state.js"></script>
+  <script src="/assets/calculator-info-sections.js"></script>
 </body>
 </html>

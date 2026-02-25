@@ -138,64 +138,6 @@
       </div>
     </div>
 
-    <section style="margin-top: 4rem;">
-      <h2>What This Calculator Does</h2>
-      <p>The Retirement Contribution Calculator helps you visualize the future value of your retirement account based on your salary, your contribution rate, and your employer's matching contributions. It demonstrates how consistent contributions, combined with compound interest, can build significant wealth over a long-term horizon.</p>
-
-      <h2>How the Calculation Works</h2>
-      <p>This calculator uses the formula for the future value of an ordinary annuity to estimate your balance. Each year, your total contributions (yours plus your employer's) are added to the account and then grow at the assumed annual investment return rate.</p>
-      <p>The core concept is <strong>compound interest</strong>: you earn returns not just on your original contributions, but also on the returns those contributions have already generated in previous years. This creates an "snowball effect" where your balance grows faster the longer you stay invested.</p>
-
-      <h2>Result Interpretation</h2>
-      <p>Your results show the estimated final balance at the end of your investment period. Key takeaways usually include:</p>
-      <ul>
-        <li><strong>Maximize the Match:</strong> Employer matching is essentially a "100% return" on the portion of your salary you contribute to meet the match limit. It is one of the most effective ways to boost your retirement savings.</li>
-        <li><strong>Small Rates, Big Impact:</strong> Increasing your contribution rate by even 1% or 2% early in your career can result in hundreds of thousands of dollars in additional savings by retirement.</li>
-        <li><strong>Time is Your Best Friend:</strong> The "Years to Invest" field typically has the most dramatic impact on the final result. Starting just 5 or 10 years earlier can double your eventual nest egg.</li>
-      </ul>
-
-      <h2>Example Scenario</h2>
-      <p>Suppose you earn $60,000 per year. You contribute 5% ($3,000) and your employer matches 3% ($1,800), for a total of $4,800 per year. If you invest this for 30 years at a 6% average annual return, your estimated balance would grow to approximately <strong>$380,000</strong>, despite only contributing $144,000 total.</p>
-
-      <h2>Practical Tips for Retirement Saving</h2>
-      <ul>
-        <li><strong>Contribute at least enough to get the full employer match.</strong> Don't leave free money on the table.</li>
-        <li><strong>Automate your savings.</strong> Have your contributions taken directly from your paycheck so you never "see" the money and aren't tempted to spend it.</li>
-        <li><strong>Increase your rate with every raise.</strong> When you get a salary increase, dedicate half of the raise to your retirement contribution before you get used to the higher take-home pay.</li>
-        <li><strong>Consider your risk tolerance.</strong> Younger investors can typically afford higher-return (but more volatile) investments like stocks, while those closer to retirement may prefer more stable bonds.</li>
-        <li><strong>Stay the course.</strong> Markets fluctuate, but retirement is a long-term goal. Avoid making emotional decisions based on short-term market movements.</li>
-      </ul>
-
-      <h2>Frequently Asked Questions (FAQ)</h2>
-      <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
-        <div>
-          <h4 style="margin-bottom: 0.5rem;">Does this calculator account for inflation?</h4>
-          <p>This calculator provides "nominal" values, meaning it does not automatically adjust for the future purchasing power of money. To see "real" values in today's dollars, you can subtract an estimated inflation rate (usually 2-3%) from your expected investment return.</p>
-        </div>
-        <div>
-          <h4 style="margin-bottom: 0.5rem;">Should I use a Pre-tax (401k) or Post-tax (Roth) account?</h4>
-          <p>Pre-tax accounts lower your taxable income today, while Roth accounts allow you to withdraw money tax-free in retirement. The math depends on whether you expect your tax rate to be higher or lower in the future.</p>
-        </div>
-        <div>
-          <h4 style="margin-bottom: 0.5rem;">What is a realistic investment return?</h4>
-          <p>The historical average return for the S&P 500 is around 10% before inflation, but many advisors suggest using a more conservative 6% or 7% for long-term planning to account for market cycles and fees.</p>
-        </div>
-        <div>
-          <h4 style="margin-bottom: 0.5rem;">Can I contribute more than my employer matches?</h4>
-          <p>Yes! Most retirement plans have annual contribution limits set by the government that are much higher than a typical employer match. Check your local regulations (like IRS limits in the US) for current maximums.</p>
-        </div>
-        <div>
-          <h4 style="margin-bottom: 0.5rem;">What happens if I change jobs?</h4>
-          <p>In most cases, you keep the money you contributed and the "vested" portion of your employer's contributions. You can typically roll these funds into an IRA or into your new employer's retirement plan.</p>
-        </div>
-      </div>
-
-      <div class="compliance-statements" style="margin-top: 3rem; padding: 2rem; background: #f1f5f9; border-radius: 12px; font-size: 0.9rem;">
-        <p><strong>Legal Disclaimer:</strong> All results are based on mathematical calculations and are estimates only. Investment returns are not guaranteed and actual results may vary. This is not financial or investment advice.</p>
-        <p>Currency selection affects formatting and display only and does not use live exchange rates.</p>
-      </div>
-    </section>
-
     <section>
       <h2>Related Calculators</h2>
       <div class="next-steps-grid">
@@ -213,6 +155,7 @@
         </a>
       </div>
     </section>
+      <calculator-info-sections></calculator-info-sections>
   </main>
 
   <footer>
@@ -268,5 +211,6 @@
   <script type="module" src="/assets/retirement-contribution.js"></script>
   <script src="/assets/currency-options.js"></script>
   <script src="/assets/tf-state.js"></script>
+  <script src="/assets/calculator-info-sections.js"></script>
 </body>
 </html>

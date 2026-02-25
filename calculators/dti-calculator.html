@@ -129,73 +129,6 @@
       </div>
     </div>
 
-    <section style="margin-top: 4rem;">
-      <h2>What This Calculator Does</h2>
-      <p>The Debt-to-Income (DTI) Ratio Calculator compares your total monthly debt payments to your monthly gross income. This percentage is a primary factor used by banks and mortgage lenders to evaluate your ability to manage monthly payments and repay borrowed money.</p>
-
-      <h2>How the Result Is Calculated</h2>
-      <p>Calculating your DTI is straightforward. We sum all your recurring monthly debt obligations (including your housing costs) and divide that total by your gross monthly income (your pay before taxes and other deductions). The formula looks like this:</p>
-      <div style="background: #f1f5f9; padding: 1.5rem; border-radius: 8px; margin: 1rem 0; font-family: monospace; font-weight: 700; text-align: center;">
-        (Total Monthly Debt / Gross Monthly Income) x 100 = DTI %
-      </div>
-
-      <h2>Result Interpretation</h2>
-      <p>Different lenders have different requirements, but general guidelines are as follows:</p>
-      <ul>
-        <li><strong>Less than 20% (Excellent):</strong> You have a very healthy balance of debt and income. You are likely to qualify for the best rates.</li>
-        <li><strong>20% to 35.99% (Good):</strong> This is considered a manageable debt level. Most lenders will find this acceptable.</li>
-        <li><strong>36% to 43% (Caution):</strong> You are reaching the upper limit of what most lenders consider acceptable, especially for mortgages.</li>
-        <li><strong>Over 43% (High Risk):</strong> You may find it difficult to qualify for new loans. Many mortgage programs have a hard cap at 43% DTI.</li>
-      </ul>
-
-      <h2>Example Scenario</h2>
-      <p>Imagine you earn $5,000 per month before taxes. Your expenses are:</p>
-      <ul>
-        <li>Rent/Mortgage: $1,200</li>
-        <li>Auto Loan: $350</li>
-        <li>Student Loan: $200</li>
-        <li>Credit Card Minimums: $100</li>
-      </ul>
-      <p>Your total monthly debt is $1,850. Your DTI ratio would be: ($1,850 / $5,000) = 0.37, or <strong>37%</strong>.</p>
-
-      <h2>Practical Tips to Improve Your DTI</h2>
-      <ul>
-        <li><strong>Focus on high-interest debt:</strong> Reducing your total balance reduces your required minimum payments over time.</li>
-        <li><strong>Avoid new debt:</strong> If you're planning to apply for a mortgage, avoid taking on new car loans or opening new credit cards.</li>
-        <li><strong>Increase your income:</strong> Bonuses, raises, or side income can lower your DTI without changing your spending habits.</li>
-        <li><strong>Refinance high-rate loans:</strong> Lowering your interest rate can sometimes lower your required monthly payment.</li>
-      </ul>
-
-      <h2>Frequently Asked Questions (FAQ)</h2>
-      <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
-        <div>
-          <h4 style="margin-bottom: 0.5rem;">Does DTI include utilities and groceries?</h4>
-          <p>No. Standard DTI calculations only include debt obligations that appear on your credit report, plus your housing payment. Living expenses like food, utilities, and insurance are generally excluded.</p>
-        </div>
-        <div>
-          <h4 style="margin-bottom: 0.5rem;">Should I use my net pay (take-home pay)?</h4>
-          <p>Lenders almost always use "Gross Income" (before taxes). However, for your personal budgeting, calculating DTI based on take-home pay can give you a more realistic view of your "affordability."</p>
-        </div>
-        <div>
-          <h4 style="margin-bottom: 0.5rem;">What is a "Front-End" vs "Back-End" DTI?</h4>
-          <p>Front-end DTI only includes housing costs. Back-end DTI (what this calculator computes) includes housing PLUS all other monthly debt payments. Lenders look at both, but the back-end is usually more critical.</p>
-        </div>
-        <div>
-          <h4 style="margin-bottom: 0.5rem;">Can I get a mortgage with a DTI over 43%?</h4>
-          <p>Yes, some programs (like FHA loans) may allow DTIs up to 50% or even 57% in specific cases with "compensating factors," but it is more difficult and may come with higher interest rates.</p>
-        </div>
-        <div>
-          <h4 style="margin-bottom: 0.5rem;">How often should I check my DTI?</h4>
-          <p>It's a good idea to check it whenever your income changes or before you apply for significant new credit, such as a mortgage or auto loan.</p>
-        </div>
-      </div>
-
-      <div class="compliance-statements" style="margin-top: 3rem; padding: 2rem; background: #f1f5f9; border-radius: 12px; font-size: 0.9rem;">
-        <p><strong>Legal Disclaimer:</strong> All results are based on mathematical calculations and are provided for estimation purposes only. Actual amounts and terms may vary by lender. This is not financial, legal, or tax advice.</p>
-        <p>Currency selection affects formatting and display only and does not use live exchange rates.</p>
-      </div>
-    </section>
-
     <section>
       <h2>Related Calculators</h2>
       <div class="next-steps-grid">
@@ -213,6 +146,7 @@
         </a>
       </div>
     </section>
+      <calculator-info-sections></calculator-info-sections>
   </main>
 
   <footer>
@@ -268,5 +202,6 @@
   <script type="module" src="/assets/dti-calculator.js"></script>
   <script src="/assets/currency-options.js"></script>
   <script src="/assets/tf-state.js"></script>
+  <script src="/assets/calculator-info-sections.js"></script>
 </body>
 </html>

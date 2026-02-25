@@ -112,63 +112,6 @@
       </div>
     </div>
 
-    <section style="margin-top: 4rem;">
-      <h2>What This Calculator Does</h2>
-      <p>The Cost of Living (COL) Calculator estimates the salary adjustment required to maintain your current standard of living when moving to a new location. It accounts for differences in the general price levels of goods and services, such as housing, transportation, groceries, and utilities.</p>
-
-      <h2>How Cost of Living Index Works</h2>
-      <p>A cost of living index is a theoretical price index that measures relative differences in the cost of a standard basket of goods. Often, a major city (like New York or London) or a national average is set to a base of 100. If a city has an index of 120, it means it is 20% more expensive than the base. Our calculator uses these ratios to project equivalent earnings.</p>
-
-      <h2>Result Interpretation</h2>
-      <p>The results provide a mathematical bridge between two different economic environments:</p>
-      <ul>
-        <li><strong>Equivalent Salary:</strong> This is the gross income you would need in the new location to have the same "disposable" feeling as your current salary.</li>
-        <li><strong>Purchasing Power:</strong> If your new salary offer is lower than the equivalent salary, your "real" income—how much you can actually buy—has decreased, even if the dollar amount stayed the same.</li>
-        <li><strong>Housing Impact:</strong> Because housing is usually the largest single expense, small changes in local real estate markets can cause massive shifts in your overall cost of living.</li>
-      </ul>
-
-      <h2>Example Scenario</h2>
-      <p>If you currently live in a city with an index of 100 and earn $75,000, and you are moving to a city with an index of 130, you would need to earn <strong>$97,500</strong> to maintain your current lifestyle. If your new job only offers $85,000, you are effectively taking a 12.8% pay cut in terms of purchasing power.</p>
-
-      <h2>Practical Tips for Moving Decisions</h2>
-      <ul>
-        <li><strong>Research local tax laws.</strong> Cost of living indices often look at prices, but income and sales tax variations can significantly impact your net take-home pay.</li>
-        <li><strong>Analyze the commute.</strong> A cheaper home further from the city center might increase your transportation costs and "time tax."</li>
-        <li><strong>Look at employer benefits.</strong> Some companies offer "COL adjustments" or housing stipends when transferring employees to high-cost areas.</li>
-        <li><strong>Negotiate based on data.</strong> Use cost of living data to justify salary requirements during interviews or relocation discussions.</li>
-        <li><strong>Trial your budget.</strong> Before moving, try living on the "equivalent" budget for a month to see if it feels realistic for your lifestyle.</li>
-      </ul>
-
-      <h2>Frequently Asked Questions (FAQ)</h2>
-      <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
-        <div>
-          <h4 style="margin-bottom: 0.5rem;">Where do I find cost of living index numbers?</h4>
-          <p>Many government statistics bureaus and independent research firms (like Numbeo or Mercer) provide regional indices. You can often find these by searching "[City Name] cost of living index."</p>
-        </div>
-        <div>
-          <h4 style="margin-bottom: 0.5rem;">Is cost of living the same as inflation?</h4>
-          <p>No. Inflation measures how prices change over time in one place. Cost of living compares how prices differ between two places at the same time.</p>
-        </div>
-        <div>
-          <h4 style="margin-bottom: 0.5rem;">Does this calculator include healthcare?</h4>
-          <p>General cost indices typically include average healthcare costs, but your individual needs (prescriptions, specialists) may vary significantly depending on local insurance systems.</p>
-        </div>
-        <div>
-          <h4 style="margin-bottom: 0.5rem;">Should I use gross or net salary?</h4>
-          <p>Most people use Gross Salary for initial comparisons, but for a truly accurate move, you should compare the estimated Net (Take-Home) pay in both locations.</p>
-        </div>
-        <div>
-          <h4 style="margin-bottom: 0.5rem;">What if my new location has a lower index?</h4>
-          <p>This is called "geographic arbitrage." By moving to a lower-cost area while keeping a similar salary, your purchasing power and ability to save will increase dramatically.</p>
-        </div>
-      </div>
-
-      <div class="compliance-statements" style="margin-top: 3rem; padding: 2rem; background: #f1f5f9; border-radius: 12px; font-size: 0.9rem;">
-        <p><strong>Legal Disclaimer:</strong> All calculations are estimates based on cost index assumptions and do not represent actual expenses. Individual spending patterns and local market conditions may vary. This is not financial or professional relocation advice.</p>
-        <p>Currency selection affects formatting and display only and does not use live exchange rates.</p>
-      </div>
-    </section>
-
     <section>
       <h2>Related Calculators</h2>
       <div class="next-steps-grid">
@@ -186,6 +129,7 @@
         </a>
       </div>
     </section>
+      <calculator-info-sections></calculator-info-sections>
   </main>
 
   <footer>
@@ -241,5 +185,6 @@
   <script type="module" src="/assets/cost-of-living.js"></script>
   <script src="/assets/currency-options.js"></script>
   <script src="/assets/tf-state.js"></script>
+  <script src="/assets/calculator-info-sections.js"></script>
 </body>
 </html>

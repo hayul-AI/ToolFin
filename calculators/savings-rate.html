@@ -107,68 +107,6 @@
       </div>
     </div>
 
-    <section style="margin-top: 4rem;">
-      <h2>What This Calculator Does</h2>
-      <p>The Savings Rate Calculator computes the percentage of your monthly income that you keep as savings. It also provides a simplified "Time to FI" (Financial Independence) estimate based on the popular 4% rule, showing you how many years of current savings it would take to build a nest egg that supports your lifestyle indefinitely.</p>
-
-      <h2>How Savings Rate Works</h2>
-      <p>Your savings rate is calculated by dividing your monthly savings by your monthly income. Unlike a raw dollar amount, a percentage is an objective measure of your financial efficiency. A person earning $10,000 and saving $1,000 (10% rate) is actually building wealth slower than someone earning $4,000 and saving $1,000 (25% rate) relative to their own lifestyle costs.</p>
-
-      <h2>Result Interpretation</h2>
-      <p>Lenders and financial advisors typically use the following health benchmarks for savings rates:</p>
-      <ul>
-        <li><strong>Less than 10% (At Risk):</strong> You have a very thin margin for error. A small emergency or loss of income could be catastrophic.</li>
-        <li><strong>10% to 20% (Stable):</strong> This is the standard recommendation for traditional retirement planning. You are moving in the right direction.</li>
-        <li><strong>20% to 40% (Strong):</strong> You are building wealth significantly faster than average. You have great flexibility and security.</li>
-        <li><strong>Over 40% (Excellent):</strong> You are on the fast track to early retirement or total financial freedom.</li>
-      </ul>
-
-      <h2>Example Scenario</h2>
-      <p>If you earn $5,000 net and spend $3,500, your savings are $1,500.</p>
-      <ul>
-        <li><strong>Savings Rate:</strong> ($1,500 / $5,000) = <strong>30%</strong></li>
-        <li><strong>FI Target:</strong> 25 x Annual Expenses ($42,000 x 25 = $1,050,000)</li>
-        <li><strong>Years to FI:</strong> At a 30% savings rate (ignoring investment returns), it would take approximately 58 years. When 7% investment returns are included, this drops to about <strong>28 years</strong>.</li>
-      </ul>
-
-      <h2>Practical Tips to Boost Your Rate</h2>
-      <ul>
-        <li><strong>Automate the "Gap":</strong> Set up an automatic transfer to your savings or investment account the same day your paycheck arrives.</li>
-        <li><strong>Audit Subscriptions:</strong> Recurring monthly fees are the biggest enemy of a high savings rate. Use our <a href="/calculators/subscription-cost.html">Subscription Calculator</a> to find waste.</li>
-        <li><strong>Mind the "Lifestyle Creep":</strong> When you get a raise, keep your expenses the same and save 100% of the increase.</li>
-        <li><strong>Reduce Big Three:</strong> Housing, Transportation, and Food are the largest expenses for most people. Downsizing a car or cooking at home more often has a 10x larger impact than skipping a latte.</li>
-      </ul>
-
-      <h2>Frequently Asked Questions (FAQ)</h2>
-      <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
-        <div>
-          <h4 style="margin-bottom: 0.5rem;">Should I use pre-tax or post-tax income?</h4>
-          <p>For the most accurate view of "spendable" money, use your <strong>After-Tax (Net) Income</strong>. However, if you contribute to a 401(k), you should add those contributions back into both your income and your savings total.</p>
-        </div>
-        <div>
-          <h4 style="margin-bottom: 0.5rem;">Does paying down debt count as savings?</h4>
-          <p>Yes! Paying down the principal on a loan increases your net worth just like putting money in a bank account. High-interest debt should usually be your first "savings" priority.</p>
-        </div>
-        <div>
-          <h4 style="margin-bottom: 0.5rem;">What is the "4% Rule" mentioned in FI?</h4>
-          <p>The 4% rule suggests that if you can live off 4% of your total investments per year, your money is likely to last 30+ years. This is why the "FI Target" is often calculated as 25 times your annual expenses.</p>
-        </div>
-        <div>
-          <h4 style="margin-bottom: 0.5rem;">How often should I calculate this?</h4>
-          <p>At least once every 6 months, or whenever you have a significant change in income (raise) or expenses (moving house, paying off a car).</p>
-        </div>
-        <div>
-          <h4 style="margin-bottom: 0.5rem;">Is a 50% savings rate actually possible?</h4>
-          <p>Yes, many people in the FIRE (Financial Independence, Retire Early) community achieve this by living a frugal lifestyle while focused on high-income careers. It usually requires intentional choices about housing and transport.</p>
-        </div>
-      </div>
-
-      <div class="compliance-statements" style="margin-top: 3rem; padding: 2rem; background: #f1f5f9; border-radius: 12px; font-size: 0.9rem;">
-        <p><strong>Legal Disclaimer:</strong> All results are estimates based on provided values and simplified mathematical assumptions. This tool does not account for taxes, inflation, or varying investment returns. This does not constitute financial advice.</p>
-        <p>Currency selection affects formatting and display only and does not use live exchange rates.</p>
-      </div>
-    </section>
-
     <section>
       <h2>Related Calculators</h2>
       <div class="next-steps-grid">
@@ -186,6 +124,7 @@
         </a>
       </div>
     </section>
+      <calculator-info-sections></calculator-info-sections>
   </main>
 
   <footer>
@@ -241,5 +180,6 @@
   <script type="module" src="/assets/savings-rate.js"></script>
   <script src="/assets/currency-options.js"></script>
   <script src="/assets/tf-state.js"></script>
+  <script src="/assets/calculator-info-sections.js"></script>
 </body>
 </html>
