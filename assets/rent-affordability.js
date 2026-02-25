@@ -1,4 +1,4 @@
-import { formatCurrencyDecimal } from './common.js';
+import { formatCurrency, formatCurrencyDecimal } from './common.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const inputs = [
@@ -53,8 +53,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const remaining = Math.max(0, incomeUsed - totalObligations);
 
     // Update UI
+    // Use innerHTML for values that have the decimal-small span
     results.maxRent.innerHTML = formatCurrencyDecimal(maxRentAfterDebts);
-    results.rentRange.innerHTML = `Suggested Range: ${formatCurrencyDecimal(rangeLow)} – ${formatCurrencyDecimal(rangeHigh)}`;
+    
+    // For the range, we use 0 decimal places to keep it clean and avoid HTML tag issues
+    results.rentRange.innerHTML = `Suggested Range: ${formatCurrency(rangeLow, 0)} – ${formatCurrency(rangeHigh, 0)}`;
+    
     results.debtDisplay.innerHTML = formatCurrencyDecimal(debts + utilities);
     results.remainingBudget.innerHTML = formatCurrencyDecimal(remaining);
 
