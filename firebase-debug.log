@@ -1,0 +1,12 @@
+[debug] [2026-02-25T19:03:40.169Z] ----------------------------------------------------------------------
+[debug] [2026-02-25T19:03:40.175Z] Command:       /nix/store/ws50yvm6vzlzf7jzz6n7xh4szddrack1-nodejs-20.19.1/bin/node /nix/store/gm9mcvzb17vv8cla08khrg29vxn3sq4r-firebase-tools-15.1.0/lib/node_modules/firebase-tools/lib/bin/firebase.js deploy --only hosting
+[debug] [2026-02-25T19:03:40.177Z] CLI Version:   15.1.0
+[debug] [2026-02-25T19:03:40.178Z] Platform:      linux
+[debug] [2026-02-25T19:03:40.178Z] Node Version:  v20.19.1
+[debug] [2026-02-25T19:03:40.178Z] Time:          Wed Feb 25 2026 19:03:40 GMT+0000 (Coordinated Universal Time)
+[debug] [2026-02-25T19:03:40.182Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-02-25T19:03:46.275Z] No OAuth tokens found
+[debug] [2026-02-25T19:03:46.277Z] No OAuth tokens found
+[error] Failed to fetch Firebase Project from current Studio Workspace: Unable to refresh auth: not yet authenticated.
+[debug] [2026-02-25T19:03:46.286Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/userinfo.email"]
