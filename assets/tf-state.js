@@ -190,10 +190,8 @@
   }
 
   function clearState() {
-    if (confirm('Clear all inputs and saved data?')) {
-      localStorage.removeItem(getStorageKey());
-      location.reload();
-    }
+    localStorage.removeItem(getStorageKey());
+    location.reload();
   }
 
   if (document.readyState === 'complete') setTimeout(injectUI, 500);
