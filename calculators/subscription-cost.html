@@ -11,11 +11,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     .subscription-row {
-      display: grid;
-      grid-template-columns: minmax(240px, 1fr) 180px 180px auto;
-      column-gap: 20px;
-      row-gap: 12px;
-      align-items: end;
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+      flex-wrap: wrap;
       margin-bottom: 18px;
       padding-bottom: 12px;
       border-bottom: 1px solid var(--border);
@@ -24,17 +23,29 @@
     .subscription-row .input-group {
       margin-bottom: 0;
     }
-    .subscription-row input, .subscription-row select {
-      width: 100%;
-    }
-    .subscription-row .input-wrapper {
-      width: 180px;
+    /* 1) Service Name: flex-1, min-w-180 */
+    .subscription-row .input-group:nth-child(1) {
+      flex: 1;
       min-width: 180px;
     }
-    .subscription-row select {
-      width: 180px;
-      min-width: 180px;
+    /* 2) Price: w-110 */
+    .subscription-row .input-group:nth-child(2) {
+      width: 110px;
     }
+    .subscription-row .input-group:nth-child(2) .input-wrapper {
+      width: 110px !important;
+      min-width: 110px !important;
+    }
+    /* 3) Billing: w-130, shrink-0 */
+    .subscription-row .input-group:nth-child(3) {
+      width: 130px;
+      flex-shrink: 0;
+    }
+    .subscription-row .input-group:nth-child(3) select {
+      width: 130px !important;
+      min-width: 130px !important;
+    }
+    /* 4) Remove Button: shrink-0, whitespace-nowrap */
     .remove-btn {
       background: #fee2e2;
       color: #991b1b;
@@ -44,11 +55,12 @@
       cursor: pointer;
       font-weight: 600;
       transition: background 0.2s;
-      height: 48px; /* Align with larger inputs */
+      height: 48px;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
+      white-space: nowrap;
     }
     .remove-btn:hover {
       background: #fecaca;
@@ -69,25 +81,24 @@
       background: #e2e8f0;
       border-color: var(--primary);
     }
+    /* Responsive overrides */
     @media (max-width: 900px) {
-      .subscription-row {
-        grid-template-columns: 1fr 1fr auto;
-      }
-      .subscription-row > div:first-child {
-        grid-column: span 3;
-      }
-      .subscription-row .input-wrapper,
-      .subscription-row select {
-        width: 100%;
-        min-width: 0;
+      /* Handled by flex-wrap and min-widths effectively, but for exact 2-row layout if needed: */
+      .subscription-row .input-group:nth-child(1) {
+        flex-basis: 100%;
       }
     }
     @media (max-width: 520px) {
       .subscription-row {
-        grid-template-columns: 1fr;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
       }
-      .subscription-row > div:first-child {
-        grid-column: span 1;
+      .subscription-row .input-group,
+      .subscription-row .input-wrapper,
+      .subscription-row select {
+        width: 100% !important;
+        min-width: 0 !important;
       }
       .remove-btn {
         width: 100%;
