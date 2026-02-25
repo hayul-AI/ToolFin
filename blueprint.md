@@ -27,7 +27,7 @@ ToolFin is a "money problem solving platform" designed for English-speaking glob
     - Homepage (`index.html`) links to 5 category pages.
     - Category pages list specific calculators.
 4.  **Core Calculators:** 
-    - Implemented: Mortgage, Compound Interest, ROI, Salary/Hourly, Rent vs Buy, Down Payment, Property Tax, Closing Costs, Home Affordability, Mortgage Extra Payment, DTI Calculator, Loan Affordability Calculator, Retirement Contribution Calculator.
+    - Implemented: Mortgage, Compound Interest, ROI, Salary/Hourly, Rent vs Buy, Down Payment, Property Tax, Closing Costs, Home Affordability, Mortgage Extra Payment, DTI Calculator, Loan Affordability Calculator, Retirement Contribution Calculator, Cost of Living Calculator.
     - Planned: Credit Card Payoff, Debt Snowball, etc.
 5.  **Navigation & SEO:** Breadcrumb navigation and semantic structure for all pages.
 6.  **Validation:** Ensure no prohibited phrases exist and all mandatory compliance rules are met.

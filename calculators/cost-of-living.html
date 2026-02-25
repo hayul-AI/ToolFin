@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cost of Living Calculator - ToolFin</title>
+  <meta name="description" content="Compare salary purchasing power between different locations. Use our cost of living calculator to see how much you need to earn to maintain your lifestyle.">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container nav-container">
+      <a class="logo" href="/" aria-label="ToolFin Home">
+  <span class="logo-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+      <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+      <circle cx="8" cy="13" r="1"></circle>
+      <circle cx="12" cy="13" r="1"></circle>
+      <circle cx="16" cy="13" r="1"></circle>
+      <circle cx="8" cy="17" r="1"></circle>
+      <circle cx="12" cy="17" r="1"></circle>
+      <circle cx="16" cy="17" r="1"></circle>
+    </svg>
+  </span>
+  <span class="logo-text">ToolFin</span>
+</a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/methodology.html">Methodology</a>
+        <a href="/contact.html">Contact</a>
+        <select id="currency-selector"></select>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav style="margin: 2rem 0 1rem; font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">
+      <a href="/" style="color: inherit; text-decoration: none;">Home</a> / 
+      <a href="/income.html" style="color: inherit; text-decoration: none;">Income, Tax & Salary</a> / 
+      Cost of Living
+    </nav>
+
+    <div class="hero" style="text-align: left; padding: 2rem 0 3rem;">
+      <h1 style="font-size: 3rem;">Cost of Living Calculator</h1>
+      <p>Compare how far your salary goes in a different cost environment. Understand the income adjustment needed when relocating between cities or countries.</p>
+    </div>
+
+    <div class="card">
+      <div class="calc-grid">
+        <div id="inputs">
+          <div class="input-group">
+            <label for="current-salary">Current Annual Salary</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="current-salary" value="75000" step="1000" min="0" required>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="current-index">Current Location Cost Index</label>
+            <div class="input-wrapper">
+              <input type="number" id="current-index" value="100" step="1" min="1">
+            </div>
+            <small style="color: var(--text-muted); display: block; margin-top: 0.4rem;">Base index (e.g., 100 for your current city).</small>
+          </div>
+
+          <div class="input-group">
+            <label for="new-index">New Location Cost Index</label>
+            <div class="input-wrapper">
+              <input type="number" id="new-index" value="125" step="1" min="1" required>
+            </div>
+            <small style="color: var(--text-muted); display: block; margin-top: 0.4rem;">Enter the index for your target location.</small>
+          </div>
+
+          <div class="input-group">
+            <label for="housing-portion">Housing Portion of Budget (%)</label>
+            <div class="input-wrapper">
+              <input type="number" id="housing-portion" value="35" step="1" min="0" max="100">
+            </div>
+            <small style="color: var(--text-muted); display: block; margin-top: 0.4rem;">Typically 30-40% for most households.</small>
+          </div>
+        </div>
+
+        <div id="results">
+          <div class="results-panel">
+            <div class="result-item">
+              <div class="result-label">Equivalent Salary Needed</div>
+              <div class="result-value" id="equivalent-salary-result">$0</div>
+            </div>
+            
+            <div style="margin-top: 2rem; border-top: 2px solid var(--border); padding-top: 1.5rem; display: grid; gap: 1rem;">
+              <div style="display: flex; justify-content: space-between;">
+                <span style="font-weight: 700; color: var(--text-muted);">Salary Adjustment</span>
+                <span id="salary-difference" style="font-weight: 800;">$0</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 0.5rem;">
+                <span style="font-weight: 700; color: var(--text-main);">Purchasing Power Change</span>
+                <span id="purchasing-power-change" style="font-weight: 900; color: var(--primary);">0%</span>
+              </div>
+            </div>
+
+            <div id="interpretation-text" style="margin-top: 1.5rem; padding: 1rem; background: #f8fafc; border-radius: 8px; font-size: 0.95rem; line-height: 1.5; font-weight: 500;">
+              Comparison results will appear as you type.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section style="margin-top: 4rem;">
+      <h2>What This Calculator Does</h2>
+      <p>The Cost of Living (COL) Calculator estimates the salary adjustment required to maintain your current standard of living when moving to a new location. It accounts for differences in the general price levels of goods and services, such as housing, transportation, groceries, and utilities.</p>
+
+      <h2>How Cost of Living Index Works</h2>
+      <p>A cost of living index is a theoretical price index that measures relative differences in the cost of a standard basket of goods. Often, a major city (like New York or London) or a national average is set to a base of 100. If a city has an index of 120, it means it is 20% more expensive than the base. Our calculator uses these ratios to project equivalent earnings.</p>
+
+      <h2>Result Interpretation</h2>
+      <p>The results provide a mathematical bridge between two different economic environments:</p>
+      <ul>
+        <li><strong>Equivalent Salary:</strong> This is the gross income you would need in the new location to have the same "disposable" feeling as your current salary.</li>
+        <li><strong>Purchasing Power:</strong> If your new salary offer is lower than the equivalent salary, your "real" income—how much you can actually buy—has decreased, even if the dollar amount stayed the same.</li>
+        <li><strong>Housing Impact:</strong> Because housing is usually the largest single expense, small changes in local real estate markets can cause massive shifts in your overall cost of living.</li>
+      </ul>
+
+      <h2>Example Scenario</h2>
+      <p>If you currently live in a city with an index of 100 and earn $75,000, and you are moving to a city with an index of 130, you would need to earn <strong>$97,500</strong> to maintain your current lifestyle. If your new job only offers $85,000, you are effectively taking a 12.8% pay cut in terms of purchasing power.</p>
+
+      <h2>Practical Tips for Moving Decisions</h2>
+      <ul>
+        <li><strong>Research local tax laws.</strong> Cost of living indices often look at prices, but income and sales tax variations can significantly impact your net take-home pay.</li>
+        <li><strong>Analyze the commute.</strong> A cheaper home further from the city center might increase your transportation costs and "time tax."</li>
+        <li><strong>Look at employer benefits.</strong> Some companies offer "COL adjustments" or housing stipends when transferring employees to high-cost areas.</li>
+        <li><strong>Negotiate based on data.</strong> Use cost of living data to justify salary requirements during interviews or relocation discussions.</li>
+        <li><strong>Trial your budget.</strong> Before moving, try living on the "equivalent" budget for a month to see if it feels realistic for your lifestyle.</li>
+      </ul>
+
+      <h2>Frequently Asked Questions (FAQ)</h2>
+      <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
+        <div>
+          <h4 style="margin-bottom: 0.5rem;">Where do I find cost of living index numbers?</h4>
+          <p>Many government statistics bureaus and independent research firms (like Numbeo or Mercer) provide regional indices. You can often find these by searching "[City Name] cost of living index."</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 0.5rem;">Is cost of living the same as inflation?</h4>
+          <p>No. Inflation measures how prices change over time in one place. Cost of living compares how prices differ between two places at the same time.</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 0.5rem;">Does this calculator include healthcare?</h4>
+          <p>General cost indices typically include average healthcare costs, but your individual needs (prescriptions, specialists) may vary significantly depending on local insurance systems.</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 0.5rem;">Should I use gross or net salary?</h4>
+          <p>Most people use Gross Salary for initial comparisons, but for a truly accurate move, you should compare the estimated Net (Take-Home) pay in both locations.</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 0.5rem;">What if my new location has a lower index?</h4>
+          <p>This is called "geographic arbitrage." By moving to a lower-cost area while keeping a similar salary, your purchasing power and ability to save will increase dramatically.</p>
+        </div>
+      </div>
+
+      <div class="compliance-statements" style="margin-top: 3rem; padding: 2rem; background: #f1f5f9; border-radius: 12px; font-size: 0.9rem;">
+        <p><strong>Legal Disclaimer:</strong> All calculations are estimates based on cost index assumptions and do not represent actual expenses. Individual spending patterns and local market conditions may vary. This is not financial or professional relocation advice.</p>
+        <p>Currency selection affects formatting and display only and does not use live exchange rates.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Related Calculators</h2>
+      <div class="next-steps-grid">
+        <a href="/calculators/take-home-pay.html" class="next-step-card">
+          <strong>Take Home Pay Calculator</strong>
+          <p>See exactly how much you'll keep after local taxes in your new home.</p>
+        </a>
+        <a href="/calculators/salary-hourly.html" class="next-step-card">
+          <strong>Salary Converter</strong>
+          <p>Convert your new salary offer into monthly or hourly rates.</p>
+        </a>
+        <a href="/calculators/rent-vs-buy.html" class="next-step-card">
+          <strong>Rent vs Buy Calculator</strong>
+          <p>Decide if you should rent or purchase a home in your new location.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" aria-label="ToolFin Home">
+  <span class="logo-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+      <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+      <circle cx="8" cy="13" r="1"></circle>
+      <circle cx="12" cy="13" r="1"></circle>
+      <circle cx="16" cy="13" r="1"></circle>
+      <circle cx="8" cy="17" r="1"></circle>
+      <circle cx="12" cy="17" r="1"></circle>
+      <circle cx="16" cy="17" r="1"></circle>
+    </svg>
+  </span>
+  <span class="logo-text">ToolFin</span>
+</a>
+          <p style="margin-top: 1.5rem;">Smarter financial modeling for global clarity.</p>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Platform</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/">Home</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/about.html">About ToolFin</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/methodology.html">Methodology</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Legal</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/disclaimer.html">Disclaimer</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/editorial-policy.html">Editorial Policy</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Support</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="trust-strip">
+        NOT FINANCIAL ADVICE • EDUCATIONAL USE ONLY • ESTIMATES ONLY • JURISDICTION DIFFERENCES APPLY
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/assets/cost-of-living.js"></script>
+  <script src="/assets/currency-options.js"></script>
+  <script src="/assets/tf-state.js"></script>
+</body>
+</html>
