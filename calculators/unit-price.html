@@ -109,7 +109,13 @@
             <label>Quantity / Size</label>
             <div style="display: flex; gap: 8px;">
               <input type="number" id="p1-qty" value="16" step="1" style="flex: 2; padding: 12px; border: 2px solid var(--border); border-radius: 12px; font-weight: 600;">
-              <input type="text" id="unit-label" placeholder="oz, lb, kg" value="oz" style="flex: 1; padding: 12px; border: 2px solid var(--border); border-radius: 12px; font-weight: 600; text-align: center;">
+              <select id="p1-unit" style="flex: 1.5; padding: 12px; border: 2px solid var(--border); border-radius: 12px; font-weight: 600; background: white;">
+                <option value="g">g</option>
+                <option value="kg">kg</option>
+                <option value="mg">mg</option>
+                <option value="oz" selected>oz</option>
+                <option value="lb">lb</option>
+              </select>
             </div>
           </div>
           <div class="unit-price-display" id="p1-unit-price">$0.00 / oz</div>
@@ -130,7 +136,13 @@
             <label>Quantity / Size</label>
             <div style="display: flex; gap: 8px;">
               <input type="number" id="p2-qty" value="32" step="1" style="flex: 2; padding: 12px; border: 2px solid var(--border); border-radius: 12px; font-weight: 600;">
-              <span id="unit-label-sync" style="flex: 1; display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--text-muted);">oz</span>
+              <select id="p2-unit" style="flex: 1.5; padding: 12px; border: 2px solid var(--border); border-radius: 12px; font-weight: 600; background: white;">
+                <option value="g">g</option>
+                <option value="kg">kg</option>
+                <option value="mg">mg</option>
+                <option value="oz" selected>oz</option>
+                <option value="lb">lb</option>
+              </select>
             </div>
           </div>
           <div class="unit-price-display" id="p2-unit-price">$0.00 / oz</div>
