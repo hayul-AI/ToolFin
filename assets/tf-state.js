@@ -14,26 +14,11 @@
   function getParentPage() {
     const path = window.location.pathname;
     const main = document.querySelector('main');
-    
-    // 1. Try to extract from Breadcrumbs
     const breadcrumbLinks = Array.from(main?.querySelectorAll('nav a') || []);
     if (breadcrumbLinks.length > 0) {
-      // The last link in breadcrumbs is usually the immediate parent
       const parentLink = breadcrumbLinks[breadcrumbLinks.length - 1];
-      return {
-        url: parentLink.href,
-        title: parentLink.innerText.trim()
-      };
+      return { url: parentLink.href, title: parentLink.innerText.trim() };
     }
-
-    // 2. Fallback: Path-based logic
-    if (path.includes('/calculators/')) {
-      // If we're in calculators but no breadcrumbs, we can't easily guess category without a map
-      // but most calculators belong to a major group. Default to Home for now if guess fails.
-      return { url: '/', title: 'Home' };
-    }
-
-    // Default to Home for any other subpage
     return { url: '/', title: 'Home' };
   }
 
@@ -124,7 +109,7 @@
   // --- UI Injection Logic ---
   function injectUI() {
     const path = window.location.pathname;
-    if (path === '/' || path.endsWith('index.html')) return; // Don't show on Home
+    if (path === '/' || path.endsWith('index.html')) return;
 
     const main = document.querySelector('main');
     if (!main || document.getElementById('tf-global-nav')) return;
@@ -133,25 +118,27 @@
     const isCalculator = inputs.length > 0;
     const parentInfo = getParentPage();
     
-    // Create UI container
     const uiContainer = document.createElement('div');
     uiContainer.id = 'tf-global-nav';
     uiContainer.className = 'container'; 
-    uiContainer.style.cssText = "display:flex; flex-direction:column; align-items:center; gap:15px; padding:25px 0; position:relative; z-index:100;";
+    uiContainer.style.cssText = "display:flex; flex-direction:column; align-items:center; gap:12px; padding:30px 0; position:relative; z-index:100;";
     
-    const btnBase = "border:1px solid #e2e8f0; padding:12px 20px; border-radius:12px; cursor:pointer; font-weight:700; font-size:14px; transition:all 0.2s; display:flex; align-items:center; gap:8px; box-shadow:0 1px 3px rgba(0,0,0,0.1); background:#ffffff; color:#1e293b;";
-    const primaryBtn = `background:#0061FF; color:white; border-color:#004ecc; box-shadow:0 4px 6px -1px rgba(0,97,255,0.2); ${btnBase}`;
+    // Modern Trendy Styles
+    const btnBase = "border:1px solid #e2e8f0; padding:12px 24px; border-radius:10px; cursor:pointer; font-weight:700; font-size:14px; transition:all 0.25s cubic-bezier(0.4, 0, 0.2, 1); display:flex; align-items:center; gap:8px; box-shadow:0 2px 4px rgba(0,0,0,0.05); text-transform: uppercase; letter-spacing: 0.5px;";
+    const whiteBtn = `background:#ffffff; color:#475569; ${btnBase}`;
+    const primaryBtn = `background:#0061FF; color:#ffffff !important; border-color:#0056eb; box-shadow:0 4px 12px rgba(0,97,255,0.25); ${btnBase}`;
+    const dangerBtn = `background:#ffffff; color:#e11d48; ${btnBase}`;
     
     let html = '';
     if (isCalculator) {
       html += `
-        <div class="tf-state-actions" style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center; width:100%;">
-          <button id="tf-btn-save" style="${btnBase}"><span>💾</span> Save</button>
-          <button id="tf-btn-load" style="${btnBase}"><span>📂</span> Load</button>
-          <button id="tf-btn-clear" style="${btnBase} color:#e11d48;"><span>🗑️</span> Reset</button>
-          <div style="display:flex; gap:0;">
-            <button id="tf-btn-download" style="${primaryBtn} border-top-right-radius:0; border-bottom-right-radius:0;"><span>📄</span> Download Report</button>
-            <select id="tf-format-selector" style="background:#0061FF; color:white; border:1px solid #004ecc; border-left:none; padding:0 10px; border-top-right-radius:12px; border-bottom-right-radius:12px; cursor:pointer; font-weight:700; font-size:13px; outline:none;">
+        <div class="tf-state-actions" style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center; width:100%;">
+          <button id="tf-btn-save" style="${whiteBtn}">Save</button>
+          <button id="tf-btn-load" style="${whiteBtn}">Load</button>
+          <button id="tf-btn-clear" style="${dangerBtn}">Reset</button>
+          <div style="display:flex; gap:0; filter: drop-shadow(0 4px 12px rgba(0,97,255,0.2));">
+            <button id="tf-btn-download" style="${primaryBtn} border-top-right-radius:0; border-bottom-right-radius:0; box-shadow:none;">Download Report</button>
+            <select id="tf-format-selector" style="background:#0061FF; color:white; border:1px solid #0056eb; border-left:1px solid rgba(255,255,255,0.2); padding:0 12px; border-top-right-radius:10px; border-bottom-right-radius:10px; cursor:pointer; font-weight:700; font-size:13px; outline:none; appearance:none;-webkit-appearance:none;">
               <option value="pdf">PDF</option>
               <option value="png">PNG</option>
               <option value="jpg">JPG</option>
@@ -161,12 +148,10 @@
       `;
     }
     
-    // Hierarchical Back Button
-    html += `<button id="tf-btn-back" style="${btnBase} border:none; box-shadow:none; color:var(--text-muted); font-size:13px;"><span>←</span> Back to ${parentInfo.title}</button>`;
+    html += `<button id="tf-btn-back" style="${whiteBtn} border:none; box-shadow:none; color:#94a3b8; font-size:12px; margin-top:5px;">Back to ${parentInfo.title}</button>`;
     
     uiContainer.innerHTML = html;
     
-    // Positioning
     if (isCalculator) {
       const resultsSelectors = ['.results-panel', '#results-area', '#results', '.output-card', '#results-section'];
       let targetElement = null;
@@ -175,14 +160,12 @@
         if (el) { targetElement = el.closest('.card') || el; break; }
       }
       if (!targetElement) targetElement = document.getElementById('calculator-section') || document.querySelector('.calc-grid')?.closest('section') || main.querySelector('.card');
-      
       if (targetElement) targetElement.after(uiContainer);
       else main.append(uiContainer);
     } else {
       main.append(uiContainer);
     }
 
-    // Event Bindings
     if (isCalculator) {
       document.getElementById('tf-btn-save').addEventListener('click', saveState);
       document.getElementById('tf-btn-load').addEventListener('click', loadState);
@@ -191,22 +174,37 @@
         downloadReport(document.getElementById('tf-format-selector').value);
       });
     }
-    document.getElementById('tf-btn-back').addEventListener('click', () => {
-      window.location.href = parentInfo.url;
-    });
+    document.getElementById('tf-btn-back').addEventListener('click', () => { window.location.href = parentInfo.url; });
 
-    // Hover effects
+    // Refined Hover Effects
     uiContainer.querySelectorAll('button').forEach(btn => {
       const isPrimary = btn.id === 'tf-btn-download';
+      const isDanger = btn.id === 'tf-btn-clear';
+      const isBack = btn.id === 'tf-btn-back';
+      
       btn.onmouseover = () => {
         btn.style.transform = 'translateY(-2px)';
-        if (isPrimary) btn.style.background = '#004ecc';
-        else btn.style.background = '#f8fafc';
+        if (isPrimary) {
+          btn.style.background = '#0056eb';
+          btn.style.boxShadow = '0 6px 16px rgba(0,97,255,0.35)';
+        } else if (isBack) {
+          btn.style.color = '#0061FF';
+        } else {
+          btn.style.background = '#f8fafc';
+          btn.style.borderColor = '#cbd5e1';
+        }
       };
       btn.onmouseout = () => {
         btn.style.transform = 'translateY(0)';
-        if (isPrimary) btn.style.background = '#0061FF';
-        else btn.style.background = '#ffffff';
+        if (isPrimary) {
+          btn.style.background = '#0061FF';
+          btn.style.boxShadow = 'none';
+        } else if (isBack) {
+          btn.style.color = '#94a3b8';
+        } else {
+          btn.style.background = '#ffffff';
+          btn.style.borderColor = '#e2e8f0';
+        }
       };
     });
   }
@@ -223,7 +221,7 @@
     localStorage.setItem(getStorageKey(), JSON.stringify(state));
     const btn = document.getElementById('tf-btn-save');
     const old = btn.innerHTML;
-    btn.innerHTML = '<span>✅</span> Saved!';
+    btn.innerHTML = 'Saved!';
     setTimeout(() => btn.innerHTML = old, 2000);
   }
 
@@ -246,7 +244,7 @@
       }, 100);
       const btn = document.getElementById('tf-btn-load');
       const old = btn.innerHTML;
-      btn.innerHTML = '<span>✅</span> Loaded!';
+      btn.innerHTML = 'Loaded!';
       setTimeout(() => btn.innerHTML = old, 2000);
     } catch(e) { console.error('Load failed', e); }
   }
