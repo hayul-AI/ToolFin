@@ -10,6 +10,33 @@
     document.head.appendChild(script);
   }
 
+  // --- Hierarchical Navigation Logic ---
+  function getParentPage() {
+    const path = window.location.pathname;
+    const main = document.querySelector('main');
+    
+    // 1. Try to extract from Breadcrumbs
+    const breadcrumbLinks = Array.from(main?.querySelectorAll('nav a') || []);
+    if (breadcrumbLinks.length > 0) {
+      // The last link in breadcrumbs is usually the immediate parent
+      const parentLink = breadcrumbLinks[breadcrumbLinks.length - 1];
+      return {
+        url: parentLink.href,
+        title: parentLink.innerText.trim()
+      };
+    }
+
+    // 2. Fallback: Path-based logic
+    if (path.includes('/calculators/')) {
+      // If we're in calculators but no breadcrumbs, we can't easily guess category without a map
+      // but most calculators belong to a major group. Default to Home for now if guess fails.
+      return { url: '/', title: 'Home' };
+    }
+
+    // Default to Home for any other subpage
+    return { url: '/', title: 'Home' };
+  }
+
   // --- Report Generation Logic ---
   function getReportHTML(title, inputData, resultsHTML) {
     return `
@@ -96,11 +123,15 @@
 
   // --- UI Injection Logic ---
   function injectUI() {
+    const path = window.location.pathname;
+    if (path === '/' || path.endsWith('index.html')) return; // Don't show on Home
+
     const main = document.querySelector('main');
     if (!main || document.getElementById('tf-global-nav')) return;
     
     const inputs = main.querySelectorAll('input, select');
     const isCalculator = inputs.length > 0;
+    const parentInfo = getParentPage();
     
     // Create UI container
     const uiContainer = document.createElement('div');
@@ -130,8 +161,8 @@
       `;
     }
     
-    // Always add Back Button
-    html += `<button id="tf-btn-back" style="${btnBase} border:none; box-shadow:none; color:var(--text-muted); font-size:13px;"><span>←</span> Go Back to Previous Page</button>`;
+    // Hierarchical Back Button
+    html += `<button id="tf-btn-back" style="${btnBase} border:none; box-shadow:none; color:var(--text-muted); font-size:13px;"><span>←</span> Back to ${parentInfo.title}</button>`;
     
     uiContainer.innerHTML = html;
     
@@ -148,7 +179,6 @@
       if (targetElement) targetElement.after(uiContainer);
       else main.append(uiContainer);
     } else {
-      // Normal pages: put at the very end of main
       main.append(uiContainer);
     }
 
@@ -161,9 +191,11 @@
         downloadReport(document.getElementById('tf-format-selector').value);
       });
     }
-    document.getElementById('tf-btn-back').addEventListener('click', () => window.history.back());
+    document.getElementById('tf-btn-back').addEventListener('click', () => {
+      window.location.href = parentInfo.url;
+    });
 
-    // Hover effects for all buttons
+    // Hover effects
     uiContainer.querySelectorAll('button').forEach(btn => {
       const isPrimary = btn.id === 'tf-btn-download';
       btn.onmouseover = () => {
