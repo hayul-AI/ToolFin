@@ -12,13 +12,14 @@
   <style>
     .subscription-row {
       display: grid;
-      grid-template-columns: minmax(220px, 1fr) 160px 160px auto;
-      column-gap: 18px;
-      row-gap: 10px;
+      grid-template-columns: minmax(240px, 1fr) 180px 180px auto;
+      column-gap: 20px;
+      row-gap: 12px;
       align-items: end;
       margin-bottom: 18px;
       padding-bottom: 12px;
       border-bottom: 1px solid var(--border);
+      overflow: visible; /* Ensure dropdowns aren't clipped */
     }
     .subscription-row .input-group {
       margin-bottom: 0;
@@ -27,7 +28,12 @@
       width: 100%;
     }
     .subscription-row .input-wrapper {
-      width: 160px;
+      width: 180px;
+      min-width: 180px;
+    }
+    .subscription-row select {
+      width: 180px;
+      min-width: 180px;
     }
     .remove-btn {
       background: #fee2e2;
@@ -38,10 +44,11 @@
       cursor: pointer;
       font-weight: 600;
       transition: background 0.2s;
-      height: 42px; /* Center with inputs */
+      height: 48px; /* Align with larger inputs */
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
     }
     .remove-btn:hover {
       background: #fecaca;
@@ -62,16 +69,27 @@
       background: #e2e8f0;
       border-color: var(--primary);
     }
-    @media (max-width: 767px) {
+    @media (max-width: 900px) {
       .subscription-row {
         grid-template-columns: 1fr 1fr auto;
-        gap: 12px;
       }
       .subscription-row > div:first-child {
         grid-column: span 3;
       }
       .subscription-row .input-wrapper,
       .subscription-row select {
+        width: 100%;
+        min-width: 0;
+      }
+    }
+    @media (max-width: 520px) {
+      .subscription-row {
+        grid-template-columns: 1fr;
+      }
+      .subscription-row > div:first-child {
+        grid-column: span 1;
+      }
+      .remove-btn {
         width: 100%;
       }
     }
