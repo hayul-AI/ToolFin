@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Affordability Calculator - ToolFin</title>
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    .affordability-tier {
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      border: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .tier-conservative { background: #f0fdf4; border-color: #bbf7d0; }
+    .tier-moderate { background: #fffbeb; border-color: #fef3c7; }
+    .tier-aggressive { background: #fef2f2; border-color: #fecaca; }
+    
+    .tier-info h4 { margin: 0; font-size: 0.9rem; text-transform: uppercase; color: var(--text-muted); }
+    .tier-price { font-size: 1.5rem; font-weight: 800; color: var(--text-main); }
+    
+    @media (max-width: 480px) {
+      .affordability-tier { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav-container">
+      <a class="logo" href="/" aria-label="ToolFin Home">
+        <span class="logo-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+            <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+            <circle cx="8" cy="13" r="1"></circle>
+            <circle cx="12" cy="13" r="1"></circle>
+            <circle cx="16" cy="13" r="1"></circle>
+            <circle cx="8" cy="17" r="1"></circle>
+            <circle cx="12" cy="17" r="1"></circle>
+            <circle cx="16" cy="17" r="1"></circle>
+          </svg>
+        </span>
+        <span class="logo-text">ToolFin</span>
+      </a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/methodology.html">Methodology</a>
+        <a href="/contact.html">Contact</a>
+        <select id="currency-selector">
+          <option value="USD" selected>USD — US Dollar ($)</option>
+        </select>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav style="margin: 2rem 0 1rem; font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">
+      <a href="/" style="color: inherit; text-decoration: none;">Home</a> / 
+      <a href="/housing.html" style="color: inherit; text-decoration: none;">Housing & Real Estate</a> / 
+      Home Affordability
+    </nav>
+
+    <div class="hero" style="text-align: left; padding: 2rem 0 3rem;">
+      <h1 style="font-size: 3rem;">Home Affordability</h1>
+      <p>Estimate how much house you can afford based on your income, monthly debts, and down payment.</p>
+    </div>
+
+    <div class="notice-box">
+      <ul>
+        <li>NOT FINANCIAL ADVICE</li>
+        <li>EDUCATIONAL USE ONLY</li>
+        <li>ESTIMATES BASED ON DTI RATIOS</li>
+        <li>LENDER CRITERIA MAY VARY</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="calc-grid">
+        <div id="inputs">
+          <div class="input-group">
+            <label for="annual-income">Annual Gross Income</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="annual-income" value="85000" step="1000">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="monthly-debt">Monthly Debt Payments</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="monthly-debt" value="500" step="100">
+            </div>
+            <small style="color: var(--text-muted);">Include car loans, student loans, and credit card minimums.</small>
+          </div>
+
+          <div class="input-group">
+            <label for="down-payment">Down Payment Saved</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="down-payment" value="40000" step="1000">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="interest-rate">Mortgage Rate (%)</label>
+            <div class="input-wrapper">
+              <input type="number" id="interest-rate" value="6.5" step="0.1">
+              <span class="suffix" style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-weight: 700; color: var(--text-muted);">%</span>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="loan-term">Loan Term (Years)</label>
+            <div class="input-wrapper">
+              <input type="number" id="loan-term" value="30" step="1">
+            </div>
+          </div>
+
+          <button id="calculate-btn" style="background: var(--primary); color: white; border: none; padding: 18px; border-radius: 12px; font-weight: 800; font-size: 1.1rem; cursor: pointer; width: 100%; transition: background 0.2s;">Check Affordability</button>
+        </div>
+
+        <div id="results">
+          <div class="results-panel">
+            <div class="result-item">
+              <div class="result-label">Recommended Home Price</div>
+              <div class="result-value" id="res-main-price">$0</div>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">Based on a moderate 36% Debt-to-Income ratio.</p>
+            </div>
+
+            <div style="margin-top: 2rem;">
+              <h4 style="font-size: 0.9rem; font-weight: 800; margin-bottom: 1rem; color: var(--secondary);">Affordability Tiers</h4>
+              
+              <div class="affordability-tier tier-conservative">
+                <div class="tier-info">
+                  <h4>Conservative (28%)</h4>
+                  <div id="price-conservative" class="tier-price">$0</div>
+                </div>
+                <div style="text-align: right; font-size: 0.8rem; color: #166534; font-weight: 600;">Very Safe</div>
+              </div>
+
+              <div class="affordability-tier tier-moderate">
+                <div class="tier-info">
+                  <h4>Moderate (36%)</h4>
+                  <div id="price-moderate" class="tier-price">$0</div>
+                </div>
+                <div style="text-align: right; font-size: 0.8rem; color: #92400e; font-weight: 600;">Standard</div>
+              </div>
+
+              <div class="affordability-tier tier-aggressive">
+                <div class="tier-info">
+                  <h4>Aggressive (43%)</h4>
+                  <div id="price-aggressive" class="tier-price">$0</div>
+                </div>
+                <div style="text-align: right; font-size: 0.8rem; color: #991b1b; font-weight: 600;">Lender Limit</div>
+              </div>
+            </div>
+
+            <div style="margin-top: 2rem; border-top: 2px solid var(--border); padding-top: 1.5rem;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                <span style="color: var(--text-muted); font-weight: 600;">Monthly P&I Payment</span>
+                <span style="font-weight: 800;" id="res-monthly-payment">$0</span>
+              </div>
+              <div style="display: flex; justify-content: space-between;">
+                <span style="color: var(--text-muted); font-weight: 600;">Max Total Debt/Mo</span>
+                <span style="font-weight: 800;" id="res-max-debt">$0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="compliance-statements" style="margin-top: 3rem;">
+        <p>“Lenders use 'Debt-to-Income' (DTI) ratios to determine how much they are willing to lend you. While a lender may approve you for a high amount (Aggressive tier), it doesn't necessarily mean it fits your personal budget or lifestyle.”</p>
+        <p>“This calculation estimates property taxes and insurance at 1.5% of the home value annually. Actual costs vary by location.”</p>
+      </div>
+    </div>
+
+    <section style="margin-top: 4rem;">
+      <h2>Understanding Home Affordability</h2>
+      <p>How much you can 'afford' is a personal decision that depends on your income, debts, and how much you're willing to spend each month on housing.</p>
+      
+      <h3>The 28/36 Rule</h3>
+      <p>Many financial advisors and lenders use the 28/36 rule as a guideline:</p>
+      <ul>
+        <li><strong>28% Front-End Ratio:</strong> Your total housing costs (mortgage, tax, insurance) should not exceed 28% of your gross monthly income.</li>
+        <li><strong>36% Back-End Ratio:</strong> Your total debt payments (housing costs + car loans, credit cards, etc.) should not exceed 36% of your gross monthly income.</li>
+      </ul>
+
+      <h3>Factors That Change Affordability</h3>
+      <ul>
+        <li><strong>Interest Rates:</strong> Even a 1% increase in rates can reduce your purchasing power by tens of thousands of dollars.</li>
+        <li><strong>Down Payment:</strong> A larger down payment reduces your loan amount and monthly interest costs.</li>
+        <li><strong>Local Taxes:</strong> High-tax areas reduce the amount of your monthly payment that can go toward the loan principal.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" aria-label="ToolFin Home">
+            <span class="logo-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+                <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+                <circle cx="8" cy="13" r="1"></circle>
+                <circle cx="12" cy="13" r="1"></circle>
+                <circle cx="16" cy="13" r="1"></circle>
+                <circle cx="8" cy="17" r="1"></circle>
+                <circle cx="12" cy="17" r="1"></circle>
+                <circle cx="16" cy="17" r="1"></circle>
+              </svg>
+            </span>
+            <span class="logo-text">ToolFin</span>
+          </a>
+          <p style="margin-top: 1.5rem;">Smarter financial modeling for global clarity.</p>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Platform</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/">Home</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/about.html">About ToolFin</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/methodology.html">Methodology</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Legal</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/disclaimer.html">Disclaimer</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/editorial-policy.html">Editorial Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Support</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="trust-strip">
+        NOT FINANCIAL ADVICE • EDUCATIONAL USE ONLY • ESTIMATES ONLY • JURISDICTION DIFFERENCES APPLY
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/assets/home-affordability.js"></script>
+  <script src="/assets/currency-options.js"></script>
+  <script src="/assets/tf-state.js"></script>
+</body>
+</html>
