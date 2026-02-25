@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>50/30/20 Budget Planner - ToolFin</title>
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    .budget-chart {
+      display: flex;
+      height: 40px;
+      border-radius: 20px;
+      overflow: hidden;
+      margin: 2rem 0;
+      background: #e2e8f0;
+    }
+    .chart-segment { height: 100%; transition: width 0.5s ease-in-out; }
+    .seg-needs { background: var(--primary); }
+    .seg-wants { background: #6366f1; }
+    .seg-savings { background: #10b981; }
+
+    .legend-item { display: flex; align-items: center; gap: 8px; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 600; }
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav-container">
+      <a class="logo" href="/" aria-label="ToolFin Home">
+        <span class="logo-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+            <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+            <circle cx="8" cy="13" r="1"></circle>
+            <circle cx="12" cy="13" r="1"></circle>
+            <circle cx="16" cy="13" r="1"></circle>
+            <circle cx="8" cy="17" r="1"></circle>
+            <circle cx="12" cy="17" r="1"></circle>
+            <circle cx="16" cy="17" r="1"></circle>
+          </svg>
+        </span>
+        <span class="logo-text">ToolFin</span>
+      </a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/methodology.html">Methodology</a>
+        <a href="/contact.html">Contact</a>
+        <select id="currency-selector">
+          <option value="USD" selected>USD — US Dollar ($)</option>
+        </select>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav style="margin: 2rem 0 1rem; font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">
+      <a href="/" style="color: inherit; text-decoration: none;">Home</a> / 
+      <a href="/everyday.html" style="color: inherit; text-decoration: none;">Everyday Finance</a> / 
+      Budget Planner
+    </nav>
+
+    <div class="hero" style="text-align: left; padding: 2rem 0 3rem;">
+      <h1 style="font-size: 3rem;">50/30/20 Budget Planner</h1>
+      <p>Organize your finances using the popular rule of thumb: 50% for needs, 30% for wants, and 20% for savings and debt repayment.</p>
+    </div>
+
+    <div class="notice-box">
+      <ul>
+        <li>NOT FINANCIAL ADVICE</li>
+        <li>EDUCATIONAL USE ONLY</li>
+        <li>GUIDELINE RATIOS</li>
+        <li>USE NET (AFTER-TAX) INCOME</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="calc-grid">
+        <div id="inputs">
+          <div class="input-group">
+            <label for="monthly-income">Monthly Take-Home Pay</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="monthly-income" value="5000" step="100">
+            </div>
+            <small style="color: var(--text-muted);">This should be your net income after taxes and payroll deductions.</small>
+          </div>
+
+          <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border);">
+            <h3 style="font-size: 1.1rem; font-weight: 800; margin-bottom: 1rem;">The Rule Breakdown</h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem;">The 50/30/20 rule is a simple way to budget that doesn't involve detailed tracking of every single cent.</p>
+            
+            <div class="legend-item"><span class="dot seg-needs"></span> Needs (50%)</div>
+            <div class="legend-item"><span class="dot seg-wants"></span> Wants (30%)</div>
+            <div class="legend-item"><span class="dot seg-savings"></span> Savings & Debt (20%)</div>
+          </div>
+
+          <button id="calculate-btn" style="background: var(--primary); color: white; border: none; padding: 18px; border-radius: 12px; font-weight: 800; font-size: 1.1rem; cursor: pointer; width: 100%; transition: background 0.2s; margin-top: 1rem;">Update Budget</button>
+        </div>
+
+        <div id="results">
+          <div class="results-panel">
+            <div class="result-item">
+              <div class="result-label">Essential Needs (50%)</div>
+              <div class="result-value" id="res-needs" style="color: var(--primary);">$0</div>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Housing, groceries, utilities, transportation.</p>
+            </div>
+
+            <div class="result-item" style="margin-top: 1.5rem;">
+              <div class="result-label">Personal Wants (30%)</div>
+              <div class="result-value" id="res-wants" style="color: #6366f1;">$0</div>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Dining out, hobbies, shopping, entertainment.</p>
+            </div>
+
+            <div class="result-item" style="margin-top: 1.5rem;">
+              <div class="result-label">Savings & Debt (20%)</div>
+              <div class="result-value" id="res-savings" style="color: #10b981;">$0</div>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Emergency fund, 401k, extra debt payments.</p>
+            </div>
+
+            <div class="budget-chart">
+              <div id="bar-needs" class="chart-segment seg-needs" style="width: 50%;"></div>
+              <div id="bar-wants" class="chart-segment seg-wants" style="width: 30%;"></div>
+              <div id="bar-savings" class="chart-segment seg-savings" style="width: 20%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="compliance-statements" style="margin-top: 3rem;">
+        <p>“The 50/30/20 rule is a general guideline. Your actual allocation may vary based on your local cost of living and personal financial goals.”</p>
+        <p>“ToolFin supports financial literacy—it is not a replacement for a professional financial audit or advisor.”</p>
+      </div>
+    </div>
+
+    <section style="margin-top: 4rem;">
+      <h2>How the 50/30/20 Rule Works</h2>
+      <p>Popularized by Elizabeth Warren, this budgeting method is designed to be simple and flexible. It helps you prioritize essential spending and future security while still allowing for fun.</p>
+      
+      <h3>1. The 50%: Needs</h3>
+      <p>Needs are those bills that you absolutely must pay and are the things necessary for survival. These include rent or mortgage payments, car payments, groceries, insurance, health care, and minimum debt payments.</p>
+
+      <h3>2. The 30%: Wants</h3>
+      <p>Wants are all the things you spend money on that are not absolutely essential. This includes dinner and movies out, the new handbag, tickets to the ball game, vacations, the latest electronic gadget, and ultra-high-speed internet.</p>
+
+      <h3>3. The 20%: Savings & Debt</h3>
+      <p>This category is for your financial future. It includes adding money to an emergency fund in a bank savings account, making IRA contributions to a mutual fund account, and paying off debt (beyond the minimums).</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" aria-label="ToolFin Home">
+            <span class="logo-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+                <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+                <circle cx="8" cy="13" r="1"></circle>
+                <circle cx="12" cy="13" r="1"></circle>
+                <circle cx="16" cy="13" r="1"></circle>
+                <circle cx="8" cy="17" r="1"></circle>
+                <circle cx="12" cy="17" r="1"></circle>
+                <circle cx="16" cy="17" r="1"></circle>
+              </svg>
+            </span>
+            <span class="logo-text">ToolFin</span>
+          </a>
+          <p style="margin-top: 1.5rem;">Smarter financial modeling for global clarity.</p>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Platform</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/">Home</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/about.html">About ToolFin</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/methodology.html">Methodology</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Legal</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/disclaimer.html">Disclaimer</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/editorial-policy.html">Editorial Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Support</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="trust-strip">
+        NOT FINANCIAL ADVICE • EDUCATIONAL USE ONLY • ESTIMATES ONLY • JURISDICTION DIFFERENCES APPLY
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/assets/budget-planner.js"></script>
+  <script src="/assets/currency-options.js"></script>
+  <script src="/assets/tf-state.js"></script>
+</body>
+</html>

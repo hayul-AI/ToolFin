@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit Price Calculator - ToolFin</title>
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    .comparison-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .product-box {
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 2px solid var(--border);
+      position: relative;
+    }
+    .product-box.better {
+      border-color: #10b981;
+      background: #f0fdf4;
+    }
+    .best-value-badge {
+      position: absolute;
+      top: -12px;
+      right: 12px;
+      background: #10b981;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      display: none;
+    }
+    .product-box.better .best-value-badge { display: block; }
+    .unit-price-display {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-top: 1rem;
+    }
+    @media (max-width: 768px) {
+      .comparison-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav-container">
+      <a class="logo" href="/" aria-label="ToolFin Home">
+        <span class="logo-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+            <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+            <circle cx="8" cy="13" r="1"></circle>
+            <circle cx="12" cy="13" r="1"></circle>
+            <circle cx="16" cy="13" r="1"></circle>
+            <circle cx="8" cy="17" r="1"></circle>
+            <circle cx="12" cy="17" r="1"></circle>
+            <circle cx="16" cy="17" r="1"></circle>
+          </svg>
+        </span>
+        <span class="logo-text">ToolFin</span>
+      </a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/methodology.html">Methodology</a>
+        <a href="/contact.html">Contact</a>
+        <select id="currency-selector">
+          <option value="USD" selected>USD — US Dollar ($)</option>
+        </select>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav style="margin: 2rem 0 1rem; font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">
+      <a href="/" style="color: inherit; text-decoration: none;">Home</a> / 
+      <a href="/everyday.html" style="color: inherit; text-decoration: none;">Everyday Finance</a> / 
+      Unit Price Calculator
+    </nav>
+
+    <div class="hero" style="text-align: left; padding: 2rem 0 3rem;">
+      <h1 style="font-size: 3rem;">Unit Price Calculator</h1>
+      <p>Compare two items with different sizes and prices to see which one gives you the most value for your money.</p>
+    </div>
+
+    <div class="card">
+      <div class="comparison-row">
+        <!-- Item 1 -->
+        <div id="product-1" class="product-box">
+          <div class="best-value-badge">Best Value</div>
+          <h3 style="margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: 800;">Option A</h3>
+          <div class="input-group">
+            <label>Price</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="p1-price" value="5.99" step="0.01">
+            </div>
+          </div>
+          <div class="input-group">
+            <label>Quantity / Size</label>
+            <div style="display: flex; gap: 8px;">
+              <input type="number" id="p1-qty" value="16" step="1" style="flex: 2; padding: 12px; border: 2px solid var(--border); border-radius: 12px; font-weight: 600;">
+              <input type="text" id="unit-label" placeholder="oz, lb, kg" value="oz" style="flex: 1; padding: 12px; border: 2px solid var(--border); border-radius: 12px; font-weight: 600; text-align: center;">
+            </div>
+          </div>
+          <div class="unit-price-display" id="p1-unit-price">$0.00 / oz</div>
+        </div>
+
+        <!-- Item 2 -->
+        <div id="product-2" class="product-box">
+          <div class="best-value-badge">Best Value</div>
+          <h3 style="margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: 800;">Option B</h3>
+          <div class="input-group">
+            <label>Price</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="p2-price" value="9.99" step="0.01">
+            </div>
+          </div>
+          <div class="input-group">
+            <label>Quantity / Size</label>
+            <div style="display: flex; gap: 8px;">
+              <input type="number" id="p2-qty" value="32" step="1" style="flex: 2; padding: 12px; border: 2px solid var(--border); border-radius: 12px; font-weight: 600;">
+              <span id="unit-label-sync" style="flex: 1; display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--text-muted);">oz</span>
+            </div>
+          </div>
+          <div class="unit-price-display" id="p2-unit-price">$0.00 / oz</div>
+        </div>
+      </div>
+
+      <div id="verdict-box" style="padding: 1.5rem; border-radius: 12px; background: var(--primary-soft); text-align: center; font-weight: 800; font-size: 1.2rem; color: var(--primary);">
+        Option B is 15.2% cheaper per unit.
+      </div>
+    </div>
+
+    <section style="margin-top: 4rem;">
+      <h2>How to Shop Smarter</h2>
+      <p>Grocery stores often show the unit price on the shelf tag, but not always for every item or across different brands. Using a unit price calculator allows you to compare "bulk" deals against smaller packages to see if you're actually saving money.</p>
+      <h3>Tip: Use Consistent Units</h3>
+      <p>To get an accurate comparison, make sure you're using the same unit of measurement for both items (e.g., both in ounces, both in grams, or both by count).</p>
+    </section>
+  </main>
+
+  <footer>
+    <!-- Standard Footer -->
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" aria-label="ToolFin Home">
+            <span class="logo-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+                <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+                <circle cx="8" cy="13" r="1"></circle>
+                <circle cx="12" cy="13" r="1"></circle>
+                <circle cx="16" cy="13" r="1"></circle>
+                <circle cx="8" cy="17" r="1"></circle>
+                <circle cx="12" cy="17" r="1"></circle>
+                <circle cx="16" cy="17" r="1"></circle>
+              </svg>
+            </span>
+            <span class="logo-text">ToolFin</span>
+          </a>
+          <p style="margin-top: 1.5rem;">Smarter financial modeling for global clarity.</p>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Platform</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/">Home</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/about.html">About ToolFin</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="trust-strip">
+        NOT FINANCIAL ADVICE • EDUCATIONAL USE ONLY • ESTIMATES ONLY • JURISDICTION DIFFERENCES APPLY
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/assets/unit-price.js"></script>
+  <script src="/assets/currency-options.js"></script>
+  <script src="/assets/tf-state.js"></script>
+</body>
+</html>

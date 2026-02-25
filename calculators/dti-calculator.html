@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debt-to-Income Ratio (DTI) Calculator - ToolFin</title>
+  <meta name="description" content="Calculate your debt-to-income (DTI) ratio to understand your financial health and loan eligibility. See how your monthly debt payments compare to your gross income.">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container nav-container">
+      <a class="logo" href="/" aria-label="ToolFin Home">
+  <span class="logo-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+      <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+      <circle cx="8" cy="13" r="1"></circle>
+      <circle cx="12" cy="13" r="1"></circle>
+      <circle cx="16" cy="13" r="1"></circle>
+      <circle cx="8" cy="17" r="1"></circle>
+      <circle cx="12" cy="17" r="1"></circle>
+      <circle cx="16" cy="17" r="1"></circle>
+    </svg>
+  </span>
+  <span class="logo-text">ToolFin</span>
+</a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/methodology.html">Methodology</a>
+        <a href="/contact.html">Contact</a>
+        <select id="currency-selector"></select>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav style="margin: 2rem 0 1rem; font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">
+      <a href="/" style="color: inherit; text-decoration: none;">Home</a> / 
+      <a href="/loans.html" style="color: inherit; text-decoration: none;">Loans, Credit & Debt</a> / 
+      DTI Calculator
+    </nav>
+
+    <div class="hero" style="text-align: left; padding: 2rem 0 3rem;">
+      <h1 style="font-size: 3rem;">Debt-to-Income Ratio (DTI) Calculator</h1>
+      <p>Measure how much of your monthly gross income goes toward paying off debts. Lenders use this ratio to determine your borrowing risk and loan eligibility.</p>
+    </div>
+
+    <div class="card">
+      <div class="calc-grid">
+        <div id="inputs">
+          <div class="input-group">
+            <label for="monthly-income">Monthly Gross Income (Before Taxes)</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="monthly-income" value="5000" step="100" min="0" required>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="housing-payment">Monthly Housing Payment (Rent/Mortgage)</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="housing-payment" value="1500" step="50" min="0">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="credit-card-payments">Credit Card Payments (Minimums)</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="credit-card-payments" value="0" step="10" min="0">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="auto-loan-payments">Auto Loan Payments</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="auto-loan-payments" value="0" step="10" min="0">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="student-loan-payments">Student Loan Payments</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="student-loan-payments" value="0" step="10" min="0">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="other-debt-payments">Other Debt Payments (Alimony, Personal Loans, etc.)</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="other-debt-payments" value="0" step="10" min="0">
+            </div>
+          </div>
+        </div>
+
+        <div id="results">
+          <div class="results-panel">
+            <div class="result-item">
+              <div class="result-label">DTI Ratio</div>
+              <div class="result-value" id="dti-ratio-result">0%</div>
+              <div id="risk-band-label" style="margin-top: 0.5rem; font-size: 1.1rem; font-weight: 800;">-</div>
+            </div>
+            
+            <div style="margin-top: 2rem; border-top: 2px solid var(--border); padding-top: 1.5rem; display: grid; gap: 1rem;">
+              <div style="display: flex; justify-content: space-between;">
+                <span style="font-weight: 700; color: var(--text-muted);">Total Monthly Debt</span>
+                <span id="total-monthly-debt" style="font-weight: 800; color: #e11d48;">$0</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 0.5rem;">
+                <span style="font-weight: 700; color: var(--text-main);">Income Remaining</span>
+                <span id="income-remaining" style="font-weight: 900; color: var(--primary);">$0</span>
+              </div>
+            </div>
+
+            <div id="result-interpretation" style="margin-top: 1.5rem; padding: 1rem; background: #f8fafc; border-radius: 8px; font-size: 0.95rem; line-height: 1.5;">
+              Enter your income and debts to see your result interpretation.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section style="margin-top: 4rem;">
+      <h2>What This Calculator Does</h2>
+      <p>The Debt-to-Income (DTI) Ratio Calculator compares your total monthly debt payments to your monthly gross income. This percentage is a primary factor used by banks and mortgage lenders to evaluate your ability to manage monthly payments and repay borrowed money.</p>
+
+      <h2>How the Result Is Calculated</h2>
+      <p>Calculating your DTI is straightforward. We sum all your recurring monthly debt obligations (including your housing costs) and divide that total by your gross monthly income (your pay before taxes and other deductions). The formula looks like this:</p>
+      <div style="background: #f1f5f9; padding: 1.5rem; border-radius: 8px; margin: 1rem 0; font-family: monospace; font-weight: 700; text-align: center;">
+        (Total Monthly Debt / Gross Monthly Income) x 100 = DTI %
+      </div>
+
+      <h2>Result Interpretation</h2>
+      <p>Different lenders have different requirements, but general guidelines are as follows:</p>
+      <ul>
+        <li><strong>Less than 20% (Excellent):</strong> You have a very healthy balance of debt and income. You are likely to qualify for the best rates.</li>
+        <li><strong>20% to 35.99% (Good):</strong> This is considered a manageable debt level. Most lenders will find this acceptable.</li>
+        <li><strong>36% to 43% (Caution):</strong> You are reaching the upper limit of what most lenders consider acceptable, especially for mortgages.</li>
+        <li><strong>Over 43% (High Risk):</strong> You may find it difficult to qualify for new loans. Many mortgage programs have a hard cap at 43% DTI.</li>
+      </ul>
+
+      <h2>Example Scenario</h2>
+      <p>Imagine you earn $5,000 per month before taxes. Your expenses are:</p>
+      <ul>
+        <li>Rent/Mortgage: $1,200</li>
+        <li>Auto Loan: $350</li>
+        <li>Student Loan: $200</li>
+        <li>Credit Card Minimums: $100</li>
+      </ul>
+      <p>Your total monthly debt is $1,850. Your DTI ratio would be: ($1,850 / $5,000) = 0.37, or <strong>37%</strong>.</p>
+
+      <h2>Practical Tips to Improve Your DTI</h2>
+      <ul>
+        <li><strong>Focus on high-interest debt:</strong> Reducing your total balance reduces your required minimum payments over time.</li>
+        <li><strong>Avoid new debt:</strong> If you're planning to apply for a mortgage, avoid taking on new car loans or opening new credit cards.</li>
+        <li><strong>Increase your income:</strong> Bonuses, raises, or side income can lower your DTI without changing your spending habits.</li>
+        <li><strong>Refinance high-rate loans:</strong> Lowering your interest rate can sometimes lower your required monthly payment.</li>
+      </ul>
+
+      <h2>Frequently Asked Questions (FAQ)</h2>
+      <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
+        <div>
+          <h4 style="margin-bottom: 0.5rem;">Does DTI include utilities and groceries?</h4>
+          <p>No. Standard DTI calculations only include debt obligations that appear on your credit report, plus your housing payment. Living expenses like food, utilities, and insurance are generally excluded.</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 0.5rem;">Should I use my net pay (take-home pay)?</h4>
+          <p>Lenders almost always use "Gross Income" (before taxes). However, for your personal budgeting, calculating DTI based on take-home pay can give you a more realistic view of your "affordability."</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 0.5rem;">What is a "Front-End" vs "Back-End" DTI?</h4>
+          <p>Front-end DTI only includes housing costs. Back-end DTI (what this calculator computes) includes housing PLUS all other monthly debt payments. Lenders look at both, but the back-end is usually more critical.</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 0.5rem;">Can I get a mortgage with a DTI over 43%?</h4>
+          <p>Yes, some programs (like FHA loans) may allow DTIs up to 50% or even 57% in specific cases with "compensating factors," but it is more difficult and may come with higher interest rates.</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 0.5rem;">How often should I check my DTI?</h4>
+          <p>It's a good idea to check it whenever your income changes or before you apply for significant new credit, such as a mortgage or auto loan.</p>
+        </div>
+      </div>
+
+      <div class="compliance-statements" style="margin-top: 3rem; padding: 2rem; background: #f1f5f9; border-radius: 12px; font-size: 0.9rem;">
+        <p><strong>Legal Disclaimer:</strong> All results are based on mathematical calculations and are provided for estimation purposes only. Actual amounts and terms may vary by lender. This is not financial, legal, or tax advice.</p>
+        <p>Currency selection affects formatting and display only and does not use live exchange rates.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Related Calculators</h2>
+      <div class="next-steps-grid">
+        <a href="/calculators/loan-payment.html" class="next-step-card">
+          <strong>Loan Payment Calculator</strong>
+          <p>Estimate monthly payments for auto, personal, or general loans.</p>
+        </a>
+        <a href="/calculators/home-affordability.html" class="next-step-card">
+          <strong>Home Affordability Calculator</strong>
+          <p>See how much home you can afford based on your DTI and down payment.</p>
+        </a>
+        <a href="/calculators/budget-planner.html" class="next-step-card">
+          <strong>Budget Planner</strong>
+          <p>Create a full picture of your monthly income and expenses.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" aria-label="ToolFin Home">
+  <span class="logo-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+      <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+      <circle cx="8" cy="13" r="1"></circle>
+      <circle cx="12" cy="13" r="1"></circle>
+      <circle cx="16" cy="13" r="1"></circle>
+      <circle cx="8" cy="17" r="1"></circle>
+      <circle cx="12" cy="17" r="1"></circle>
+      <circle cx="16" cy="17" r="1"></circle>
+    </svg>
+  </span>
+  <span class="logo-text">ToolFin</span>
+</a>
+          <p style="margin-top: 1.5rem;">Smarter financial modeling for global clarity.</p>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Platform</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/">Home</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/about.html">About ToolFin</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/methodology.html">Methodology</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Legal</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/disclaimer.html">Disclaimer</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/editorial-policy.html">Editorial Policy</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Support</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="trust-strip">
+        NOT FINANCIAL ADVICE • EDUCATIONAL USE ONLY • ESTIMATES ONLY • JURISDICTION DIFFERENCES APPLY
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/assets/dti-calculator.js"></script>
+  <script src="/assets/currency-options.js"></script>
+  <script src="/assets/tf-state.js"></script>
+</body>
+</html>
