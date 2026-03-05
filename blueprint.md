@@ -13,8 +13,10 @@ ToolFin is a "money problem solving platform" designed for English-speaking glob
     - Added global `.has-prefix` and `.prefix` styling to `style.css` to fix currency symbols in calculator inputs.
     - **Global Currency Options:** Implemented `assets/currency-options.js` to standardize the currency dropdown across ALL pages (30+ pages).
     - **TF State Management & Export:** Created `assets/tf-state.js` to automatically inject Save/Load/Clear/Export PDF capabilities into all calculator pages. Consolidated logic into a single robust module to ensure all functionality is available immediately upon injection. Uses DOM scanning for zero-config integration across different calculator structures.
+    - **UI Enhancement (Decimal Styling):** Updated the Unit Cost Calculator (and other calculators using `formatCurrencyDecimal`) to display decimal parts in a smaller, lighter font (`.decimal-small`) for better visual hierarchy.
+    - **Global Search:** Added a real-time, as-you-type search bar to the homepage (`index.html`) using `assets/search.js`. This allows users to quickly find any of the 40+ calculators or category pages using titles or relevant keywords.
 - **IA:** 
-    - **Home:** Category-based portal (Loans, Income, Investments, Housing, Everyday).
+    - **Home:** Category-based portal (Loans, Income, Investments, Housing, Everyday) with a prominent global search bar.
     - **Category Pages:** `loans.html`, `income.html`, `investments.html`, `housing.html`, `everyday.html`.
     - **Calculators:** Dedicated pages for each tool (e.g., `calculators/mortgage.html`).
     - **Support Pages:** About, Methodology, Disclaimer, Editorial Policy, Contact, 404.
@@ -29,5 +31,5 @@ ToolFin is a "money problem solving platform" designed for English-speaking glob
 4.  **Core Calculators:** 
     - Implemented: Mortgage, Compound Interest, ROI, Salary/Hourly, Rent vs Buy, Down Payment, Property Tax, Closing Costs, Home Affordability, Mortgage Extra Payment, DTI Calculator, Loan Affordability Calculator, Retirement Contribution Calculator, Cost of Living Calculator, Investment Fee Calculator, Refinance Break-Even Calculator, Rent Affordability Calculator, Subscription Cost Calculator, Savings Rate Calculator.
     - Planned: Credit Card Payoff, Debt Snowball, etc.
-5.  **Navigation & SEO:** Breadcrumb navigation and semantic structure for all pages.
+5.  **Navigation & Search:** Breadcrumb navigation and a global search bar on the homepage for easy discovery of tools.
 6.  **Validation:** Ensure no prohibited phrases exist and all mandatory compliance rules are met.

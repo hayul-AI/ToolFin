@@ -7,6 +7,7 @@
   <meta name="naver-site-verification" content="1117d92acd41ddf91160f03bf3210369f798a436" />
   <title>ToolFin - Practical Financial Literacy Tools</title>
   <link rel="stylesheet" href="/assets/style.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
@@ -99,6 +100,17 @@
     <div class="hero">
       <h1>Financial clarity<br>starts with the math.</h1>
       <p>ToolFin provides sophisticated, educational calculators to help you model your financial future with absolute transparency.</p>
+      
+      <div class="search-container">
+        <div class="search-input-wrapper">
+          <svg class="search-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="global-search" placeholder="Search calculators (e.g., mortgage, salary, ROI...)" aria-label="Search calculators">
+          <div id="search-results" class="search-results-dropdown" hidden></div>
+        </div>
+      </div>
     </div>
 
     <!-- Ad Slot Placeholder -->
@@ -288,5 +300,6 @@
   <script type="module" src="/assets/common.js"></script>
 <script src="/assets/currency-options.js"></script>
 <script src="/assets/tf-state.js"></script>
+<script src="/assets/search.js"></script>
 </body>
 </html>
