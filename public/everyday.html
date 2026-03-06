@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CLE62Y9TYD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CLE62Y9TYD');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="naver-site-verification" content="1117d92acd41ddf91160f03bf3210369f798a436" />
+  <title>Everyday Finance Tools - ToolFin</title>
+  <meta name="description" content="Simple calculators for budgeting, emergency funds, tips, and sales tax. Manage your daily finances with ease.">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container nav-container">
+      <a class="logo" href="/" aria-label="ToolFin Home">
+  <span class="logo-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <!-- calculator body -->
+      <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+      <!-- display -->
+      <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+      <!-- buttons -->
+      <circle cx="8" cy="13" r="1"></circle>
+      <circle cx="12" cy="13" r="1"></circle>
+      <circle cx="16" cy="13" r="1"></circle>
+      <circle cx="8" cy="17" r="1"></circle>
+      <circle cx="12" cy="17" r="1"></circle>
+      <circle cx="16" cy="17" r="1"></circle>
+    </svg>
+  </span>
+  <span class="logo-text">ToolFin</span>
+</a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/methodology.html">Methodology</a>
+        <a href="/contact.html">Contact</a>
+        <select id="currency-selector">
+<option value="USD" selected>USD ??US Dollar ($)</option>
+<option value="EUR">EUR ??Euro (??</option>
+<option value="GBP">GBP ??British Pound (£)</option>
+<option value="JPY">JPY ??Japanese Yen (¥)</option>
+<option value="CNY">CNY ??Chinese Yuan (¥)</option>
+<option value="KRW">KRW ??South Korean Won (??</option>
+<option value="AUD">AUD ??Australian Dollar (A$)</option>
+<option value="CAD">CAD ??Canadian Dollar (C$)</option>
+<option value="NZD">NZD ??New Zealand Dollar (NZ$)</option>
+<option value="CHF">CHF ??Swiss Franc (CHF)</option>
+<option value="HKD">HKD ??Hong Kong Dollar (HK$)</option>
+<option value="SGD">SGD ??Singapore Dollar (S$)</option>
+<option value="TWD">TWD ??Taiwan Dollar (NT$)</option>
+<option value="SEK">SEK ??Swedish Krona (kr)</option>
+<option value="NOK">NOK ??Norwegian Krone (kr)</option>
+<option value="DKK">DKK ??Danish Krone (kr)</option>
+<option value="PLN">PLN ??Polish Złoty (zł)</option>
+<option value="CZK">CZK ??Czech Koruna (Kč)</option>
+<option value="HUF">HUF ??Hungarian Forint (Ft)</option>
+<option value="RON">RON ??Romanian Leu (lei)</option>
+<option value="BGN">BGN ??Bulgarian Lev (лв)</option>
+<option value="TRY">TRY ??Turkish Lira (??</option>
+<option value="ILS">ILS ??Israeli Shekel (??</option>
+<option value="AED">AED ??UAE Dirham (د.إ)</option>
+<option value="SAR">SAR ??Saudi Riyal (�?</option>
+<option value="QAR">QAR ??Qatari Riyal (�?</option>
+<option value="KWD">KWD ??Kuwaiti Dinar (KD)</option>
+<option value="BHD">BHD ??Bahraini Dinar (BD)</option>
+<option value="OMR">OMR ??Omani Rial (�?</option>
+<option value="INR">INR ??Indian Rupee (??</option>
+<option value="PKR">PKR ??Pakistani Rupee (??</option>
+<option value="BDT">BDT ??Bangladeshi Taka (�?</option>
+<option value="LKR">LKR ??Sri Lankan Rupee (??</option>
+<option value="THB">THB ??Thai Baht (�?</option>
+<option value="VND">VND ??Vietnamese Dong (??</option>
+<option value="IDR">IDR ??Indonesian Rupiah (Rp)</option>
+<option value="MYR">MYR ??Malaysian Ringgit (RM)</option>
+<option value="PHP">PHP ??Philippine Peso (??</option>
+<option value="ZAR">ZAR ??South African Rand (R)</option>
+<option value="EGP">EGP ??Egyptian Pound (E£)</option>
+<option value="NGN">NGN ??Nigerian Naira (??</option>
+<option value="KES">KES ??Kenyan Shilling (KSh)</option>
+<option value="GHS">GHS ??Ghanaian Cedi (??</option>
+<option value="MAD">MAD ??Moroccan Dirham (MAD)</option>
+<option value="RUB">RUB ??Russian Ruble (??</option>
+<option value="UAH">UAH ??Ukrainian Hryvnia (??</option>
+<option value="BRL">BRL ??Brazilian Real (R$)</option>
+<option value="ARS">ARS ??Argentine Peso ($)</option>
+<option value="CLP">CLP ??Chilean Peso ($)</option>
+<option value="COP">COP ??Colombian Peso ($)</option>
+<option value="PEN">PEN ??Peruvian Sol (S/)</option>
+<option value="MXN">MXN ??Mexican Peso ($)</option>
+</select>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="hero" style="padding: 3rem 0 2rem; text-align: left;">
+      <p style="margin: 0; font-size: 0.9rem; font-weight: 600; color: var(--primary); text-transform: uppercase; letter-spacing: 1px;">Category</p>
+      <h1 style="margin-top: 0.5rem; font-size: 2.5rem;">Everyday Finance Tools</h1>
+      <p style="margin: 1rem 0 0; max-width: 600px;">Simplify your daily financial decisions. From planning a budget to calculating tips and sales tax, these tools are designed for quick and easy use.</p>
+    </div>
+
+    <section>
+      <div class="hub-grid">
+        <!-- Emergency Fund -->
+        <a href="/calculators/emergency-fund.html" class="hub-card">
+          <div class="card-accent" aria-hidden="true">
+            <span class="bar bar-long"></span>
+            <span class="bar bar-short"></span>
+          </div>
+          <h3>Emergency Fund</h3>
+          <p>Calculate how much you should set aside for unexpected expenses based on your living costs.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Calculate Fund ??/span>
+        </a>
+
+        <!-- Budget Planner -->
+        <a href="/calculators/budget-planner.html" class="hub-card">
+          <div class="card-accent" aria-hidden="true">
+            <span class="bar bar-long"></span>
+            <span class="bar bar-short"></span>
+          </div>
+          <h3>Budget Planner</h3>
+          <p>A simple 50/30/20 rule calculator to help you allocate your income for needs, wants, and savings.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Plan Budget ??/span>
+        </a>
+
+        <!-- Subscription Cost -->
+        <a href="/calculators/subscription-cost.html" class="hub-card">
+          <div class="card-accent" aria-hidden="true">
+            <span class="bar bar-long"></span>
+            <span class="bar bar-short"></span>
+          </div>
+          <h3>Subscription Cost Calculator</h3>
+          <p>Track how much recurring subscriptions cost you over time.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Audit Subscriptions ??/span>
+        </a>
+
+        <!-- Savings Rate -->
+        <a href="/calculators/savings-rate.html" class="hub-card">
+          <div class="card-accent" aria-hidden="true">
+            <span class="bar bar-long"></span>
+            <span class="bar bar-short"></span>
+          </div>
+          <h3>Savings Rate Calculator</h3>
+          <p>Measure how much of your income you save each month.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Check Your Rate ??/span>
+        </a>
+
+        <!-- Tip Calculator -->
+        <a href="/calculators/tip-calculator.html" class="hub-card">
+          <div class="card-accent" aria-hidden="true">
+            <span class="bar bar-long"></span>
+            <span class="bar bar-short"></span>
+          </div>
+          <h3>Tip Calculator</h3>
+          <p>Quickly calculate gratuity and split the total bill among a group of people.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Calculate Tip ??/span>
+        </a>
+
+        <!-- Unit Price -->
+        <a href="/calculators/unit-price.html" class="hub-card">
+          <div class="card-accent" aria-hidden="true">
+            <span class="bar bar-long"></span>
+            <span class="bar bar-short"></span>
+          </div>
+          <h3>Unit Price Calculator</h3>
+          <p>Compare product prices to find the best value deal at the grocery store.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Compare Prices ??/span>
+        </a>
+
+        <!-- Unit Cost -->
+        <a href="/calculators/unit-cost-calculator.html" class="hub-card">
+          <div class="card-accent" aria-hidden="true">
+            <span class="bar bar-long"></span>
+            <span class="bar bar-short"></span>
+          </div>
+          <h3>Unit Cost Calculator</h3>
+          <p>Convert between quantity and total using a unit cost.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Convert Units ??/span>
+        </a>
+
+        <!-- Discount Calculator -->
+        <a href="/calculators/discount.html" class="hub-card">
+          <div class="card-accent" aria-hidden="true">
+            <span class="bar bar-long"></span>
+            <span class="bar bar-short"></span>
+          </div>
+          <h3>Discount Calculator</h3>
+          <p>Calculate the final price of an item after a percentage or fixed amount discount.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Calculate Discount ??/span>
+        </a>
+
+        <!-- Sales Tax -->
+        <a href="/calculators/sales-tax.html" class="hub-card">
+          <div class="card-accent" aria-hidden="true">
+            <span class="bar bar-long"></span>
+            <span class="bar bar-short"></span>
+          </div>
+          <h3>Sales Tax Calculator</h3>
+          <p>Determine the total cost of a purchase including state and local sales tax.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Calculate Tax ??/span>
+        </a>
+      </div>
+    </section>
+      <category-guide-block category-key="everyday" title="Everyday Finance Tools"></category-guide-block>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" aria-label="ToolFin Home">
+  <span class="logo-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <!-- calculator body -->
+      <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+      <!-- display -->
+      <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+      <!-- buttons -->
+      <circle cx="8" cy="13" r="1"></circle>
+      <circle cx="12" cy="13" r="1"></circle>
+      <circle cx="16" cy="13" r="1"></circle>
+      <circle cx="8" cy="17" r="1"></circle>
+      <circle cx="12" cy="17" r="1"></circle>
+      <circle cx="16" cy="17" r="1"></circle>
+    </svg>
+  </span>
+  <span class="logo-text">ToolFin</span>
+</a>
+          <p style="margin-top: 1.5rem;">Practical financial literacy tools designed for global clarity and educational empowerment.</p>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Platform</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/">Home</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/about.html">About ToolFin</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/methodology.html">Methodology</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Legal</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/disclaimer.html">Disclaimer</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/editorial-policy.html">Editorial Policy</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Support</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="trust-strip">
+        NOT FINANCIAL ADVICE ??EDUCATIONAL USE ONLY ??ESTIMATES ONLY ??JURISDICTION DIFFERENCES APPLY
+      </div>
+    </div>
+  </footer>
+  <script type="module" src="/assets/common.js"></script>
+<script src="/assets/currency-options.js"></script>
+<script src="/assets/tf-state.js"></script>
+  <script src="/assets/category-guide-block.js"></script>
+</body>
+</html>

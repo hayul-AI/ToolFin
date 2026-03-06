@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CLE62Y9TYD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CLE62Y9TYD');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="naver-site-verification" content="1117d92acd41ddf91160f03bf3210369f798a436" />
+  <title>Unit Cost Calculator - ToolFin</title>
+  <meta name="description" content="Calculate Unit Cost Calculator with our free, easy-to-use tool. ToolFin provides accurate financial modeling for Unit Cost Calculator to help you make informed decisions.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FinancialService",
+    "name": "ToolFin Unit Cost Calculator",
+    "description": "Calculate Unit Cost Calculator with our free, easy-to-use tool. ToolFin provides accurate financial modeling for Unit Cost Calculator to help you make informed decisions.",
+    "url": "https://toolfin.hotplmedia.com/calculators/unit-cost-calculator.html"
+  }
+  </script>
+  <meta name="description" content="Calculate total cost from unit price and quantity, or find the quantity you can afford based on your total budget.">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    .result-display {
+      margin-top: 2rem;
+      padding: 2rem;
+      background: var(--primary-soft);
+      border-radius: 12px;
+      text-align: center;
+      border: 1px solid var(--primary-border);
+    }
+    .result-main-value {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--primary);
+      margin: 0.5rem 0;
+    }
+    .result-label {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav-container">
+      <a class="logo" href="/" aria-label="ToolFin Home">
+        <span class="logo-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+            <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+            <circle cx="8" cy="13" r="1"></circle>
+            <circle cx="12" cy="13" r="1"></circle>
+            <circle cx="16" cy="13" r="1"></circle>
+            <circle cx="8" cy="17" r="1"></circle>
+            <circle cx="12" cy="17" r="1"></circle>
+            <circle cx="16" cy="17" r="1"></circle>
+          </svg>
+        </span>
+        <span class="logo-text">ToolFin</span>
+      </a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/methodology.html">Methodology</a>
+        <a href="/contact.html">Contact</a>
+        <select id="currency-selector">
+          <option value="USD" selected>USD ??US Dollar ($)</option>
+        </select>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav style="margin: 2rem 0 1rem; font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">
+      <a href="/" style="color: inherit; text-decoration: none;">Home</a> / 
+      <a href="/everyday.html" style="color: inherit; text-decoration: none;">Everyday Finance</a> / 
+      Unit Cost Calculator
+    </nav>
+
+    <div class="hero" style="text-align: left; padding: 2rem 0 3rem;">
+      <h1 style="font-size: 3rem;">Unit Cost Calculator</h1>
+      <p>Convert between quantity and total using a unit cost. Ideal for budgeting and purchasing planning.</p>
+    </div>
+
+    <div class="card">
+      <div class="tf-form-container">
+        <div class="tf-field-group" style="margin-bottom: 1.5rem;">
+          <label for="item-description">Description (Optional)</label>
+          <div class="input-wrapper">
+            <input type="text" id="item-description" placeholder="e.g., Catering boxes, Party chairs..." style="padding-left: 12px;">
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-bottom: 2rem;">
+          <div class="tf-field-group">
+            <label for="unit-cost">Unit Cost</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="unit-cost" value="1.00" step="0.01" min="0" inputmode="decimal">
+            </div>
+          </div>
+          
+          <div class="tf-field-group">
+            <label for="quantity">Quantity</label>
+            <div class="input-wrapper">
+              <input type="number" id="quantity" value="1" step="0.01" min="0" inputmode="decimal">
+            </div>
+          </div>
+
+          <div class="tf-field-group">
+            <label for="total-cost">Total Cost</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="total-cost" value="1.00" step="0.01" min="0" inputmode="decimal">
+            </div>
+            <p id="unit-cost-hint" style="font-size: 0.8rem; color: #ef4444; margin-top: 0.5rem; display: none;">Set unit cost above 0 to calculate quantity.</p>
+          </div>
+
+          <div class="tf-field-group" style="display: flex; align-items: center; gap: 12px; padding-top: 1.5rem;">
+            <input type="checkbox" id="whole-units" style="width: 20px; height: 20px; cursor: pointer;">
+            <label for="whole-units" style="cursor: pointer; margin: 0; font-weight: 600;">Whole units only</label>
+          </div>
+        </div>
+
+        <div class="result-display" id="result-area" style="position: relative;">
+          <div class="result-label" id="calc-result-label">Total Cost</div>
+          <div class="result-main-value" id="calc-result-value">$1.00</div>
+          <button id="add-to-list" class="btn" style="position: absolute; top: 1rem; right: 1rem; padding: 0.5rem; min-width: auto; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: var(--primary); color: white; border: none; cursor: pointer; transition: transform 0.2s;" title="Add to list">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </button>
+        </div>
+
+        <div id="calculator-list-container" style="margin-top: 2rem; display: none;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <h3 style="margin: 0; font-size: 1.1rem; font-weight: 800;">Calculation List</h3>
+            <button id="clear-list" style="background: none; border: none; color: #ef4444; font-weight: 700; cursor: pointer; font-size: 0.85rem;">Clear All</button>
+          </div>
+          <div id="calc-list" style="display: flex; flex-direction: column; gap: 0.75rem;">
+            <!-- List items will be injected here -->
+          </div>
+          <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 2px dashed var(--border); display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-weight: 700; color: var(--text-muted); text-transform: uppercase; font-size: 0.85rem;">Running Total</span>
+            <span id="running-total" style="font-size: 1.5rem; font-weight: 900; color: var(--primary);">$0.00</span>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+          <button id="copy-result" class="btn btn-primary" style="flex: 1;">Copy Result</button>
+          <button id="reset-btn" class="btn btn-secondary" style="flex: 1;">Reset</button>
+        </div>
+      </div>
+    </div>
+
+    <section style="margin-top: 4rem;">
+      <h2>What this calculator does</h2>
+      <p>This calculator provides a quick way to convert between the quantity of items and their total cost based on a fixed unit price. It works in both directions: you can either determine the total cost for a specific number of items or calculate how many items you can afford with a set budget.</p>
+
+      <h2>Result Interpretation</h2>
+      <p>The results provided are simple arithmetic estimates based on the inputs provided. Please note that this calculation represents a linear relationship and does not automatically account for factors like volume discounts, bulk pricing tiers, or flat fees. If you enable the <strong>"Whole units only"</strong> toggle, the calculator will round the quantity to the nearest integer, which will adjust the corresponding total cost accordingly.</p>
+      <p>Real-world totals may also be affected by applicable taxes, shipping costs, or service fees that are not included in the basic unit cost.</p>
+
+      <h2>Example scenario</h2>
+      <p>Suppose you are planning an event and know that each catering box costs $12.50. If you have a budget of $500, you can enter $12.50 as the Unit Cost and $500 as the Total Cost. The calculator will show you can purchase exactly 40 boxes. Alternatively, if you know you need 45 boxes, entering that quantity will show a total cost of $562.50.</p>
+
+      <h2>Frequently Asked Questions (FAQ)</h2>
+      <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
+        <div>
+          <h4 style="margin-bottom: 0.5rem; font-weight: 800;">1) Can I calculate total cost from quantity?</h4>
+          <p>Yes. Simply enter the Unit Cost and the Quantity, and the Total Cost will be automatically updated.</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 0.5rem; font-weight: 800;">2) Can I calculate quantity from a total budget?</h4>
+          <p>Yes. Enter the Unit Cost and your target Total Cost (budget). The calculator will determine the Quantity you can afford.</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 0.5rem; font-weight: 800;">3) Why is my quantity a decimal?</h4>
+          <p>By default, the calculator allows for fractional quantities (useful for weight or volume). If you are buying discrete items (like chairs or books), check the "Whole units only" box to round the result to the nearest full item.</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 0.5rem; font-weight: 800;">4) Does this include tax/fees/discounts?</h4>
+          <p>No, this is a basic arithmetic tool. You should include any taxes or fees into the Unit Cost itself if you want them reflected in the total, or apply them separately afterward.</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom: 0.5rem; font-weight: 800;">5) Is my data saved or uploaded?</h4>
+          <p>No. All calculations are processed locally in your browser. No personal data or financial information is uploaded to our servers.</p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 3rem; background: #f9fafb; border: 1px solid var(--border);">
+        <h3 style="font-size: 1rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;">Disclaimer</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;">
+          This tool is for educational use only and provides estimates only. It does not constitute financial advice. Real-world transactions may involve complex variables such as tiered pricing, regional taxes, or varying fees. Jurisdiction differences may apply to how costs are calculated and displayed. Always verify final costs with your vendor or financial institution.
+        </p>
+      </div>
+    </section>
+
+    <calculator-info-sections></calculator-info-sections>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" aria-label="ToolFin Home">
+            <span class="logo-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+                <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+                <circle cx="8" cy="13" r="1"></circle>
+                <circle cx="12" cy="13" r="1"></circle>
+                <circle cx="16" cy="13" r="1"></circle>
+                <circle cx="8" cy="17" r="1"></circle>
+                <circle cx="12" cy="17" r="1"></circle>
+                <circle cx="16" cy="17" r="1"></circle>
+              </svg>
+            </span>
+            <span class="logo-text">ToolFin</span>
+          </a>
+          <p style="margin-top: 1.5rem;">Smarter financial modeling for global clarity.</p>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Platform</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/">Home</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/about.html">About ToolFin</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="trust-strip">
+        NOT FINANCIAL ADVICE ??EDUCATIONAL USE ONLY ??ESTIMATES ONLY ??JURISDICTION DIFFERENCES APPLY
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/assets/unit-cost-calculator.js"></script>
+  <script src="/assets/currency-options.js"></script>
+  <script src="/assets/tf-state.js"></script>
+  <script src="/assets/calculator-info-sections.js"></script>
+</body>
+</html>
+

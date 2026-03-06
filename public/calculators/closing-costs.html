@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CLE62Y9TYD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CLE62Y9TYD');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="naver-site-verification" content="1117d92acd41ddf91160f03bf3210369f798a436" />
+  <title>Closing Cost Calculator - ToolFin</title>
+  <meta name="description" content="Calculate Closing Cost Calculator with our free, easy-to-use tool. ToolFin provides accurate financial modeling for Closing Cost Calculator to help you make informed decisions.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FinancialService",
+    "name": "ToolFin Closing Cost Calculator",
+    "description": "Calculate Closing Cost Calculator with our free, easy-to-use tool. ToolFin provides accurate financial modeling for Closing Cost Calculator to help you make informed decisions.",
+    "url": "https://toolfin.hotplmedia.com/calculators/closing-costs.html"
+  }
+  </script>
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    .fee-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .fee-name { font-weight: 600; color: var(--secondary); }
+    .fee-value { font-weight: 700; color: var(--text-main); }
+    .total-highlight {
+      background: var(--primary-soft);
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-top: 2rem;
+      text-align: center;
+    }
+    .total-label { font-size: 0.9rem; font-weight: 800; color: var(--primary); text-transform: uppercase; margin-bottom: 0.5rem; }
+    .total-amount { font-size: 2.5rem; font-weight: 900; color: var(--primary); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav-container">
+      <a class="logo" href="/" aria-label="ToolFin Home">
+        <span class="logo-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+            <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+            <circle cx="8" cy="13" r="1"></circle>
+            <circle cx="12" cy="13" r="1"></circle>
+            <circle cx="16" cy="13" r="1"></circle>
+            <circle cx="8" cy="17" r="1"></circle>
+            <circle cx="12" cy="17" r="1"></circle>
+            <circle cx="16" cy="17" r="1"></circle>
+          </svg>
+        </span>
+        <span class="logo-text">ToolFin</span>
+      </a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/methodology.html">Methodology</a>
+        <a href="/contact.html">Contact</a>
+        <select id="currency-selector">
+          <option value="USD" selected>USD ??US Dollar ($)</option>
+        </select>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav style="margin: 2rem 0 1rem; font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">
+      <a href="/" style="color: inherit; text-decoration: none;">Home</a> / 
+      <a href="/housing.html" style="color: inherit; text-decoration: none;">Housing & Real Estate</a> / 
+      Closing Costs
+    </nav>
+
+    <div class="hero" style="text-align: left; padding: 2rem 0 3rem;">
+      <h1 style="font-size: 3rem;">Closing Cost Calculator</h1>
+      <p>Estimate the upfront fees and taxes required to finalize your home purchase or sale.</p>
+    </div>
+
+    <div class="notice-box">
+      <ul>
+        <li>NOT FINANCIAL ADVICE</li>
+        <li>EDUCATIONAL USE ONLY</li>
+        <li>ESTIMATES ONLY</li>
+        <li>VARIES BY LOCATION</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="calc-grid">
+        <div id="inputs">
+          <div class="input-group">
+            <label for="home-price">Purchase Price</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="home-price" value="400000" step="5000">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="loan-amount">Loan Amount</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="loan-amount" value="320000" step="5000">
+            </div>
+            <small style="color: var(--text-muted);">Commonly 80% of the price (with 20% down).</small>
+          </div>
+
+          <h3 style="margin: 2rem 0 1rem; font-size: 1.1rem; font-weight: 800; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem;">Adjustable Estimates</h3>
+          
+          <div class="input-group">
+            <label for="origination-fee">Loan Origination Fee (%)</label>
+            <div class="input-wrapper">
+              <input type="number" id="origination-fee" value="1" step="0.1">
+              <span class="suffix" style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-weight: 700; color: var(--text-muted);">%</span>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="appraisal-fee">Appraisal Fee</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="appraisal-fee" value="500" step="50">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="title-fee">Title Insurance & Search</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="title-fee" value="1000" step="100">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="transfer-tax">Transfer Tax / Recording Fees</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="transfer-tax" value="800" step="100">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="inspection-fee">Home Inspection</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="inspection-fee" value="400" step="50">
+            </div>
+          </div>
+
+          <button id="calculate-btn" style="background: var(--primary); color: white; border: none; padding: 18px; border-radius: 12px; font-weight: 800; font-size: 1.1rem; cursor: pointer; width: 100%; transition: background 0.2s;">Update Estimates</button>
+        </div>
+
+        <div id="results">
+          <div class="results-panel">
+            <div class="total-highlight">
+              <div class="total-label">Estimated Closing Costs</div>
+              <div class="total-amount" id="res-total-costs">$0.00</div>
+              <div id="res-percent-price" style="font-weight: 700; color: var(--secondary); margin-top: 0.5rem;">0% of Home Price</div>
+            </div>
+
+            <div style="margin-top: 2rem;">
+              <div class="fee-row">
+                <span class="fee-name">Lender Fees</span>
+                <span class="fee-value" id="res-lender-fees">$0</span>
+              </div>
+              <div class="fee-row">
+                <span class="fee-name">Third-Party Fees</span>
+                <span class="fee-value" id="res-third-party">$0</span>
+              </div>
+              <div class="fee-row">
+                <span class="fee-name">Taxes & Government</span>
+                <span class="fee-value" id="res-gov-fees">$0</span>
+              </div>
+            </div>
+
+            <div style="margin-top: 2.5rem; background: #fffbeb; border: 1px solid #fef3c7; padding: 1.5rem; border-radius: 12px;">
+              <h4 style="color: #92400e; margin-bottom: 0.5rem; font-weight: 800;">Cash to Close</h4>
+              <p style="font-size: 0.9rem; color: #92400e; margin-bottom: 1rem;">Total amount needed at signing (Down Payment + Closing Costs):</p>
+              <div id="res-cash-to-close" style="font-size: 1.75rem; font-weight: 900; color: #b45309;">$0.00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <section style="margin-top: 4rem;">
+      <h2>What are Closing Costs?</h2>
+      <p>Closing costs are the fees and expenses you pay when you close on your house, beyond the down payment. For buyers, they typically range from 2% to 5% of the home's purchase price.</p>
+      
+      <h3>Common Fee Categories</h3>
+      <ul>
+        <li><strong>Lender Fees:</strong> Includes origination charges, discount points, and credit report fees.</li>
+        <li><strong>Third-Party Fees:</strong> Appraisal, home inspection, title search, and title insurance.</li>
+        <li><strong>Prepaid Items:</strong> Lenders often require you to pay for your first year of homeowners insurance and upfront property taxes at closing.</li>
+        <li><strong>Government Fees:</strong> Recording fees and transfer taxes charged by your local or state government to document the sale.</li>
+      </ul>
+    </section>
+      <calculator-info-sections></calculator-info-sections>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" aria-label="ToolFin Home">
+            <span class="logo-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+                <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+                <circle cx="8" cy="13" r="1"></circle>
+                <circle cx="12" cy="13" r="1"></circle>
+                <circle cx="16" cy="13" r="1"></circle>
+                <circle cx="8" cy="17" r="1"></circle>
+                <circle cx="12" cy="17" r="1"></circle>
+                <circle cx="16" cy="17" r="1"></circle>
+              </svg>
+            </span>
+            <span class="logo-text">ToolFin</span>
+          </a>
+          <p style="margin-top: 1.5rem;">Smarter financial modeling for global clarity.</p>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Platform</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/">Home</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/about.html">About ToolFin</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/methodology.html">Methodology</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Legal</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/disclaimer.html">Disclaimer</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/editorial-policy.html">Editorial Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Support</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="trust-strip">
+        NOT FINANCIAL ADVICE ??EDUCATIONAL USE ONLY ??ESTIMATES ONLY ??JURISDICTION DIFFERENCES APPLY
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/assets/closing-costs.js"></script>
+  <script src="/assets/currency-options.js"></script>
+  <script src="/assets/tf-state.js"></script>
+  <script src="/assets/calculator-info-sections.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CLE62Y9TYD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CLE62Y9TYD');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="naver-site-verification" content="1117d92acd41ddf91160f03bf3210369f798a436" />
+  <title>Loan Payment Calculator - ToolFin</title>
+  <meta name="description" content="Calculate Loan Payment Calculator with our free, easy-to-use tool. ToolFin provides accurate financial modeling for Loan Payment Calculator to help you make informed decisions.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FinancialService",
+    "name": "ToolFin Loan Payment Calculator",
+    "description": "Calculate Loan Payment Calculator with our free, easy-to-use tool. ToolFin provides accurate financial modeling for Loan Payment Calculator to help you make informed decisions.",
+    "url": "https://toolfin.hotplmedia.com/calculators/loan-payment.html"
+  }
+  </script>
+  <meta name="description" content="Calculate monthly payments for auto, personal, or general loans. See how interest rates and loan terms affect your total cost.">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container nav-container">
+      <a class="logo" href="/" aria-label="ToolFin Home">
+  <span class="logo-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <!-- calculator body -->
+      <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+      <!-- display -->
+      <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+      <!-- buttons -->
+      <circle cx="8" cy="13" r="1"></circle>
+      <circle cx="12" cy="13" r="1"></circle>
+      <circle cx="16" cy="13" r="1"></circle>
+      <circle cx="8" cy="17" r="1"></circle>
+      <circle cx="12" cy="17" r="1"></circle>
+      <circle cx="16" cy="17" r="1"></circle>
+    </svg>
+  </span>
+  <span class="logo-text">ToolFin</span>
+</a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/methodology.html">Methodology</a>
+        <a href="/contact.html">Contact</a>
+        <select id="currency-selector">
+<option value="USD" selected>USD ??US Dollar ($)</option>
+<option value="EUR">EUR ??Euro (??</option>
+<option value="GBP">GBP ??British Pound (£)</option>
+<option value="JPY">JPY ??Japanese Yen (¥)</option>
+<option value="CNY">CNY ??Chinese Yuan (¥)</option>
+<option value="KRW">KRW ??South Korean Won (??</option>
+<option value="AUD">AUD ??Australian Dollar (A$)</option>
+<option value="CAD">CAD ??Canadian Dollar (C$)</option>
+<option value="NZD">NZD ??New Zealand Dollar (NZ$)</option>
+<option value="CHF">CHF ??Swiss Franc (CHF)</option>
+<option value="HKD">HKD ??Hong Kong Dollar (HK$)</option>
+<option value="SGD">SGD ??Singapore Dollar (S$)</option>
+<option value="TWD">TWD ??Taiwan Dollar (NT$)</option>
+<option value="SEK">SEK ??Swedish Krona (kr)</option>
+<option value="NOK">NOK ??Norwegian Krone (kr)</option>
+<option value="DKK">DKK ??Danish Krone (kr)</option>
+<option value="PLN">PLN ??Polish Złoty (zł)</option>
+<option value="CZK">CZK ??Czech Koruna (Kč)</option>
+<option value="HUF">HUF ??Hungarian Forint (Ft)</option>
+<option value="RON">RON ??Romanian Leu (lei)</option>
+<option value="BGN">BGN ??Bulgarian Lev (лв)</option>
+<option value="TRY">TRY ??Turkish Lira (??</option>
+<option value="ILS">ILS ??Israeli Shekel (??</option>
+<option value="AED">AED ??UAE Dirham (د.إ)</option>
+<option value="SAR">SAR ??Saudi Riyal (�?</option>
+<option value="QAR">QAR ??Qatari Riyal (�?</option>
+<option value="KWD">KWD ??Kuwaiti Dinar (KD)</option>
+<option value="BHD">BHD ??Bahraini Dinar (BD)</option>
+<option value="OMR">OMR ??Omani Rial (�?</option>
+<option value="INR">INR ??Indian Rupee (??</option>
+<option value="PKR">PKR ??Pakistani Rupee (??</option>
+<option value="BDT">BDT ??Bangladeshi Taka (�?</option>
+<option value="LKR">LKR ??Sri Lankan Rupee (??</option>
+<option value="THB">THB ??Thai Baht (�?</option>
+<option value="VND">VND ??Vietnamese Dong (??</option>
+<option value="IDR">IDR ??Indonesian Rupiah (Rp)</option>
+<option value="MYR">MYR ??Malaysian Ringgit (RM)</option>
+<option value="PHP">PHP ??Philippine Peso (??</option>
+<option value="ZAR">ZAR ??South African Rand (R)</option>
+<option value="EGP">EGP ??Egyptian Pound (E£)</option>
+<option value="NGN">NGN ??Nigerian Naira (??</option>
+<option value="KES">KES ??Kenyan Shilling (KSh)</option>
+<option value="GHS">GHS ??Ghanaian Cedi (??</option>
+<option value="MAD">MAD ??Moroccan Dirham (MAD)</option>
+<option value="RUB">RUB ??Russian Ruble (??</option>
+<option value="UAH">UAH ??Ukrainian Hryvnia (??</option>
+<option value="BRL">BRL ??Brazilian Real (R$)</option>
+<option value="ARS">ARS ??Argentine Peso ($)</option>
+<option value="CLP">CLP ??Chilean Peso ($)</option>
+<option value="COP">COP ??Colombian Peso ($)</option>
+<option value="PEN">PEN ??Peruvian Sol (S/)</option>
+<option value="MXN">MXN ??Mexican Peso ($)</option>
+</select>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav style="margin: 2rem 0 1rem; font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">
+      <a href="/" style="color: inherit; text-decoration: none;">Home</a> / 
+      <a href="/loans.html" style="color: inherit; text-decoration: none;">Loans, Credit & Debt</a> / 
+      Loan Payment Calculator
+    </nav>
+
+    <div class="hero" style="text-align: left; padding: 2rem 0 3rem;">
+      <h1 style="font-size: 3rem;">Loan Payment Calculator</h1>
+      <p>Estimate your monthly payments for fixed-term loans such as auto loans, personal loans, or other amortized debt. Understand how interest rates and loan lengths impact your monthly budget and overall costs.</p>
+    </div>
+
+    <div class="card">
+      <div class="calc-grid">
+        <div id="inputs" class="tf-form-container">
+          <div class="tf-field-grid">
+            <div class="tf-field-group" id="repaymentTypeGroup">
+              <label for="repaymentType">Repayment Type</label>
+              <div class="input-wrapper">
+                <select id="repaymentType" class="input">
+                  <option value="amortized" selected>Amortized (Equal Monthly Payment)</option>
+                  <option value="interestOnly">Interest-Only</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="tf-field-group">
+              <label for="loan-amount">Loan Amount</label>
+              <div class="input-wrapper has-prefix">
+                <span class="prefix currency-symbol">$</span>
+                <input type="number" id="loan-amount" value="25000" step="1000">
+              </div>
+            </div>
+
+            <div class="tf-field-group">
+              <label for="apr">Interest Rate (APR %)</label>
+              <div class="input-wrapper">
+                <input type="number" id="apr" value="5.5" step="0.1">
+                <span class="suffix" style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-weight: 700; color: var(--text-muted);">%</span>
+              </div>
+            </div>
+
+            <div class="tf-field-group">
+              <label for="loan-term">Loan Term (Years)</label>
+              <div class="input-wrapper">
+                <input type="number" id="loan-term" value="5" step="1">
+              </div>
+            </div>
+
+            <div class="tf-field-group">
+              <label for="down-payment">Optional Down Payment</label>
+              <div class="input-wrapper has-prefix">
+                <span class="prefix currency-symbol">$</span>
+                <input type="number" id="down-payment" value="0" step="100">
+              </div>
+            </div>
+
+            <div class="tf-field-group">
+              <label for="extra-payment">Extra Monthly Payment</label>
+              <div class="input-wrapper has-prefix">
+                <span class="prefix currency-symbol">$</span>
+                <input type="number" id="extra-payment" value="0" step="10">
+              </div>
+            </div>
+          </div>
+
+          <button id="calculate-btn" style="background: var(--primary); color: white; border: none; padding: 18px; border-radius: 12px; font-weight: 800; font-size: 1.1rem; cursor: pointer; width: 100%; transition: background 0.2s;">
+            Calculate Payment
+          </button>
+        </div>
+
+        <div id="results">
+          <div class="results-panel">
+            <div class="result-item">
+              <div class="result-label">Monthly Payment</div>
+              <div class="result-value" id="monthly-payment-result">$0</div>
+              <div id="payoff-note" style="margin-top: 0.5rem; font-size: 0.85rem; font-weight: 600; color: #166534; display: none;"></div>
+            </div>
+            
+            <div style="margin-top: 2rem; border-top: 2px solid var(--border); padding-top: 1.5rem; display: grid; gap: 1rem;">
+              <div style="display: flex; justify-content: space-between;">
+                <span style="font-weight: 700; color: var(--text-muted);">Total Interest</span>
+                <span id="total-interest" style="font-weight: 800; color: #e11d48;">$0</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 0.5rem;">
+                <span style="font-weight: 700; color: var(--text-main);">Total Amount Paid</span>
+                <span id="total-paid" style="font-weight: 900; color: var(--primary);">$0</span>
+              </div>
+            </div>
+          </div>
+
+          <div id="extra-scenario" class="results-panel" style="margin-top: 1.5rem; display: none; background: #f0fdf4; border-color: #bbf7d0;">
+            <h4 style="margin-bottom: 1rem; color: #166534;">Monthly Extra Payment Scenario</h4>
+            <div style="display: grid; gap: 0.75rem;">
+              <div style="display: flex; justify-content: space-between;">
+                <span style="font-weight: 600;">New Loan Term:</span>
+                <span id="new-term" style="font-weight: 700;">0 months</span>
+              </div>
+              <div style="display: flex; justify-content: space-between;">
+                <span style="font-weight: 600;">Interest Saved:</span>
+                <span id="interest-saved" style="font-weight: 700; color: #166534;">$0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section style="margin-top: 4rem;">
+      <h2>How Loan Payments Are Calculated</h2>
+      <p>Fixed-term loans typically use an amortization formula to determine a constant monthly payment. This payment is split into two parts: interest on the remaining balance and principal reduction.</p>
+      <p>In the early stages of a loan, a larger portion of your payment goes toward interest. As you pay down the principal, the interest charged each month decreases, allowing more of your payment to go toward the balance.</p>
+      <p>By making extra payments, you directly reduce the principal balance, which can significantly shorten the loan term and reduce the total interest paid over time.</p>
+    </section>
+
+    <section>
+      <h2>Related Calculators</h2>
+      <div class="next-steps-grid">
+        <a href="/calculators/credit-card-payoff.html" class="next-step-card">
+          <strong>Credit Card Payoff Calculator</strong>
+          <p>Estimate how long it will take to pay off revolving credit card debt.</p>
+        </a>
+        <a href="/calculators/debt-snowball.html" class="next-step-card">
+          <strong>Debt Snowball Calculator</strong>
+          <p>Plan your debt-free journey by paying off smallest balances first.</p>
+        </a>
+        <a href="/calculators/apr.html" class="next-step-card">
+          <strong>APR Calculator</strong>
+          <p>Find the true Annual Percentage Rate including fees.</p>
+        </a>
+      </div>
+    </section>
+      <calculator-info-sections></calculator-info-sections>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" aria-label="ToolFin Home">
+  <span class="logo-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <!-- calculator body -->
+      <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+      <!-- display -->
+      <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+      <!-- buttons -->
+      <circle cx="8" cy="13" r="1"></circle>
+      <circle cx="12" cy="13" r="1"></circle>
+      <circle cx="16" cy="13" r="1"></circle>
+      <circle cx="8" cy="17" r="1"></circle>
+      <circle cx="12" cy="17" r="1"></circle>
+      <circle cx="16" cy="17" r="1"></circle>
+    </svg>
+  </span>
+  <span class="logo-text">ToolFin</span>
+</a>
+          <p style="margin-top: 1.5rem;">Smarter financial modeling for global clarity.</p>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Platform</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/">Home</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/about.html">About ToolFin</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/methodology.html">Methodology</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Legal</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/disclaimer.html">Disclaimer</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/editorial-policy.html">Editorial Policy</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Support</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="trust-strip">
+        NOT FINANCIAL ADVICE ??EDUCATIONAL USE ONLY ??ESTIMATES ONLY ??JURISDICTION DIFFERENCES APPLY
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/assets/loan-payment.js"></script>
+<script src="/assets/currency-options.js"></script>
+<script src="/assets/tf-state.js"></script>
+  <script src="/assets/calculator-info-sections.js"></script>
+</body>
+</html>
+

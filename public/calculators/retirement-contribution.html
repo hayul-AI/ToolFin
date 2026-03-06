@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CLE62Y9TYD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CLE62Y9TYD');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="naver-site-verification" content="1117d92acd41ddf91160f03bf3210369f798a436" />
+  <title>Retirement Contribution Calculator - ToolFin</title>
+  <meta name="description" content="Calculate Retirement Contribution Calculator with our free, easy-to-use tool. ToolFin provides accurate financial modeling for Retirement Contribution Calculator to help you make informed decisions.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FinancialService",
+    "name": "ToolFin Retirement Contribution Calculator",
+    "description": "Calculate Retirement Contribution Calculator with our free, easy-to-use tool. ToolFin provides accurate financial modeling for Retirement Contribution Calculator to help you make informed decisions.",
+    "url": "https://toolfin.hotplmedia.com/calculators/retirement-contribution.html"
+  }
+  </script>
+  <meta name="description" content="Estimate how your salary contributions and employer matches grow into retirement savings over time with our retirement contribution calculator.">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container nav-container">
+      <a class="logo" href="/" aria-label="ToolFin Home">
+  <span class="logo-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+      <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+      <circle cx="8" cy="13" r="1"></circle>
+      <circle cx="12" cy="13" r="1"></circle>
+      <circle cx="16" cy="13" r="1"></circle>
+      <circle cx="8" cy="17" r="1"></circle>
+      <circle cx="12" cy="17" r="1"></circle>
+      <circle cx="16" cy="17" r="1"></circle>
+    </svg>
+  </span>
+  <span class="logo-text">ToolFin</span>
+</a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/methodology.html">Methodology</a>
+        <a href="/contact.html">Contact</a>
+        <select id="currency-selector"></select>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav style="margin: 2rem 0 1rem; font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">
+      <a href="/" style="color: inherit; text-decoration: none;">Home</a> / 
+      <a href="/income.html" style="color: inherit; text-decoration: none;">Income, Tax & Salary</a> / 
+      Retirement Contribution
+    </nav>
+
+    <div class="hero" style="text-align: left; padding: 2rem 0 3rem;">
+      <h1 style="font-size: 3rem;">Retirement Contribution Calculator</h1>
+      <p>Estimate how your salary contributions and employer matches grow into retirement savings. See the power of consistent investing over your career.</p>
+    </div>
+
+    <div class="card">
+      <div class="calc-grid">
+        <div id="inputs">
+          <div class="input-group">
+            <label for="annual-salary">Annual Salary</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="annual-salary" value="60000" step="1000" min="0" required>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="contribution-rate">Contribution Rate (%)</label>
+            <div class="input-wrapper">
+              <input type="number" id="contribution-rate" value="5" step="0.1" min="0" max="100">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="employer-match">Employer Match (%)</label>
+            <div class="input-wrapper">
+              <input type="number" id="employer-match" value="3" step="0.1" min="0" max="100">
+            </div>
+            <small style="color: var(--text-muted); display: block; margin-top: 0.4rem;">The percentage of your salary your employer adds.</small>
+          </div>
+
+          <div class="input-group">
+            <label for="annual-return">Annual Investment Return (%)</label>
+            <div class="input-wrapper">
+              <input type="number" id="annual-return" value="6" step="0.1" min="-100">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="years-invest">Years to Invest</label>
+            <div class="input-wrapper">
+              <input type="number" id="years-invest" value="30" step="1" min="1" max="60">
+            </div>
+          </div>
+        </div>
+
+        <div id="results">
+          <div class="results-panel">
+            <div class="result-item">
+              <div class="result-label">Estimated Retirement Balance</div>
+              <div class="result-value" id="future-balance-result">$0</div>
+            </div>
+            
+            <div style="margin-top: 2rem; border-top: 2px solid var(--border); padding-top: 1.5rem; display: grid; gap: 1rem;">
+              <div style="display: flex; justify-content: space-between;">
+                <span style="font-weight: 700; color: var(--text-muted);">Annual Employee Contribution</span>
+                <span id="annual-employee-contrib" style="font-weight: 800;">$0</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 0.5rem;">
+                <span style="font-weight: 700; color: var(--text-muted);">Annual Employer Contribution</span>
+                <span id="annual-employer-contrib" style="font-weight: 800;">$0</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 0.5rem;">
+                <span style="font-weight: 700; color: var(--text-main);">Total Contributions Per Year</span>
+                <span id="total-annual-contrib" style="font-weight: 900; color: var(--primary);">$0</span>
+              </div>
+            </div>
+
+            <div id="interpretation-text" style="margin-top: 1.5rem; padding: 1rem; background: #f8fafc; border-radius: 8px; font-size: 0.9rem; line-height: 1.5; font-weight: 500;">
+              Your retirement balance is projected based on your current inputs.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 2rem;">
+      <h3>Contribution Growth Over Time</h3>
+      <div style="overflow-x: auto; margin-top: 1rem;">
+        <table style="width: 100%; border-collapse: collapse; text-align: left;">
+          <thead>
+            <tr style="border-bottom: 2px solid var(--border);">
+              <th style="padding: 1rem 0.5rem; font-weight: 700;">Year</th>
+              <th style="padding: 1rem 0.5rem; font-weight: 700;">Balance Estimate</th>
+            </tr>
+          </thead>
+          <tbody id="growth-table-body">
+            <!-- Table rows will be injected by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <section>
+      <h2>Related Calculators</h2>
+      <div class="next-steps-grid">
+        <a href="/calculators/take-home-pay.html" class="next-step-card">
+          <strong>Take Home Pay Calculator</strong>
+          <p>See how retirement contributions affect your actual paycheck today.</p>
+        </a>
+        <a href="/calculators/fire-calculator.html" class="next-step-card">
+          <strong>FIRE Calculator</strong>
+          <p>Find out when you can retire based on your savings rate and expenses.</p>
+        </a>
+        <a href="/calculators/compound-interest.html" class="next-step-card">
+          <strong>Compound Interest Calculator</strong>
+          <p>Explore the general power of compounding with lump sums and additions.</p>
+        </a>
+      </div>
+    </section>
+      <calculator-info-sections></calculator-info-sections>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" aria-label="ToolFin Home">
+  <span class="logo-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+      <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+      <circle cx="8" cy="13" r="1"></circle>
+      <circle cx="12" cy="13" r="1"></circle>
+      <circle cx="16" cy="13" r="1"></circle>
+      <circle cx="8" cy="17" r="1"></circle>
+      <circle cx="12" cy="17" r="1"></circle>
+      <circle cx="16" cy="17" r="1"></circle>
+    </svg>
+  </span>
+  <span class="logo-text">ToolFin</span>
+</a>
+          <p style="margin-top: 1.5rem;">Smarter financial modeling for global clarity.</p>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Platform</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/">Home</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/about.html">About ToolFin</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/methodology.html">Methodology</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Legal</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/disclaimer.html">Disclaimer</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/editorial-policy.html">Editorial Policy</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Support</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="trust-strip">
+        NOT FINANCIAL ADVICE ??EDUCATIONAL USE ONLY ??ESTIMATES ONLY ??JURISDICTION DIFFERENCES APPLY
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/assets/retirement-contribution.js"></script>
+  <script src="/assets/currency-options.js"></script>
+  <script src="/assets/tf-state.js"></script>
+  <script src="/assets/calculator-info-sections.js"></script>
+</body>
+</html>
+

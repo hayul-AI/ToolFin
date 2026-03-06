@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CLE62Y9TYD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CLE62Y9TYD');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="naver-site-verification" content="1117d92acd41ddf91160f03bf3210369f798a436" />
+  <title>Rent vs Buy Calculator - ToolFin</title>
+  <meta name="description" content="Calculate Rent vs Buy Calculator with our free, easy-to-use tool. ToolFin provides accurate financial modeling for Rent vs Buy Calculator to help you make informed decisions.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FinancialService",
+    "name": "ToolFin Rent vs Buy Calculator",
+    "description": "Calculate Rent vs Buy Calculator with our free, easy-to-use tool. ToolFin provides accurate financial modeling for Rent vs Buy Calculator to help you make informed decisions.",
+    "url": "https://toolfin.hotplmedia.com/calculators/rent-vs-buy.html"
+  }
+  </script>
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .comp-card {
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    .comp-card.rent { background: #f0fdfa; border-color: #99f6e4; }
+    .comp-card.buy { background: #eff6ff; border-color: #bfdbfe; }
+    .comp-title { font-weight: 800; font-size: 1.1rem; margin-bottom: 1rem; color: var(--text-main); }
+    .comp-value { font-size: 2rem; font-weight: 900; }
+    .comp-rent { color: #0d9488; }
+    .comp-buy { color: #2563eb; }
+    
+    @media (max-width: 768px) {
+      .comparison-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav-container">
+      <a class="logo" href="/" aria-label="ToolFin Home">
+        <span class="logo-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+            <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+            <circle cx="8" cy="13" r="1"></circle>
+            <circle cx="12" cy="13" r="1"></circle>
+            <circle cx="16" cy="13" r="1"></circle>
+            <circle cx="8" cy="17" r="1"></circle>
+            <circle cx="12" cy="17" r="1"></circle>
+            <circle cx="16" cy="17" r="1"></circle>
+          </svg>
+        </span>
+        <span class="logo-text">ToolFin</span>
+      </a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/methodology.html">Methodology</a>
+        <a href="/contact.html">Contact</a>
+        <select id="currency-selector">
+          <option value="USD" selected>USD ??US Dollar ($)</option>
+        </select>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav style="margin: 2rem 0 1rem; font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">
+      <a href="/" style="color: inherit; text-decoration: none;">Home</a> / 
+      <a href="/housing.html" style="color: inherit; text-decoration: none;">Housing & Real Estate</a> / 
+      Rent vs Buy
+    </nav>
+
+    <div class="hero" style="text-align: left; padding: 2rem 0 3rem;">
+      <h1 style="font-size: 3rem;">Rent vs Buy Calculator</h1>
+      <p>Compare the total cost of ownership against the total cost of renting over your expected stay.</p>
+    </div>
+
+    <div class="notice-box">
+      <ul>
+        <li>NOT FINANCIAL ADVICE</li>
+        <li>EDUCATIONAL USE ONLY</li>
+        <li>ESTIMATES ONLY</li>
+        <li>INCLUDES OPPORTUNITY COSTS</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="calc-grid">
+        <div id="inputs">
+          <section style="margin-bottom: 2rem;">
+            <h3 style="margin-bottom: 1.5rem; font-size: 1.25rem; font-weight: 800; color: var(--primary);">Buying Path</h3>
+            <div class="input-group">
+              <label for="home-price">Home Purchase Price</label>
+              <div class="input-wrapper has-prefix">
+                <span class="prefix currency-symbol">$</span>
+                <input type="number" id="home-price" value="400000" step="5000">
+              </div>
+            </div>
+            <div class="input-group">
+              <label for="down-payment">Down Payment (%)</label>
+              <div class="input-wrapper">
+                <input type="number" id="down-payment" value="20" step="1">
+                <span class="suffix">%</span>
+              </div>
+            </div>
+            <div class="input-group">
+              <label for="interest-rate">Mortgage Rate (APR %)</label>
+              <div class="input-wrapper">
+                <input type="number" id="interest-rate" value="6.5" step="0.1">
+                <span class="suffix">%</span>
+              </div>
+            </div>
+            <div class="input-group">
+              <label for="appreciation-rate">Home Appreciation (Annual %)</label>
+              <div class="input-wrapper">
+                <input type="number" id="appreciation-rate" value="3" step="0.1">
+                <span class="suffix">%</span>
+              </div>
+            </div>
+          </section>
+
+          <section style="margin-bottom: 2rem;">
+            <h3 style="margin-bottom: 1.5rem; font-size: 1.25rem; font-weight: 800; color: #0d9488;">Renting Path</h3>
+            <div class="input-group">
+              <label for="monthly-rent">Monthly Rent</label>
+              <div class="input-wrapper has-prefix">
+                <span class="prefix currency-symbol">$</span>
+                <input type="number" id="monthly-rent" value="2500" step="50">
+              </div>
+            </div>
+            <div class="input-group">
+              <label for="rent-increase">Rent Increase (Annual %)</label>
+              <div class="input-wrapper">
+                <input type="number" id="rent-increase" value="3" step="0.1">
+                <span class="suffix">%</span>
+              </div>
+            </div>
+          </section>
+
+          <section style="margin-bottom: 2rem;">
+            <h3 style="margin-bottom: 1.5rem; font-size: 1.25rem; font-weight: 800; color: var(--secondary);">Scenario Timeline</h3>
+            <div class="input-group">
+              <label for="stay-years">How long will you stay? (Years)</label>
+              <div class="input-wrapper">
+                <input type="number" id="stay-years" value="10" step="1" min="1" max="30">
+              </div>
+            </div>
+            <div class="input-group">
+              <label for="investment-return">Alternative Investment Return (%)</label>
+              <div class="input-wrapper">
+                <input type="number" id="investment-return" value="7" step="0.1">
+                <span class="suffix">%</span>
+              </div>
+              <small style="color: var(--text-muted); display: block; margin-top: 0.5rem;">The return you could get if you invested your down payment instead.</small>
+            </div>
+          </section>
+
+          <button id="calculate-btn" style="background: var(--primary); color: white; border: none; padding: 18px; border-radius: 12px; font-weight: 800; font-size: 1.1rem; cursor: pointer; width: 100%; transition: background 0.2s;">Compare Scenarios</button>
+        </div>
+
+        <div id="results">
+          <div class="results-panel">
+            <div class="result-item">
+              <div class="result-label" id="comparison-verdict-label">The Verdict</div>
+              <div class="result-value" id="comparison-verdict" style="font-size: 2.25rem;">---</div>
+            </div>
+
+            <div class="comparison-grid">
+              <div class="comp-card rent">
+                <div class="comp-title">Total Renting Cost</div>
+                <div id="total-rent-cost" class="comp-value comp-rent">$0</div>
+                <div style="font-size: 0.8rem; color: #0d9488; margin-top: 0.5rem;">Includes rent + opportunity cost</div>
+              </div>
+              <div class="comp-card buy">
+                <div class="comp-title">Total Buying Cost</div>
+                <div id="total-buy-cost" class="comp-value comp-buy">$0</div>
+                <div style="font-size: 0.8rem; color: #2563eb; margin-top: 0.5rem;">Includes mortgage, tax, fees - equity</div>
+              </div>
+            </div>
+
+            <div style="margin-top: 2.5rem; border-top: 2px solid var(--border); padding-top: 1.5rem; display: grid; gap: 1rem;">
+              <div style="display: flex; justify-content: space-between;">
+                <span style="color: var(--text-muted); font-weight: 600;">Monthly Mortgage (P&I)</span>
+                <span style="font-weight: 800;" id="monthly-mortgage">$0</span>
+              </div>
+              <div style="display: flex; justify-content: space-between;">
+                <span style="color: var(--text-muted); font-weight: 600;">Monthly Rent (Initial)</span>
+                <span style="font-weight: 800;" id="initial-rent">$0</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; border-top: 1px dashed var(--border); padding-top: 0.5rem;">
+                <span style="color: var(--text-main); font-weight: 700;">Equity Gained after 10y</span>
+                <span style="font-weight: 800; color: #10b981;" id="equity-gained">$0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <section style="margin-top: 4rem;">
+      <h2>Understanding the Calculation</h2>
+      <p>Deciding whether to rent or buy is one of the biggest financial decisions you'll make. This calculator looks beyond just the monthly payment to provide a comprehensive comparison.</p>
+      
+      <h3>What's included in Buying Costs?</h3>
+      <ul>
+        <li><strong>Monthly Mortgage:</strong> Principal and interest payments.</li>
+        <li><strong>Property Taxes & Insurance:</strong> Estimated at standard annual rates.</li>
+        <li><strong>Maintenance:</strong> Estimated at 1% of the home value annually.</li>
+        <li><strong>Buying & Selling Costs:</strong> Closing costs when you buy and realtor commissions when you sell.</li>
+        <li><strong>Minus Equity:</strong> We subtract the remaining mortgage balance and add the estimated home appreciation to find your "Net Wealth" from the home.</li>
+      </ul>
+
+      <h3>What's included in Renting Costs?</h3>
+      <ul>
+        <li><strong>Total Rent Paid:</strong> Your monthly rent adjusted for annual increases.</li>
+        <li><strong>Opportunity Cost:</strong> This is the key difference. If you rent, you keep your down payment money. We calculate how much that money would have grown if invested at your "Alternative Investment Return" rate.</li>
+      </ul>
+    </section>
+      <calculator-info-sections></calculator-info-sections>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" aria-label="ToolFin Home">
+            <span class="logo-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+                <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+                <circle cx="8" cy="13" r="1"></circle>
+                <circle cx="12" cy="13" r="1"></circle>
+                <circle cx="16" cy="13" r="1"></circle>
+                <circle cx="8" cy="17" r="1"></circle>
+                <circle cx="12" cy="17" r="1"></circle>
+                <circle cx="16" cy="17" r="1"></circle>
+              </svg>
+            </span>
+            <span class="logo-text">ToolFin</span>
+          </a>
+          <p style="margin-top: 1.5rem;">Smarter financial modeling for global clarity.</p>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Platform</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/">Home</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/about.html">About ToolFin</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/methodology.html">Methodology</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Legal</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/disclaimer.html">Disclaimer</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/editorial-policy.html">Editorial Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Support</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="trust-strip">
+        NOT FINANCIAL ADVICE ??EDUCATIONAL USE ONLY ??ESTIMATES ONLY ??JURISDICTION DIFFERENCES APPLY
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/assets/rent-vs-buy.js"></script>
+  <script src="/assets/currency-options.js"></script>
+  <script src="/assets/tf-state.js"></script>
+  <script src="/assets/calculator-info-sections.js"></script>
+</body>
+</html>
+

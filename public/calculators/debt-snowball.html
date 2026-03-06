@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CLE62Y9TYD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CLE62Y9TYD');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="naver-site-verification" content="1117d92acd41ddf91160f03bf3210369f798a436" />
+  <title>Debt Snowball Calculator - ToolFin</title>
+  <meta name="description" content="Calculate Debt Snowball Calculator with our free, easy-to-use tool. ToolFin provides accurate financial modeling for Debt Snowball Calculator to help you make informed decisions.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FinancialService",
+    "name": "ToolFin Debt Snowball Calculator",
+    "description": "Calculate Debt Snowball Calculator with our free, easy-to-use tool. ToolFin provides accurate financial modeling for Debt Snowball Calculator to help you make informed decisions.",
+    "url": "https://toolfin.hotplmedia.com/calculators/debt-snowball.html"
+  }
+  </script>
+  <meta name="description" content="Plan your path to debt-free living with the Debt Snowball method. Pay off smallest balances first to build momentum and save on interest.">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/style.css">
+  <style>
+    .remove-btn {
+      background: #fee2e2;
+      color: #b91c1c;
+      border: none;
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      transition: all 0.2s;
+    }
+    .remove-btn:hover { background: #fecaca; }
+    
+    .timeline-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+    }
+    .timeline-table th, .timeline-table td {
+      text-align: left;
+      padding: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .timeline-table th {
+      background: #f1f5f9;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body data-page="debt-snowball">
+  <header>
+    <div class="container nav-container">
+      <a class="logo" href="/" aria-label="ToolFin Home">
+  <span class="logo-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <!-- calculator body -->
+      <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+      <!-- display -->
+      <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+      <!-- buttons -->
+      <circle cx="8" cy="13" r="1"></circle>
+      <circle cx="12" cy="13" r="1"></circle>
+      <circle cx="16" cy="13" r="1"></circle>
+      <circle cx="8" cy="17" r="1"></circle>
+      <circle cx="12" cy="17" r="1"></circle>
+      <circle cx="16" cy="17" r="1"></circle>
+    </svg>
+  </span>
+  <span class="logo-text">ToolFin</span>
+</a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/methodology.html">Methodology</a>
+        <a href="/contact.html">Contact</a>
+        <select id="currency-selector">
+<option value="USD" selected>USD ??US Dollar ($)</option>
+<option value="EUR">EUR ??Euro (??</option>
+<option value="GBP">GBP ??British Pound (£)</option>
+<option value="JPY">JPY ??Japanese Yen (¥)</option>
+<option value="CNY">CNY ??Chinese Yuan (¥)</option>
+<option value="KRW">KRW ??South Korean Won (??</option>
+<option value="AUD">AUD ??Australian Dollar (A$)</option>
+<option value="CAD">CAD ??Canadian Dollar (C$)</option>
+<option value="NZD">NZD ??New Zealand Dollar (NZ$)</option>
+<option value="CHF">CHF ??Swiss Franc (CHF)</option>
+<option value="HKD">HKD ??Hong Kong Dollar (HK$)</option>
+<option value="SGD">SGD ??Singapore Dollar (S$)</option>
+<option value="TWD">TWD ??Taiwan Dollar (NT$)</option>
+<option value="SEK">SEK ??Swedish Krona (kr)</option>
+<option value="NOK">NOK ??Norwegian Krone (kr)</option>
+<option value="DKK">DKK ??Danish Krone (kr)</option>
+<option value="PLN">PLN ??Polish Złoty (zł)</option>
+<option value="CZK">CZK ??Czech Koruna (Kč)</option>
+<option value="HUF">HUF ??Hungarian Forint (Ft)</option>
+<option value="RON">RON ??Romanian Leu (lei)</option>
+<option value="BGN">BGN ??Bulgarian Lev (лв)</option>
+<option value="TRY">TRY ??Turkish Lira (??</option>
+<option value="ILS">ILS ??Israeli Shekel (??</option>
+<option value="AED">AED ??UAE Dirham (د.إ)</option>
+<option value="SAR">SAR ??Saudi Riyal (�?</option>
+<option value="QAR">QAR ??Qatari Riyal (�?</option>
+<option value="KWD">KWD ??Kuwaiti Dinar (KD)</option>
+<option value="BHD">BHD ??Bahraini Dinar (BD)</option>
+<option value="OMR">OMR ??Omani Rial (�?</option>
+<option value="INR">INR ??Indian Rupee (??</option>
+<option value="PKR">PKR ??Pakistani Rupee (??</option>
+<option value="BDT">BDT ??Bangladeshi Taka (�?</option>
+<option value="LKR">LKR ??Sri Lankan Rupee (??</option>
+<option value="THB">THB ??Thai Baht (�?</option>
+<option value="VND">VND ??Vietnamese Dong (??</option>
+<option value="IDR">IDR ??Indonesian Rupiah (Rp)</option>
+<option value="MYR">MYR ??Malaysian Ringgit (RM)</option>
+<option value="PHP">PHP ??Philippine Peso (??</option>
+<option value="ZAR">ZAR ??South African Rand (R)</option>
+<option value="EGP">EGP ??Egyptian Pound (E£)</option>
+<option value="NGN">NGN ??Nigerian Naira (??</option>
+<option value="KES">KES ??Kenyan Shilling (KSh)</option>
+<option value="GHS">GHS ??Ghanaian Cedi (??</option>
+<option value="MAD">MAD ??Moroccan Dirham (MAD)</option>
+<option value="RUB">RUB ??Russian Ruble (??</option>
+<option value="UAH">UAH ??Ukrainian Hryvnia (??</option>
+<option value="BRL">BRL ??Brazilian Real (R$)</option>
+<option value="ARS">ARS ??Argentine Peso ($)</option>
+<option value="CLP">CLP ??Chilean Peso ($)</option>
+<option value="COP">COP ??Colombian Peso ($)</option>
+<option value="PEN">PEN ??Peruvian Sol (S/)</option>
+<option value="MXN">MXN ??Mexican Peso ($)</option>
+</select>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav style="margin: 2rem 0 1rem; font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">
+      <a href="/" style="color: inherit; text-decoration: none;">Home</a> / 
+      <a href="/loans.html" style="color: inherit; text-decoration: none;">Loans, Credit & Debt</a> / 
+      Debt Snowball Calculator
+    </nav>
+
+    <div class="hero" style="text-align: left; padding: 2rem 0 3rem;">
+      <h1 style="font-size: 3rem;">Debt Snowball Calculator</h1>
+      <p>This tool estimates a payoff plan by focusing extra payments on your smallest balances first. The Debt Snowball method is designed to build psychological momentum by clearing individual debts quickly.</p>
+    </div>
+
+    <div class="card">
+      <div id="debt-list" class="tf-form-container">
+        <h3 style="font-size: 1.1rem; font-weight: 800; margin-bottom: 0.5rem;">Your Debts</h3>
+        <div id="debt-container">
+          <!-- Rows will be added here via JS -->
+        </div>
+        <button id="add-debt-btn" style="background: var(--primary-soft); color: var(--primary); border: 2.5px dashed var(--primary); padding: 14px; border-radius: 12px; font-weight: 700; cursor: pointer; width: 100%; transition: all 0.2s;">
+          + Add Another Debt
+        </button>
+
+        <div style="margin-top: 1rem; padding-top: 2rem; border-top: 2px solid var(--border);">
+          <div class="tf-field-grid">
+            <div class="tf-field-group">
+              <label for="extra-payment">Monthly Extra Payment</label>
+              <div class="input-wrapper has-prefix">
+                <span class="prefix currency-symbol">$</span>
+                <input type="number" id="extra-payment" value="100" step="10">
+              </div>
+              <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">Amount available to pay above all minimums combined.</p>
+            </div>
+            <div class="tf-field-group">
+              <label for="start-date">Start Month</label>
+              <div class="input-wrapper">
+                <input type="text" id="start-date" class="month-picker" placeholder="Jan 2026" autocomplete="off">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+          <button id="calculate-btn" style="background: var(--primary); color: white; border: none; padding: 18px; border-radius: 12px; font-weight: 800; font-size: 1.1rem; cursor: pointer; flex: 2; transition: all 0.2s;">
+            Calculate Snowball Plan
+          </button>
+          <button id="reset-btn" style="background: var(--bg-main); color: var(--secondary); border: 1.5px solid var(--border); padding: 18px; border-radius: 12px; font-weight: 800; font-size: 1.1rem; cursor: pointer; flex: 1; transition: all 0.2s;">
+            Reset
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="results-section" style="display: none;">
+      <div class="card" style="border-left: 6px solid #10b981;">
+        <h2 style="margin-bottom: 1.5rem;">Payoff Summary</h2>
+        <div class="calc-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+          <div class="result-item">
+            <div class="result-label">Payoff Date</div>
+            <div class="result-value" id="res-payoff-date">---</div>
+          </div>
+          <div class="result-item">
+            <div class="result-label">Total Duration</div>
+            <div class="result-value" id="res-duration">---</div>
+          </div>
+          <div class="result-item">
+            <div class="result-label">Total Interest</div>
+            <div class="result-value" id="res-interest" style="color: #e11d48;">---</div>
+          </div>
+          <div class="result-item">
+            <div class="result-label">Total Amount Paid</div>
+            <div class="result-value" id="res-total" style="color: var(--primary);">---</div>
+          </div>
+        </div>
+        <div id="interpretation-box" style="margin-top: 2rem; padding: 1rem; background: #f8fafc; border-radius: 8px; font-weight: 500; color: var(--secondary);"></div>
+      </div>
+
+      <div class="card">
+        <h3>Debt Payoff Order</h3>
+        <ul id="payoff-order-list" style="list-style: none; padding: 0; margin-top: 1.5rem;">
+          <!-- Order will be added here -->
+        </ul>
+      </div>
+
+      <div class="card" style="overflow-x: auto;">
+        <h3>Payoff Timeline</h3>
+        <table class="timeline-table">
+          <thead>
+            <tr>
+              <th>Month</th>
+              <th>Total Payment</th>
+              <th>Interest</th>
+              <th>Principal</th>
+              <th>Total Balance</th>
+            </tr>
+          </thead>
+          <tbody id="timeline-body">
+            <!-- Rows will be added here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <section>
+      <h2>Related Calculators</h2>
+      <div class="next-steps-grid">
+        <a href="/calculators/debt-avalanche.html" class="next-step-card">
+          <strong>Debt Avalanche Calculator</strong>
+          <p>Prioritize high-interest debt to minimize total interest paid.</p>
+        </a>
+        <a href="/calculators/credit-card-payoff.html" class="next-step-card">
+          <strong>Credit Card Payoff Calculator</strong>
+          <p>Estimate payoff time for a single credit card balance.</p>
+        </a>
+        <a href="/calculators/loan-payment.html" class="next-step-card">
+          <strong>Loan Payment Calculator</strong>
+          <p>Calculate fixed payments for auto or personal loans.</p>
+        </a>
+      </div>
+    </section>
+      <calculator-info-sections></calculator-info-sections>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" aria-label="ToolFin Home">
+  <span class="logo-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <!-- calculator body -->
+      <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+      <!-- display -->
+      <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+      <!-- buttons -->
+      <circle cx="8" cy="13" r="1"></circle>
+      <circle cx="12" cy="13" r="1"></circle>
+      <circle cx="16" cy="13" r="1"></circle>
+      <circle cx="8" cy="17" r="1"></circle>
+      <circle cx="12" cy="17" r="1"></circle>
+      <circle cx="16" cy="17" r="1"></circle>
+    </svg>
+  </span>
+  <span class="logo-text">ToolFin</span>
+</a>
+          <p style="margin-top: 1.5rem;">Smarter financial modeling for global clarity.</p>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Platform</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/">Home</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/about.html">About ToolFin</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/methodology.html">Methodology</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Legal</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/disclaimer.html">Disclaimer</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/editorial-policy.html">Editorial Policy</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Support</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="trust-strip">
+        NOT FINANCIAL ADVICE ??EDUCATIONAL USE ONLY ??ESTIMATES ONLY ??JURISDICTION DIFFERENCES APPLY
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
+  <script type="module" src="/assets/debt-snowball.js"></script>
+<script src="/assets/currency-options.js"></script>
+<script src="/assets/tf-state.js"></script>
+  <script src="/assets/calculator-info-sections.js"></script>
+</body>
+</html>
+

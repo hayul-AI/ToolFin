@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CLE62Y9TYD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CLE62Y9TYD');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="naver-site-verification" content="1117d92acd41ddf91160f03bf3210369f798a436" />
+  <title>Investment Growth Calculator - ToolFin</title>
+  <meta name="description" content="Calculate Investment Growth Calculator with our free, easy-to-use tool. ToolFin provides accurate financial modeling for Investment Growth Calculator to help you make informed decisions.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FinancialService",
+    "name": "ToolFin Investment Growth Calculator",
+    "description": "Calculate Investment Growth Calculator with our free, easy-to-use tool. ToolFin provides accurate financial modeling for Investment Growth Calculator to help you make informed decisions.",
+    "url": "https://toolfin.hotplmedia.com/calculators/investment-growth.html"
+  }
+  </script>
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container nav-container">
+      <a class="logo" href="/" aria-label="ToolFin Home">
+  <span class="logo-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+      <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+      <circle cx="8" cy="13" r="1"></circle>
+      <circle cx="12" cy="13" r="1"></circle>
+      <circle cx="16" cy="13" r="1"></circle>
+      <circle cx="8" cy="17" r="1"></circle>
+      <circle cx="12" cy="17" r="1"></circle>
+      <circle cx="16" cy="17" r="1"></circle>
+    </svg>
+  </span>
+  <span class="logo-text">ToolFin</span>
+</a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/methodology.html">Methodology</a>
+        <a href="/contact.html">Contact</a>
+        <select id="currency-selector">
+          <!-- Options populated by common.js or hardcoded -->
+          <option value="USD" selected>USD ??US Dollar ($)</option>
+          <option value="EUR">EUR ??Euro (??</option>
+          <option value="GBP">GBP ??British Pound (£)</option>
+          <option value="JPY">JPY ??Japanese Yen (¥)</option>
+          <option value="KRW">KRW ??South Korean Won (??</option>
+        </select>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav style="margin: 2rem 0 1rem; font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">
+      <a href="/" style="color: inherit; text-decoration: none;">Home</a> / 
+      <a href="/investments.html" style="color: inherit; text-decoration: none;">Investments</a> / 
+      Investment Growth
+    </nav>
+
+    <div class="hero" style="text-align: left; padding: 2rem 0 3rem;">
+      <h1 style="font-size: 3rem;">Investment Growth Calculator</h1>
+      <p>Project your future wealth by modeling initial capital, regular contributions, and market returns with inflation adjustments.</p>
+    </div>
+
+    <div class="notice-box">
+      <ul>
+        <li>NOT FINANCIAL ADVICE</li>
+        <li>EDUCATIONAL USE</li>
+        <li>ESTIMATES ONLY</li>
+        <li>INCLUDES INFLATION MODELING</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="calc-grid">
+        <div id="inputs" class="tf-form-container">
+          <div class="tf-field-grid">
+            <div class="tf-field-group">
+              <label for="initial-balance">Initial Investment</label>
+              <div class="input-wrapper has-prefix">
+                <span class="prefix currency-symbol">$</span>
+                <input type="number" id="initial-balance" value="10000" step="1000">
+              </div>
+            </div>
+
+            <div class="tf-field-group">
+              <label for="contribution-amount">Regular Contribution</label>
+              <div class="input-wrapper has-prefix">
+                <span class="prefix currency-symbol">$</span>
+                <input type="number" id="contribution-amount" value="500" step="50">
+              </div>
+            </div>
+
+            <div class="tf-field-group">
+              <label for="contribution-frequency">Contribution Frequency</label>
+              <div class="input-wrapper">
+                <select id="contribution-frequency">
+                  <option value="12">Monthly</option>
+                  <option value="26">Bi-Weekly</option>
+                  <option value="1">Annually</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="tf-field-group">
+              <label for="return-rate">Annual Return Rate (%)</label>
+              <div class="input-wrapper">
+                <input type="number" id="return-rate" value="7" step="0.1">
+                <span class="suffix">%</span>
+              </div>
+            </div>
+
+            <div class="tf-field-group">
+              <label for="investment-years">Time Horizon (Years)</label>
+              <div class="input-wrapper">
+                <input type="number" id="investment-years" value="20" step="1">
+              </div>
+            </div>
+
+            <div class="tf-field-group">
+              <label for="inflation-rate">Expected Inflation (%)</label>
+              <div class="input-wrapper">
+                <input type="number" id="inflation-rate" value="2.5" step="0.1">
+                <span class="suffix">%</span>
+              </div>
+              <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">Adjust results to show future value in "today's dollars."</p>
+            </div>
+          </div>
+
+          <button id="calculate-btn" style="background: var(--primary); color: white; border: none; padding: 18px; border-radius: 12px; font-weight: 800; font-size: 1.1rem; cursor: pointer; width: 100%; transition: all 0.2s;">Calculate Growth</button>
+        </div>
+
+        <div id="results">
+          <div class="results-panel">
+            <div class="result-item">
+              <div class="result-label">Future Value (Nominal)</div>
+              <div class="result-value" id="res-future-value">$0.00</div>
+            </div>
+            
+            <div class="result-item" style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);">
+              <div class="result-label">Future Value (Adjusted for Inflation)</div>
+              <div class="result-value" id="res-adjusted-value" style="color: var(--secondary); font-size: 2rem;">$0.00</div>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">This is the purchasing power of your future balance in today's money.</p>
+            </div>
+
+            <div style="margin-top: 2rem; border-top: 2px solid var(--border); padding-top: 1rem;">
+              <h4 style="margin: 0 0 1rem; color: var(--secondary);">Total Summary</h4>
+              <div style="display: grid; gap: 0.75rem;">
+                <div style="display: flex; justify-content: space-between;">
+                  <span style="color: var(--text-muted);">Total Contributions</span>
+                  <span style="font-weight: 600;" id="res-total-contributions">$0</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span style="color: var(--text-muted);">Total Interest Earned</span>
+                  <span style="font-weight: 600; color: #10b981;" id="res-total-interest">$0</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <section>
+      <h2>Understanding Nominal vs. Real Growth</h2>
+      <p><strong>Nominal Future Value</strong> is the actual dollar amount you would see in your bank account in the future. It doesn't account for the fact that prices for goods and services will likely be higher then.</p>
+      <p><strong>Adjusted (Real) Future Value</strong> uses the inflation rate to "discount" that future amount back to today's purchasing power. It helps you understand what that big number in the future will actually be able to buy.</p>
+    </section>
+      <calculator-info-sections></calculator-info-sections>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" aria-label="ToolFin Home">
+            <span class="logo-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+                <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+                <circle cx="8" cy="13" r="1"></circle>
+                <circle cx="12" cy="13" r="1"></circle>
+                <circle cx="16" cy="13" r="1"></circle>
+                <circle cx="8" cy="17" r="1"></circle>
+                <circle cx="12" cy="17" r="1"></circle>
+                <circle cx="16" cy="17" r="1"></circle>
+              </svg>
+            </span>
+            <span class="logo-text">ToolFin</span>
+          </a>
+          <p style="margin-top: 1.5rem;">Practical financial literacy tools designed for global clarity and educational empowerment.</p>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Platform</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about.html">About ToolFin</a></li>
+            <li><a href="/methodology.html">Methodology</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Legal</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li><a href="/disclaimer.html">Disclaimer</a></li>
+            <li><a href="/editorial-policy.html">Editorial Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Support</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="trust-strip">
+        NOT FINANCIAL ADVICE ??EDUCATIONAL USE ONLY ??ESTIMATES ONLY ??JURISDICTION DIFFERENCES APPLY
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/currency-options.js"></script>
+  <script type="module" src="/assets/investment-growth.js"></script>
+<script src="/assets/tf-state.js"></script>
+  <script src="/assets/calculator-info-sections.js"></script>
+</body>
+</html>
+

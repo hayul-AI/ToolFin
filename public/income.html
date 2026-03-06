@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CLE62Y9TYD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CLE62Y9TYD');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="naver-site-verification" content="1117d92acd41ddf91160f03bf3210369f798a436" />
+  <title>Income, Tax & Salary Calculators - ToolFin</title>
+  <meta name="description" content="Calculate take home pay, overtime, salary conversions, and estimate taxes. Tools to help you understand your earnings and plan for the future.">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container nav-container">
+      <a class="logo" href="/" aria-label="ToolFin Home">
+  <span class="logo-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <!-- calculator body -->
+      <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+      <!-- display -->
+      <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+      <!-- buttons -->
+      <circle cx="8" cy="13" r="1"></circle>
+      <circle cx="12" cy="13" r="1"></circle>
+      <circle cx="16" cy="13" r="1"></circle>
+      <circle cx="8" cy="17" r="1"></circle>
+      <circle cx="12" cy="17" r="1"></circle>
+      <circle cx="16" cy="17" r="1"></circle>
+    </svg>
+  </span>
+  <span class="logo-text">ToolFin</span>
+</a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/methodology.html">Methodology</a>
+        <a href="/contact.html">Contact</a>
+        <select id="currency-selector">
+<option value="USD" selected>USD ??US Dollar ($)</option>
+<option value="EUR">EUR ??Euro (??</option>
+<option value="GBP">GBP ??British Pound (£)</option>
+<option value="JPY">JPY ??Japanese Yen (¥)</option>
+<option value="CNY">CNY ??Chinese Yuan (¥)</option>
+<option value="KRW">KRW ??South Korean Won (??</option>
+<option value="AUD">AUD ??Australian Dollar (A$)</option>
+<option value="CAD">CAD ??Canadian Dollar (C$)</option>
+<option value="NZD">NZD ??New Zealand Dollar (NZ$)</option>
+<option value="CHF">CHF ??Swiss Franc (CHF)</option>
+<option value="HKD">HKD ??Hong Kong Dollar (HK$)</option>
+<option value="SGD">SGD ??Singapore Dollar (S$)</option>
+<option value="TWD">TWD ??Taiwan Dollar (NT$)</option>
+<option value="SEK">SEK ??Swedish Krona (kr)</option>
+<option value="NOK">NOK ??Norwegian Krone (kr)</option>
+<option value="DKK">DKK ??Danish Krone (kr)</option>
+<option value="PLN">PLN ??Polish Złoty (zł)</option>
+<option value="CZK">CZK ??Czech Koruna (Kč)</option>
+<option value="HUF">HUF ??Hungarian Forint (Ft)</option>
+<option value="RON">RON ??Romanian Leu (lei)</option>
+<option value="BGN">BGN ??Bulgarian Lev (лв)</option>
+<option value="TRY">TRY ??Turkish Lira (??</option>
+<option value="ILS">ILS ??Israeli Shekel (??</option>
+<option value="AED">AED ??UAE Dirham (د.إ)</option>
+<option value="SAR">SAR ??Saudi Riyal (�?</option>
+<option value="QAR">QAR ??Qatari Riyal (�?</option>
+<option value="KWD">KWD ??Kuwaiti Dinar (KD)</option>
+<option value="BHD">BHD ??Bahraini Dinar (BD)</option>
+<option value="OMR">OMR ??Omani Rial (�?</option>
+<option value="INR">INR ??Indian Rupee (??</option>
+<option value="PKR">PKR ??Pakistani Rupee (??</option>
+<option value="BDT">BDT ??Bangladeshi Taka (�?</option>
+<option value="LKR">LKR ??Sri Lankan Rupee (??</option>
+<option value="THB">THB ??Thai Baht (�?</option>
+<option value="VND">VND ??Vietnamese Dong (??</option>
+<option value="IDR">IDR ??Indonesian Rupiah (Rp)</option>
+<option value="MYR">MYR ??Malaysian Ringgit (RM)</option>
+<option value="PHP">PHP ??Philippine Peso (??</option>
+<option value="ZAR">ZAR ??South African Rand (R)</option>
+<option value="EGP">EGP ??Egyptian Pound (E£)</option>
+<option value="NGN">NGN ??Nigerian Naira (??</option>
+<option value="KES">KES ??Kenyan Shilling (KSh)</option>
+<option value="GHS">GHS ??Ghanaian Cedi (??</option>
+<option value="MAD">MAD ??Moroccan Dirham (MAD)</option>
+<option value="RUB">RUB ??Russian Ruble (??</option>
+<option value="UAH">UAH ??Ukrainian Hryvnia (??</option>
+<option value="BRL">BRL ??Brazilian Real (R$)</option>
+<option value="ARS">ARS ??Argentine Peso ($)</option>
+<option value="CLP">CLP ??Chilean Peso ($)</option>
+<option value="COP">COP ??Colombian Peso ($)</option>
+<option value="PEN">PEN ??Peruvian Sol (S/)</option>
+<option value="MXN">MXN ??Mexican Peso ($)</option>
+</select>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="hero" style="padding: 3rem 0 2rem; text-align: left;">
+      <p style="margin: 0; font-size: 0.9rem; font-weight: 600; color: var(--primary); text-transform: uppercase; letter-spacing: 1px;">Category</p>
+      <h1 style="margin-top: 0.5rem; font-size: 2.5rem;">Income, Tax & Salary</h1>
+      <p style="margin: 1rem 0 0; max-width: 600px;">Maximize your earnings potential and understand your tax liabilities. These tools help you convert salary rates, estimate take-home pay, and plan for career growth.</p>
+    </div>
+
+    <section>
+      <div class="hub-grid">
+        <!-- Salary Converter -->
+        <a href="/calculators/salary-hourly.html" class="hub-card">
+          <div class="card-accent" aria-hidden="true">
+            <span class="bar bar-long"></span>
+            <span class="bar bar-short"></span>
+          </div>
+          <h3>Salary Converter</h3>
+          <p>Convert between annual salary, monthly pay, bi-weekly checks, and hourly wages.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Convert Salary ??/span>
+        </a>
+
+        <!-- Take Home Pay -->
+        <a href="/calculators/take-home-pay.html" class="hub-card">
+          <div class="card-accent" aria-hidden="true">
+            <span class="bar bar-long"></span>
+            <span class="bar bar-short"></span>
+          </div>
+          <h3>Take Home Pay</h3>
+          <p>Estimate your actual paycheck after federal and state taxes and deductions.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Calculate Net Pay ??/span>
+        </a>
+
+        <!-- Overtime Pay -->
+        <a href="/calculators/overtime.html" class="hub-card">
+          <div class="card-accent" aria-hidden="true">
+            <span class="bar bar-long"></span>
+            <span class="bar bar-short"></span>
+          </div>
+          <h3>Overtime Calculator</h3>
+          <p>Determine how much extra income you'll earn from time-and-a-half or double-time hours.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Calculate Overtime ??/span>
+        </a>
+
+        <!-- Bonus Tax -->
+        <a href="/calculators/bonus-tax.html" class="hub-card">
+          <div class="card-accent" aria-hidden="true">
+            <span class="bar bar-long"></span>
+            <span class="bar bar-short"></span>
+          </div>
+          <h3>Bonus Tax Calculator</h3>
+          <p>See how much of your work bonus you will actually keep after supplemental tax rates.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Estimate Bonus ??/span>
+        </a>
+
+        <!-- Self Employment Tax -->
+        <a href="/calculators/self-employment-tax.html" class="hub-card">
+          <div class="card-accent" aria-hidden="true">
+            <span class="bar bar-long"></span>
+            <span class="bar bar-short"></span>
+          </div>
+          <h3>Self-Employment Tax</h3>
+          <p>Estimate your tax liability as a freelancer or contractor to avoid end-of-year surprises.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Check Liability ??/span>
+        </a>
+
+        <!-- Pay Raise -->
+        <a href="/calculators/pay-raise.html" class="hub-card">
+          <div class="card-accent" aria-hidden="true">
+            <span class="bar bar-long"></span>
+            <span class="bar bar-short"></span>
+          </div>
+          <h3>Pay Raise Calculator</h3>
+          <p>Analyze the impact of a salary increase on your weekly and monthly budget.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Calculate Raise ??/span>
+        </a>
+
+        <!-- Inflation Adjuster -->
+        <a href="/calculators/inflation-salary.html" class="hub-card">
+          <div class="card-accent" aria-hidden="true">
+            <span class="bar bar-long"></span>
+            <span class="bar bar-short"></span>
+          </div>
+          <h3>Inflation Salary Adjuster</h3>
+          <p>Check if your current salary is keeping up with inflation rates over time.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Check Inflation ??/span>
+        </a>
+
+        <!-- Retirement Contribution -->
+        <a href="/calculators/retirement-contribution.html" class="hub-card">
+          <div class="card-accent" aria-hidden="true">
+            <span class="bar bar-long"></span>
+            <span class="bar bar-short"></span>
+          </div>
+          <h3>Retirement Contribution Calculator</h3>
+          <p>Estimate how your salary contributions grow into retirement savings.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Plan Savings ??/span>
+        </a>
+
+        <!-- Cost of Living -->
+        <a href="/calculators/cost-of-living.html" class="hub-card">
+          <div class="card-accent" aria-hidden="true">
+            <span class="bar bar-long"></span>
+            <span class="bar bar-short"></span>
+          </div>
+          <h3>Cost of Living Calculator</h3>
+          <p>Compare how far your salary goes in a different cost environment.</p>
+          <span style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-top: auto; padding-top: 1.5rem; display: block;">Compare Purchasing Power ??/span>
+        </a>
+      </div>
+    </section>
+      <category-guide-block category-key="income" title="Income, Tax & Salary"></category-guide-block>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" aria-label="ToolFin Home">
+  <span class="logo-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <!-- calculator body -->
+      <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+      <!-- display -->
+      <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+      <!-- buttons -->
+      <circle cx="8" cy="13" r="1"></circle>
+      <circle cx="12" cy="13" r="1"></circle>
+      <circle cx="16" cy="13" r="1"></circle>
+      <circle cx="8" cy="17" r="1"></circle>
+      <circle cx="12" cy="17" r="1"></circle>
+      <circle cx="16" cy="17" r="1"></circle>
+    </svg>
+  </span>
+  <span class="logo-text">ToolFin</span>
+</a>
+          <p style="margin-top: 1.5rem;">Practical financial literacy tools designed for global clarity and educational empowerment.</p>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Platform</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/">Home</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/about.html">About ToolFin</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/methodology.html">Methodology</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Legal</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/disclaimer.html">Disclaimer</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="/editorial-policy.html">Editorial Policy</a></li>
+            <li style="margin-bottom: 0.75rem;"><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Support</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.75rem;"><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="trust-strip">
+        NOT FINANCIAL ADVICE ??EDUCATIONAL USE ONLY ??ESTIMATES ONLY ??JURISDICTION DIFFERENCES APPLY
+      </div>
+    </div>
+  </footer>
+  <script type="module" src="/assets/common.js"></script>
+<script src="/assets/currency-options.js"></script>
+<script src="/assets/tf-state.js"></script>
+  <script src="/assets/category-guide-block.js"></script>
+</body>
+</html>

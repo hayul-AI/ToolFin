@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CLE62Y9TYD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CLE62Y9TYD');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="naver-site-verification" content="1117d92acd41ddf91160f03bf3210369f798a436" />
+  <title>FIRE / 4% Rule Calculator - ToolFin</title>
+  <meta name="description" content="Calculate FIRE / 4% Rule Calculator with our free, easy-to-use tool. ToolFin provides accurate financial modeling for FIRE / 4% Rule Calculator to help you make informed decisions.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FinancialService",
+    "name": "ToolFin FIRE / 4% Rule Calculator",
+    "description": "Calculate FIRE / 4% Rule Calculator with our free, easy-to-use tool. ToolFin provides accurate financial modeling for FIRE / 4% Rule Calculator to help you make informed decisions.",
+    "url": "https://toolfin.hotplmedia.com/calculators/fire-calculator.html"
+  }
+  </script>
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container nav-container">
+      <a class="logo" href="/" aria-label="ToolFin Home">
+        <span class="logo-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+            <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+            <circle cx="8" cy="13" r="1"></circle>
+            <circle cx="12" cy="13" r="1"></circle>
+            <circle cx="16" cy="13" r="1"></circle>
+            <circle cx="8" cy="17" r="1"></circle>
+            <circle cx="12" cy="17" r="1"></circle>
+            <circle cx="16" cy="17" r="1"></circle>
+          </svg>
+        </span>
+        <span class="logo-text">ToolFin</span>
+      </a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/methodology.html">Methodology</a>
+        <a href="/contact.html">Contact</a>
+        <select id="currency-selector">
+          <option value="USD" selected>USD ??US Dollar ($)</option>
+          <option value="EUR">EUR ??Euro (??</option>
+          <option value="GBP">GBP ??British Pound (£)</option>
+          <option value="JPY">JPY ??Japanese Yen (¥)</option>
+          <option value="KRW">KRW ??South Korean Won (??</option>
+        </select>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav style="margin: 2rem 0 1rem; font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">
+      <a href="/" style="color: inherit; text-decoration: none;">Home</a> / 
+      <a href="/investments.html" style="color: inherit; text-decoration: none;">Investments</a> / 
+      FIRE / 4% Rule
+    </nav>
+
+    <div class="hero" style="text-align: left; padding: 2rem 0 3rem;">
+      <h1 style="font-size: 3rem;">FIRE / 4% Rule Calculator</h1>
+      <p>Calculate your Financial Independence number and estimate how long it will take to reach retirement based on your spending.</p>
+    </div>
+
+    <div class="notice-box">
+      <ul>
+        <li>NOT FINANCIAL ADVICE</li>
+        <li>EDUCATIONAL USE</li>
+        <li>ESTIMATES ONLY</li>
+        <li>BASED ON HISTORICAL WITHDRAWAL RATES</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="calc-grid">
+        <div id="inputs">
+          <div class="input-group">
+            <label for="annual-expenses">Estimated Annual Expenses (FIRE)</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="annual-expenses" value="40000" step="1000">
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">How much you plan to spend per year in retirement.</p>
+          </div>
+
+          <div class="input-group">
+            <label for="withdrawal-rate">Safe Withdrawal Rate (%)</label>
+            <div class="input-wrapper">
+              <input type="number" id="withdrawal-rate" value="4.0" step="0.1" min="0.1" max="10">
+              <span class="suffix">%</span>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">The standard 4% rule is common, but some prefer 3% or 3.5%.</p>
+          </div>
+
+          <div class="input-group">
+            <label for="current-savings">Current Invested Assets</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="current-savings" value="100000" step="1000">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="monthly-savings">Monthly New Savings</label>
+            <div class="input-wrapper has-prefix">
+              <span class="prefix currency-symbol">$</span>
+              <input type="number" id="monthly-savings" value="2000" step="100">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="market-return">Expected Market Return (%)</label>
+            <div class="input-wrapper">
+              <input type="number" id="market-return" value="7" step="0.1">
+              <span class="suffix">%</span>
+            </div>
+          </div>
+
+          <button id="calculate-btn" style="background: var(--primary); color: white; border: none; padding: 16px; border-radius: var(--radius); font-weight: 800; font-size: 1.1rem; cursor: pointer; width: 100%; transition: background 0.2s;">Calculate FIRE Path</button>
+        </div>
+
+        <div id="results">
+          <div class="results-panel" style="background: #fffcf0; border-color: #fef3c7;">
+            <div class="result-item">
+              <div class="result-label" style="color: #92400e;">Your FIRE Number</div>
+              <div class="result-value" id="res-fire-number" style="color: #b45309;">$0.00</div>
+              <p style="font-size: 0.9rem; color: #92400e; margin-top: 0.5rem;">Target portfolio size to sustain your lifestyle.</p>
+            </div>
+            
+            <div style="margin-top: 2rem; border-top: 2px solid #fde68a; padding-top: 1.5rem; display: grid; gap: 1rem;">
+              <div style="display: flex; justify-content: space-between;">
+                <span style="color: var(--text-muted); font-weight: 600;">Time to Reach FIRE</span>
+                <span style="font-weight: 800; color: var(--primary);" id="res-years-to-fire">0 Years</span>
+              </div>
+              <div style="display: flex; justify-content: space-between;">
+                <span style="color: var(--text-muted); font-weight: 600;">Progress to Goal</span>
+                <span style="font-weight: 800;" id="res-progress">0%</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; border-top: 1px dashed #fde68a; padding-top: 0.5rem;">
+                <span style="color: var(--text-main); font-weight: 700;">Monthly Passive Income*</span>
+                <span style="font-weight: 800; color: #10b981;" id="res-monthly-income">$0</span>
+              </div>
+              <p style="font-size: 0.75rem; color: #92400e; line-height: 1.4;">*Current potential monthly withdrawal based on your rate.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <section>
+      <h2>What is the FIRE Movement?</h2>
+      <p>FIRE stands for **Financial Independence, Retire Early**. The core idea is to save and invest a significant portion of your income until your portfolio can generate enough passive income to cover your living expenses for the rest of your life.</p>
+      <h2>The 4% Rule Explained</h2>
+      <p>The 4% rule originated from the Trinity Study, which found that an investor could typically withdraw 4% of their initial portfolio value (adjusted for inflation each year) and have a very high probability of the money lasting at least 30 years.</p>
+      <p>Using this rule, your FIRE number is simply **25 times your annual expenses**. If you want a more conservative approach, you might use a 3% withdrawal rate, which would require a portfolio 33.3 times your annual expenses.</p>
+    </section>
+      <calculator-info-sections></calculator-info-sections>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="/" aria-label="ToolFin Home">
+            <span class="logo-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="2" width="18" height="20" rx="3"></rect>
+                <rect x="7" y="6" width="10" height="3" rx="1"></rect>
+                <circle cx="8" cy="13" r="1"></circle>
+                <circle cx="12" cy="13" r="1"></circle>
+                <circle cx="16" cy="13" r="1"></circle>
+                <circle cx="8" cy="17" r="1"></circle>
+                <circle cx="12" cy="17" r="1"></circle>
+                <circle cx="16" cy="17" r="1"></circle>
+              </svg>
+            </span>
+            <span class="logo-text">ToolFin</span>
+          </a>
+          <p style="margin-top: 1.5rem;">Practical financial literacy tools designed for global clarity and educational empowerment.</p>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Platform</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about.html">About ToolFin</a></li>
+            <li><a href="/methodology.html">Methodology</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Legal</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li><a href="/disclaimer.html">Disclaimer</a></li>
+            <li><a href="/editorial-policy.html">Editorial Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5 style="margin-bottom: 1.5rem; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Support</h5>
+          <ul style="list-style: none; padding: 0;">
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="trust-strip">
+        NOT FINANCIAL ADVICE ??EDUCATIONAL USE ONLY ??ESTIMATES ONLY ??JURISDICTION DIFFERENCES APPLY
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/currency-options.js"></script>
+  <script type="module" src="/assets/fire-calculator.js"></script>
+<script src="/assets/tf-state.js"></script>
+  <script src="/assets/calculator-info-sections.js"></script>
+</body>
+</html>
+
